@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+
+</head>
+  <style>
+    html {
+    line-height: 1.5;
+    font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif;
+    font-weight: normal;
+    color: rgba(0,0,0,0.87);
+}
+
+
+.iframecontainer {
+  position: absolute;
+  overflow: hidden;
+  width: 100%;
+  top: 56px;
+  bottom: 0;
+}
+
+/* Then style the iframe to fit in the container div with full height and width */
+.responsive-iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  border:none;
+}
+.spinner {
+  position: fixed;
+  top: 50%;
+  width: 100%;
+  text-align: center;
+  z-index: 100;
+} 
+  </style>   
+<body>
+
+    <nav>
+        <div class="nav-wrapper  teal lighten-3">
+          <a href="https://script.google.com/macros/s/AKfycbyuGFLoHuczL0F_p0RsJLGumgqD2b6Z79RQA82pZbhTtTpbab4/exec?page=divisio" class="brand-logo"  target='iframeView'>Manacup</a>
+          <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+          <ul class="right hide-on-med-and-down">
+            <li><a href="https://script.google.com/macros/s/AKfycbyuGFLoHuczL0F_p0RsJLGumgqD2b6Z79RQA82pZbhTtTpbab4/exec?page=divisio"  target='iframeView'><i class="material-icons">home</i></a></li>
+            <li><a href="https://scrabblemanacor.wordpress.com/" target='iframeView'>Club Scrabble Manacor</a></li>
+            <li><a href="https://scrabblemanacor.wordpress.com/normativa-del-joc/" target='iframeView'>Normativa</a></li>
+
+          </ul>
+        </div>
+      </nav>
+    
+      <ul class="sidenav" id="mobile-demo">
+         <li>
+            <div class="user-view">
+                <div class="background">
+                    <img src="https://drive.google.com/uc?export=download&amp;id=18DAlwsNt5gSfyZOPaSLbI0TK95ln-6hw">
+                </div>
+                
+                <a href="#name"><span class="white-text name">ManaCup 20-21</span></a>
+                <a href="#email"><span class="white-text email">La lliga suissa</span></a>
+            </div>
+        </li>
+        
+        <li><a class="sidenav-close" href="https://script.google.com/macros/s/AKfycbyuGFLoHuczL0F_p0RsJLGumgqD2b6Z79RQA82pZbhTtTpbab4/exec?page=divisio"  target='iframeView'><i class="material-icons">home</i>Inici</a></li>
+        <li><a class="sidenav-close" href="https://icon.cat/wordertorn/" target='_blank'><i class="material-icons">check</i>WORdERtorn</a></li>
+        <li><a class="sidenav-close" href="https://scrabblemanacor.wordpress.com/normativa-del-joc/" target='iframeView'><i class="material-icons">view_list</i>Normativa</a></li>
+        <li><a  class="sidenav-close" href="mailto:tonillull@gmail.com" target='iframeView'> <i class="material-icons">mail</i>Incidències a l'app</a></li>
+
+      </ul>
+       <div id="spinner" class="spinner">
+      <div class="preloader-wrapper small active">
+      <div class="spinner-layer spinner-blue">
+        <div class="circle-clipper left">
+          <div class="circle"></div>
+        </div>
+         <div class="gap-patch">
+          <div class="circle"></div>
+        </div>
+         <div class="circle-clipper right">
+          <div class="circle"></div>
+         </div>
+        </div>
+       </div>
+      </div>
+ 
+<div class="iframecontainer">
+   
+
+    
+  <iframe name='iframeView' id="divisio" class="responsive-iframe" src='https://script.google.com/macros/s/AKfycbyuGFLoHuczL0F_p0RsJLGumgqD2b6Z79RQA82pZbhTtTpbab4/exec?page=divisio'></iframe>
+</div>
+<script>  
+
+    document.addEventListener('DOMContentLoaded', function() {
+        M.AutoInit();
+  });
+   document.getElementById('divisio').onload = function() {
+  document.getElementById('spinner').style.display='none';
+};
+  </script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+</body>
+  </html>
