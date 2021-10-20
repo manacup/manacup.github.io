@@ -90,7 +90,7 @@
         <li><a class="sidenav-close" href="https://script.google.com/macros/s/AKfycbwvH087aPxnpvuBQA8UJNKYsPURpfiVxL-0sHxIEPMUE7N5sqJe9sA1sVs7KzvahzJ-HQ/exec?page=index&plantilla=template"  target='iframeView'><i class="material-icons">home</i>Inici</a></li>
         <li><a class="sidenav-close" href="https://icon.cat/wordertorn/" target='_blank'><i class="material-icons">check</i>WORdERtorn</a></li>
         <li><a class="sidenav-close" href="https://scrabblemanacor.wordpress.com/normativa-del-joc/" target='iframeView'><i class="material-icons">view_list</i>Normativa</a></li>
-        <li><a class="sidenav-close" href="https://drive.google.com/file/d/11buoBA5n8IlYjo112N6I7Poeyfe9CQNl/view?usp=sharing" target='_blank' onclick="estadistica()"><i class="material-icons">phone_android</i>Aplicació Android</a></li>
+        <li><a class="sidenav-close" href="https://drive.google.com/file/d/11buoBA5n8IlYjo112N6I7Poeyfe9CQNl/view?usp=sharing" target='_blank' id="linkApp"><i class="material-icons">phone_android</i>Aplicació Android</a></li>
         <li><a  class="sidenav-close" href="mailto:tonillull@gmail.com" target='iframeView'> <i class="material-icons">mail</i>Incidències a l'app</a></li>
 
       </ul>
@@ -116,7 +116,7 @@
     
   <iframe name='iframeView' id="divisio" class="responsive-iframe" src='https://script.google.com/macros/s/AKfycbwvH087aPxnpvuBQA8UJNKYsPURpfiVxL-0sHxIEPMUE7N5sqJe9sA1sVs7KzvahzJ-HQ/exec?page=index&plantilla=template'></iframe>
 </div>
-     <iframe name='estadistica' id="estadistica" src="" style="display:none"></iframe>
+     <iframe name='estadistica' id="estadistica" src="https://docs.google.com/forms/d/e/1FAIpQLScMRS7yABr1mP94vvfs7ye49eL1W7lfwdECvxt_3x58Quv-dQ/formResponse?entry.1176666344=WEB" style="display:none"></iframe>
 
 <script>  
    
@@ -131,6 +131,7 @@
    document.getElementById('divisio').onload = function() {
   document.getElementById('spinner').style.display='none';
 };
+   document.getElementById("linkApp").addEventListener("click",estadistica);
   </script>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
