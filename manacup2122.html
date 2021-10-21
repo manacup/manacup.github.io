@@ -116,7 +116,7 @@
     
   <iframe name='iframeView' id="divisio" class="responsive-iframe" src='https://script.google.com/macros/s/AKfycbwvH087aPxnpvuBQA8UJNKYsPURpfiVxL-0sHxIEPMUE7N5sqJe9sA1sVs7KzvahzJ-HQ/exec?page=index&plantilla=template'></iframe>
 </div>
-     <iframe name='estadistica' id="estadistica" src="https://docs.google.com/forms/d/e/1FAIpQLScMRS7yABr1mP94vvfs7ye49eL1W7lfwdECvxt_3x58Quv-dQ/formResponse?entry.1176666344=WEB" style="display:none"></iframe>
+     <iframe name='estadistica' id="estadistica" src="" style="display:none"></iframe>
 
 <script>  
    
@@ -127,11 +127,24 @@
 
     document.addEventListener('DOMContentLoaded', function() {
         M.AutoInit();
+       identificador()
   });
    document.getElementById('divisio').onload = function() {
   document.getElementById('spinner').style.display='none';
 };
    document.getElementById("linkApp").addEventListener("click",estadistica);
+     
+   function identificador(){
+    var id = Math.floor(Math.random() * Date.now())
+    var localID = localStorage.getItem("id")
+    
+    if(localID) {
+        id = localID
+    }else{
+        localStorage.setItem("id",id)
+    }
+    document.getElementById("estadistica").src=('https://docs.google.com/forms/d/e/1FAIpQLScMRS7yABr1mP94vvfs7ye49eL1W7lfwdECvxt_3x58Quv-dQ/formResponse?entry.1176666344=WEB&entry.1220927547='+id)
+   }
   </script>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
