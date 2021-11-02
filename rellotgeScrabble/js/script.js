@@ -271,6 +271,16 @@ jugador2.addEventListener('click', () => {
     }
 
 });
+var tempsBtn = document.getElementById("tempsBtn")
+tempsBtn.addEventListener("click",()=>{
+    var temps = document.getElementById("temps").value
+    document.getElementById('min1').textContent = padZero(temps)
+    document.getElementById('min2').textContent = padZero(temps)
+    document.getElementById('sec1').textContent = padZero(0)
+    document.getElementById('sec2').textContent = padZero(0)
+    playing = false
+
+})
 
 // Loop through the start and reset buttons.
 for (let i = 0; i < buttons.length; i++) {
@@ -303,11 +313,7 @@ for (let i = 0; i < buttons.length; i++) {
                     document.querySelector('.player-' + currentPlayer).classList.add('actiu')
                     document.getElementById('cont').style.display = "none"
 
-                } else
-                    if (buttons[i].textContent === 'RESET') {
-                        // Reset everything by reloading the page.
-                        location.reload(true);
-                    }
+                } 
     });
 }
 
@@ -317,3 +323,25 @@ document.addEventListener('keypress', event => {
         swapPlayer();
     }
 });
+
+if (document.location.search.match(/type=embed/gi)) {
+    window.parent.postMessage("resize", "*");
+  }
+
+  var noSleep = new NoSleep();
+
+  var wakeLockEnabled = false;
+  var toggleEl = document.querySelector("#toggle");
+  toggleEl.addEventListener('click', function() {
+    if (!wakeLockEnabled) {
+      noSleep.enable(); // keep the screen on!
+      wakeLockEnabled = true;
+      toggleEl.value = "Desactiva la pantalla activa";
+document.getElementById('toggle').style.backgroundColor = "red";
+    } else {
+      noSleep.disable(); // let the screen turn off.
+      wakeLockEnabled = false;
+      toggleEl.value = "Manté la pantalla activa";
+document.getElementById('toggle').style.backgroundColor = "";
+    }
+  }, false);

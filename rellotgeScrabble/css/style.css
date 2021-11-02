@@ -12,6 +12,7 @@
     padding: 0;
     -webkit-box-sizing: border-box;
             box-sizing: border-box;
+            
 }
 
 html,
@@ -131,6 +132,10 @@ img {
     font-family: 'FiraMono-Regular', monospace;
     position: relative;
     
+}
+.timer__ajust-bttn{
+    color: #FFFFFF;
+  
 }
 
 .timer__start-bttn {

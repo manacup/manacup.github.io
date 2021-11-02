@@ -6,16 +6,18 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <meta name="description" content="A chess timer built with Javascript, HTML, and CSS">
-  <meta name="author" content="Brandon Wallace">
-  <link rel="shortcut icon" href="images/favicon.ico">
-  <link rel="icon" type="image/png" href="images/favicon.png">
+  <meta name="description" content="Un rellotge per jugar a Scrabble fet amb Javascript, HTML i CSS">
+  
+  <link rel="shortcut icon" href="">
+  <link rel="icon" type="image/png" href="">
   <link rel="stylesheet" href="css/style.css">
   <script type="text/javascript" src="https://icon.cat/wordertorn/js/jquery.js"></script>
 	<script type="text/javascript" src="https://icon.cat/wordertorn/js/general.js"></script>
     <script type="text/javascript" src="https://icon.cat/wordertorn/js/bits.js"></script>
     <script type="text/javascript" src="https://icon.cat/wordertorn/dicc/disc.js"></script>
-  <title>chess clock</title>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/nosleep/0.12.0/NoSleep.min.js"></script>
+    
+  <title>Rellotge Scrabble</title>
 
 </head>
 
@@ -26,25 +28,39 @@
   </noscript>
 
   <main>
+    <nav id="menu">
+      <details>
+        <summary>
+          <div class="timer__ajust-bttn bttn" type="button">Ajustaments</div>
+        </summary>
+         <ul>
+        
+        <li><input type="text" id="temps" value="30"><button id="tempsBtn" class="sch" type="button">DEFINEIX EL TEMPS</button></li>
+        <li><button class="sch" type="button" id="toggle">Manté la pantalla activa</button></li>
+      </ul>
+      </details>
+     
+      
+    </nav>
 
     <div class="player">
 
       <div class="player__tile player-1">
         <div class="player__digits">
-          <span id="min1">10</span>:<span id="sec1">00</span>
+          <span id="min1">30</span>:<span id="sec1">00</span>
         </div>
       </div>
 
       <div class="player__tile player-2">
         <div class="player__digits">
-          <span id="min2">10</span>:<span id="sec2">00</span>
+          <span id="min2">30</span>:<span id="sec2">00</span>
         </div>
       </div>
 
     
     <div class="timer__buttons">
       <button class="timer__start-bttn bttn" type="button">COMENÇA</button>
-      <button class="timer__reset-bttn bttn" type="button">RESET</button>
+      <!-- <button class="timer__reset-bttn bttn" type="button">RESET</button> -->
     </div>
 
     <div id="cont" style="display: none;">
@@ -54,7 +70,7 @@
             <input class="qry" type="text" name="q" value="">
           </div>
           <div id="buttons">
-            <button class="sch  bttn" name="sch" type="button" value="Valida la jugada">Valida la jugada</button>
+            <input class="sch  btn" name="sch" type="button" value="Valida la jugada"/>
           </div>
         </form>
       </div>
