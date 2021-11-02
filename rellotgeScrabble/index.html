@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <meta name="description" content="A chess timer built with Javascript, HTML, and CSS">
+  <meta name="author" content="Brandon Wallace">
+  <link rel="shortcut icon" href="images/favicon.ico">
+  <link rel="icon" type="image/png" href="images/favicon.png">
+  <link rel="stylesheet" href="css/style.css">
+  <script type="text/javascript" src="https://icon.cat/wordertorn/js/jquery.js"></script>
+	<script type="text/javascript" src="https://icon.cat/wordertorn/js/general.js"></script>
+    <script type="text/javascript" src="https://icon.cat/wordertorn/js/bits.js"></script>
+    <script type="text/javascript" src="https://icon.cat/wordertorn/dicc/disc.js"></script>
+  <title>chess clock</title>
+
+</head>
+
+<body>
+
+  <noscript>
+    <p style="color:#FC0000;text-align:center">Please enable Javascript to in order to use application.</p>
+  </noscript>
+
+  <main>
+
+    <div class="player">
+
+      <div class="player__tile player-1">
+        <div class="player__digits">
+          <span id="min1">10</span>:<span id="sec1">00</span>
+        </div>
+      </div>
+
+      <div class="player__tile player-2">
+        <div class="player__digits">
+          <span id="min2">10</span>:<span id="sec2">00</span>
+        </div>
+      </div>
+
+    
+    <div class="timer__buttons">
+      <button class="timer__start-bttn bttn" type="button">COMENÇA</button>
+      <button class="timer__reset-bttn bttn" type="button">RESET</button>
+    </div>
+
+    <div id="cont" style="display: none;">
+      <div id="req">
+        <form id="wdtform" name="wdtform" action="wordertorn">
+          <div id="input">
+            <input class="qry" type="text" name="q" value="">
+          </div>
+          <div id="buttons">
+            <button class="sch  bttn" name="sch" type="button" value="Valida la jugada">Valida la jugada</button>
+          </div>
+        </form>
+      </div>
+      <div id="res">
+        <div id="res_info"></div>
+        <div id="res_timer"></div>
+      </div>
+      <p class="util">Utilitza les tecles <em>Retorn</em> per validar, <em>Esc</em> per esborrar la darrera consulta<br>
+        i les fletxes ↑ i ↓ per recuperar les consultes anteriors.</p>
+    </div>
+</div>
+
+  </main>
+
+
+
+  <script src="js/script.js"></script>
+
+</body>
+
+</html>
