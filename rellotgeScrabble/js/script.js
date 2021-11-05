@@ -3,6 +3,8 @@ let playing = false;
 let currentPlayer = 1;
 let jug1 = true
 let jug2 = true
+let so = true
+let vibracio = true
 const timerPanel = document.querySelector('.player');
 const buttons = document.querySelectorAll('.bttn');
 const jugador1 = document.querySelector('.player-1');
@@ -42,7 +44,8 @@ let p2time = new Timer('min2', document.getElementById('min2').textContent);
     // Toggle the current player.
     //currentPlayer = currentPlayer === 1 ? 2 : 1;
     // Play the click sound.
-    click.play();
+    if(so){click.play()}
+    if(vibracio){window.navigator.vibrate(50)}
     //canvia color lletres
     if (currentPlayer === 1) {
         document.querySelector('.player-2').classList.remove('actiu')
@@ -68,14 +71,14 @@ const timeWarning = (player, min, sec) => {
     //}
 }
 
-
+let timerId
 // Start timer countdown to zero.
 const startTimer = () => {
     playing = true;
     let p1sec = 60;
     let p2sec = 60;
 
-    let timerId = setInterval(function () {
+    timerId = setInterval(function () {
         // Player 1.
         if (currentPlayer === 1) {
             if (playing && jug1) {
@@ -137,11 +140,14 @@ const startTimer = () => {
         }
     }, 1000);
 }
+
+let descompteID
+
 function tempsDescompte() {
     let p1sec = 0;
     let p2sec = 0;
 
-    setInterval(function () {
+    descompteID = setInterval(function () {
         // Player 1.
         if (currentPlayer === 1) {
             if (playing && !jug1) {
@@ -164,7 +170,7 @@ function tempsDescompte() {
                     // Play a sound effect.
                     timesUp.play();
                     // Stop timer.
-                    clearInterval(timerId);
+                    clearInterval(descompteID);
                     //playing = false;
 
 
@@ -194,7 +200,7 @@ function tempsDescompte() {
                     // Play a sound effect.
                     timesUp.play();
                     // Stop timer.
-                    clearInterval(timerId);
+                    clearInterval(descompteID);
                     //playing = false;
 
                 }
@@ -218,7 +224,8 @@ jugador1.addEventListener('click', () => {
         botoStart.style.color = '#EEEEEE';
         botoStart.style.backgroundColor = '#606060';
         botoStart.textContent = 'PAUSA'
-        click.play();
+        if(so){click.play()}
+        if(vibracio){window.navigator.vibrate(50)}
         
     } else 
     if(!playing && botoStart.textContent === 'COMENÇA'){
@@ -229,14 +236,16 @@ jugador1.addEventListener('click', () => {
         botoStart.style.color = '#EEEEEE';
         botoStart.style.backgroundColor = '#606060';
         botoStart.textContent = 'PAUSA'
-        click.play();
+        if(so){click.play()}
+        if(vibracio){window.navigator.vibrate(50)}
 
     }else{
         currentPlayer = 2
         document.querySelector('.player-1').classList.remove('actiu')
         document.querySelector('.player-2').classList.add('actiu')
         
-        click.play();
+        if(so){click.play()}
+        if(vibracio){window.navigator.vibrate(50)}
     }
 
 });
@@ -249,7 +258,8 @@ jugador2.addEventListener('click', () => {
         botoStart.style.color = '#EEEEEE';
         botoStart.style.backgroundColor = '#606060';
         botoStart.textContent = 'PAUSA'
-        click.play();
+        if(so){click.play()}
+        if(vibracio){window.navigator.vibrate(50)}
         
     } else 
     if(!playing && botoStart.textContent === 'COMENÇA'){
@@ -260,17 +270,33 @@ jugador2.addEventListener('click', () => {
         botoStart.style.color = '#EEEEEE';
         botoStart.style.backgroundColor = '#606060';
         botoStart.textContent = 'PAUSA'
-        click.play();
+        if(so){click.play()}
+        if(vibracio){window.navigator.vibrate(50)}
 
     }else{
         currentPlayer = 1
         document.querySelector('.player-2').classList.remove('actiu')
         document.querySelector('.player-1').classList.add('actiu')
+        if(so){click.play()}
+        if(vibracio){window.navigator.vibrate(50)}
         
-        click.play();
     }
 
 });
+let ajust = document.getElementById("ajustaments")
+ajust.addEventListener("toggle", ()=>{
+    if (ajust.open===true){
+        document.querySelector(".player").style.display = "none"
+    }else{
+       document.querySelector(".player").style.display = "" 
+    }
+})   
+
+
+
+    
+
+
 var tempsBtn = document.getElementById("tempsBtn")
 tempsBtn.addEventListener("click",()=>{
     var temps = document.getElementById("temps").value
@@ -279,6 +305,13 @@ tempsBtn.addEventListener("click",()=>{
     document.getElementById('sec1').textContent = padZero(0)
     document.getElementById('sec2').textContent = padZero(0)
     playing = false
+    clearInterval(timerId)
+    clearInterval(descompteID)
+    botoStart.textContent = 'COMENÇA'
+    botoStart.style.backgroundColor = '#0071D5';
+    document.getElementById("checkSo").checked ? so = true : so = false
+    console.log(so)
+    document.getElementById("ajustaments").open = false
 
 })
 
@@ -314,23 +347,21 @@ for (let i = 0; i < buttons.length; i++) {
                     document.getElementById('cont').style.display = "none"
 
                 } 
+
+
     });
 }
 
-// Listen for the press of the spacebar.
-document.addEventListener('keypress', event => {
-    if (event.keyCode === 32 || event.which === 32) {
-        swapPlayer();
-    }
-});
+
 
 if (document.location.search.match(/type=embed/gi)) {
     window.parent.postMessage("resize", "*");
   }
 
-  var noSleep = new NoSleep();
+  var noSleep = new NoSleep().enable;
 
-  var wakeLockEnabled = false;
+  /* var wakeLockEnabled = true;
+
   var toggleEl = document.querySelector("#toggle");
   toggleEl.addEventListener('click', function() {
     if (!wakeLockEnabled) {
@@ -344,4 +375,4 @@ document.getElementById('toggle').style.backgroundColor = "red";
       toggleEl.value = "Manté la pantalla activa";
 document.getElementById('toggle').style.backgroundColor = "";
     }
-  }, false);
+  }, false); */

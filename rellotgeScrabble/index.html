@@ -29,15 +29,22 @@
 
   <main>
     <nav id="menu">
-      <details>
+      <details id="ajustaments">
         <summary>
           <div class="timer__ajust-bttn bttn" type="button">Ajustaments</div>
         </summary>
-         <ul>
-        
-        <li><input type="text" id="temps" value="30"><button id="tempsBtn" class="sch" type="button">DEFINEIX EL TEMPS</button></li>
-        <li><button class="sch" type="button" id="toggle">Manté la pantalla activa</button></li>
-      </ul>
+         <form>
+          <br><br>
+          <span class="blanc-text">Defineix els minuts </span><input type="text" id="temps" value="30">
+        <!-- <li><button class="sch" type="button" id="toggle">Manté la pantalla activa</button></li> -->
+        <br><br>
+        <input type="checkbox" value="Activa el so" id="checkSo" checked ><span class="blanc-text"> Activa el so</span>
+        <br><br>
+        <input type="checkbox" value="Activa la vibració" id="checkVibracio" checked ><span class="blanc-text"> Activa la vibració</span>
+        <br><br>
+        <button id="tempsBtn" class="ajust_bttn bttn" type="button">Desa les preferències</button>
+
+         </form>
       </details>
      
       
