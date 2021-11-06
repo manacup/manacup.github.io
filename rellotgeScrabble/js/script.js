@@ -223,7 +223,7 @@ jugador1.addEventListener('click', () => {
 
         botoStart.style.color = '#EEEEEE';
         botoStart.style.backgroundColor = '#606060';
-        botoStart.textContent = 'PAUSA'
+        botoStart.textContent = 'PAUSA / VALIDA'
         if (so) { click.play() }
         if (vibracio) { window.navigator.vibrate(50) }
 
@@ -235,7 +235,7 @@ jugador1.addEventListener('click', () => {
 
             botoStart.style.color = '#EEEEEE';
             botoStart.style.backgroundColor = '#606060';
-            botoStart.textContent = 'PAUSA'
+            botoStart.textContent = 'PAUSA / VALIDA'
             if (so) { click.play() }
             if (vibracio) { window.navigator.vibrate(50) }
 
@@ -257,7 +257,7 @@ jugador2.addEventListener('click', () => {
 
         botoStart.style.color = '#EEEEEE';
         botoStart.style.backgroundColor = '#606060';
-        botoStart.textContent = 'PAUSA'
+        botoStart.textContent = 'PAUSA / VALIDA'
         if (so) { click.play() }
         if (vibracio) { window.navigator.vibrate(50) }
 
@@ -269,7 +269,7 @@ jugador2.addEventListener('click', () => {
 
             botoStart.style.color = '#EEEEEE';
             botoStart.style.backgroundColor = '#606060';
-            botoStart.textContent = 'PAUSA'
+            botoStart.textContent = 'PAUSA / VALIDA'
             if (so) { click.play() }
             if (vibracio) { window.navigator.vibrate(50) }
 
