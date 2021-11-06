@@ -29,7 +29,7 @@
 
   <main>
     <nav id="menu">
-      <details id="ajustaments">
+      <details id="ajustaments" open>
         <summary>
           <div class="timer__ajust-bttn bttn" type="button">Ajustaments</div>
         </summary>
@@ -42,7 +42,9 @@
         <br><br>
         <input type="checkbox" value="Activa la vibració" id="checkVibracio" checked ><span class="blanc-text"> Activa la vibració</span>
         <br><br>
-        <button id="tempsBtn" class="ajust_bttn bttn" type="button">Desa les preferències</button>
+        <input type="checkbox"  id="checkFullScreen"  ><span class="blanc-text"> Pantalla completa</span>
+        <br><br>
+        <button id="tempsBtn" class="ajust_bttn bttn" type="button">Inicia amb les prefències</button>
 
          </form>
       </details>
@@ -50,7 +52,7 @@
       
     </nav>
 
-    <div class="player">
+    <div class="player" style="display: none;">
 
       <div class="player__tile player-1">
         <div class="player__digits">

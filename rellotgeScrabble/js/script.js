@@ -311,7 +311,6 @@ tempsBtn.addEventListener("click",()=>{
     botoStart.style.backgroundColor = '#0071D5';
     document.getElementById("checkSo").checked ? so = true : so = false
     document.getElementById("checkVibracio").checked ? vibracio = true : vibracio = false
-    
     document.getElementById("ajustaments").open = false
 
 })
@@ -352,7 +351,30 @@ for (let i = 0; i < buttons.length; i++) {
 
     });
 }
+var fullScreen = document.getElementById("checkFullScreen")
+fullScreen.addEventListener("change",()=>{
+    fullScreen.checked ? openFullscreen() : closeFullscreen()
+})
+var elem = document.documentElement;
+function openFullscreen() {
+  if (elem.requestFullscreen) {
+    elem.requestFullscreen();
+  } else if (elem.webkitRequestFullscreen) { /* Safari */
+    elem.webkitRequestFullscreen();
+  } else if (elem.msRequestFullscreen) { /* IE11 */
+    elem.msRequestFullscreen();
+  }
+}
 
+function closeFullscreen() {
+  if (document.exitFullscreen) {
+    document.exitFullscreen();
+  } else if (document.webkitExitFullscreen) { /* Safari */
+    document.webkitExitFullscreen();
+  } else if (document.msExitFullscreen) { /* IE11 */
+    document.msExitFullscreen();
+  }
+}
 
 
 if (document.location.search.match(/type=embed/gi)) {
