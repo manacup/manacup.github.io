@@ -220,33 +220,33 @@ jugador1.addEventListener('click', () => {
         currentPlayer = 2
         playing = true
         document.querySelector('.player-2').classList.add('actiu')
-        
-        botoStart.style.color = '#EEEEEE';
-        botoStart.style.backgroundColor = '#606060';
-        botoStart.textContent = 'PAUSA'
-        if(so){click.play()}
-        if(vibracio){window.navigator.vibrate(50)}
-        
-    } else 
-    if(!playing && botoStart.textContent === 'COMENÇA'){
-        currentPlayer = 2
-        startTimer();
-        document.querySelector('.player-2').classList.add('actiu')
-        
-        botoStart.style.color = '#EEEEEE';
-        botoStart.style.backgroundColor = '#606060';
-        botoStart.textContent = 'PAUSA'
-        if(so){click.play()}
-        if(vibracio){window.navigator.vibrate(50)}
 
-    }else{
-        currentPlayer = 2
-        document.querySelector('.player-1').classList.remove('actiu')
-        document.querySelector('.player-2').classList.add('actiu')
-        
-        if(so){click.play()}
-        if(vibracio){window.navigator.vibrate(50)}
-    }
+        botoStart.style.color = '#EEEEEE';
+        botoStart.style.backgroundColor = '#606060';
+        botoStart.textContent = 'PAUSA'
+        if (so) { click.play() }
+        if (vibracio) { window.navigator.vibrate(50) }
+
+    } else
+        if (!playing && botoStart.textContent === 'COMENÇA') {
+            currentPlayer = 2
+            startTimer();
+            document.querySelector('.player-2').classList.add('actiu')
+
+            botoStart.style.color = '#EEEEEE';
+            botoStart.style.backgroundColor = '#606060';
+            botoStart.textContent = 'PAUSA'
+            if (so) { click.play() }
+            if (vibracio) { window.navigator.vibrate(50) }
+
+        } else {
+            currentPlayer = 2
+            document.querySelector('.player-1').classList.remove('actiu')
+            document.querySelector('.player-2').classList.add('actiu')
+
+            if (so) { click.play() }
+            if (vibracio) { window.navigator.vibrate(50) }
+        }
 
 });
 jugador2.addEventListener('click', () => {
@@ -254,51 +254,51 @@ jugador2.addEventListener('click', () => {
         currentPlayer = 1
         playing = true
         document.querySelector('.player-1').classList.add('actiu')
-        
-        botoStart.style.color = '#EEEEEE';
-        botoStart.style.backgroundColor = '#606060';
-        botoStart.textContent = 'PAUSA'
-        if(so){click.play()}
-        if(vibracio){window.navigator.vibrate(50)}
-        
-    } else 
-    if(!playing && botoStart.textContent === 'COMENÇA'){
-        currentPlayer = 1
-        startTimer();
-        document.querySelector('.player-1').classList.add('actiu')
-        
-        botoStart.style.color = '#EEEEEE';
-        botoStart.style.backgroundColor = '#606060';
-        botoStart.textContent = 'PAUSA'
-        if(so){click.play()}
-        if(vibracio){window.navigator.vibrate(50)}
 
-    }else{
-        currentPlayer = 1
-        document.querySelector('.player-2').classList.remove('actiu')
-        document.querySelector('.player-1').classList.add('actiu')
-        if(so){click.play()}
-        if(vibracio){window.navigator.vibrate(50)}
-        
-    }
+        botoStart.style.color = '#EEEEEE';
+        botoStart.style.backgroundColor = '#606060';
+        botoStart.textContent = 'PAUSA'
+        if (so) { click.play() }
+        if (vibracio) { window.navigator.vibrate(50) }
+
+    } else
+        if (!playing && botoStart.textContent === 'COMENÇA') {
+            currentPlayer = 1
+            startTimer();
+            document.querySelector('.player-1').classList.add('actiu')
+
+            botoStart.style.color = '#EEEEEE';
+            botoStart.style.backgroundColor = '#606060';
+            botoStart.textContent = 'PAUSA'
+            if (so) { click.play() }
+            if (vibracio) { window.navigator.vibrate(50) }
+
+        } else {
+            currentPlayer = 1
+            document.querySelector('.player-2').classList.remove('actiu')
+            document.querySelector('.player-1').classList.add('actiu')
+            if (so) { click.play() }
+            if (vibracio) { window.navigator.vibrate(50) }
+
+        }
 
 });
 let ajust = document.getElementById("ajustaments")
-ajust.addEventListener("toggle", ()=>{
-    if (ajust.open===true){
+ajust.addEventListener("toggle", () => {
+    if (ajust.open === true) {
         document.querySelector(".player").style.display = "none"
-    }else{
-       document.querySelector(".player").style.display = "" 
+    } else {
+        document.querySelector(".player").style.display = ""
     }
-})   
+})
 
 
 
-    
+
 
 
 var tempsBtn = document.getElementById("tempsBtn")
-tempsBtn.addEventListener("click",()=>{
+tempsBtn.addEventListener("click", () => {
     var temps = document.getElementById("temps").value
     document.getElementById('min1').textContent = padZero(temps)
     document.getElementById('min2').textContent = padZero(temps)
@@ -309,8 +309,7 @@ tempsBtn.addEventListener("click",()=>{
     clearInterval(descompteID)
     botoStart.textContent = 'COMENÇA'
     botoStart.style.backgroundColor = '#0071D5';
-    document.getElementById("checkSo").checked ? so = true : so = false
-    document.getElementById("checkVibracio").checked ? vibracio = true : vibracio = false
+
     document.getElementById("ajustaments").open = false
 
 })
@@ -322,13 +321,13 @@ for (let i = 0; i < buttons.length; i++) {
             // Turn the button a gray color to signify a disabled button.
             buttons[i].style.color = '#EEEEEE';
             buttons[i].style.backgroundColor = '#606060';
-            buttons[i].textContent = 'PAUSA'
+            buttons[i].textContent = 'PAUSA / VALIDA'
             document.querySelector('.player-' + currentPlayer).classList.add('actiu')
             startTimer();
 
-            buttons[i+1].style.display = 'none';
+            buttons[i + 1].style.display = 'none';
         } else
-            if (buttons[i].textContent === 'PAUSA') {
+            if (buttons[i].textContent === 'PAUSA / VALIDA') {
                 playing = false
                 buttons[i].style.color = '#FFFFFF';
                 buttons[i].style.backgroundColor = '#0071D5';
@@ -342,60 +341,71 @@ for (let i = 0; i < buttons.length; i++) {
                     playing = true
                     buttons[i].style.color = '#EEEEEE';
                     buttons[i].style.backgroundColor = '#606060';
-                    buttons[i].textContent = 'PAUSA'
+                    buttons[i].textContent = 'PAUSA / VALIDA'
                     document.querySelector('.player-' + currentPlayer).classList.add('actiu')
                     document.getElementById('cont').style.display = "none"
 
-                } 
+                }
 
 
     });
 }
 var fullScreen = document.getElementById("checkFullScreen")
-fullScreen.addEventListener("change",()=>{
+fullScreen.addEventListener("change", () => {
     fullScreen.checked ? openFullscreen() : closeFullscreen()
+})
+var botoSo = document.getElementById("checkSo")
+botoSo.addEventListener("change", () => {
+    botoSo.checked ? so = true : so = false
+    if (so) { click.play() }
+           
+})
+var botoVibr = document.getElementById("checkVibracio")
+botoVibr.addEventListener("change", () => {
+    botoVibr.checked ? vibracio = true : vibracio = false
+    if (vibracio) { window.navigator.vibrate(50) }
 })
 var elem = document.documentElement;
 function openFullscreen() {
-  if (elem.requestFullscreen) {
-    elem.requestFullscreen();
-  } else if (elem.webkitRequestFullscreen) { /* Safari */
-    elem.webkitRequestFullscreen();
-  } else if (elem.msRequestFullscreen) { /* IE11 */
-    elem.msRequestFullscreen();
-  }
+    if (elem.requestFullscreen) {
+        elem.requestFullscreen();
+    } else if (elem.webkitRequestFullscreen) { /* Safari */
+        elem.webkitRequestFullscreen();
+    } else if (elem.msRequestFullscreen) { /* IE11 */
+        elem.msRequestFullscreen();
+    }
 }
 
 function closeFullscreen() {
-  if (document.exitFullscreen) {
-    document.exitFullscreen();
-  } else if (document.webkitExitFullscreen) { /* Safari */
-    document.webkitExitFullscreen();
-  } else if (document.msExitFullscreen) { /* IE11 */
-    document.msExitFullscreen();
-  }
+    if (document.exitFullscreen) {
+        document.exitFullscreen();
+    } else if (document.webkitExitFullscreen) { /* Safari */
+        document.webkitExitFullscreen();
+    } else if (document.msExitFullscreen) { /* IE11 */
+        document.msExitFullscreen();
+    }
 }
 
 
 if (document.location.search.match(/type=embed/gi)) {
     window.parent.postMessage("resize", "*");
-  }
+}
 
-  var noSleep = new NoSleep().enable();
+var noSleep = new NoSleep().enable();
 
-  /* var wakeLockEnabled = true;
+/* var wakeLockEnabled = true;
 
-  var toggleEl = document.querySelector("#toggle");
-  toggleEl.addEventListener('click', function() {
-    if (!wakeLockEnabled) {
-      noSleep.enable(); // keep the screen on!
-      wakeLockEnabled = true;
-      toggleEl.value = "Desactiva la pantalla activa";
+var toggleEl = document.querySelector("#toggle");
+toggleEl.addEventListener('click', function() {
+  if (!wakeLockEnabled) {
+    noSleep.enable(); // keep the screen on!
+    wakeLockEnabled = true;
+    toggleEl.value = "Desactiva la pantalla activa";
 document.getElementById('toggle').style.backgroundColor = "red";
-    } else {
-      noSleep.disable(); // let the screen turn off.
-      wakeLockEnabled = false;
-      toggleEl.value = "Manté la pantalla activa";
+  } else {
+    noSleep.disable(); // let the screen turn off.
+    wakeLockEnabled = false;
+    toggleEl.value = "Manté la pantalla activa";
 document.getElementById('toggle').style.backgroundColor = "";
-    }
-  }, false); */
+  }
+}, false); */
