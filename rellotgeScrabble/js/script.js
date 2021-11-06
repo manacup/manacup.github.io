@@ -310,7 +310,8 @@ tempsBtn.addEventListener("click",()=>{
     botoStart.textContent = 'COMENÇA'
     botoStart.style.backgroundColor = '#0071D5';
     document.getElementById("checkSo").checked ? so = true : so = false
-    console.log(so)
+    document.getElementById("checkVibracio").checked ? vibracio = true : vibracio = false
+    
     document.getElementById("ajustaments").open = false
 
 })
