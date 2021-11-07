@@ -99,7 +99,8 @@ const startTimer = () => {
                     // If minutes and seconds are zero stop timer with the clearInterval method.
                     if (p1sec === 0 && p1time.minutes === 0) {
                         // Play a sound effect.
-                        timesUp.play();
+                        if(so){timesUp.play();}
+                        if(vibracio){window.navigator.vibrate([100,50,100])}
                         // Stop timer.
                         //clearInterval(timerId);
                         //playing = false;
@@ -128,7 +129,8 @@ const startTimer = () => {
                     // If minutes and seconds are zero stop timer with the clearInterval method.
                     if (p2sec === 0 && p2time.minutes === 0) {
                         // Play a sound effect.
-                        timesUp.play();
+                        if(so){timesUp.play();}
+                        if(vibracio){window.navigator.vibrate([100,50,100])}
                         // Stop timer.
                         //clearInterval(timerId);
                         //playing = false;
@@ -171,7 +173,8 @@ function tempsDescompte() {
 
                 if (p1sec === 0 && p1time.minutes == penalització.value) {
                     // Play a sound effect.
-                    timesUp.play();
+                    if(so){timesUp.play();}
+                    if(vibracio){window.navigator.vibrate([100,50,100])}
                     // Stop timer.
                     clearInterval(descompteID);
                     //playing = false;
@@ -204,7 +207,8 @@ function tempsDescompte() {
 
                 if (p2sec === 0 && p2time.minutes == penalització.value) {
                     // Play a sound effect.
-                    timesUp.play();
+                    if(so){timesUp.play();}
+                    if(vibracio){window.navigator.vibrate([100,50,100])}
                     // Stop timer.
                     clearInterval(descompteID);
                     //playing = false;
