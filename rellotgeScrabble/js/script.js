@@ -287,8 +287,10 @@ let ajust = document.getElementById("ajustaments")
 ajust.addEventListener("toggle", () => {
     if (ajust.open === true) {
         document.querySelector(".player").style.display = "none"
+        document.querySelector("summary").textContent = "X"
     } else {
         document.querySelector(".player").style.display = ""
+        document.querySelector("summary").textContent = "Ajustaments"
     }
 })
 
@@ -352,17 +354,20 @@ for (let i = 0; i < buttons.length; i++) {
 }
 var fullScreen = document.getElementById("checkFullScreen")
 fullScreen.addEventListener("change", () => {
-    fullScreen.checked ? openFullscreen() : closeFullscreen()
+    fullScreen.checked ? openFullscreen()  : closeFullscreen() 
+    localStorage.setItem('fullScreen', true);
 })
 var botoSo = document.getElementById("checkSo")
 botoSo.addEventListener("change", () => {
-    botoSo.checked ? so = true : so = false
+    botoSo.checked ? so = true  : so = false 
+    botoSo.checked ?   localStorage.setItem('botoSo', true) :   localStorage.setItem('botoSo', false)
     if (so) { click.play() }
            
 })
 var botoVibr = document.getElementById("checkVibracio")
 botoVibr.addEventListener("change", () => {
     botoVibr.checked ? vibracio = true : vibracio = false
+    botoVibr.checked ? localStorage.setItem('botoVibr', true) : localStorage.setItem('botoVibr', false)
     if (vibracio) { window.navigator.vibrate(50) }
 })
 var elem = document.documentElement;
