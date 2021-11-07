@@ -1,10 +1,12 @@
 
 let playing = false;
 let currentPlayer = 1;
+let descompte = true
 let jug1 = true
 let jug2 = true
 let so = true
 let vibracio = true
+let penalització = document.getElementById("penalització")
 const timerPanel = document.querySelector('.player');
 const buttons = document.querySelectorAll('.bttn');
 const jugador1 = document.querySelector('.player-1');
@@ -102,7 +104,7 @@ const startTimer = () => {
                         //clearInterval(timerId);
                         //playing = false;
                         jug1 = false
-                        tempsDescompte()
+                        if (descompte) { tempsDescompte() }
 
                     }
                     p1sec = 60;
@@ -131,7 +133,7 @@ const startTimer = () => {
                         //clearInterval(timerId);
                         //playing = false;
                         jug2 = false
-                        tempsDescompte()
+                        if (descompte) { tempsDescompte() }
                     }
                     p2sec = 60;
                 }
@@ -144,6 +146,7 @@ const startTimer = () => {
 let descompteID
 
 function tempsDescompte() {
+    descompte = false
     let p1sec = 0;
     let p2sec = 0;
 
@@ -151,22 +154,22 @@ function tempsDescompte() {
         // Player 1.
         if (currentPlayer === 1) {
             if (playing && !jug1) {
-                // Disable start button.
-                //buttons[0].disabled = true;
 
                 p1time.minutes = parseInt(p1time.getMinutes('min1'), 10);
                 if (p1sec === 59) {
                     p1time.minutes = p1time.minutes + 1;
                     p1sec = 0
+
                 } else {
                     p1sec = p1sec + 1;
+                    document.getElementById("penal1").textContent = "Penalització: -" + (p1time.minutes + 1) * 10
                 }
 
                 timeWarning(currentPlayer, p1time.minutes, p1sec);
                 document.getElementById('sec1').textContent = padZero(p1sec);
                 document.getElementById('min1').textContent = padZero(p1time.minutes);
 
-                if (p1sec === 0 && p1time.minutes === 5) {
+                if (p1sec === 0 && p1time.minutes == penalització.value) {
                     // Play a sound effect.
                     timesUp.play();
                     // Stop timer.
@@ -184,19 +187,22 @@ function tempsDescompte() {
             // Player 2.
 
             if (playing && !jug2) {
+
                 p2time.minutes = parseInt(p2time.getMinutes('min2'), 10);
                 if (p2sec === 59) {
                     p2time.minutes = p2time.minutes + 1;
                     p2sec = 0
+
                 } else {
                     p2sec = p2sec + 1;
+                    document.getElementById("penal2").textContent = "Penalització: -" + (p2time.minutes + 1) * 10
                 }
 
                 timeWarning(currentPlayer, p2time.minutes, p2sec);
                 document.getElementById('sec2').textContent = padZero(p2sec);
                 document.getElementById('min2').textContent = padZero(p2time.minutes);
 
-                if (p2sec === 0 && p2time.minutes === 5) {
+                if (p2sec === 0 && p2time.minutes == penalització.value) {
                     // Play a sound effect.
                     timesUp.play();
                     // Stop timer.
@@ -313,6 +319,8 @@ tempsBtn.addEventListener("click", () => {
     botoStart.style.backgroundColor = '#0071D5';
 
     document.getElementById("ajustaments").open = false
+    localStorage.setItem('temps', temps)
+    localStorage.setItem('penalització', penalització.value)
 
 })
 
@@ -354,15 +362,15 @@ for (let i = 0; i < buttons.length; i++) {
 }
 var fullScreen = document.getElementById("checkFullScreen")
 fullScreen.addEventListener("change", () => {
-    fullScreen.checked ? openFullscreen()  : closeFullscreen() 
+    fullScreen.checked ? openFullscreen() : closeFullscreen()
     localStorage.setItem('fullScreen', true);
 })
 var botoSo = document.getElementById("checkSo")
 botoSo.addEventListener("change", () => {
-    botoSo.checked ? so = true  : so = false 
-    botoSo.checked ?   localStorage.setItem('botoSo', true) :   localStorage.setItem('botoSo', false)
+    botoSo.checked ? so = true : so = false
+    botoSo.checked ? localStorage.setItem('botoSo', true) : localStorage.setItem('botoSo', false)
     if (so) { click.play() }
-           
+
 })
 var botoVibr = document.getElementById("checkVibracio")
 botoVibr.addEventListener("change", () => {
@@ -414,3 +422,10 @@ document.getElementById('toggle').style.backgroundColor = "red";
 document.getElementById('toggle').style.backgroundColor = "";
   }
 }, false); */
+document.addEventListener('DOMContentLoaded', function () {
+    localStorage.getItem('botoSo') === "true" ? botoSo.checked = true : botoSo.checked = false
+    localStorage.getItem('botoVibr') === "true" ? botoVibr.checked = true : botoVibr.checked = false
+    localStorage.getItem('temps') != "" ? document.getElementById("temps").value = localStorage.getItem('temps') : document.getElementById("temps").value = 30
+    localStorage.getItem('penalització') != "" ? penalització.value = localStorage.getItem('penalització') : penalització.value = 5
+
+});

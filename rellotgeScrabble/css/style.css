@@ -63,7 +63,10 @@ img {
             height: 100%;
 }
 
-
+.penalty{
+    color: red;
+    font-size:  1rem;
+}
 .actiu{
     color: #34e251 !important;
 }
@@ -175,6 +178,9 @@ footer p {
         order 3
         height: auto;
     }
+    .penalty{
+        left: 50%;
+    }
     .player__tile {
         max-width: 300px;
         max-height: 250px;
@@ -253,6 +259,9 @@ footer p {
     .timer__reset-bttn {
         padding: .7em;
         font-size: 1.8rem;
+    }
+    .penalty{
+        left: 50%;
     }
 }
 a { color:black; }

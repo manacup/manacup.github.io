@@ -50,12 +50,14 @@
         </summary>
          <form>
           <br><br>
-          <span class="blanc-text">Defineix els minuts </span><input type="text" id="temps" value="30">
+          <span class="blanc-text">Defineix els minuts de joc </span><input type="number" id="temps" value="">
+          <br><br>
+          <span class="blanc-text">Minuts màxims amb penalització </span><input type="number" id="penalització" value="">
         <!-- <li><button class="sch" type="button" id="toggle">Manté la pantalla activa</button></li> -->
         <br><br>
-        <input type="checkbox" value="Activa el so" id="checkSo" checked ><span class="blanc-text"> Activa el so</span>
+        <input type="checkbox" value="Activa el so" id="checkSo"  ><span class="blanc-text"> Activa el so</span>
         <br><br>
-        <input type="checkbox" value="Activa la vibració" id="checkVibracio" checked ><span class="blanc-text"> Activa la vibració</span>
+        <input type="checkbox" value="Activa la vibració" id="checkVibracio"  ><span class="blanc-text"> Activa la vibració</span>
         <br><br>
         <input type="checkbox"  id="checkFullScreen"  ><span class="blanc-text"> Pantalla completa</span>
         <br><br>
@@ -72,12 +74,15 @@
       <div class="player__tile player-1">
         <div class="player__digits">
           <span id="min1">30</span>:<span id="sec1">00</span>
+          <div class="penalty" id="penal1"></div>
         </div>
+        
       </div>
 
       <div class="player__tile player-2">
         <div class="player__digits">
           <span id="min2">30</span>:<span id="sec2">00</span>
+          <div class="penalty"id="penal2"></div>
         </div>
       </div>
 
