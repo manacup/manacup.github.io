@@ -385,11 +385,11 @@ botoVibr.addEventListener("change", () => {
 var elem = document.documentElement;
 function openFullscreen() {
     if (elem.requestFullscreen) {
-        elem.requestFullscreen();
+        elem.requestFullscreen({ navigationUI: 'hide' });
     } else if (elem.webkitRequestFullscreen) { /* Safari */
-        elem.webkitRequestFullscreen();
+        elem.webkitRequestFullscreen({ navigationUI: 'hide' });
     } else if (elem.msRequestFullscreen) { /* IE11 */
-        elem.msRequestFullscreen();
+        elem.msRequestFullscreen({ navigationUI: 'hide' });
     }
 }
 
