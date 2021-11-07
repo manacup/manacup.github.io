@@ -95,6 +95,7 @@
         <li><a class="sidenav-close" href="https://drive.google.com/uc?export=download&id=11buoBA5n8IlYjo112N6I7Poeyfe9CQNl" target='_blank' id="linkApp"><i class="material-icons">phone_android</i>Aplicació Android</a></li>
         <li><a  class="sidenav-close" href="mailto:tonillull@gmail.com" target='iframeView'> <i class="material-icons">mail</i>Incidències a l'app</a></li>
          <li><a href="/rellotgeScrabble/index.html" target='_blank'><i class="material-icons">access_time</i>Rellotge<span class="yellow badge">Beta</span></a></li>
+         <li><input type="checkbox"  id="checkFullScreen"  ><span class="blanc-text"> Pantalla completa</span></li>
 
       </ul>
        <div id="spinner" class="spinner">
@@ -143,6 +144,32 @@
     }
     document.getElementById("estadistica").src='https://docs.google.com/forms/d/e/1FAIpQLScMRS7yABr1mP94vvfs7ye49eL1W7lfwdECvxt_3x58Quv-dQ/formResponse?entry.1176666344=WEB&entry.1220927547='+id
    }
+   
+   var fullScreen = document.getElementById("checkFullScreen")
+fullScreen.addEventListener("change", () => {
+    fullScreen.checked ? openFullscreen() : closeFullscreen()
+    localStorage.setItem('fullScreen', true);
+})
+   var elem = document.documentElement;
+function openFullscreen() {
+    if (elem.requestFullscreen) {
+        elem.requestFullscreen({ navigationUI: 'hide' });
+    } else if (elem.webkitRequestFullscreen) { /* Safari */
+        elem.webkitRequestFullscreen({ navigationUI: 'hide' });
+    } else if (elem.msRequestFullscreen) { /* IE11 */
+        elem.msRequestFullscreen({ navigationUI: 'hide' });
+    }
+}
+
+function closeFullscreen() {
+    if (document.exitFullscreen) {
+        document.exitFullscreen();
+    } else if (document.webkitExitFullscreen) { /* Safari */
+        document.webkitExitFullscreen();
+    } else if (document.msExitFullscreen) { /* IE11 */
+        document.msExitFullscreen();
+    }
+}
   </script>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
