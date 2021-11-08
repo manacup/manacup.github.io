@@ -429,6 +429,8 @@ document.getElementById('toggle').style.backgroundColor = "";
 document.addEventListener('DOMContentLoaded', function () {
     localStorage.getItem('botoSo') === "true" ? botoSo.checked = true : botoSo.checked = false
     localStorage.getItem('botoVibr') === "true" ? botoVibr.checked = true : botoVibr.checked = false
+    localStorage.getItem('botoSo') === "true" ? so = true : so = false
+    localStorage.getItem('botoVibr') === "true" ? vibracio = true : vibracio = false
     localStorage.getItem('temps') != "" ? document.getElementById("temps").value = localStorage.getItem('temps') : document.getElementById("temps").value = 30
     localStorage.getItem('penalització') != "" ? penalització.value = localStorage.getItem('penalització') : penalització.value = 5
 
