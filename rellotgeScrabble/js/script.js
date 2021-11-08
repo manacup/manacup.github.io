@@ -238,6 +238,7 @@ jugador1.addEventListener('click', () => {
         currentPlayer = 2
         playing = true
         document.querySelector('.player-2').classList.add('actiu')
+        document.getElementById('cont').style.display = "none"
 
         botoStart.style.color = '#EEEEEE';
         botoStart.style.backgroundColor = '#606060';
@@ -257,13 +258,16 @@ jugador1.addEventListener('click', () => {
             if (so) { click.play() }
             if (vibracio) { window.navigator.vibrate(50) }
 
-        } else {
-            currentPlayer = 2
-            document.querySelector('.player-1').classList.remove('actiu')
+        } else 
+            if(currentPlayer != 2){
+                currentPlayer = 2
+              document.querySelector('.player-1').classList.remove('actiu')
             document.querySelector('.player-2').classList.add('actiu')
 
             if (so) { click.play() }
-            if (vibracio) { window.navigator.vibrate(50) }
+            if (vibracio) { window.navigator.vibrate(50) }  
+            
+            
         }
 
 });
@@ -272,6 +276,7 @@ jugador2.addEventListener('click', () => {
         currentPlayer = 1
         playing = true
         document.querySelector('.player-1').classList.add('actiu')
+        document.getElementById('cont').style.display = "none"
 
         botoStart.style.color = '#EEEEEE';
         botoStart.style.backgroundColor = '#606060';
@@ -291,7 +296,8 @@ jugador2.addEventListener('click', () => {
             if (so) { click.play() }
             if (vibracio) { window.navigator.vibrate(50) }
 
-        } else {
+        } else 
+        if(currentPlayer != 1){
             currentPlayer = 1
             document.querySelector('.player-2').classList.remove('actiu')
             document.querySelector('.player-1').classList.add('actiu')
