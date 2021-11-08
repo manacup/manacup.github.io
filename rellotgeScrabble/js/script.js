@@ -134,7 +134,7 @@ const startTimer = () => {
                     if (p2sec === 0 && p2time.minutes === 0) {
                         // Play a sound effect.
                         if(so){timesUp.play();}
-                        if(vibracio){window.navigator.vibrate([100,50,100])}
+                        if(vibracio){window.navigator.vibrate([1000])}
                         // Stop timer.
                         //clearInterval(timerId);
                         //playing = false;
