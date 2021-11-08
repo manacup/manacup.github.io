@@ -100,7 +100,7 @@ const startTimer = () => {
                     if (p1sec === 0 && p1time.minutes === 0) {
                         // Play a sound effect.
                         if(so){timesUp.play();}
-                        if(vibracio){window.navigator.vibrate([100,50,100])}
+                        if(vibracio){window.navigator.vibrate([1000])}
                         // Stop timer.
                         //clearInterval(timerId);
                         //playing = false;
@@ -109,6 +109,10 @@ const startTimer = () => {
 
                     }
                     p1sec = 60;
+                }
+                if (p1time.minutes === 0 && p1sec<=5){
+                    if(vibracio){window.navigator.vibrate([300])}
+                    
                 }
             }
 
@@ -138,6 +142,10 @@ const startTimer = () => {
                         if (descompte) { tempsDescompte() }
                     }
                     p2sec = 60;
+                }
+                if (p1time.minutes === 0 && p1sec<=5){
+                    if(vibracio){window.navigator.vibrate([300])}
+                    
                 }
             }
 
