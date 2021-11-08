@@ -400,7 +400,7 @@ function toggleFullscreen(){
         } else if (elem.mozRequestFullScreen) {
             elem.mozRequestFullScreen({ navigationUI: 'hide' });
         } else if (elem.webkitRequestFullScreen) {
-            elem.webkitRequestFullScreen(Element.ALLOW_KEYBOARD_INPUT);
+            elem.webkitRequestFullScreen({ navigationUI: 'hide' });
         } else if (elem.msRequestFullscreen) {
             elem.msRequestFullscreen({ navigationUI: 'hide' });
         }
