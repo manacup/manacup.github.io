@@ -72,6 +72,8 @@
             <li><a href="https://scrabblemanacor.wordpress.com/" target='iframeView'>Club Scrabble Manacor</a></li>
             <li><a href="https://scrabblemanacor.wordpress.com/normativa-del-joc/" target='iframeView'>Normativa</a></li>
              <li><a href="/rellotgeScrabble/index.html" target='iframeView'>Rellotge</a></li>
+              <li onclick="toggleFullScreen(document.body)" ><a class="sidenav-close"   ><i class="material-icons" >fullscreen</i></a></li>
+
 
           </ul>
         </div>
@@ -95,7 +97,8 @@
         <li><a class="sidenav-close" href="https://drive.google.com/uc?export=download&id=11buoBA5n8IlYjo112N6I7Poeyfe9CQNl" target='_blank' id="linkApp"><i class="material-icons">phone_android</i>Aplicació Android</a></li>
         <li><a  class="sidenav-close" href="mailto:tonillull@gmail.com" target='iframeView'> <i class="material-icons">mail</i>Incidències a l'app</a></li>
          <li><a class="sidenav-close" href="/rellotgeScrabble/index.html" target='_blank'><i class="material-icons">access_time</i>Rellotge<span class="yellow badge">Beta</span></a></li>
-         <li><a class="sidenav-close" id="checkFullScreen"><i class="material-icons">fullscreen</i>Pantalla completa</a></li>
+         <li onclick="toggleFullScreen(document.body)" ><a class="sidenav-close"   ><i class="material-icons" >fullscreen</i>Pantalla completa</a></li>
+
 
       </ul>
        <div id="spinner" class="spinner">
@@ -146,28 +149,29 @@
    }
    
    var fullScreen = document.getElementById("checkFullScreen")
-fullScreen.addEventListener("click", () => {
-    localStorage.getItem('fullScreen')=="true" ? openFullscreen() : closeFullscreen()
-    localStorage.getItem('fullScreen')=="true" ? localStorage.setItem('fullScreen', false) : localStorage.setItem('fullScreen', true)
-})
-   var elem = document.documentElement;
-function openFullscreen() {
-    if (elem.requestFullscreen) {
-        elem.requestFullscreen({ navigationUI: 'hide' });
-    } else if (elem.webkitRequestFullscreen) { /* Safari */
-        elem.webkitRequestFullscreen({ navigationUI: 'hide' });
-    } else if (elem.msRequestFullscreen) { /* IE11 */
-        elem.msRequestFullscreen({ navigationUI: 'hide' });
-    }
-}
 
-function closeFullscreen() {
-    if (document.exitFullscreen) {
-        document.exitFullscreen();
-    } else if (document.webkitExitFullscreen) { /* Safari */
-        document.webkitExitFullscreen();
-    } else if (document.msExitFullscreen) { /* IE11 */
-        document.msExitFullscreen();
+  function toggleFullScreen(elem) {
+    // ## The below if statement seems to work better ## if ((document.fullScreenElement && document.fullScreenElement !== null) || (document.msfullscreenElement && document.msfullscreenElement !== null) || (!document.mozFullScreen && !document.webkitIsFullScreen)) {
+    if ((document.fullScreenElement !== undefined && document.fullScreenElement === null) || (document.msFullscreenElement !== undefined && document.msFullscreenElement === null) || (document.mozFullScreen !== undefined && !document.mozFullScreen) || (document.webkitIsFullScreen !== undefined && !document.webkitIsFullScreen)) {
+        if (elem.requestFullScreen) {
+            elem.requestFullScreen();
+        } else if (elem.mozRequestFullScreen) {
+            elem.mozRequestFullScreen();
+        } else if (elem.webkitRequestFullScreen) {
+            elem.webkitRequestFullScreen(Element.ALLOW_KEYBOARD_INPUT);
+        } else if (elem.msRequestFullscreen) {
+            elem.msRequestFullscreen();
+        }
+    } else {
+        if (document.cancelFullScreen) {
+            document.cancelFullScreen();
+        } else if (document.mozCancelFullScreen) {
+            document.mozCancelFullScreen();
+        } else if (document.webkitCancelFullScreen) {
+            document.webkitCancelFullScreen();
+        } else if (document.msExitFullscreen) {
+            document.msExitFullscreen();
+        }
     }
 }
   </script>
