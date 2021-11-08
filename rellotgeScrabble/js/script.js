@@ -172,7 +172,7 @@ function tempsDescompte() {
 
                 } else {
                     p1sec = p1sec + 1;
-                    document.getElementById("penal1").textContent = "Penalització: -" + (p1time.minutes + 1) * 10
+                    document.getElementById("penal1").textContent = "Penalització: -" + (p1time.minutes + 1) * 10 +" punts"
                 }
 
                 timeWarning(currentPlayer, p1time.minutes, p1sec);
@@ -182,7 +182,7 @@ function tempsDescompte() {
                 if (p1sec === 0 && p1time.minutes == penalització.value) {
                     // Play a sound effect.
                     if(so){timesUp.play();}
-                    if(vibracio){window.navigator.vibrate([100,50,100])}
+                    if(vibracio){window.navigator.vibrate([100,50,1000])}
                     // Stop timer.
                     clearInterval(descompteID);
                     //playing = false;
@@ -206,7 +206,7 @@ function tempsDescompte() {
 
                 } else {
                     p2sec = p2sec + 1;
-                    document.getElementById("penal2").textContent = "Penalització: -" + (p2time.minutes + 1) * 10
+                    document.getElementById("penal2").textContent = "Penalització: -" + (p2time.minutes + 1) * 10 +" punts"
                 }
 
                 timeWarning(currentPlayer, p2time.minutes, p2sec);
@@ -216,7 +216,7 @@ function tempsDescompte() {
                 if (p2sec === 0 && p2time.minutes == penalització.value) {
                     // Play a sound effect.
                     if(so){timesUp.play();}
-                    if(vibracio){window.navigator.vibrate([100,50,100])}
+                    if(vibracio){window.navigator.vibrate([100,50,1000])}
                     // Stop timer.
                     clearInterval(descompteID);
                     //playing = false;
