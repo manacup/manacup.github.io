@@ -390,7 +390,34 @@ botoVibr.addEventListener("change", () => {
     botoVibr.checked ? localStorage.setItem('botoVibr', true) : localStorage.setItem('botoVibr', false)
     if (vibracio) { window.navigator.vibrate(50) }
 })
+
 var elem = document.documentElement;
+
+function toggleFullscreen(){
+    if ((document.fullScreenElement !== undefined && document.fullScreenElement === null) || (document.msFullscreenElement !== undefined && document.msFullscreenElement === null) || (document.mozFullScreen !== undefined && !document.mozFullScreen) || (document.webkitIsFullScreen !== undefined && !document.webkitIsFullScreen)) {
+        if (elem.requestFullScreen) {
+            elem.requestFullScreen({ navigationUI: 'hide' });
+        } else if (elem.mozRequestFullScreen) {
+            elem.mozRequestFullScreen({ navigationUI: 'hide' });
+        } else if (elem.webkitRequestFullScreen) {
+            elem.webkitRequestFullScreen(Element.ALLOW_KEYBOARD_INPUT);
+        } else if (elem.msRequestFullscreen) {
+            elem.msRequestFullscreen({ navigationUI: 'hide' });
+        }
+    } else {
+        if (document.cancelFullScreen) {
+            document.cancelFullScreen();
+        } else if (document.mozCancelFullScreen) {
+            document.mozCancelFullScreen();
+        } else if (document.webkitCancelFullScreen) {
+            document.webkitCancelFullScreen();
+        } else if (document.msExitFullscreen) {
+            document.msExitFullscreen();
+        }
+    }
+}
+
+
 function openFullscreen() {
     if (elem.requestFullscreen) {
         elem.requestFullscreen({ navigationUI: 'hide' });

@@ -318,4 +318,31 @@ summary{
 	}
 }
 
-    
+.full-screen {
+    vertical-align: middle;
+    box-sizing: border-box;
+    display: inline-block;
+    border: .1em solid currentColor;
+    width: 1em;
+    height: 1em;
+    position: fixed;
+    top: 2%;
+    right: 4%;
+  }
+  .full-screen:before, .full-screen:after {
+    content: '';
+    background: #000000;
+    position: absolute;
+  }
+  .full-screen:before {
+    width: .333em;
+    height: 1em;
+    left: .233em;
+    top: -.1em;
+  }
+  .full-screen:after {
+    width: 1em;
+    height: .333em;
+    top: .233em;
+    left: -.1em;
+  }  
