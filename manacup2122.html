@@ -92,6 +92,8 @@
         <li><a class="sidenav-close" href="https://scrabblemanacor.wordpress.com/normativa-del-joc/" target='iframeView'><i class="material-icons">view_list</i>Normativa</a></li>
         <li><a class="sidenav-close" href="https://drive.google.com/uc?export=download&id=11buoBA5n8IlYjo112N6I7Poeyfe9CQNl" target='_blank' id="linkApp"><i class="material-icons">phone_android</i>Aplicació Android</a></li>
         <li><a href="/rellotgeScrabble/index.html" target='_blank'><i class="material-icons">access_time</i>Rellotge<span class="yellow badge">Beta</span></a></li>
+          <li onclick="toggleFullScreen(document.body)" ><a class="sidenav-close"   ><i class="material-icons" >fullscreen</i>Pantalla completa</a></li>
+         <li></li>
          <li><a  class="sidenav-close" href="mailto:tonillull@gmail.com" target='iframeView'> <i class="material-icons">mail</i>Incidències a l'app</a></li>
 
       </ul>
@@ -147,6 +149,30 @@
     }
     document.getElementById("estadistica").src='https://docs.google.com/forms/d/e/1FAIpQLScMRS7yABr1mP94vvfs7ye49eL1W7lfwdECvxt_3x58Quv-dQ/formResponse?entry.1176666344=WEB&entry.1220927547='+id+"&entry.1299550889="+nom
    }
+     function toggleFullScreen(elem) {
+    // ## The below if statement seems to work better ## if ((document.fullScreenElement && document.fullScreenElement !== null) || (document.msfullscreenElement && document.msfullscreenElement !== null) || (!document.mozFullScreen && !document.webkitIsFullScreen)) {
+    if ((document.fullScreenElement !== undefined && document.fullScreenElement === null) || (document.msFullscreenElement !== undefined && document.msFullscreenElement === null) || (document.mozFullScreen !== undefined && !document.mozFullScreen) || (document.webkitIsFullScreen !== undefined && !document.webkitIsFullScreen)) {
+        if (elem.requestFullScreen) {
+            elem.requestFullScreen({ navigationUI: 'hide' });
+        } else if (elem.mozRequestFullScreen) {
+            elem.mozRequestFullScreen({ navigationUI: 'hide' });
+        } else if (elem.webkitRequestFullScreen) {
+            elem.webkitRequestFullScreen(Element.ALLOW_KEYBOARD_INPUT);
+        } else if (elem.msRequestFullscreen) {
+            elem.msRequestFullscreen({ navigationUI: 'hide' });
+        }
+    } else {
+        if (document.cancelFullScreen) {
+            document.cancelFullScreen();
+        } else if (document.mozCancelFullScreen) {
+            document.mozCancelFullScreen();
+        } else if (document.webkitCancelFullScreen) {
+            document.webkitCancelFullScreen();
+        } else if (document.msExitFullscreen) {
+            document.msExitFullscreen();
+        }
+    }
+}
   </script>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
