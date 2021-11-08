@@ -143,7 +143,7 @@ const startTimer = () => {
                     }
                     p2sec = 60;
                 }
-                if (p1time.minutes === 0 && p1sec<=5){
+                if (p2time.minutes === 0 && p2sec<=5){
                     if(vibracio){window.navigator.vibrate([300])}
                     
                 }
