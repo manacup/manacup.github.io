@@ -305,9 +305,11 @@ let ajust = document.getElementById("ajustaments")
 ajust.addEventListener("toggle", () => {
     if (ajust.open === true) {
         document.querySelector(".player").style.display = "none"
+        document.querySelector(".full-screen").style.display = "none"
         document.querySelector("summary").textContent = "X"
     } else {
         document.querySelector(".player").style.display = ""
+        document.querySelector(".full-screen").style.display = ""
         document.querySelector("summary").textContent = "Ajustaments"
     }
 })
@@ -404,6 +406,7 @@ function toggleFullscreen(){
         } else if (elem.msRequestFullscreen) {
             elem.msRequestFullscreen({ navigationUI: 'hide' });
         }
+        fullScreen.checked = true
     } else {
         if (document.cancelFullScreen) {
             document.cancelFullScreen();
@@ -414,6 +417,7 @@ function toggleFullscreen(){
         } else if (document.msExitFullscreen) {
             document.msExitFullscreen();
         }
+        fullScreen.checked = false
     }
 }
 
