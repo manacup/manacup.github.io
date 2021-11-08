@@ -148,19 +148,19 @@
     document.getElementById("estadistica").src='https://docs.google.com/forms/d/e/1FAIpQLScMRS7yABr1mP94vvfs7ye49eL1W7lfwdECvxt_3x58Quv-dQ/formResponse?entry.1176666344=WEB&entry.1220927547='+id
    }
    
-   var fullScreen = document.getElementById("checkFullScreen")
+   
 
   function toggleFullScreen(elem) {
     // ## The below if statement seems to work better ## if ((document.fullScreenElement && document.fullScreenElement !== null) || (document.msfullscreenElement && document.msfullscreenElement !== null) || (!document.mozFullScreen && !document.webkitIsFullScreen)) {
     if ((document.fullScreenElement !== undefined && document.fullScreenElement === null) || (document.msFullscreenElement !== undefined && document.msFullscreenElement === null) || (document.mozFullScreen !== undefined && !document.mozFullScreen) || (document.webkitIsFullScreen !== undefined && !document.webkitIsFullScreen)) {
         if (elem.requestFullScreen) {
-            elem.requestFullScreen();
+            elem.requestFullScreen({ navigationUI: 'hide' });
         } else if (elem.mozRequestFullScreen) {
-            elem.mozRequestFullScreen();
+            elem.mozRequestFullScreen({ navigationUI: 'hide' });
         } else if (elem.webkitRequestFullScreen) {
             elem.webkitRequestFullScreen(Element.ALLOW_KEYBOARD_INPUT);
         } else if (elem.msRequestFullscreen) {
-            elem.msRequestFullscreen();
+            elem.msRequestFullscreen({ navigationUI: 'hide' });
         }
     } else {
         if (document.cancelFullScreen) {
