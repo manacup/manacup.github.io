@@ -480,3 +480,7 @@ document.addEventListener('DOMContentLoaded', function () {
     localStorage.getItem('penalització') != "" ? penalització.value = localStorage.getItem('penalització') : penalització.value = 5
 
 });
+
+if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('/sw.js');
+  }
