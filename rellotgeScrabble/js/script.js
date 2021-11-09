@@ -341,6 +341,7 @@ tempsBtn.addEventListener("click", () => {
     document.getElementById("ajustaments").open = false
     localStorage.setItem('temps', temps)
     localStorage.setItem('penalització', penalització.value)
+    document.getElementById('cont').style.display = "none"
 
 })
 
@@ -477,8 +478,8 @@ document.addEventListener('DOMContentLoaded', function () {
     localStorage.getItem('botoVibr') === "true" ? botoVibr.checked = true : botoVibr.checked = false
     localStorage.getItem('botoSo') === "true" ? so = true : so = false
     localStorage.getItem('botoVibr') === "true" ? vibracio = true : vibracio = false
-    temps != "" ? document.getElementById("temps").value = temps : document.getElementById("temps").value = 30
-    localStorage.getItem('penalització') != "" ? penalització.value = localStorage.getItem('penalització') : penalització.value = 5
+    temps == undefined ? document.getElementById("temps").value = 30 : document.getElementById("temps").value = temps
+    localStorage.getItem('penalització') == undefined ? penalització.value = 5 : penalització.value = localStorage.getItem('penalització') 
     document.getElementById('min1').textContent = padZero(temps)
     document.getElementById('min2').textContent = padZero(temps)
 
