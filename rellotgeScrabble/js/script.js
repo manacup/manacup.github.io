@@ -14,6 +14,7 @@ const jugador2 = document.querySelector('.player-2');
 // Sound effects for project.
 const timesUp = new Audio('audio/460133__eschwabe3__robot-affirmative.wav');
 const click = new Audio('audio/561660__mattruthsound.wav');
+const velocitat = 50
 
 
 // Add a leading zero to numbers less than 10.
@@ -66,9 +67,9 @@ const timeWarning = (player, min, sec) => {
     // Change the numbers to red during the last 30 seconds.
     //if (min < 1 && sec <= 30) {
     if (player === 1) {
-        document.querySelector(' .player__digits').classList.add("penalty")
+        document.querySelectorAll('.player__digits')[0].classList.add("penalty")
     } else {
-        document.querySelector(' .player__digits').classList.add("penalty")
+        document.querySelectorAll(' .player__digits')[1].classList.add("penalty")
     } 
     //}
 }
@@ -150,7 +151,7 @@ const startTimer = () => {
             }
 
         }
-    }, 1000);
+    }, velocitat);
 }
 
 let descompteID
@@ -186,6 +187,7 @@ function tempsDescompte() {
                     // Stop timer.
                     clearInterval(descompteID);
                     //playing = false;
+                    
 
 
                 }
@@ -227,7 +229,7 @@ function tempsDescompte() {
         }
 
 
-    }, 1000);
+    }, velocitat);
 }
 
 var botoStart = document.querySelector('.timer__start-bttn')
@@ -345,6 +347,9 @@ tempsBtn.addEventListener("click", () => {
     document.querySelectorAll(' .player__digits').forEach(a => {a.classList.remove("penalty")})
     document.getElementById("penal1").textContent = ""    
     document.getElementById("penal2").textContent = ""
+    jug1 = true
+    jug2 = true
+    descompte = true
 
 })
 
