@@ -69,8 +69,7 @@ const timeWarning = (player, min, sec) => {
         document.querySelector('.player-1 .player__digits').classList.add("penalty")
     } else {
         document.querySelector('.player-2 .player__digits').classList.add("penalty")
-    } else {
-    }
+    } 
     //}
 }
 
