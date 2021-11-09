@@ -1,4 +1,4 @@
-
+const cacheName = 'ManaCup-v1';
 // Installing Service Worker
 self.addEventListener('install', (e) => {
   console.log('[Service Worker] Install');
