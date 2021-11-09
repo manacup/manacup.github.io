@@ -1,7 +1,7 @@
 self.addEventListener('install', (e) => {
     e.waitUntil(
       caches.open('manacup').then((cache) => cache.addAll([
-          '/',
+         
         '/app.js',
         '/manacup2122.html',
         '/style.css'
