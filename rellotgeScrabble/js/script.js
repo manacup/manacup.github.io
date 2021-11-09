@@ -14,7 +14,7 @@ const jugador2 = document.querySelector('.player-2');
 // Sound effects for project.
 const timesUp = new Audio('audio/460133__eschwabe3__robot-affirmative.wav');
 const click = new Audio('audio/561660__mattruthsound.wav');
-const velocitat = 50
+const velocitat = 1000
 
 
 // Add a leading zero to numbers less than 10.
