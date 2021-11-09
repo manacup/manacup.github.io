@@ -268,6 +268,8 @@ jugador1.addEventListener('click', () => {
             if (vibracio) { window.navigator.vibrate(50) }  
             
             
+        }else{
+            return false
         }
 
 });
@@ -304,6 +306,8 @@ jugador2.addEventListener('click', () => {
             if (so) { click.play() }
             if (vibracio) { window.navigator.vibrate(50) }
 
+        }else{
+            return false
         }
 
 });
