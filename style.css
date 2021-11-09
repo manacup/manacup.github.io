@@ -1,0 +1,34 @@
+html {
+    line-height: 1.5;
+    font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif;
+    font-weight: normal;
+    color: rgba(0,0,0,0.87);
+}
+
+
+.iframecontainer {
+  position: absolute;
+  overflow: hidden;
+  width: 100%;
+  top: 56px;
+  bottom: 0;
+}
+
+/* Then style the iframe to fit in the container div with full height and width */
+.responsive-iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  border:none;
+}
+.spinner {
+  position: fixed;
+  top: 50%;
+  width: 100%;
+  text-align: center;
+  z-index: 100;
+} 
