@@ -66,9 +66,9 @@ const timeWarning = (player, min, sec) => {
     // Change the numbers to red during the last 30 seconds.
     //if (min < 1 && sec <= 30) {
     if (player === 1) {
-        document.querySelector('.player-1 .player__digits').classList.add("penalty")
+        document.querySelector(' .player__digits').classList.add("penalty")
     } else {
-        document.querySelector('.player-2 .player__digits').classList.add("penalty")
+        document.querySelector(' .player__digits').classList.add("penalty")
     } 
     //}
 }
@@ -342,7 +342,7 @@ tempsBtn.addEventListener("click", () => {
     localStorage.setItem('temps', temps)
     localStorage.setItem('penalització', penalització.value)
     document.getElementById('cont').style.display = "none"
-    document.querySelector('.player-2 .player-2 .player__digits').classList.remove("penalty")
+    document.querySelectorAll(' .player__digits').forEach(a => {a.classList.remove("penalty")})
     document.getElementById("penal1").textContent = ""    
     document.getElementById("penal2").textContent = ""
 
