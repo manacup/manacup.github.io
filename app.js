@@ -11,7 +11,7 @@ document.getElementById('estadistica').src = "https://docs.google.com/forms/d/e/
 document.getElementById('divisio').onload = function() {
 document.getElementById('spinner').style.display='none';
 };
-document.getElementById("linkApp").addEventListener("click",estadistica);
+//document.getElementById("linkApp").addEventListener("click",estadistica);
   
 function identificador(){
  
