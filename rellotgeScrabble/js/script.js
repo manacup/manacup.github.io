@@ -15,9 +15,6 @@ const jugador2 = document.querySelector('.player-2');
 const timesUp = new Audio('audio/460133__eschwabe3__robot-affirmative.wav');
 const click = new Audio('audio/561660__mattruthsound.wav');
 
-//variable per fer proves
-let velocitat = 50
-
 
 // Add a leading zero to numbers less than 10.
 const padZero = (number) => {
@@ -69,9 +66,9 @@ const timeWarning = (player, min, sec) => {
     // Change the numbers to red during the last 30 seconds.
     //if (min < 1 && sec <= 30) {
     if (player === 1) {
-        document.querySelector('.player-1 ').classList.add ("penalty")
+        document.querySelector('.player-1 .player__digits').style.color = '#CC0000';
     } else {
-        document.querySelector('.player-2 ').classList.add ("penalty")
+        document.querySelector('.player-2 .player__digits').style.color = '#CC0000';
     }
     //}
 }
@@ -153,7 +150,7 @@ const startTimer = () => {
             }
 
         }
-    }, velocitat);
+    }, 1000);
 }
 
 let descompteID
@@ -166,9 +163,8 @@ function tempsDescompte() {
     descompteID = setInterval(function () {
         // Player 1.
         if (currentPlayer === 1) {
-            
             if (playing && !jug1) {
-                
+
                 p1time.minutes = parseInt(p1time.getMinutes('min1'), 10);
                 if (p1sec === 59) {
                     p1time.minutes = p1time.minutes + 1;
@@ -200,10 +196,8 @@ function tempsDescompte() {
 
         } else {
             // Player 2.
-            
 
             if (playing && !jug2) {
-                
 
                 p2time.minutes = parseInt(p2time.getMinutes('min2'), 10);
                 if (p2sec === 59) {
@@ -233,7 +227,7 @@ function tempsDescompte() {
         }
 
 
-    }, velocitat);
+    }, 1000);
 }
 
 var botoStart = document.querySelector('.timer__start-bttn')
@@ -267,18 +261,12 @@ jugador1.addEventListener('click', () => {
         } else 
             if(currentPlayer != 2){
                 currentPlayer = 2
-              document.querySelector('.player-1 .player_digits ').classList.remove('actiu')
-              document.querySelector('.player-1 .player_digits ').classList.remove('penalty')
-              if(!jug1)document.querySelector('.player-1 .player_digits ').classList.add('inactiu_penal')
-              if(jug2){
-                  document.querySelector('.player-2 .player_digits ').classList.add('actiu')
-              }else{
-                  document.querySelector('.player-2 .player_digits').classList.add('penalty')
-                  document.querySelector('.player-2 .player_digits').classList.remove('inactiu_penal')}
-            
+              document.querySelector('.player-1').classList.remove('actiu')
+            document.querySelector('.player-2').classList.add('actiu')
+
             if (so) { click.play() }
             if (vibracio) { window.navigator.vibrate(50) }  
-          
+            
             
         }
 
@@ -311,13 +299,8 @@ jugador2.addEventListener('click', () => {
         } else 
         if(currentPlayer != 1){
             currentPlayer = 1
-            document.querySelector('.player-2  .player_digits').classList.remove('actiu')
-            document.querySelector('.player-2 .player_digits').classList.remove('penalty')
-            if(!jug2)document.querySelector('.player-2 .player_digits').classList.add('inactiu_penal')
-            if(jug1){
-                document.querySelector('.player-1 .player_digits').classList.add('actiu')
-            }else{document.querySelector('.player-1 .player_digits').classList.add('penalty')
-            document.querySelector('.player-1 .player_digits').classList.remove('inactiu_penal')}
+            document.querySelector('.player-2').classList.remove('actiu')
+            document.querySelector('.player-1').classList.add('actiu')
             if (so) { click.play() }
             if (vibracio) { window.navigator.vibrate(50) }
 
@@ -358,7 +341,6 @@ tempsBtn.addEventListener("click", () => {
     document.getElementById("ajustaments").open = false
     localStorage.setItem('temps', temps)
     localStorage.setItem('penalització', penalització.value)
-    document.getElementById('cont').style.display = "none"
 
 })
 
@@ -394,7 +376,6 @@ for (let i = 0; i < buttons.length; i++) {
                     document.getElementById('cont').style.display = "none"
 
                 }
-            
 
 
     });
@@ -503,21 +484,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
 });
 
-function canviColor(num){
-    if(!playing){
-        document.querySelector(".player-1 .player-2 .player_digits").classList.remove ("actiu","penalty", "inactiu_penal")
-    }else
-    if(currentPlayer===1){
-        
-            document.querySelector('.player-').classList.remove('actiu')
-            document.querySelector('.player-'+num).classList.remove('penalty')
-            if(!jug2)document.querySelector('.player-2 ').classList.add('inactiu_penal')
-            if(jug1){
-                document.querySelector('.player-1').classList.add('actiu')
-            }else{document.querySelector('.player-1 ').classList.add('penalty')
-            document.querySelector('.player-1').classList.remove('inactiu_penal')}
-
-        }
-    }
-
-}
+if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('/rellotgeScrabble/sw.js');
+  }
