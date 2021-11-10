@@ -530,14 +530,15 @@ document.getElementById('toggle').style.backgroundColor = "";
 }, false); */
 document.addEventListener('DOMContentLoaded', function () {
     var temps = localStorage.getItem('temps')
+    console.log(temps)
     localStorage.getItem('botoSo') === "true" ? botoSo.checked = true : botoSo.checked = false
     localStorage.getItem('botoVibr') === "true" ? botoVibr.checked = true : botoVibr.checked = false
     localStorage.getItem('botoSo') === "true" ? so = true : so = false
     localStorage.getItem('botoVibr') === "true" ? vibracio = true : vibracio = false
-    temps == undefined ? document.getElementById("temps").value = 30 : document.getElementById("temps").value = temps
-    localStorage.getItem('penalització') == undefined ? penalització.value = 5 : penalització.value = localStorage.getItem('penalització')
-    document.getElementById('min1').textContent = padZero(temps)
-    document.getElementById('min2').textContent = padZero(temps)
+    temps === null ? document.getElementById("temps").value = 30 : document.getElementById("temps").value = temps
+    localStorage.getItem('penalització') === null ? penalització.value = 5 : penalització.value = localStorage.getItem('penalització')
+    temps === null ? document.getElementById('min1').textContent = 30 : document.getElementById('min1').textContent = padZero(temps)
+    temps === null ? document.getElementById('min2').textContent = 30 : document.getElementById('min2').textContent = padZero(temps)
 
 });
 
