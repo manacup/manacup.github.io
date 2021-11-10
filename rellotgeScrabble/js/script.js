@@ -14,7 +14,7 @@ const jugador2 = document.querySelector('.player-2');
 // Sound effects for project.
 const timesUp = new Audio('audio/460133__eschwabe3__robot-affirmative.wav');
 const click = new Audio('audio/561660__mattruthsound.wav');
-const velocitat = 100
+const velocitat = 1000
 
 
 // Add a leading zero to numbers less than 10.
@@ -309,10 +309,6 @@ jugador2.addEventListener('click', () => {
 
         ////colors
         colors2()
-
-
-
-
         document.getElementById('cont').style.display = "none"
 
         botoStart.style.color = '#EEEEEE';
@@ -382,6 +378,7 @@ tempsBtn.addEventListener("click", () => {
     localStorage.setItem('penalització', penalització.value)
     document.getElementById('cont').style.display = "none"
     document.querySelectorAll(' .player__digits').forEach(a => { a.classList.remove("penalty", "penalty_inactiu") })
+    
     document.getElementById("penal1").textContent = ""
     document.getElementById("penal2").textContent = ""
     jug1 = true
@@ -410,6 +407,9 @@ for (let i = 0; i < buttons.length; i++) {
                 buttons[i].textContent = 'CONTINUA'
                 document.querySelector('.player-1').classList.remove('actiu')
                 document.querySelector('.player-2').classList.remove('actiu')
+                document.querySelectorAll(".player_digits").forEach(a=>{a.classList.remove("penalty")})
+                if(!jug1){document.querySelectorAll('.player__digits')[0].classList.add("penalty_inactiu")}
+                if(!jug2){document.querySelectorAll('.player__digits')[1].classList.add("penalty_inactiu")}
                 document.getElementById('cont').style.display = ""
 
             } else
@@ -419,6 +419,15 @@ for (let i = 0; i < buttons.length; i++) {
                     buttons[i].style.backgroundColor = '#606060';
                     buttons[i].textContent = 'PAUSA / VALIDA'
                     document.querySelector('.player-' + currentPlayer).classList.add('actiu')
+                    if(currentPlayer===1 && !jug1){
+                        document.querySelectorAll('.player__digits')[0].classList.remove("penalty_inactiu")
+                        document.querySelectorAll('.player__digits')[0].classList.add("penalty")
+                    }
+                    if(currentPlayer===2 && !jug2){
+                        document.querySelectorAll('.player__digits')[1].classList.remove("penalty_inactiu")
+                        document.querySelectorAll('.player__digits')[1].classList.add("penalty")
+                    }
+
                     document.getElementById('cont').style.display = "none"
 
                 }
