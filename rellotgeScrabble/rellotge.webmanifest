@@ -1,6 +1,6 @@
 {
     "name": "Rellotge Scrabble",
-    "short_name": "SClock",
+    "short_name": "Rellotge Scrabble",
     "description": "Rellotge per jugar a Scrabble amb validador de paraules del DISC. Permet definir temps i penalitzacions",
     "icons": [
        {"src": "images/android-icon-96x96.png",
