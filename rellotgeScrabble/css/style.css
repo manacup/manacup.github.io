@@ -67,6 +67,10 @@ img {
     color: red;
     font-size:  1rem;
 }
+.penalty_inactiu{
+    color: rgb(255, 125, 125);
+    
+}
 .actiu{
     color: #34e251 !important;
 }
