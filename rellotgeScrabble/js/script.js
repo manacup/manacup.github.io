@@ -14,7 +14,7 @@ const jugador2 = document.querySelector('.player-2');
 // Sound effects for project.
 const timesUp = new Audio('audio/460133__eschwabe3__robot-affirmative.wav');
 const click = new Audio('audio/561660__mattruthsound.wav');
-const velocitat = 50
+const velocitat = 1000
 
 
 // Add a leading zero to numbers less than 10.
@@ -356,7 +356,7 @@ tempsBtn.addEventListener("click", () => {
     localStorage.setItem('temps', temps)
     localStorage.setItem('penalització', penalització.value)
     document.getElementById('cont').style.display = "none"
-    document.querySelectorAll(' .player__digits').forEach(a => {a.classList.remove("penalty")})
+    document.querySelectorAll(' .player__digits').forEach(a => {a.classList.remove("penalty","penalty_inactiu")})
     document.getElementById("penal1").textContent = ""    
     document.getElementById("penal2").textContent = ""
     jug1 = true
