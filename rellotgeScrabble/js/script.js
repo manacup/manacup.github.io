@@ -14,7 +14,7 @@ const jugador2 = document.querySelector('.player-2');
 // Sound effects for project.
 const timesUp = new Audio('audio/460133__eschwabe3__robot-affirmative.wav');
 const click = new Audio('audio/561660__mattruthsound.wav');
-const velocitat = 1000
+const velocitat = 100
 
 
 // Add a leading zero to numbers less than 10.
@@ -70,7 +70,7 @@ const timeWarning = (player, min, sec) => {
         document.querySelectorAll('.player__digits')[0].classList.add("penalty")
     } else {
         document.querySelectorAll(' .player__digits')[1].classList.add("penalty")
-    } 
+    }
     //}
 }
 
@@ -100,8 +100,8 @@ const startTimer = () => {
                     // If minutes and seconds are zero stop timer with the clearInterval method.
                     if (p1sec === 0 && p1time.minutes === 0) {
                         // Play a sound effect.
-                        if(so){timesUp.play();}
-                        if(vibracio){window.navigator.vibrate([1000])}
+                        if (so) { timesUp.play(); }
+                        if (vibracio) { window.navigator.vibrate([1000]) }
                         // Stop timer.
                         //clearInterval(timerId);
                         //playing = false;
@@ -111,9 +111,9 @@ const startTimer = () => {
                     }
                     p1sec = 60;
                 }
-                if (p1time.minutes === 0 && p1sec<=5){
-                    if(vibracio){window.navigator.vibrate([300])}
-                    
+                if (p1time.minutes === 0 && p1sec <= 5) {
+                    if (vibracio) { window.navigator.vibrate([300]) }
+
                 }
             }
 
@@ -134,8 +134,8 @@ const startTimer = () => {
                     // If minutes and seconds are zero stop timer with the clearInterval method.
                     if (p2sec === 0 && p2time.minutes === 0) {
                         // Play a sound effect.
-                        if(so){timesUp.play();}
-                        if(vibracio){window.navigator.vibrate([1000])}
+                        if (so) { timesUp.play(); }
+                        if (vibracio) { window.navigator.vibrate([1000]) }
                         // Stop timer.
                         //clearInterval(timerId);
                         //playing = false;
@@ -144,9 +144,9 @@ const startTimer = () => {
                     }
                     p2sec = 60;
                 }
-                if (p2time.minutes === 0 && p2sec<=5){
-                    if(vibracio){window.navigator.vibrate([300])}
-                    
+                if (p2time.minutes === 0 && p2sec <= 5) {
+                    if (vibracio) { window.navigator.vibrate([300]) }
+
                 }
             }
 
@@ -163,14 +163,10 @@ function tempsDescompte() {
 
     descompteID = setInterval(function () {
         // Player 1.
-        document.querySelectorAll('.player__digits')[0].classList.remove("penalty_inactiu")
-        document.querySelectorAll('.player__digits')[0].classList.add("penalty")
+
         if (currentPlayer === 1) {
+
             if (playing && !jug1) {
-                if(document.querySelectorAll('.player__digits')[1].classList.contains("penalty")){
-                    document.querySelectorAll('.player__digits')[1].classList.remove("penalty")
-                    document.querySelectorAll('.player__digits')[1].classList.add("penalty_inactiu")
-                }
 
                 p1time.minutes = parseInt(p1time.getMinutes('min1'), 10);
                 if (p1sec === 59) {
@@ -179,7 +175,7 @@ function tempsDescompte() {
 
                 } else {
                     p1sec = p1sec + 1;
-                    document.getElementById("penal1").textContent = "Penalització: -" + (p1time.minutes + 1) * 10 +" punts"
+                    document.getElementById("penal1").textContent = "Penalització: -" + (p1time.minutes + 1) * 10 + " punts"
                 }
 
                 timeWarning(currentPlayer, p1time.minutes, p1sec);
@@ -188,12 +184,12 @@ function tempsDescompte() {
 
                 if (p1sec === 0 && p1time.minutes == penalització.value) {
                     // Play a sound effect.
-                    if(so){timesUp.play();}
-                    if(vibracio){window.navigator.vibrate([100,50,1000])}
+                    if (so) { timesUp.play(); }
+                    if (vibracio) { window.navigator.vibrate([100, 50, 1000]) }
                     // Stop timer.
                     clearInterval(descompteID);
                     //playing = false;
-                    
+
 
 
                 }
@@ -204,14 +200,9 @@ function tempsDescompte() {
 
         } else {
             // Player 2.
-            document.querySelectorAll('.player__digits')[1].classList.remove("penalty_inactiu")
-            document.querySelectorAll('.player__digits')[1].classList.add("penalty")
+
 
             if (playing && !jug2) {
-                if(document.querySelectorAll('.player__digits')[0].classList.contains("penalty")){
-                    document.querySelectorAll('.player__digits')[0].classList.remove("penalty")
-                    document.querySelectorAll('.player__digits')[0].classList.add("penalty_inactiu")
-                }
 
                 p2time.minutes = parseInt(p2time.getMinutes('min2'), 10);
                 if (p2sec === 59) {
@@ -220,7 +211,7 @@ function tempsDescompte() {
 
                 } else {
                     p2sec = p2sec + 1;
-                    document.getElementById("penal2").textContent = "Penalització: -" + (p2time.minutes + 1) * 10 +" punts"
+                    document.getElementById("penal2").textContent = "Penalització: -" + (p2time.minutes + 1) * 10 + " punts"
                 }
 
                 timeWarning(currentPlayer, p2time.minutes, p2sec);
@@ -229,8 +220,8 @@ function tempsDescompte() {
 
                 if (p2sec === 0 && p2time.minutes == penalització.value) {
                     // Play a sound effect.
-                    if(so){timesUp.play();}
-                    if(vibracio){window.navigator.vibrate([100,50,1000])}
+                    if (so) { timesUp.play(); }
+                    if (vibracio) { window.navigator.vibrate([100, 50, 1000]) }
                     // Stop timer.
                     clearInterval(descompteID);
                     //playing = false;
@@ -244,6 +235,30 @@ function tempsDescompte() {
     }, velocitat);
 }
 
+function colors1() {
+    document.querySelector('.player-2').classList.add('actiu')
+    if (!jug2) {
+        document.querySelectorAll('.player__digits')[1].classList.remove("penalty_inactiu")
+        document.querySelectorAll('.player__digits')[1].classList.add("penalty")
+    }
+    if (!jug1) {
+        document.querySelectorAll('.player__digits')[0].classList.remove("penalty")
+        document.querySelectorAll('.player__digits')[0].classList.add("penalty_inactiu")
+    }
+}
+
+function colors2() {
+    document.querySelector('.player-1').classList.add('actiu')
+    if (!jug1) {
+        document.querySelectorAll('.player__digits')[0].classList.remove("penalty_inactiu")
+        document.querySelectorAll('.player__digits')[0].classList.add("penalty")
+    }
+    if (!jug2) {
+        document.querySelectorAll('.player__digits')[1].classList.remove("penalty")
+        document.querySelectorAll('.player__digits')[1].classList.add("penalty_inactiu")
+    }
+}
+
 var botoStart = document.querySelector('.timer__start-bttn')
 // Listen for a mouse click or tap on the screen to toggle between timers.
 //timerPanel.addEventListener('click', swapPlayer);
@@ -251,7 +266,9 @@ jugador1.addEventListener('click', () => {
     if (!playing && botoStart.textContent === 'CONTINUA') {
         currentPlayer = 2
         playing = true
-        document.querySelector('.player-2').classList.add('actiu')
+        ///////colors
+        colors1()
+
         document.getElementById('cont').style.display = "none"
 
         botoStart.style.color = '#EEEEEE';
@@ -264,32 +281,38 @@ jugador1.addEventListener('click', () => {
         if (!playing && botoStart.textContent === 'COMENÇA') {
             currentPlayer = 2
             startTimer();
-            document.querySelector('.player-2').classList.add('actiu')
-
+            ///////colors
+            colors1()
             botoStart.style.color = '#EEEEEE';
             botoStart.style.backgroundColor = '#606060';
             botoStart.textContent = 'PAUSA / VALIDA'
             if (so) { click.play() }
             if (vibracio) { window.navigator.vibrate(50) }
 
-        } else 
-            if(currentPlayer != 2){
+        } else
+            if (currentPlayer != 2) {
                 currentPlayer = 2
-              document.querySelector('.player-1').classList.remove('actiu')
-            document.querySelector('.player-2').classList.add('actiu')
+                document.querySelector('.player-1').classList.remove('actiu')
+                ///////colors
+                colors1()
+                if (so) { click.play() }
+                if (vibracio) { window.navigator.vibrate(50) }
 
-            if (so) { click.play() }
-            if (vibracio) { window.navigator.vibrate(50) }  
-            
-            
-        }
+
+            }
 
 });
 jugador2.addEventListener('click', () => {
     if (!playing && botoStart.textContent === 'CONTINUA') {
         currentPlayer = 1
         playing = true
-        document.querySelector('.player-1').classList.add('actiu')
+
+        ////colors
+        colors2()
+
+
+
+
         document.getElementById('cont').style.display = "none"
 
         botoStart.style.color = '#EEEEEE';
@@ -302,7 +325,8 @@ jugador2.addEventListener('click', () => {
         if (!playing && botoStart.textContent === 'COMENÇA') {
             currentPlayer = 1
             startTimer();
-            document.querySelector('.player-1').classList.add('actiu')
+            ////colors
+            colors2()
 
             botoStart.style.color = '#EEEEEE';
             botoStart.style.backgroundColor = '#606060';
@@ -310,15 +334,16 @@ jugador2.addEventListener('click', () => {
             if (so) { click.play() }
             if (vibracio) { window.navigator.vibrate(50) }
 
-        } else 
-        if(currentPlayer != 1){
-            currentPlayer = 1
-            document.querySelector('.player-2').classList.remove('actiu')
-            document.querySelector('.player-1').classList.add('actiu')
-            if (so) { click.play() }
-            if (vibracio) { window.navigator.vibrate(50) }
+        } else
+            if (currentPlayer != 1) {
+                currentPlayer = 1
+                document.querySelector('.player-2').classList.remove('actiu')
+                ////colors
+                colors2()
+                if (so) { click.play() }
+                if (vibracio) { window.navigator.vibrate(50) }
 
-        }
+            }
 
 });
 let ajust = document.getElementById("ajustaments")
@@ -356,8 +381,8 @@ tempsBtn.addEventListener("click", () => {
     localStorage.setItem('temps', temps)
     localStorage.setItem('penalització', penalització.value)
     document.getElementById('cont').style.display = "none"
-    document.querySelectorAll(' .player__digits').forEach(a => {a.classList.remove("penalty","penalty_inactiu")})
-    document.getElementById("penal1").textContent = ""    
+    document.querySelectorAll(' .player__digits').forEach(a => { a.classList.remove("penalty", "penalty_inactiu") })
+    document.getElementById("penal1").textContent = ""
     document.getElementById("penal2").textContent = ""
     jug1 = true
     jug2 = true
@@ -422,7 +447,7 @@ botoVibr.addEventListener("change", () => {
 
 var elem = document.documentElement;
 
-function toggleFullscreen(){
+function toggleFullscreen() {
     if ((document.fullScreenElement !== undefined && document.fullScreenElement === null) || (document.msFullscreenElement !== undefined && document.msFullscreenElement === null) || (document.mozFullScreen !== undefined && !document.mozFullScreen) || (document.webkitIsFullScreen !== undefined && !document.webkitIsFullScreen)) {
         if (elem.requestFullScreen) {
             elem.requestFullScreen({ navigationUI: 'hide' });
@@ -499,7 +524,7 @@ document.addEventListener('DOMContentLoaded', function () {
     localStorage.getItem('botoSo') === "true" ? so = true : so = false
     localStorage.getItem('botoVibr') === "true" ? vibracio = true : vibracio = false
     temps == undefined ? document.getElementById("temps").value = 30 : document.getElementById("temps").value = temps
-    localStorage.getItem('penalització') == undefined ? penalització.value = 5 : penalització.value = localStorage.getItem('penalització') 
+    localStorage.getItem('penalització') == undefined ? penalització.value = 5 : penalització.value = localStorage.getItem('penalització')
     document.getElementById('min1').textContent = padZero(temps)
     document.getElementById('min2').textContent = padZero(temps)
 
@@ -507,4 +532,4 @@ document.addEventListener('DOMContentLoaded', function () {
 
 if ('serviceWorker' in navigator) {
     navigator.serviceWorker.register('/rellotgeScrabble/sw.js');
-  }
+}
