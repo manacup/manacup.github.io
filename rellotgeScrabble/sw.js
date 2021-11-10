@@ -1,10 +1,10 @@
 self.addEventListener('install', (e) => {
     e.waitUntil(
-      caches.open('manacup').then((cache) => cache.addAll([
-          '/',
-        '/app.js',
-        '/manacup2122.html',
-        '/style.css'
+      caches.open('rellotgeScrabble').then((cache) => cache.addAll([
+          '/rellotgeScrabble/',
+        '/rellotgeScrabble/js/script.js',
+        '/rellotgeScrabble/index.html',
+        '/rellotgeScrabble/css/style.css'
       ])),
     );
   });
