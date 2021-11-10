@@ -14,7 +14,7 @@ const jugador2 = document.querySelector('.player-2');
 // Sound effects for project.
 const timesUp = new Audio('audio/460133__eschwabe3__robot-affirmative.wav');
 const click = new Audio('audio/561660__mattruthsound.wav');
-const velocitat = 1000
+const velocitat = 50
 
 
 // Add a leading zero to numbers less than 10.
@@ -163,8 +163,14 @@ function tempsDescompte() {
 
     descompteID = setInterval(function () {
         // Player 1.
+        document.querySelectorAll('.player__digits')[0].classList.remove("penalty_inactiu")
+        document.querySelectorAll('.player__digits')[0].classList.add("penalty")
         if (currentPlayer === 1) {
             if (playing && !jug1) {
+                if(document.querySelectorAll('.player__digits')[1].classList.contains("penalty")){
+                    document.querySelectorAll('.player__digits')[1].classList.remove("penalty")
+                    document.querySelectorAll('.player__digits')[1].classList.add("penalty_inactiu")
+                }
 
                 p1time.minutes = parseInt(p1time.getMinutes('min1'), 10);
                 if (p1sec === 59) {
@@ -198,8 +204,14 @@ function tempsDescompte() {
 
         } else {
             // Player 2.
+            document.querySelectorAll('.player__digits')[1].classList.remove("penalty_inactiu")
+            document.querySelectorAll('.player__digits')[1].classList.add("penalty")
 
             if (playing && !jug2) {
+                if(document.querySelectorAll('.player__digits')[0].classList.contains("penalty")){
+                    document.querySelectorAll('.player__digits')[0].classList.remove("penalty")
+                    document.querySelectorAll('.player__digits')[0].classList.add("penalty_inactiu")
+                }
 
                 p2time.minutes = parseInt(p2time.getMinutes('min2'), 10);
                 if (p2sec === 59) {
