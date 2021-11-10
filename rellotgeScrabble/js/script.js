@@ -377,6 +377,8 @@ tempsBtn.addEventListener("click", () => {
     localStorage.setItem('temps', temps)
     localStorage.setItem('penalització', penalització.value)
     document.getElementById('cont').style.display = "none"
+    document.querySelector(".player-1").classList.remove("actiu")
+    document.querySelector(".player-2").classList.remove("actiu")
     document.querySelectorAll(' .player__digits').forEach(a => { a.classList.remove("penalty", "penalty_inactiu") })
     
     document.getElementById("penal1").textContent = ""
