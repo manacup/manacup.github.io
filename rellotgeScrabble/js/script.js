@@ -545,3 +545,7 @@ document.addEventListener('DOMContentLoaded', function () {
 if ('serviceWorker' in navigator) {
     navigator.serviceWorker.register('/rellotgeScrabble/sw.js');
 }
+
+    window.onbeforeunload = function() {
+        return "Si recarregues la pàgina el comptador començarà de nou!";
+    }
