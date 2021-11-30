@@ -357,3 +357,11 @@ summary{
     top: .233em;
     left: -.1em;
   }  
+  footer{
+      font-size: 0.8em;
+      position: fixed;
+      bottom: 100px;
+  }
+  footer a{
+      color: #FFFFFF;
+  }
