@@ -61,6 +61,7 @@ img {
         -ms-flex-direction: column;
             flex-direction: column;
             height: 100%;
+	cursor: pointer;
 }
 
 .penalty{
