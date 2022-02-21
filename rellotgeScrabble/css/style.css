@@ -61,7 +61,7 @@ img {
         -ms-flex-direction: column;
             flex-direction: column;
             height: 100%;
-	cursor: pointer;
+	
 }
 
 .penalty{
@@ -92,7 +92,7 @@ img {
     -webkit-box-pack: center;
         -ms-flex-pack: center;
             justify-content: center;
-    
+    cursor: pointer;
   
                 
                 
