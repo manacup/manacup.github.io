@@ -5,12 +5,12 @@ html {
     color: rgba(0,0,0,0.87);
 }
 
-@media (min-width: 650px) {
+@media (min-width: 992px) {
  .iframecontainer {
-  position: absolute;
+  position: relative;
   overflow: hidden;
      left: 300px;
-  width: 100%;
+  width: 80%;
   top: 56px;
   bottom: 0;
 }
