@@ -19,11 +19,12 @@
   <link rel="icon" type="image/png" sizes="32x32" href="icons/favicon-32x32.png">
   <link rel="icon" type="image/png" sizes="96x96" href="icons/favicon-96x96.png">
   <link rel="icon" type="image/png" sizes="16x16" href="icons/favicon-16x16.png">
-
+<link rel="manifest" href="manifest.webmanifest">
   <meta name="msapplication-TileColor" content="#80cbc4">
   <meta name="msapplication-TileImage" content="icons/ms-icon-144x144.png">
   <meta name="theme-color" content="#80cbc4">
-
+<meta name="description"
+    content="Aplicació per a la gestió del campionat regular de Scrabble del Club Scrabble Manacor. Administrador">
   <meta name="author" content="Antoni Llull">
   <meta property="og:image" content="icons/favicon-96x96">
   <link rel="stylesheet" href="style.css">
@@ -33,13 +34,13 @@
 <body>
 
   <nav>
-    <a href="#" data-target="mobile-demo" class="sidenav-trigger  show-on-large"><i class="material-icons">menu</i></a>
+    <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
     <div class="nav-wrapper  teal lighten-3">
-      <divTaula de control Manacup <small>21-22</small></div>
+      <div>Taula de control Manacup <small>21-22</small></div>
     </div>
   </nav>
 
-  <ul class="sidenav" id="mobile-demo">
+  <ul class="sidenav sidenav-fixed" id="mobile-demo">
     <br><br>
     <li>
       <div class="user-view">
@@ -48,17 +49,26 @@
         </div>
         <br><br>
         <div><span class=" name">ManaCup 21-22</span></div>
-        <div><span class=" email">Taula de control</span></div>
+        <div><span class=" email">La lliga suïssa</span></div>
       </div>
     </li>
 
     <li><a class="sidenav-close"
         href="https://script.google.com/macros/s/AKfycbyh4j2qIOl1oaX2EyuMomtJanJXr38RpvWlVY2kpyftD0kP_Ite6glTKwNb5mq5dXJ1/exec?page=index&plantilla=template"
         target='iframeView'><i class="material-icons">home</i>Inici</a></li>
+    <li><a class="sidenav-close" href="https://icon.cat/wordertorn/" target='_blank'><i
+          class="material-icons">check</i>WORdERtorn</a></li>
+    <li><a class="sidenav-close" href="https://scrabblemanacor.wordpress.com/normativa-del-joc/" target='iframeView'><i
+          class="material-icons">view_list</i>Normativa</a></li>
+    <!-- li><a class="sidenav-close" href="https://drive.google.com/uc?export=download&id=11buoBA5n8IlYjo112N6I7Poeyfe9CQNl" target='_blank' id="linkApp"><i class="material-icons">phone_android</i>Aplicació Android</a></li -->
+    <li><a class="sidenav-close" href="/rellotgeScrabble/index.html" target='_blank'><i class="material-icons">access_time</i>Rellotge<span
+          class="yellow badge">Beta</span></a></li>
+        <li><div class="divider"></div></li>
+    <li><a class="subheader">Panell de control</a></li>
     <li><a class="sidenav-close" href="https://script.google.com/macros/s/AKfycbx0hWZ2_DxHmDCrKI41e5ChO6Ga-4YBCdvzmOZm3h6rWPU50quc756ySNE5YfJLexgx/exec" target='iframeView'>Historial</a></li>
     <li><a class="sidenav-close" href="https://script.google.com/macros/s/AKfycbwS_rZW-5kzHps4OE4gjQjf2PZsssQexEvVAH1hWFylWxDdW3bTgiYjm7aix2os9ax4/exec?page=index" target='iframeView'><i
           class="material-icons">view_list</i>Missatges a pendents</a></li>
-    
+    <li><div class="divider"></div></li>
     <li onclick="toggleFullScreen(document.body)"><a class="sidenav-close"><i
           class="material-icons">fullscreen</i>Pantalla completa</a></li>
  
