@@ -3,7 +3,7 @@ self.addEventListener('install', (e) => {
       caches.open('manacup').then((cache) => cache.addAll([
          
         '/app.js',
-        '/manacup2122.html',
+        
         '/style.css'
       ])),
     );
