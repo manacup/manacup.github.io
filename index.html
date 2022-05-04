@@ -27,6 +27,9 @@
     content="Progressive Web App per a la gestió del campionat regular de Scrabble del Club Scrabble Manacor.">
   <meta name="author" content="Antoni Llull">
   <meta property="og:image" content="icons/favicon-96x96">
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Expires" content="0">
   <link rel="stylesheet" href="style.css">
   <script src="app.js" defer></script>
 </head>
@@ -35,21 +38,24 @@
 
   <nav>
     <div class="nav-wrapper  teal lighten-3">
-      <a href="https://script.google.com/macros/s/AKfycbwvH087aPxnpvuBQA8UJNKYsPURpfiVxL-0sHxIEPMUE7N5sqJe9sA1sVs7KzvahzJ-HQ/exec?page=index&plantilla=template"
+      <a href="https://script.google.com/macros/s/AKfycbyh4j2qIOl1oaX2EyuMomtJanJXr38RpvWlVY2kpyftD0kP_Ite6glTKwNb5mq5dXJ1/exec?page=index&plantilla=template"
         class="brand-logo" target='iframeView'>Manacup <small>21-22</small></a>
       <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
       <ul class="right hide-on-med-and-down">
         <li><a
-            href="https://script.google.com/macros/s/AKfycbwvH087aPxnpvuBQA8UJNKYsPURpfiVxL-0sHxIEPMUE7N5sqJe9sA1sVs7KzvahzJ-HQ/exec?page=index&plantilla=template"
+            href="https://script.google.com/macros/s/AKfycbyh4j2qIOl1oaX2EyuMomtJanJXr38RpvWlVY2kpyftD0kP_Ite6glTKwNb5mq5dXJ1/exec?page=index&plantilla=template"
             target='iframeView'><i class="material-icons">home</i></a></li>
         <li><a href="https://scrabblemanacor.wordpress.com/" target='iframeView'>Club Scrabble Manacor</a></li>
         <li><a href="https://scrabblemanacor.wordpress.com/normativa-del-joc/" target='iframeView'>Normativa</a></li>
+        <li><a href="https://icon.cat/wordertorn/" target='_blank'>WORdERtorn</a></li>
+        <li><a href="/rellotgeScrabble/index.html" target='_blank'>Rellotge<span class="yellow badge">Beta</span></a></li>
 
       </ul>
     </div>
   </nav>
 
   <ul class="sidenav" id="mobile-demo">
+    <br><br>
     <li>
       <div class="user-view">
         <div class="background">
@@ -62,14 +68,14 @@
     </li>
 
     <li><a class="sidenav-close"
-        href="https://script.google.com/macros/s/AKfycbwvH087aPxnpvuBQA8UJNKYsPURpfiVxL-0sHxIEPMUE7N5sqJe9sA1sVs7KzvahzJ-HQ/exec?page=index&plantilla=template"
+        href="https://script.google.com/macros/s/AKfycbyh4j2qIOl1oaX2EyuMomtJanJXr38RpvWlVY2kpyftD0kP_Ite6glTKwNb5mq5dXJ1/exec?page=index&plantilla=template"
         target='iframeView'><i class="material-icons">home</i>Inici</a></li>
     <li><a class="sidenav-close" href="https://icon.cat/wordertorn/" target='_blank'><i
           class="material-icons">check</i>WORdERtorn</a></li>
     <li><a class="sidenav-close" href="https://scrabblemanacor.wordpress.com/normativa-del-joc/" target='iframeView'><i
           class="material-icons">view_list</i>Normativa</a></li>
     <!-- li><a class="sidenav-close" href="https://drive.google.com/uc?export=download&id=11buoBA5n8IlYjo112N6I7Poeyfe9CQNl" target='_blank' id="linkApp"><i class="material-icons">phone_android</i>Aplicació Android</a></li -->
-    <li><a href="/rellotgeScrabble/index.html" target='_blank'><i class="material-icons">access_time</i>Rellotge<span
+    <li><a class="sidenav-close" href="/rellotgeScrabble/index.html" target='_blank'><i class="material-icons">access_time</i>Rellotge<span
           class="yellow badge">Beta</span></a></li>
     <li onclick="toggleFullScreen(document.body)"><a class="sidenav-close"><i
           class="material-icons">fullscreen</i>Pantalla completa</a></li>
@@ -96,8 +102,11 @@
 
   <div class="iframecontainer">
 
-    <iframe name='iframeView' id="divisio" class="responsive-iframe"
-      src='https://script.google.com/macros/s/AKfycbwvH087aPxnpvuBQA8UJNKYsPURpfiVxL-0sHxIEPMUE7N5sqJe9sA1sVs7KzvahzJ-HQ/exec?page=index&plantilla=template'></iframe>
+    <!--iframe name='iframeView' id="divisio" class="responsive-iframe"
+      src='https://script.google.com/macros/s/AKfycbwvH087aPxnpvuBQA8UJNKYsPURpfiVxL-0sHxIEPMUE7N5sqJe9sA1sVs7KzvahzJ-HQ/exec?page=index&plantilla=template'></iframe-->
+  
+      <iframe name='iframeView' id="divisio" class="responsive-iframe"
+      src='https://script.google.com/macros/s/AKfycbyh4j2qIOl1oaX2EyuMomtJanJXr38RpvWlVY2kpyftD0kP_Ite6glTKwNb5mq5dXJ1/exec?page=index&plantilla=template'></iframe>
   </div>
   <iframe name='estadistica' id="estadistica" src="" style="display:none"></iframe>
 
