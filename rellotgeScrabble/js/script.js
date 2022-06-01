@@ -386,6 +386,11 @@ tempsBtn.addEventListener("click", () => {
     jug1 = true
     jug2 = true
     descompte = true
+    
+    var nomjugador1= document.getElementById("nomjug1").value
+    document.getElementById("nom1").textContent = nomjugador1
+    var nomjugador2= document.getElementById("nomjug2").value
+    document.getElementById("nom2").textContent = nomjugador2
 
 })
 
