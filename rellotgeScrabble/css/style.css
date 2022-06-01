@@ -310,7 +310,7 @@ p.util { font-size:.8em; }
 #worder img { vertical-align:bottom; }
 #copy { font-size:.85em; padding:1em; line-height:1.8em; padding-bottom:4em; }
 #credits { font-size:.95em; }
-@media only screen and (max-width: 700px) {
+@media only screen and (max-width: 850px) {
     #cont { width:100%; }
     #req { width: 100%; }
     #req .qry {  width: 100%; }
