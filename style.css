@@ -1,4 +1,11 @@
 html {
+    nav .brand-logo {
+    position: absolute;
+    color: #fff;
+    display: contents;
+    font-size: 1.8rem;
+    padding: 0;
+}
     line-height: 1.5;
     font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif;
     font-weight: normal;
