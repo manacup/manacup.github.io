@@ -56,5 +56,5 @@ if ('serviceWorker' in navigator) {
 
 function recarrega(){
 
-   document.getElementById("rec").setAttribute('href',document.getElementById("rec").setAttribute("href",function(){document.getElementById("divisio").src}));
+   document.getElementById("rec").setAttribute("href",function(){document.getElementById("divisio").src});
 }
