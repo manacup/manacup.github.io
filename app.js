@@ -53,8 +53,8 @@ function identificador(){
 if ('serviceWorker' in navigator) {
     navigator.serviceWorker.register('sw.js');
   }
-document.getElementById("divisio").onload = recarrega()
+
 function recarrega(){
-var srcActual = document.getElementById("divisio").src;
-   document.getElementById("rec").setAttribute('href',srcActual);
+
+   document.getElementById("rec").setAttribute('href',document.getElementById("rec").setAttribute("href",function(){document.getElementById("divisio").src}));
 }
