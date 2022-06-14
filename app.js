@@ -54,7 +54,7 @@ if ('serviceWorker' in navigator) {
     navigator.serviceWorker.register('sw.js');
   }
 
-function recarrega(){
+document.getElementById("divisio").onload = function(){document.getElementById("rec").setAttribute("href",function(){document.getElementById("divisio").src});}
 
-   document.getElementById("rec").setAttribute("href",function(){document.getElementById("divisio").src});
-}
+
+   
