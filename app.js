@@ -10,11 +10,7 @@ document.getElementById('estadistica').src = "https://docs.google.com/forms/d/e/
 });
 document.getElementById('divisio').onload = function() {
 document.getElementById('spinner').style.display='none';
-   
-   if(document.getElementById("rec")!= undefined){
-      document.getElementById("rec").setAttribute("href",this.contentWindow.location)
-      //document.getElementById("rec").setAttribute("href",document.getElementById("divisio").src)
-   }
+
 };
 //document.getElementById("linkApp").addEventListener("click",estadistica);
   
@@ -58,3 +54,10 @@ function identificador(){
 if ('serviceWorker' in navigator) {
     navigator.serviceWorker.register('sw.js');
   }
+ function canviaUrl(href){
+    
+   if(document.getElementById("rec")!= undefined){
+      document.getElementById("rec").setAttribute("href",href)
+     
+   }
+ }
