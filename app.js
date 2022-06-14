@@ -61,3 +61,13 @@ if ('serviceWorker' in navigator) {
      
    }
  }
+function clickEventHandler(e){
+          
+        if(e.target.matches("a")){
+         
+          canviaUrl(e.target.href);
+        }
+            
+  }
+
+document.addEventListener("click",clickEventHandler);
