@@ -10,7 +10,7 @@ document.getElementById('estadistica').src = "https://docs.google.com/forms/d/e/
 });
 document.getElementById('divisio').onload = function() {
 document.getElementById('spinner').style.display='none';
-   canviaUrl(document.getElementById('divisio').src)
+  
 
 };
 //document.getElementById("linkApp").addEventListener("click",estadistica);
@@ -63,11 +63,13 @@ if ('serviceWorker' in navigator) {
    }
  }
 function clickEventHandler(e){
+   console.log(e)
           
         if(e.target.matches("a")){
          
           canviaUrl(e.target.href);
         }
+
             
   }
 
