@@ -12,7 +12,8 @@ document.getElementById('divisio').onload = function() {
 document.getElementById('spinner').style.display='none';
    
    if(document.getElementById("rec")!= undefined){
-      document.getElementById("rec").setAttribute("href",document.getElementById("divisio").src)
+      document.getElementById("rec").setAttribute("href",this.contentWindow.location)
+      //document.getElementById("rec").setAttribute("href",document.getElementById("divisio").src)
    }
 };
 //document.getElementById("linkApp").addEventListener("click",estadistica);
