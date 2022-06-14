@@ -69,7 +69,10 @@ function clickEventHandler(e){
          
           canviaUrl(e.target.href);
         }
-
+     if(e.target.matches("i")){
+         
+          canviaUrl(e.target.parentElement.href);
+        }
             
   }
 
