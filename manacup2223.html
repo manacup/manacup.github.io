@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1, maximum-scale=1">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+  <link rel="shortcut icon" href="favicon.ico">
+  <link rel="apple-touch-icon" sizes="57x57" href="icons/apple-icon-57x57.png">
+  <link rel="apple-touch-icon" sizes="60x60" href="icons/apple-icon-60x60.png">
+  <link rel="apple-touch-icon" sizes="72x72" href="icons/apple-icon-72x72.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="icons/apple-icon-76x76.png">
+  <link rel="apple-touch-icon" sizes="114x114" href="icons/apple-icon-114x114.png">
+  <link rel="apple-touch-icon" sizes="120x120" href="icons/apple-icon-120x120.png">
+  <link rel="apple-touch-icon" sizes="144x144" href="icons/apple-icon-144x144.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="icons/apple-icon-152x152.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="icons/apple-icon-180x180.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="icons/android-icon-192x192.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="icons/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="96x96" href="icons/favicon-96x96.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="icons/favicon-16x16.png">
+  <link rel="manifest" href="manifestarta.webmanifest">
+  <meta name="msapplication-TileColor" content="#039be5">
+  <meta name="msapplication-TileImage" content="icons/ms-icon-144x144.png">
+  <meta name="theme-color" content="#039be5">
+  <meta name="description"
+    content="Progressive Web App per a la gestió del campionat regular de Scrabble del Club Scrabble Manacor.">
+  <meta name="author" content="Antoni Llull">
+  <meta property="og:image" content="icons/favicon-96x96">
+  <link rel="stylesheet" href="style.css">
+  <script src="app.js" defer></script>
+  <style>
+  nav .brand-logo {
+    position: absolute;
+    color: #fff;
+    display: contents;
+    font-size: 1.8rem;
+    padding: 0;
+  }
+  </style>
+</head>
+
+<body>
+
+  <nav>
+    <div class="nav-wrapper teal lighten-3">
+      <a href="https://script.google.com/macros/s/AKfycbxMw3M7yeHJqx86KuGRbYap7AmeSKfsz1RIUra-mPlkW97u45b4vjKdtRNjw8yeEXq1/exec?page=index&plantilla=template"
+         class="brand-logo" target='iframeView'>Manacup <small>22-23</small></a>
+      <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+      <ul class="right hide-on-med-and-down">
+        <li><a
+            href="https://script.google.com/macros/s/AKfycbxMw3M7yeHJqx86KuGRbYap7AmeSKfsz1RIUra-mPlkW97u45b4vjKdtRNjw8yeEXq1/exec?page=index&plantilla=template"
+            target='iframeView'><i class="material-icons">home</i></a></li>
+        <li><a href="https://scrabblemanacor.wordpress.com/" target='iframeView'>Club Scrabble Manacor</a></li>
+        <li><a href="https://scrabblemanacor.wordpress.com/normativa-del-joc/" target='iframeView'>Normativa</a></li>
+        <li><a href="https://icon.cat/wordertorn/" target='_blank'>WORdERtorn</a></li>
+        <li><a href="/rellotgeScrabble/index.html" target='_blank'>Rellotge<span class="yellow badge">Beta</span></a></li>
+        <li><a href="https://script.google.com/macros/s/AKfycbxQqTrSdNUSW3GiZJKjzWpAo_Q2uQfStnkWONWGjyGqITIW0ONo1Noj8N59-hyZ2nh_/exec" target='iframeView'><i
+          class="material-icons">history</i>h</a></li>
+        <li onclick="toggleFullScreen(document.body);"><a href="https://script.google.com/macros/s/AKfycbxMw3M7yeHJqx86KuGRbYap7AmeSKfsz1RIUra-mPlkW97u45b4vjKdtRNjw8yeEXq1/exec?page=index&plantilla=plantillapantalla"
+            target='iframeView'><i
+          class="material-icons">fullscreen</i>f</a></li>
+        <li><a id="rec"  target='iframeView'><i class="material-icons">autorenew</i>a</a></li>
+
+      </ul>
+    </div>
+  </nav>
+
+  <ul class="sidenav" id="mobile-demo">
+   
+    <li>
+      <div class="user-view">
+        <div class="background">
+          <img src="https://drive.google.com/uc?export=download&id=1LIdqpG0iTeQ_XoO_XyRsbMJP5OgndcYi" width="300" height="auto">
+        </div>
+        <br><br><br>
+        <div><span class=" name">ManaCup 22-23</span></div>
+        <div><span class=" email">10 rondes aleatòries + 14 rondes suïsses</span></div>
+      </div>
+    </li>
+
+    <li><a class="sidenav-close"
+        href="https://script.google.com/macros/s/AKfycbxMw3M7yeHJqx86KuGRbYap7AmeSKfsz1RIUra-mPlkW97u45b4vjKdtRNjw8yeEXq1/exec?page=index&plantilla=template"
+        target='iframeView'><i class="material-icons">home</i>Inici</a></li>
+    <li><a class="sidenav-close" href="https://icon.cat/wordertorn/" target='_blank'><i
+          class="material-icons">check</i>WORdERtorn</a></li>
+    <li><a class="sidenav-close" href="https://scrabblemanacor.wordpress.com/normativa-del-joc/" target='iframeView'><i
+          class="material-icons">view_list</i>Normativa</a></li>
+    <!-- li><a class="sidenav-close" href="https://drive.google.com/uc?export=download&id=11buoBA5n8IlYjo112N6I7Poeyfe9CQNl" target='_blank' id="linkApp"><i class="material-icons">phone_android</i>Aplicació Android</a></li -->
+    <li><a class="sidenav-close" href="/rellotgeScrabble/index.html" target='_blank'><i class="material-icons">access_time</i>Rellotge<span
+          class="yellow badge">Beta</span></a></li>
+    <li onclick="toggleFullScreen(document.body)"><a class="sidenav-close"><i
+          class="material-icons">fullscreen</i>Pantalla completa</a></li>
+        <li><div class="divider"></div></li>
+        <li><a class="sidenav-close" href="https://script.google.com/macros/s/AKfycby-4ebtP_GF5wDRod11qYilImYFKMSjhfD6gQq5nrQBzfA9op8fOEEc4viTGx_J1mrQQw/exec" target='iframeView'><i
+          class="material-icons">history</i>Historial</a></li>
+       <li><div class="divider"></div></li>
+    
+  </ul>
+  <div id="spinner" class="spinner">
+    <div class="preloader-wrapper small active">
+      <div class="spinner-layer spinner-blue">
+        <div class="circle-clipper left">
+          <div class="circle"></div>
+        </div>
+        <div class="gap-patch">
+          <div class="circle"></div>
+        </div>
+        <div class="circle-clipper right">
+          <div class="circle"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="iframecontainer">
+
+      
+      <iframe name='iframeView' id="divisio" class="responsive-iframe" 
+      src='https://script.google.com/macros/s/AKfycbxMw3M7yeHJqx86KuGRbYap7AmeSKfsz1RIUra-mPlkW97u45b4vjKdtRNjw8yeEXq1/exec?page=index&plantilla=template'></iframe>
+  </div>
+  <iframe name='estadistica' id="estadistica" src="" style="display:none"></iframe>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+</body>
+
+</html>
