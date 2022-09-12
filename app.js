@@ -19,13 +19,14 @@ function identificador(){
  
  var localID = localStorage.getItem("id")
  var nom = localStorage.getItem("jugador")
+ var versio = document.getElementById("versio").textContent
  
  if(localID) {
      id = localID
  }else{
      localStorage.setItem("id",id)
  }
- document.getElementById("estadistica").src='https://docs.google.com/forms/d/e/1FAIpQLScMRS7yABr1mP94vvfs7ye49eL1W7lfwdECvxt_3x58Quv-dQ/formResponse?entry.1176666344=WEB&entry.1220927547='+id+"&entry.1299550889="+nom
+ document.getElementById("estadistica").src='https://docs.google.com/forms/d/e/1FAIpQLScMRS7yABr1mP94vvfs7ye49eL1W7lfwdECvxt_3x58Quv-dQ/formResponse?entry.1176666344='+versio+'&entry.1220927547='+id+"&entry.1299550889="+nom
 }
   function toggleFullScreen(elem) {
  // ## The below if statement seems to work better ## if ((document.fullScreenElement && document.fullScreenElement !== null) || (document.msfullscreenElement && document.msfullscreenElement !== null) || (!document.mozFullScreen && !document.webkitIsFullScreen)) {
