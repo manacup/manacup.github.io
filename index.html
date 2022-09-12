@@ -2,105 +2,133 @@
 <html>
 
 <head>
-  <meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1, maximum-scale=1">
-  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
-  <link rel="shortcut icon" href="favicon.ico">
-  <link rel="apple-touch-icon" sizes="57x57" href="icons/apple-icon-57x57.png">
-  <link rel="apple-touch-icon" sizes="60x60" href="icons/apple-icon-60x60.png">
-  <link rel="apple-touch-icon" sizes="72x72" href="icons/apple-icon-72x72.png">
-  <link rel="apple-touch-icon" sizes="76x76" href="icons/apple-icon-76x76.png">
-  <link rel="apple-touch-icon" sizes="114x114" href="icons/apple-icon-114x114.png">
-  <link rel="apple-touch-icon" sizes="120x120" href="icons/apple-icon-120x120.png">
-  <link rel="apple-touch-icon" sizes="144x144" href="icons/apple-icon-144x144.png">
-  <link rel="apple-touch-icon" sizes="152x152" href="icons/apple-icon-152x152.png">
-  <link rel="apple-touch-icon" sizes="180x180" href="icons/apple-icon-180x180.png">
-  <link rel="icon" type="image/png" sizes="192x192" href="icons/android-icon-192x192.png">
-  <link rel="icon" type="image/png" sizes="32x32" href="icons/favicon-32x32.png">
-  <link rel="icon" type="image/png" sizes="96x96" href="icons/favicon-96x96.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="icons/favicon-16x16.png">
-  
-  <meta name="msapplication-TileColor" content="#80cbc4">
-  <meta name="msapplication-TileImage" content="icons/ms-icon-144x144.png">
-  <meta name="theme-color" content="#80cbc4">
-  <meta name="description"
-    content="Progressive Web App per a la gestió dels campionats de Scrabble del Club Scrabble Manacor.">
-  <meta name="author" content="Antoni Llull">
-  <meta property="og:image" content="icons/favicon-96x96">
-  <link rel="stylesheet" href="style.css">
-  
-  <style>
-  nav .brand-logo {
-    position: absolute;
-    color: #fff;
-    display: contents;
-    font-size: 1.8rem;
-    padding: 0;
-  }
-  </style>
+    <meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1, maximum-scale=1">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link rel="shortcut icon" href="favicon.ico">
+    <link rel="apple-touch-icon" sizes="57x57" href="icons/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="icons/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="icons/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="icons/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="icons/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="icons/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="icons/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="icons/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="icons/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="icons/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="icons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="icons/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="icons/favicon-16x16.png">
+
+    <meta name="msapplication-TileColor" content="#80cbc4">
+    <meta name="msapplication-TileImage" content="icons/ms-icon-144x144.png">
+    <meta name="theme-color" content="#80cbc4">
+    <meta name="description"
+        content="Progressive Web App per a la gestió dels campionats de Scrabble del Club Scrabble Manacor.">
+    <meta name="author" content="Antoni Llull">
+    <meta property="og:image" content="icons/favicon-96x96">
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+        nav .brand-logo {
+            position: absolute;
+            color: #fff;
+            display: contents;
+            font-size: 1.8rem;
+            padding: 0;
+        }
+    </style>
 </head>
 
 <body>
 
-  <nav>
-    <div class="nav-wrapper teal lighten-3">
-      <div 
-         class="brand-logo" target='iframeView'><small>Cammpionats del CS Manacor</small></div>
-      <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
-      <ul class="right hide-on-med-and-down">
-      
-        <li><a href="https://scrabblemanacor.wordpress.com/" target='_blank'>Club Scrabble Manacor</a></li>
-        <li><a href="https://scrabblemanacor.wordpress.com/normativa-del-joc/" target='_blank'>Normativa</a></li>
-        <li><a href="https://icon.cat/wordertorn/" target='_blank'>WORdERtorn</a></li>
-        <li><a href="/rellotgeScrabble/index.html" target='_blank'>Rellotge<span class="yellow badge">Beta</span></a></li>
-  
+    <nav>
+        <div class="nav-wrapper teal lighten-3">
+            <div class="brand-logo" target='iframeView'><small>Campionats del CS Manacor</small></div>
+            <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+            <ul class="right hide-on-med-and-down">
 
-      </ul>
-    </div>
-  </nav>
-  <ul class="sidenav" id="mobile-demo">
-        <li>
-      <div class="user-view">
-        <div class="background">
-          <img src="https://drive.google.com/uc?export=download&id=18DAlwsNt5gSfyZOPaSLbI0TK95ln-6hw" width="300" height="auto">
+                <li><a href="https://scrabblemanacor.wordpress.com/" target='_blank'>Club Scrabble Manacor</a></li>
+                <li><a href="https://scrabblemanacor.wordpress.com/normativa-del-joc/" target='_blank'>Normativa</a>
+                </li>
+                <li><a href="https://icon.cat/wordertorn/" target='_blank'>WORdERtorn</a></li>
+                <li><a href="/rellotgeScrabble/index.html" target='_blank'>Rellotge<span
+                            class="yellow badge">Beta</span></a></li>
+
+
+            </ul>
         </div>
-        <br><br><br>
-        <div><span class=" name">Campionats del Club Scrabble Manacor</span></div>
-        
-      </div>
-    </li>
-   
+    </nav>
+    <ul class="sidenav" id="mobile-demo">
+        <li>
+            <div class="user-view">
+                <div class="background">
+                    <img src="https://drive.google.com/uc?export=download&id=18DAlwsNt5gSfyZOPaSLbI0TK95ln-6hw"
+                        width="300" height="auto">
+                </div>
+                <br><br><br>
+                <div><span class=" name">Campionats del Club Scrabble Manacor</span></div>
+
+            </div>
+        </li>
 
 
-    <li><a class="sidenav-close" href="https://scrabblemanacor.wordpress.com/" target='iframeView'><i
-          class="material-icons">home</i>Club Scrabble Manacor</a></li>
-       
-    <li><a class="sidenav-close" href="https://icon.cat/wordertorn/" target='_blank'><i
-          class="material-icons">check</i>WORdERtorn</a></li>
-    <li><a class="sidenav-close" href="https://scrabblemanacor.wordpress.com/normativa-del-joc/" target='iframeView'><i
-          class="material-icons">view_list</i>Normativa</a></li>
-    <!-- li><a class="sidenav-close" href="https://drive.google.com/uc?export=download&id=11buoBA5n8IlYjo112N6I7Poeyfe9CQNl" target='_blank' id="linkApp"><i class="material-icons">phone_android</i>Aplicació Android</a></li -->
-    <li><a class="sidenav-close" href="/rellotgeScrabble/index.html" target='_blank'><i class="material-icons">access_time</i>Rellotge<span
-          class="yellow badge">Beta</span></a></li>
- 
-  </ul>
 
-      <ul class="collection with-header">
-        <li class="collection-header"><h4>Lliga ManaCup</h4></li>
-        <li class="collection-item"><div>VII ManaCup 2020-2021<a href="/manacup2021.html" class="secondary-content"><i class="material-icons">send</i></a></div></li>
-        <li class="collection-item"><div>VIII ManaCup 2021-2022<a href="/manacup2122v2.html" class="secondary-content"><i class="material-icons">send</i></a></div></li>
-        <li class="collection-item"><div>IX ManaCup 2022-2023<a href="/manacup2223.html" class="secondary-content"><i class="material-icons">send</i></a></div></li>
-        <li class="collection-item"><div><h4>Campionats</h4></li>
-        <li class="collection-item"><div>I Trofeu Vila d'Artà<a href="/trofeuviladarta.html" class="secondary-content"><i class="material-icons">send</i></a></div></li>
-        <li class="collection-item"><div>VI Ciutat de Manacor<a href="/campionatciutatdemanacor.html" class="secondary-content"><i class="material-icons">send</i></a></div></li>
-      </ul>
+        <li><a class="sidenav-close" href="https://scrabblemanacor.wordpress.com/" target='iframeView'><i
+                    class="material-icons">home</i>Club Scrabble Manacor</a></li>
+
+        <li><a class="sidenav-close" href="https://icon.cat/wordertorn/" target='_blank'><i
+                    class="material-icons">check</i>WORdERtorn</a></li>
+        <li><a class="sidenav-close" href="https://scrabblemanacor.wordpress.com/normativa-del-joc/"
+                target='iframeView'><i class="material-icons">view_list</i>Normativa</a></li>
+        <!-- li><a class="sidenav-close" href="https://drive.google.com/uc?export=download&id=11buoBA5n8IlYjo112N6I7Poeyfe9CQNl" target='_blank' id="linkApp"><i class="material-icons">phone_android</i>Aplicació Android</a></li -->
+        <li><a class="sidenav-close" href="/rellotgeScrabble/index.html" target='_blank'><i
+                    class="material-icons">access_time</i>Rellotge<span class="yellow badge">Beta</span></a></li>
+
+    </ul>
+
+    <ul class="collection with-header">
+        <li class="collection-header">
+            <h4>Lliga ManaCup</h4>
+        </li>
+        <li class="collection-item">
+            <div><b>VII ManaCup</b> 2020-2021
+
+                <a href="/manacup2021.html" class="secondary-content"><i class="material-icons">send</i></a>
+            </div>
+        </li>
+        <li class="collection-item">
+            <div><b>VIII ManaCup</b>  2021-2022
+                <a href="/manacup2122v2.html" class="secondary-content"><i
+                        class="material-icons">send</i></a></div>
+        </li>
+        <li class="collection-item">
+            <div><b>IX ManaCup</b> 2022-2023
+                <a href="/manacup2223.html" class="secondary-content"><i
+                        class="material-icons">send</i></a></div>
+        </li>
+        <li class="collection-item">
+            <div>
+                <h4>Campionats</h4>
+        </li>
+        <li class="collection-item">
+            <div><b>I Trofeu Vila d'Artà</b> 2022
+                <a href="/trofeuviladarta.html" class="secondary-content"><i
+                        class="material-icons">send</i></a></div>
+        </li>
+        <li class="collection-item">
+            <div><b>VI Ciutat de Manacor</b> 2022
+                <a href="/campionatciutatdemanacor.html" class="secondary-content"><i
+                        class="material-icons">send</i></a></div>
+        </li>
+    </ul>
 
 
-  <script>
-     document.addEventListener('DOMContentLoaded', function() {
-     M.AutoInit();
-});
-  </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            M.AutoInit();
+        });
+    </script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 </body>
 
