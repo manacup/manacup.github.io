@@ -1,5 +1,5 @@
 {
- "name": "ManaCup App_",
+ "name": "ManaCup App",
   "display": "standalone",
   "start_url": "/?standalone=true"
 }

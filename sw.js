@@ -1,10 +1,8 @@
+const versio = "2022-23.1"
 self.addEventListener('install', (e) => {
     e.waitUntil(
       caches.open('manacup').then((cache) => cache.addAll([
          
-        '/app.js',
-        
-        '/style.css'
       ])),
     );
   });
