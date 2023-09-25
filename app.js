@@ -1,3 +1,4 @@
+const canvis = 1.0
 var id = Math.floor(Math.random() * Date.now())
    
 function estadistica(){
