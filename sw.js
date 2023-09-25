@@ -1,4 +1,4 @@
-const versio = "2022-23.2"
+const versio = "2023-24.0"
 self.addEventListener('install', (e) => {
     e.waitUntil(
       caches.open('manacup').then((cache) => cache.addAll([
