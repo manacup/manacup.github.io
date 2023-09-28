@@ -57,6 +57,13 @@ function identificador(){
 if ('serviceWorker' in navigator) {
     navigator.serviceWorker.register('sw.js');
   }
+if ('serviceWorker' in navigator) {
+  caches.keys().then(function(cacheNames) {
+    cacheNames.forEach(function(cacheName) {
+      caches.delete(cacheName);
+    });
+  });
+}
  function canviaUrl(href){
     
    if(document.getElementById("rec")!= undefined){
