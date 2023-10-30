@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <base target="_top" />
+    <meta
+      charset="utf-8"
+      name="viewport"
+      content="width=device-width, initial-scale=1, maximum-scale=1"
+      
+    />
+    <!-- <meta content="user-scalable=no"> -->
+    <title>X Manacup 23-24</title>   
+
+    <link rel="shortcut icon" href="favicon.ico">
+    <link rel="apple-touch-icon" sizes="57x57" href="icons/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="icons/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="icons/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="icons/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="icons/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="icons/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="icons/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="icons/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="icons/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="icons/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="icons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="icons/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="icons/favicon-16x16.png">
+    <link rel="manifest" href="manifest.webmanifest">
+    <meta name="msapplication-TileColor" content="#80cbc4">
+    <meta name="msapplication-TileImage" content="icons/ms-icon-144x144.png">
+    <meta name="theme-color" content="#80cbc4">
+    <meta name="description"
+      content="Classificacions, resultats, estadístiques...">
+    <meta name="author" content="ManaCup">
+    <meta property="og:image" content="icons/favicon-96x96">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+
+    <style>
+      body{        
+        margin: 0px;
+      }
+      
+      .iframecontainer {
+        position: absolute;
+        overflow: hidden;
+        width: 100%;
+        top: 0px;
+        bottom: 0;
+      }
+
+      /* Then style the iframe to fit in the container div with full height and width */
+      .responsive-iframe {
+        position: absolute;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+        width: 100%;
+        height: 100%;
+        border: none;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="iframecontainer">
+      <iframe
+        name="iframeView"
+        id="divisio"
+        class="responsive-iframe"
+        src="https://script.google.com/macros/s/AKfycbwDcFyPQFV3B0bzeRxGU9yaTWhbA3PyR3SQZOQ1KEE5cU08SJb5QaOOfuXxwfVnuASk/exec?page=nouIndex&idfull=1HDQ6YdsA5FnzHaHFeOlYXPEIDCLRpq34rm078oFqRMU"
+      ></iframe>
+    </div>
+
+    <script>
+      const queryString = window.location.search;
+      console.log(queryString);
+      const urlParams = new URLSearchParams(queryString);
+      var iframe = document.getElementById("divisio");
+      var apphttp = queryString.replace("?", "");
+      var confighttp = "https://script.google.com/macros/s/AKfycbwDcFyPQFV3B0bzeRxGU9yaTWhbA3PyR3SQZOQ1KEE5cU08SJb5QaOOfuXxwfVnuASk/exec?page=nouIndex&idfull=1HDQ6YdsA5FnzHaHFeOlYXPEIDCLRpq34rm078oFqRMU";
+
+      window.addEventListener("load", function () {
+        urlParams ? vesURL(apphttp) : vesURL(confighttp);
+      });
+
+
+      function vesURL(url) {
+        iframe.src = url;
+        
+      }
+
+
+
+    </script>
+  </body>
+</html>
