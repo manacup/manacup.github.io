@@ -80,8 +80,9 @@
       const urlParams = new URLSearchParams(queryString);
       console.log(urlParams);
       var iframe = document.getElementById("divisio");
-      var apphttp = iframe+queryString
+      
       var confighttp = "https://script.google.com/macros/s/AKfycbwDcFyPQFV3B0bzeRxGU9yaTWhbA3PyR3SQZOQ1KEE5cU08SJb5QaOOfuXxwfVnuASk/exec?page=nouIndex&idfull=1HDQ6YdsA5FnzHaHFeOlYXPEIDCLRpq34rm078oFqRMU";
+      var apphttp = confighttp+queryString
 
       window.addEventListener("load", function () {
         urlParams ? vesURL(apphttp) : vesURL(confighttp);
