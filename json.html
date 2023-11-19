@@ -16,6 +16,7 @@
     fetch('https://script.google.com/macros/s/AKfycbwDcFyPQFV3B0bzeRxGU9yaTWhbA3PyR3SQZOQ1KEE5cU08SJb5QaOOfuXxwfVnuASk/exec?page=JSON')
       .then(response => response.json())
       .then(data => {
+          console.log(data);
         // Obtenir el div per ID
         var responseDiv = document.getElementById('responseDiv');
         
