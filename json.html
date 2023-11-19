@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Consulta JSON</title>
+  <div id="print"></div>div>
+</head>
+<body>
+
+<script>
+    // Crida a l'API del Google Apps Script
+    fetch('https://script.google.com/macros/s/AKfycbwDcFyPQFV3B0bzeRxGU9yaTWhbA3PyR3SQZOQ1KEE5cU08SJb5QaOOfuXxwfVnuASk/exec?page=JSON')
+      .then(response => response.json())
+      .then(data => {
+        // Imprimeix el JSON a la consola
+        console.log(data);
+        document.getElementById("print").innerHtml=data.data
+        // Aquí pots fer altres coses amb les dades JSON
+      })
+      .catch(error => console.error('Error:', error));
+</script>
+
+</body>
+</html>
