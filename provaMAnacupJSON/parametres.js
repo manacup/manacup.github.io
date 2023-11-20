@@ -73,7 +73,7 @@ function iniciJSON() {
   carrega = 0;
   // Crida a l'API del Google Apps Script
   fetch(
-    "https://script.google.com/macros/s/AKfycbwDcFyPQFV3B0bzeRxGU9yaTWhbA3PyR3SQZOQ1KEE5cU08SJb5QaOOfuXxwfVnuASk/exec?page=JSON"
+    "https://script.google.com/macros/s/AKfycbwDcFyPQFV3B0bzeRxGU9yaTWhbA3PyR3SQZOQ1KEE5cU08SJb5QaOOfuXxwfVnuASk/exec?page=JSON&idfull="+idfull
   )
     .then((response) => response.json())
     .then((data) => {
