@@ -58,7 +58,7 @@ function carregaUsuari() {
   if (isLocalStorageAvailable()) {
     // available
     let jugadorDesatId = JSON.parse(localStorage.getItem("jugador"));
-    var jugid = parameterId != "" ? parameterId : jugadorDesatId;
+    var jugid = parameterId != "undefined" ? parameterId : jugadorDesatId;
     console.log(jugid,parameterId,jugadorDesatId)
     jugadorDesat = dades.filter((j) => j.ID == jugid)[0] || jugadorDefault;
     console.log(jugadorDesat)
