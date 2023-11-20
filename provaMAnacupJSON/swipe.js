@@ -45,11 +45,10 @@ function swipe() {
       //console.log(paginaActual)
 
       if (vistaActual == "detall") {
-        if (parseInt(paginaActual[1]) < dades.length - 1) {
+        if (parseInt(paginaActual[1]) < dades.length - 1 && parseInt(paginaActual[1]) > 1 ){
           paginaSeguent = parseInt(paginaActual[1]) + 1;
-        } else /* if (parseInt(paginaActual[1]) > 1) */ {
-          paginaAnterior = parseInt(paginaActual[1]) - 1;
-        }
+          paginaAnterior = parseInt(paginaActual[1]) - 1
+        } 
         vistaSeguent = vistaActual;
         vistaAnterior = vistaActual;
       } else if (vistaActual == "detallpartida") {
