@@ -1,0 +1,17 @@
+<script>
+    var post = fetch('https://script.google.com/macros/s/AKfycbz85Z7EUQnAp-_wzzBS9Ffq3g8MRU05nRLC4fPtw19KTVwKZ6tdk9fgL8jFu73ks0gE/exec', {
+  method: 'POST',
+  headers: {
+    'Content-Type': 'application/json',
+  },
+  body: JSON.stringify({
+    parameter: 'formula1', // o 'formula2' segons la fórmula que vulguis aplicar
+    value1: 10, // ajusta els valors segons les necessitats de la teva fórmula
+  }),
+})
+.then(response => response.text())
+.then(data => {
+  console.log('Resposta del servidor:', data);
+})
+.catch(error => console.error('Error:', error));
+</script>
