@@ -70,6 +70,7 @@ function carregaUsuari() {
 document.addEventListener("DOMContentLoaded", iniciJSON());
 
 function iniciJSON() {
+  console.log("iniciJSON")
   carrega = 0;
   // Crida a l'API del Google Apps Script
   fetch(
