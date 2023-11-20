@@ -56,7 +56,11 @@ function renderJugador(jugador) {
                   
                   <div class="d-flex justify-content-center imatge-container">
                     <div class="mt-3 mb-4 imatge-cercle img">
-                      <img src="${userImg || jugador.Imatge}"
+                      <img src="${
+                        jugador.id == jugadorDesat.ID
+                          ? userImg || jugador.Imatge
+                          : jugador.Imatge
+                      }"
                          >
                     </div>
                     </div>
