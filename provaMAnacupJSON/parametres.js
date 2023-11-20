@@ -18,7 +18,7 @@ let rondes = [];
 var trobada;
 var carrega = 0;
 
-const urlApp = window.location + "?";
+const urlApp = window.location.href.split('?')[0] + "?";
 let jugadorDefault = {
   Nom: "",
   Malnom2: "",
