@@ -58,7 +58,7 @@ var carregaImatgeConf = function (event) {
   reader3.onload = function () {
     /* var output3 = document.getElementById("resjugImatgeConf");
     output3.src = reader3.result; */
-    dades.filter((j) => j.Nom == nom)[0].Imatge = reader3.result
+    //dades.filter((j) => j.Nom == nom)[0].Imatge = reader3.result
     jugadorDesat.Imatge = reader3.result
     document.querySelectorAll(".userImg").forEach(ui=>{
         ui.src = reader3.result
