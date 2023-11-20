@@ -79,7 +79,7 @@ function iniciJSON() {
     .then((response) => response.json())
     .then((data) => {
       console.log(data);
-      dades = data.data;
+      dades = data.dades;
         carregaUsuari();
         renderUserCard(jugadorDesat);
         carrega++;
