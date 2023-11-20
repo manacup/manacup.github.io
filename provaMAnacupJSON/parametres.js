@@ -4,7 +4,7 @@ const urlParams = Object.fromEntries(new URLSearchParams(queryString));
 console.log(urlParams);
 
 
-
+const macroURL = "https://script.google.com/macros/s/AKfycbwDcFyPQFV3B0bzeRxGU9yaTWhbA3PyR3SQZOQ1KEE5cU08SJb5QaOOfuXxwfVnuASk/exec"
 let parameterId = urlParams.id || "no"
 let parameterVista = urlParams.vista
 let parameterOptions = urlParams.options
@@ -75,7 +75,7 @@ function iniciJSON() {
   carrega = 0;
   // Crida a l'API del Google Apps Script
   fetch(
-    "https://script.google.com/macros/s/AKfycbwDcFyPQFV3B0bzeRxGU9yaTWhbA3PyR3SQZOQ1KEE5cU08SJb5QaOOfuXxwfVnuASk/exec?page=JSON&idfull="+idfull
+    macroURL+"?page=JSON&idfull="+idfull
   )
     .then((response) => response.json())
     .then((data) => {

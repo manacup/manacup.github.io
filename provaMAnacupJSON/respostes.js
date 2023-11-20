@@ -321,11 +321,29 @@ async function handleFormSubmit(formObject) {
   //console.log(obj)
   document.getElementById("submitbtn2").disabled = true;
   document.getElementById("spnbtn2").classList.remove("d-none");
-  google.script.run
+
+  fetch(macroURL, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      envia: 'partida', // o 'formula2' segons la fórmula que vulguis aplicar
+      obj: obj, // ajusta els valors segons les necessitats de la teva fórmula
+      idfull: idfull
+    }),
+  })
+  .then(response => response.text())
+  .then(data => {
+    console.log('Resposta del servidor:', data);
+    setTimeout(funcioInici("classificacions"), 2000)
+  })
+  .catch(error => console.error('Error:', error));
+  /* google.script.run
     .withSuccessHandler(function () {
       setTimeout(funcioInici("classificacions"), 2000);
     })
-    .nouResultat(obj, idfull);
+    .nouResultat(obj, idfull); */
 }
 
 var carregaFull = function (event) {
