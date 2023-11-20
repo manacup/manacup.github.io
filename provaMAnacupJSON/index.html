@@ -268,6 +268,7 @@
 
       var file = document.getElementById("ImatgeamagatConf").value;
       var nom = jugadorDesat.Nom
+      
 
       fetch(macroURL, {
     method: 'POST',
@@ -279,6 +280,7 @@
       envia: 'imatge', 
       nom: nom, 
       file: file,
+      idfull : idfull,
     }),
   })
   .then(response => response.text())
