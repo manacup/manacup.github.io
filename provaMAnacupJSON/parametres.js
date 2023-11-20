@@ -5,7 +5,7 @@ console.log(urlParams);
 
 
 
-let parameterId = urlParams.id
+let parameterId = urlParams.id || "no"
 let parameterVista = urlParams.vista
 let parameterOptions = urlParams.options
 let vistaPredet = { page: parameterVista, options: parameterOptions };
@@ -58,7 +58,7 @@ function carregaUsuari() {
   if (isLocalStorageAvailable()) {
     // available
     let jugadorDesatId = JSON.parse(localStorage.getItem("jugador"));
-    var jugid = parameterId != "undefined" ? parameterId : jugadorDesatId;
+    var jugid = parameterId != "no" ? parameterId : jugadorDesatId;
     console.log(jugid,parameterId,jugadorDesatId)
     jugadorDesat = dades.filter((j) => j.ID == jugid)[0] || jugadorDefault;
     console.log(jugadorDesat)
