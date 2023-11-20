@@ -46,10 +46,10 @@ function loadContent(vista) {
       break;
     case "conjunta":
       navbarTitle.innerHTML = `Partida conjunta`;
-      contentDiv.innerHTML += `<div class="col-md-8" id="ordenarBoto"><i class="float-end bi bi-calendar3" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Ordena per data o per punts."></i></div>`;
+      contentDiv.innerHTML += `<div class="col-md-8 p-1" id="ordenarBoto"><i class="float-end bi bi-calendar3" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Ordena per data o per punts."></i></div>`;
       var div = document.createElement("div");
       div.id = "contentConjunta";
-      div.classList.add("row");
+      div.classList.add("row-md-8");
       div.classList.add("justify-content-center");
       div.classList.add("p-0");
       contentDiv.appendChild(div);

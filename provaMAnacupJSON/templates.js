@@ -1192,7 +1192,7 @@ function renderConjunta(partida) {
   var dies = convertMiliseconds(difereciaMS, "d");
 
   const partidaTemplate = `
-      <div class="col-md-8 pb-2 entrada">
+      <div class="col-md-8 p-1 entrada">
       
           <div class="card ${
             partida.Suma_punts >= 1000
