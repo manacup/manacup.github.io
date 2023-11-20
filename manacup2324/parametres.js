@@ -1,7 +1,7 @@
 const queryString = window.location.search;
-console.log(queryString);
+//console.log(queryString);
 const urlParams = Object.fromEntries(new URLSearchParams(queryString));
-console.log(urlParams);
+//console.log(urlParams);
 
 
 const macroURL = "https://script.google.com/macros/s/AKfycbwDcFyPQFV3B0bzeRxGU9yaTWhbA3PyR3SQZOQ1KEE5cU08SJb5QaOOfuXxwfVnuASk/exec"
@@ -62,9 +62,9 @@ function carregaUsuari() {
     // available
     let jugadorDesatId = JSON.parse(localStorage.getItem("jugador"));
     var jugid = parameterId != "no" ? parameterId : jugadorDesatId;
-    console.log(jugid,parameterId,jugadorDesatId)
+    //console.log(jugid,parameterId,jugadorDesatId)
     jugadorDesat = dades.filter((j) => j.ID == jugid)[0] || jugadorDefault;
-    console.log(jugadorDesat)
+    //console.log(jugadorDesat)
   } else {
     // unavailable
     jugadorDesat = dades.filter((j) => j.ID == parameterId)[0] || jugadorDefault;
@@ -80,7 +80,7 @@ function iniciJSON(vista) {
   )
     .then((response) => response.json())
     .then((data) => {
-      console.log(data);
+      //console.log(data);
       dades = data.dades;
         carregaUsuari();
         renderUserCard(jugadorDesat);
