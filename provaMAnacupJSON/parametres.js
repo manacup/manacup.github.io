@@ -60,17 +60,16 @@ function carregaUsuari() {
     let jugadorDesatId = JSON.parse(localStorage.getItem("jugador"));
     var jugid = parameterId != "" ? parameterId : jugadorDesatId;
     //console.log(jugid,parameterId,jugadorDesatId)
-    jugadorDesat = data.filter((j) => j.ID == jugid)[0] || jugadorDefault;
+    jugadorDesat = dades.filter((j) => j.ID == jugid)[0] || jugadorDefault;
     //console.log(jugadorDesat)
   } else {
     // unavailable
-    jugadorDesat = data.filter((j) => j.ID == parameterId)[0] || jugadorDefault;
+    jugadorDesat = dades.filter((j) => j.ID == parameterId)[0] || jugadorDefault;
   }
 }
 document.addEventListener("DOMContentLoaded", iniciJSON());
 
 function iniciJSON() {
-  console.log("iniciJSON")
   carrega = 0;
   // Crida a l'API del Google Apps Script
   fetch(
