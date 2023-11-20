@@ -71,7 +71,7 @@ function carregaUsuari() {
 }
 document.addEventListener("DOMContentLoaded", iniciJSON());
 
-function iniciJSON() {
+function iniciJSON(vista) {
   carrega = 0;
   // Crida a l'API del Google Apps Script
   fetch(
@@ -85,7 +85,7 @@ function iniciJSON() {
         renderUserCard(jugadorDesat);
         carrega++;
 
-        loadPagina();
+        loadPagina(vista);
         dades.forEach((jug) => {
             var jugadorsOpt = document.getElementById("jugadors");
             jugadorsOpt.innerHTML += `<option value="${jug.ID}">${jug.Nom}</option>`;
@@ -95,7 +95,7 @@ function iniciJSON() {
 
       aparellaments = data.aparellaments.filter((p) => p.ID > 0);
         carrega++;
-        loadPagina();
+        loadPagina(vista);
 
       rondes = data.calendari.filter((p) => p.Estat != "none");
       carrega++;
@@ -109,7 +109,7 @@ function iniciJSON() {
             w.Segona_partida = w.Segona_partida + w.Adv2;
             });
         }
-      loadPagina();
+      loadPagina(vista);
 
       // Obtenir el div per ID
       /*  var responseDiv = document.getElementById('responseDiv');

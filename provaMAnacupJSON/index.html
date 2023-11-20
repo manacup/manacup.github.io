@@ -263,8 +263,22 @@
       var file = document.getElementById("ImatgeamagatConf").value;
       var nom = jugadorDesat.Nom
 
-
-      google.script.run.withSuccessHandler((url) => {
+      fetch(macroURL, {
+    method: 'POST',
+    mode: 'no-cors',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      envia: 'imatge', 
+      nom: nom, 
+      file: file,
+    }),
+  })
+  .then(response => response.text())
+  .then(data => {
+    console.log('Resposta del servidor:', data);
+    (url) => {
         console.log(url)
         e.disabled = false
         document.getElementById("spnbtn").classList.add("d-none")
@@ -277,7 +291,25 @@
         jugadorDesat.Imatge = url
         renderUserCard(jugadorDesat)
 
-      }).uploadFilesImatge(nom, file);
+      }
+  })
+  .catch(error => console.error('Error:', error));
+
+
+/*       google.script.run.withSuccessHandler((url) => {
+        console.log(url)
+        e.disabled = false
+        document.getElementById("spnbtn").classList.add("d-none")
+        var modal = document.getElementById('desaimatge')
+        modal.classList.remove('show');
+        modal.classList.add('d-none');
+        document.querySelector(".modal-backdrop").classList.remove('show');
+        document.querySelector(".modal-backdrop").classList.add('d-none');
+        data.filter(j => j.Nom == nom)[0].Imatge = url
+        jugadorDesat.Imatge = url
+        renderUserCard(jugadorDesat)
+
+      }).uploadFilesImatge(nom, file); */
     }
     var carregaImatgeConf = function (event) {
 

@@ -299,10 +299,28 @@ async function main() {
 
   document.getElementById("enviaAssistencia").disabled = true;
   document.getElementById("spnbtn3").classList.remove("d-none");
-  google.script.run
+  fetch(macroURL, {
+    method: 'POST',
+    mode: 'no-cors',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      envia: 'trobada', 
+      values: values, 
+      idfull: idfull,
+    }),
+  })
+  .then(response => response.text())
+  .then(data => {
+    console.log('Resposta del servidor:', data);
+    setTimeout(iniciJSON("trobades"), 2000)
+  })
+  .catch(error => console.error('Error:', error));
+/*   google.script.run
     .withFailureHandler((err) => console.log(err.message))
     .withSuccessHandler(function () {
       setTimeout(funcioInici("trobades"), 2000);
     })
-    .enviaTrobades(values, idfull); // The form object parsed by this library is used here.
+    .enviaTrobades(values, idfull); // The form object parsed by this library is used here. */
 }

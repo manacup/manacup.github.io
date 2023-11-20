@@ -331,7 +331,7 @@ async function handleFormSubmit(formObject) {
     body: JSON.stringify({
       envia: 'partida', // o 'formula2' segons la fórmula que vulguis aplicar
       obj: obj, // ajusta els valors segons les necessitats de la teva fórmula
-      idfull: idfull
+      idfull: idfull,
     }),
   })
   .then(response => response.text())
