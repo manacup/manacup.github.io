@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ManaCup</title>
+
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+  <!-- Incluir los estilos de Bootstrap 5 -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
+  <script
+    src="https://cdn.jsdelivr.net/gh/tanaikech/HtmlFormObjectParserForGoogleAppsScript_js@master/htmlFormObjectParserForGoogleAppsScript_js.min.js">
+    </script>
+
+
+
+
+  <script type="module" src="moduls.js"></script>
+
+  <link rel="stylesheet" href="css.css">
+
+
+</head>
+
+<body class="bg-light" id="body">
+  <div id="loaded" class="d-none"
+    onclick="document.getElementById('loaded').innerHTML='Wkk';this.classList.add('d-none')">x
+  </div>
+
+  <!-- Usar clases de Bootstrap para el diseño -->
+  <nav class=" navbar  navbar-light bg-light sticky-top">
+    <div class="container-fluid">
+      <div class="navbar-brand flex-grow-1 ">
+        <div class="d-flex align-items-center" id="goBack" style="cursor: pointer;">
+          <i class="bi bi-arrow-left me-2 d-none" id="botoEnrera"></i>
+          <div class="nav-link ">
+            <span id="navbar-title">X ManaCup 23-24</span>
+          </div>
+        </div>
+      </div>
+      <!--  <div class="navbar-toggler me-2" data-bs-toggle="collapse" data-bs-target="#collapsetabs">
+        <i class="bi bi-chevron-down"></i>
+      </div> -->
+
+      <div class="navbar-toggler me-2" data-bs-toggle="collapse" data-bs-target="#collapseCerca">
+        <i class="bi bi-search"></i>
+      </div>
+
+      <div class="navbar-toggler me-2 dropdown" data-bs-toggle="dropdown" data-bs-target="#menu" aria-expanded="false"
+        aria-controls="menu">
+        <i class="bi bi-three-dots-vertical"></i>
+      </div>
+
+      <ul class="dropdown-menu dropdown-menu-end" id="menu">
+        <li>
+          <h6 class="dropdown-header text-danger">Classificacions</h6>
+        </li>
+        <li><a class="dropdown-item" href="#classificacio">Classificació general</a></li>
+        <li><a class="dropdown-item" href="#scrabbles">Scrabbles</a></li>
+        <li><a class="dropdown-item" href="#jugada">Millor jugada</a></li>
+        <li><a class="dropdown-item" href="#partida">Millor partida individual</a></li>
+        <li><a class="dropdown-item" href="#conjunta">Millor partida conjunta</a></li>
+        <li><a class="dropdown-item" href="#social">Participació social</a></li>
+        <li><a class="dropdown-item" href="#immediatesa">Menys procrastinador</a></li>
+        <li>
+          <hr class="dropdown-divider">
+        </li>
+        <li>
+          <h6 class="dropdown-header text-success">Calendari</h6>
+        </li>
+        <li><a class="dropdown-item" href="#rondes">Rondes</a></li>
+        <li><a class="dropdown-item" href="#trobades">Trobades</a></li>
+        <li>
+          <hr class="dropdown-divider">
+        </li>
+        <li>
+          <h6 class="dropdown-header text-warning">Enllaços</h6>
+        </li>
+        <li><a class="dropdown-item" href="#blog">Blog del club</a></li>
+        <li><a class="dropdown-item" href="#rellotge">Rellotge</a></li>
+        <li><a class="dropdown-item" href="#validador">Validador</a></li>
+      </ul>
+
+      <div class="dropdown" data-bs-toggle="dropdown" data-bs-target="#menuJugador" aria-expanded="false"
+        aria-controls="menuJugador" data-bs-auto-close="outside">
+        <img src="https://drive.google.com/uc?export=download&id=1smxezxXK12OGMJ-1uBu68aVAwBGaYSnE" alt="usuari"
+          class="circle userImg">
+      </div>
+
+      <div class="collapse  navbar-collapse search mt-2" role="search" id="collapseCerca">
+        <div class="input-group">
+          <span class="input-group-text" id="comptador"></span>
+          <input class="form-control" type="search" placeholder="Cerca">
+        </div>
+      </div>
+
+      <div class="dropdown-menu dropdown-menu-end p-3" id="menuJugador">
+        <div class="card-body text-center">
+          <div id="userCard" class=" position-relative"></div>
+          <p class="text-muted form-label btn" data-bs-toggle="modal" data-bs-target="#desajug" aria-expanded="false"
+            aria-controls="desajug">Canvia l'usuari</p>
+        </div>
+      </div>
+    </div>
+    <!-- </nav> -->
+
+    <ul class="nav nav-underline flex-nowrap text-nowrap overflow-x-scroll <?= plantilla ?>" id="collapsetabs">
+      <li class="nav-item"><a class="nav-link" href="#classificacio">Classificació general</a></li>
+      <li class="nav-item"><a class="nav-link" href="#scrabbles">Scrabbles</a></li>
+      <li class="nav-item"><a class="nav-link" href="#jugada">Millor jugada</a></li>
+      <li class="nav-item"><a class="nav-link" href="#partida">Millor partida individual</a></li>
+      <li class="nav-item"><a class="nav-link" href="#conjunta">Millor partida conjunta</a></li>
+      <li class="nav-item"><a class="nav-link" href="#social">Participació social</a></li>
+      <li class="nav-item"><a class="nav-link" href="#immediatesa">Menys procrastinador</a></li>
+      <li class="nav-item"><a class="nav-link" href="#rondes">Rondes</a></li>
+      <li class="nav-item"><a class="nav-link" href="#trobades">Trobades</a></li>
+    </ul>
+  </nav>
+
+  <div class="modal" tabindex="-1" id="desajug">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="modalTitol">Selecciona l'usuari</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body" id="modalBody">
+          <div class="row mb-3 g-3">
+            <div class="col">
+              <label for="inpdesajug">Comença a escriure el teu nom i tria de la llista
+                <input id="inpdesajug" type="search" class="form-control llistajugadors mb-3" data-datalist="jugadors"
+                  placeholder="Escriu" />
+            </div>
+            <datalist id="jugadors"></datalist>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div aria-live="polite" aria-atomic="true" class="position-relative">
+    <div class="toast-container top-0 end-0 p-3">
+      <div id="toast" class="toast align-items-center fade" role="alert">
+        <div class="d-flex">
+          <div class="toast-body">
+
+          </div>
+          <button type="button" class="btn-close me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <main class="container p-3">
+    <div id="swiper">
+      <div id="content" class="row justify-content-center">
+        <div class="col-md-8 p-1">
+          <div class="card ">
+            <div class="card-body">
+              <div class="row ">
+                <div class="col-2">
+                  <h1 class="card-title placeholder-glow"><span class="placeholder col-6"></span></h1>
+                </div>
+                <div class="col-10">
+                  <h5 class="card-title placeholder-glow"><span class="placeholder col-6"></span></h5>
+                  <p class="card-text card-text placeholder-glow">
+                    <span class="placeholder col-3"></span>
+                  </p>
+                  <p class="card-text card-text placeholder-glow">
+                    <span class="placeholder col-4"></span>
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-8 p-1">
+          <div class="card ">
+            <div class="card-body">
+              <div class="row ">
+                <div class="col-2">
+                  <h1 class="card-title placeholder-glow"><span class="placeholder col-6"></span></h1>
+                </div>
+                <div class="col-10">
+                  <h5 class="card-title placeholder-glow"><span class="placeholder col-6"></span></h5>
+                  <p class="card-text card-text placeholder-glow">
+                    <span class="placeholder col-3"></span>
+                  </p>
+                  <p class="card-text card-text placeholder-glow">
+                    <span class="placeholder col-4"></span>
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-8 p-1">
+          <div class="card ">
+            <div class="card-body">
+              <div class="row ">
+                <div class="col-2">
+                  <h1 class="card-title placeholder-glow"><span class="placeholder col-6"></span></h1>
+                </div>
+                <div class="col-10">
+                  <h5 class="card-title placeholder-glow"><span class="placeholder col-6"></span></h5>
+                  <p class="card-text card-text placeholder-glow">
+                    <span class="placeholder col-3"></span>
+                  </p>
+                  <p class="card-text card-text placeholder-glow">
+                    <span class="placeholder col-4"></span>
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <div class="modal" tabindex="-1" id="desaimatge">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="modalTitol">Foto de perfil</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body" id="modalBody">
+          <p>Una foto ajuda als altres jugadors a reconèixer-te.</p>
+          <div class="d-flex justify-content-center imatge-container">
+            <div class="imgedit">
+              <div class="mt-3 mb-4 imatge-cercle imatge-container">
+                <img src="" class="userImg " id="resjugImatgeConf" />
+                <input name='imatge' id="ImatgeamagatConf" type="hidden">
+
+              </div>
+            </div>
+          </div>
+          <span class="image-upload d-flex justify-content-center">
+            <label class="btn btn-primary mb-4" for="imagefileConf" id="canviaimatgeConf">
+              <i class="bi bi-camera"></i>
+              Canvia la imatge
+            </label>
+            <input type="file" class="visually-hidden" id="imagefileConf" onchange="carregaImatgeConf(event)"
+              accept="image/*">
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script>
+    function desaImatgeConf(e) {
+      e.disabled = true
+      document.getElementById("spnbtn").classList.remove("d-none")
+
+      var file = document.getElementById("ImatgeamagatConf").value;
+      var nom = jugadorDesat.Nom
+
+
+      google.script.run.withSuccessHandler((url) => {
+        console.log(url)
+        e.disabled = false
+        document.getElementById("spnbtn").classList.add("d-none")
+        var modal = document.getElementById('desaimatge')
+        modal.classList.remove('show');
+        modal.classList.add('d-none');
+        document.querySelector(".modal-backdrop").classList.remove('show');
+        document.querySelector(".modal-backdrop").classList.add('d-none');
+        data.filter(j => j.Nom == nom)[0].Imatge = url
+        jugadorDesat.Imatge = url
+        renderUserCard(jugadorDesat)
+
+      }).uploadFilesImatge(nom, file);
+    }
+    var carregaImatgeConf = function (event) {
+
+      var reader3 = new FileReader();
+      reader3.onload = function () {
+        var output3 = document.getElementById('resjugImatgeConf');
+        output3.src = reader3.result;
+      };
+      reader3.readAsDataURL(event.target.files[0]);
+    };
+    let imgInputImatgeConf = document.getElementById('imagefileConf');
+    imgInputImatgeConf.addEventListener('change', function (e) {
+      if (e.target.files) {
+        let imageFile = e.target.files[0];
+        var reader = new FileReader();
+        reader.onload = function (e) {
+          var img = document.createElement("img");
+          img.onload = function (event) {
+            // Dynamically create a canvas element
+            var canvas = document.createElement("canvas");
+
+            // var canvas = document.getElementById("canvas");
+            var ctx = canvas.getContext("2d");
+
+            ctx.drawImage(img, 0, 0);
+
+            var MAX_WIDTH = 600;
+            var MAX_HEIGHT = 600;
+            var width = img.width;
+            var height = img.height;
+
+            if (width > height) {
+              if (width > MAX_WIDTH) {
+                height *= MAX_WIDTH / width;
+                width = MAX_WIDTH;
+              }
+            } else {
+              if (height > MAX_HEIGHT) {
+                width *= MAX_HEIGHT / height;
+                height = MAX_HEIGHT;
+              }
+            }
+            canvas.width = width;
+            canvas.height = height;
+            var ctx = canvas.getContext("2d");
+            ctx.drawImage(img, 0, 0, width, height);
+
+
+            var dataurl = canvas.toDataURL("image/png");
+
+            var finalUrl = dataurl.replace(/^data:image\/(png|jpg);base64,/, "")
+            document.getElementById("ImatgeamagatConf").value = finalUrl;
+
+
+
+          }
+          img.src = e.target.result;
+        }
+        reader.readAsDataURL(imageFile);
+      }
+    });  
+  </script>
+
+  <script async defer src="templates.js"></script>
+  <script async defer src="respostes.js"></script>
+  <script async defer src="trobades.js"></script>
+  <script async defer src="swipe.js"></script>
+  <script async defer src="nav.js"></script>
+  
+
+
+  <!-- Incluir Bootstrap 5 JavaScript (jQuery y Popper.js son requeridos por Bootstrap) -->
+  <!-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous">
+
+  </script>
+
+
+
+</body>
+
+</html>
