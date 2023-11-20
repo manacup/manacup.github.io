@@ -51,10 +51,12 @@ function loadContent(vista) {
           ordenarLlistaPercentatge();
           ordenada = true;
           icona.classList.add("bi-list-ol")
+          icona.classList.remove("bi-percent")
         } else {
           ordenarLlistaPunts();
           ordenada = false;
           icona.classList.remove("bi-list-ol")
+          icona.classList.add("bi-percent")
         }
       });
       contentDiv.querySelectorAll(".card").forEach((nom) => {
