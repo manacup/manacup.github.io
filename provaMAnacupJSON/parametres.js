@@ -76,7 +76,9 @@ function iniciJSON() {
   fetch(
     "https://script.google.com/macros/s/AKfycbwDcFyPQFV3B0bzeRxGU9yaTWhbA3PyR3SQZOQ1KEE5cU08SJb5QaOOfuXxwfVnuASk/exec?page=JSON"
   )
-    .then((response) => response.json())
+    .then((response) => {
+        response.json()
+        console.log(response)})
     .then((data) => {
       console.log(data);
       dades = data.dades;
