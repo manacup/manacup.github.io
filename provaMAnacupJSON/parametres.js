@@ -59,9 +59,9 @@ function carregaUsuari() {
     // available
     let jugadorDesatId = JSON.parse(localStorage.getItem("jugador"));
     var jugid = parameterId != "" ? parameterId : jugadorDesatId;
-    //console.log(jugid,parameterId,jugadorDesatId)
+    console.log(jugid,parameterId,jugadorDesatId)
     jugadorDesat = dades.filter((j) => j.ID == jugid)[0] || jugadorDefault;
-    //console.log(jugadorDesat)
+    console.log(jugadorDesat)
   } else {
     // unavailable
     jugadorDesat = dades.filter((j) => j.ID == parameterId)[0] || jugadorDefault;
