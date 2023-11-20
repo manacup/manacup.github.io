@@ -286,7 +286,7 @@
   .then(response => response.text())
   .then(data => {
     console.log('Resposta del servidor:', data);
-    (data) => {
+    
         console.log(data)
         e.disabled = false
         document.getElementById("spnbtn").classList.add("d-none")
@@ -299,7 +299,6 @@
         jugadorDesat.Imatge = data
         renderUserCard(jugadorDesat)
 
-      }
   })
   .catch(error => console.error('Error:', error));
 
