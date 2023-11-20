@@ -47,7 +47,7 @@ function swipe() {
       if (vistaActual == "detall") {
         if (parseInt(paginaActual[1]) < dades.length - 1) {
           paginaSeguent = parseInt(paginaActual[1]) + 1;
-        } else if (parseInt(paginaActual[1]) > 1) {
+        } else /* if (parseInt(paginaActual[1]) > 1) */ {
           paginaAnterior = parseInt(paginaActual[1]) - 1;
         }
         vistaSeguent = vistaActual;
