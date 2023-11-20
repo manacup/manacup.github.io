@@ -29,9 +29,9 @@ function loadContent(vista) {
       function ordreClassificacio(a, b) {
         return a.Posició - b.Posició;
       }
-      data.sort(ordreClassificacio);
+      dades.sort(ordreClassificacio);
       //console.log(data)
-      data.forEach((jugador) => {
+      dades.forEach((jugador) => {
         renderClassificacio(jugador);
       });
       contentDiv.querySelectorAll(".card").forEach((nom) => {
@@ -108,9 +108,9 @@ function loadContent(vista) {
       function ordreScrabbles(a, b) {
         return a.posScrabbles - b.posScrabbles;
       }
-      data.sort(ordreScrabbles);
+      dades.sort(ordreScrabbles);
       //console.log(data)
-      data.forEach((jugador) => {
+      dades.forEach((jugador) => {
         if (jugador.PartidesJugades > 0) {
           renderScrabbles(jugador);
         }
@@ -124,9 +124,9 @@ function loadContent(vista) {
       function ordrePartida(a, b) {
         return a.posPartida - b.posPartida;
       }
-      data.sort(ordrePartida);
+      dades.sort(ordrePartida);
       //console.log(data)
-      data.forEach((jugador) => {
+      dades.forEach((jugador) => {
         if (jugador.PartidesJugades > 0) {
           renderPartida(jugador);
         }
@@ -139,9 +139,9 @@ function loadContent(vista) {
       function ordreJugada(a, b) {
         return a.posJugada - b.posJugada;
       }
-      data.sort(ordreJugada);
+      dades.sort(ordreJugada);
       //console.log(data)
-      data.forEach((jugador) => {
+      dades.forEach((jugador) => {
         if (jugador.PartidesJugades > 0) {
           renderJugada(jugador);
         }
@@ -154,9 +154,9 @@ function loadContent(vista) {
       function ordreParticipacio(a, b) {
         return a.Pos_social - b.Pos_social;
       }
-      data.sort(ordreParticipacio);
+      dades.sort(ordreParticipacio);
       //console.log(data)
-      data.forEach((jugador) => {
+      dades.forEach((jugador) => {
         if (jugador.Pos_social > 0) {
           renderSocial(jugador);
         }
@@ -169,9 +169,9 @@ function loadContent(vista) {
       function ordreVelocitat(a, b) {
         return a.Pos_velocitat - b.Pos_velocitat;
       }
-      data.sort(ordreVelocitat);
+      dades.sort(ordreVelocitat);
       //console.log(data)
-      data.forEach((jugador) => {
+      dades.forEach((jugador) => {
         if (jugador.Pos_velocitat > 0) {
           renderVelocitat(jugador);
         }
@@ -180,7 +180,7 @@ function loadContent(vista) {
       break;
     case "detall":
       //console.log(data,options)
-      var jugador = data.filter((j) => j.ID === options)[0];
+      var jugador = dades.filter((j) => j.ID === options)[0];
       //console.log(jugador)
       navbarTitle.innerHTML = jugador.Nom;
       renderJugador(jugador);
@@ -302,7 +302,7 @@ function afegeixEsdeveniments() {
     if (nom.hasChildNodes()) {
       let nomJugador = nom.innerHTML.trim();
       //console.log(nomJugador)
-      let datafilter = data.filter((j) => j.Nom === nomJugador)[0];
+      let datafilter = dades.filter((j) => j.Nom === nomJugador)[0];
       if (typeof datafilter != "undefined") {
         let id = datafilter.ID;
         //console.log(id)
@@ -324,7 +324,7 @@ function afegeixEsdeveniments() {
   });
   contentDiv.querySelectorAll(".missatge").forEach((missatge) => {
     var nom = missatge.dataset.nom;
-    let datafilter = data.filter((j) => j.Nom === nom)[0];
+    let datafilter = dades.filter((j) => j.Nom === nom)[0];
     //console.log(datafilter)
     let telefon = datafilter.Telefon;
     missatge.innerHTML += '<i class="bi bi-whatsapp  ms-1"></i>';

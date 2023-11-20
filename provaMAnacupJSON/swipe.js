@@ -45,7 +45,7 @@ function swipe() {
       //console.log(paginaActual)
 
       if (vistaActual == "detall") {
-        if (paginaActual[1] < data.length - 1) {
+        if (paginaActual[1] < dades.length - 1) {
           paginaSeguent = parseInt(paginaActual[1]) + 1;
         } else if (paginaActual[1] > 1) {
           paginaAnterior = parseInt(paginaActual[1]) - 1;

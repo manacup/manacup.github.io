@@ -290,8 +290,8 @@ async function main() {
   preventFormSubmit();
   let form = document.getElementById("trobadaForm");
   //const obj = await ParseFormObjectForGAS(form); // Heare, this library is used.
-  const data = new FormData(form);
-  const values = Object.fromEntries(data.entries());
+  const dataform = new FormData(form);
+  const values = Object.fromEntries(dataform.entries());
   /*      values.Primera_partida=values.Primera_partida+values.Adv1
             values.Segona_partida=values.Segona_partida+values.Adv2            
       console.log(values)          
