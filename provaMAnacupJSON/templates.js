@@ -721,7 +721,7 @@ function renderClassificacio(jugador) {
                           <div class="col">
                               <div class="d-flex align-items-start flex-column">
                                   <small>Punts:</small>
-                                  <div>${jugador.Punts} <small class="badge text-primary">${parseFloat(jugador.percentatgeVictories*100).toFixed(2)}%</small></div>
+                                  <div>${jugador.Punts} <small class="badge text-primary">${parseFloat(jugador.percentatgeVictories*100).toFixed(1)}%</small></div>
                               </div>
                           </div>
                            <div class="col">
