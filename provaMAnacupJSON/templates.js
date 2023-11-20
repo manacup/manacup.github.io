@@ -749,11 +749,11 @@ function renderClassificacio(jugador) {
 }
 function ordenarLlistaPercentatge() {
   const llista = document.getElementById("subcontent");
-  const filas = Array.from(llista.querySelectorAll(".percent"));
+  const filas = Array.from(llista.querySelectorAll(".entrada"));
 
   filas.sort((a, b) => {
-    const textA = a.querySelector(".dataPartida").dataset.percent;
-    const textB = b.querySelector(".dataPartida").dataset.percent;
+    const textA = a.querySelector(".percent").dataset.percent;
+    const textB = b.querySelector(".percent").dataset.percent;
     //console.log(textA,textB)
     return textB - textA;
   });
