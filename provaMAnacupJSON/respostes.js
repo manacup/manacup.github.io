@@ -324,6 +324,7 @@ async function handleFormSubmit(formObject) {
 
   fetch(macroURL, {
     method: 'POST',
+    mode: 'no-cors',
     headers: {
       'Content-Type': 'application/json',
     },
