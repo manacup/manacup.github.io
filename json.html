@@ -1,35 +1,430 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Consulta JSON</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ManaCup</title>
+
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+  <!-- Incluir los estilos de Bootstrap 5 -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
+  <script
+    src="https://cdn.jsdelivr.net/gh/tanaikech/HtmlFormObjectParserForGoogleAppsScript_js@master/htmlFormObjectParserForGoogleAppsScript_js.min.js">
+  </script>
+
+
+
+
+<script type="module" src="moduls.js"></script>
+
+ <link rel="stylesheet" href="css.css">
+ 
+
 </head>
-<body>
 
-<!-- Div on mostraràs la resposta -->
-<div id="responseDiv"></div>
+<body class="bg-light" id="body">
+  <div id="loaded" class="d-none"
+    onclick="document.getElementById('loaded').innerHTML='Wkk';this.classList.add('d-none')">x
+  </div>
 
-<script>
-    // Crida a l'API del Google Apps Script
-    fetch('https://script.google.com/macros/s/AKfycbwDcFyPQFV3B0bzeRxGU9yaTWhbA3PyR3SQZOQ1KEE5cU08SJb5QaOOfuXxwfVnuASk/exec?page=JSON')
+  <!-- Usar clases de Bootstrap para el diseño -->
+  <nav class=" navbar  navbar-light bg-light sticky-top">
+    <div class="container-fluid">
+      <div class="navbar-brand flex-grow-1 ">
+        <div class="d-flex align-items-center" id="goBack" style="cursor: pointer;">
+          <i class="bi bi-arrow-left me-2 d-none" id="botoEnrera"></i>
+          <div class="nav-link ">
+            <span id="navbar-title">X ManaCup 23-24</span>
+          </div>
+        </div>
+      </div>
+     <!--  <div class="navbar-toggler me-2" data-bs-toggle="collapse" data-bs-target="#collapsetabs">
+        <i class="bi bi-chevron-down"></i>
+      </div> -->
+
+      <div class="navbar-toggler me-2" data-bs-toggle="collapse" data-bs-target="#collapseCerca">
+        <i class="bi bi-search"></i>
+      </div>
+
+      <div class="navbar-toggler me-2 dropdown" data-bs-toggle="dropdown" data-bs-target="#menu" aria-expanded="false"
+        aria-controls="menu">
+        <i class="bi bi-three-dots-vertical"></i>
+      </div>
+
+      <ul class="dropdown-menu dropdown-menu-end" id="menu">
+        <li>
+          <h6 class="dropdown-header text-danger">Classificacions</h6>
+        </li>
+        <li><a class="dropdown-item" href="#classificacio">Classificació general</a></li>
+        <li><a class="dropdown-item" href="#scrabbles">Scrabbles</a></li>
+        <li><a class="dropdown-item" href="#jugada">Millor jugada</a></li>
+        <li><a class="dropdown-item" href="#partida">Millor partida individual</a></li>
+        <li><a class="dropdown-item" href="#conjunta">Millor partida conjunta</a></li>
+        <li><a class="dropdown-item" href="#social">Participació social</a></li>
+        <li><a class="dropdown-item" href="#immediatesa">Menys procrastinador</a></li>
+        <li>
+          <hr class="dropdown-divider">
+        </li>
+        <li>
+          <h6 class="dropdown-header text-success">Calendari</h6>
+        </li>
+        <li><a class="dropdown-item" href="#rondes">Rondes</a></li>
+        <li><a class="dropdown-item" href="#trobades">Trobades</a></li>
+        <li>
+          <hr class="dropdown-divider">
+        </li>
+        <li>
+          <h6 class="dropdown-header text-warning">Enllaços</h6>
+        </li>
+        <li><a class="dropdown-item" href="#blog">Blog del club</a></li>
+        <li><a class="dropdown-item" href="#rellotge">Rellotge</a></li>
+        <li><a class="dropdown-item" href="#validador">Validador</a></li>
+      </ul>
+
+      <div class="dropdown" data-bs-toggle="dropdown" data-bs-target="#menuJugador" aria-expanded="false"
+        aria-controls="menuJugador" data-bs-auto-close="outside">
+        <img src="https://drive.google.com/uc?export=download&id=1smxezxXK12OGMJ-1uBu68aVAwBGaYSnE" alt="usuari" class="circle userImg" >
+      </div>
+
+      <div class="collapse  navbar-collapse search mt-2" role="search" id="collapseCerca">
+        <div class="input-group">
+          <span class="input-group-text" id="comptador"></span>
+          <input class="form-control" type="search" placeholder="Cerca" >
+        </div>
+      </div>
+
+      <div class="dropdown-menu dropdown-menu-end p-3" id="menuJugador">
+        <div class="card-body text-center">
+          <div id="userCard" class=" position-relative"></div>
+          <p class="text-muted form-label btn" data-bs-toggle="modal" data-bs-target="#desajug" aria-expanded="false"
+            aria-controls="desajug">Canvia l'usuari</p>
+        </div>
+      </div>
+    </div>
+    <!-- </nav> -->
+
+    <ul class="nav nav-underline flex-nowrap text-nowrap overflow-x-scroll <?= plantilla ?>" id="collapsetabs">
+      <li class="nav-item"><a class="nav-link" href="#classificacio">Classificació general</a></li>
+      <li class="nav-item"><a class="nav-link" href="#scrabbles">Scrabbles</a></li>
+      <li class="nav-item"><a class="nav-link" href="#jugada">Millor jugada</a></li>
+      <li class="nav-item"><a class="nav-link" href="#partida">Millor partida individual</a></li>
+      <li class="nav-item"><a class="nav-link" href="#conjunta">Millor partida conjunta</a></li>
+      <li class="nav-item"><a class="nav-link" href="#social">Participació social</a></li>
+      <li class="nav-item"><a class="nav-link" href="#immediatesa">Menys procrastinador</a></li>
+      <li class="nav-item"><a class="nav-link" href="#rondes">Rondes</a></li>
+      <li class="nav-item"><a class="nav-link" href="#trobades">Trobades</a></li>
+    </ul>
+  </nav>
+
+  <div class="modal" tabindex="-1" id="desajug">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="modalTitol">Selecciona l'usuari</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body" id="modalBody">
+          <div class="row mb-3 g-3">
+            <div class="col">
+              <label for="inpdesajug">Comença a escriure el teu nom i tria de la llista
+              <input id="inpdesajug" type="search" class="form-control llistajugadors mb-3"  data-datalist="jugadors" placeholder="Escriu" />
+            </div>
+            <datalist id="jugadors"></datalist>
+          </div>
+        </div>
+       </div>
+    </div>
+  </div>
+
+  <div aria-live="polite" aria-atomic="true" class="position-relative">
+    <div class="toast-container top-0 end-0 p-3">
+      <div id="toast" class="toast align-items-center fade" role="alert">
+        <div class="d-flex">
+          <div class="toast-body">
+
+          </div>
+          <button type="button" class="btn-close me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+<main class="container p-3">
+  <div id="swiper">
+    <div id="content" class="row justify-content-center">
+      <!-- Contenido dinámico se cargará aquí -->
+      <?!= include("placeholder") ?>
+    </div>
+  </div>
+</main>
+
+  <?!= include("modalimatge") ?>
+
+  <?!= include("templatesJs") ?>
+  <?!= include("respostesJs") ?>
+   <?!= include("trobadesJs") ?>
+  
+
+  <!-- Incluir Bootstrap 5 JavaScript (jQuery y Popper.js son requeridos por Bootstrap) -->
+  <!-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous">
+
+  </script>
+<!-- <?!= include("dadesinici") ?> -->
+  <script>
+  let parameterId = '<?= id ?>'
+  let parameterVista =  '<?= vista ?>'
+  let parameterOptions =  '<?= options ?>'
+  let vistaPredet = {page:parameterVista,options:parameterOptions}
+  let idfull = '<?= idfull ?>'
+  const imatgeFixa = "https://www.infobae.com/new-resizer/izGq0GB3EIUlIN4fdPOhc_rT54c=/arc-anglerfish-arc2-prod-infobae/public/IPZBXHKPUJAOVHO662LV25OEOM.jpg"
+  let dades = []
+  let aparellaments  = []
+  let rondes = []
+  var trobada 
+  var carrega = 0
+  //const urlApp = "https://moominot.github.io/noiframe?url=<?= ScriptApp.getService().getUrl() ?>?page=nouIndex"
+  const urlApp = "https://manacup.github.io/manacup2324_2.html?"
+  let jugadorDefault = {
+        Nom:"",
+        Malnom2:"",
+        Imatge:"https://drive.google.com/uc?export=download&id=1smxezxXK12OGMJ-1uBu68aVAwBGaYSnE",
+        ID:"1"
+    }
+  let jugadorDesat ={}
+
+  const vistesGenerals = ['classificacio','scrabbles','jugada','partida','conjunta','social','immediatesa','rondes','trobades','classificacio']
+  let vistesPartides = []
+  const vistesNoSwipe = ['imatge','formulari','assistencia']
+
+
+function isLocalStorageAvailable(){
+  if (navigator.cookieEnabled) {
+      // Las cookies están habilitadas en el navegador
+      console.log("les Cookies estan habilitades");
+      return true;
+  } else {
+      // Las cookies no están habilitadas en el navegador
+      console.log("les Cookies no estan habilitades");
+      return false;
+  }
+}
+function carregaUsuari(){
+  if(isLocalStorageAvailable()){
+      // available 
+      let jugadorDesatId=JSON.parse(localStorage.getItem("jugador"))
+      var jugid=parameterId!=""?parameterId:jugadorDesatId
+      //console.log(jugid,parameterId,jugadorDesatId)
+      jugadorDesat = data.filter(j=>j.ID==jugid)[0] || jugadorDefault
+      //console.log(jugadorDesat)
+  }else{
+      // unavailable
+      jugadorDesat =  data.filter(j=>j.ID==parameterId)[0] ||jugadorDefault
+  }
+}        
+        document.addEventListener("DOMContentLoaded",funcioInici())
+
+function iniciJSON(){
+    carrega=0
+       // Crida a l'API del Google Apps Script
+       fetch('https://script.google.com/macros/s/AKfycbwDcFyPQFV3B0bzeRxGU9yaTWhbA3PyR3SQZOQ1KEE5cU08SJb5QaOOfuXxwfVnuASk/exec?page=JSON')
       .then(response => response.json())
       .then(data => {
           console.log(data);
+          dades = data.data
+                carregaUsuari()
+                renderUserCard(jugadorDesat)
+                carrega ++
+      
+                loadPagina()
+                dades.forEach(jug=>{
+                  
+                  var jugadorsOpt = document.getElementById("jugadors")
+                  jugadorsOpt.innerHTML+=`<option value="${jug.ID}">${jug.Nom}</option>`              
+                })
+                document.getElementById("loaded").innerHTML="<span>loaded2</span>"
+
+                swipe()
+                aparellaments = data.aparellaments.filter(p=>p.ID>0)            
+                carrega ++
+                loadPagina()
+                rondes = data.calendari.filter(p=>p.Estat!="none")
+                carrega ++
+                trobada = data.trobades
+                
+                carrega ++
+                if(trobada){
+                var assistents = trobada.assistents  
+                assistents.map((w)=>{
+                  w.Primera_partida=w.Primera_partida+w.Adv1
+                  w.Segona_partida=w.Segona_partida+w.Adv2
+                })    
+                
+                }
+                loadPagina()
+
         // Obtenir el div per ID
-        var responseDiv = document.getElementById('responseDiv');
+       /*  var responseDiv = document.getElementById('responseDiv');
         
         // Convertir les dades JSON a cadena de text
         var jsonString = JSON.stringify(data, null, 2);
 
         // Afegir la cadena de text al contingut del div
-        responseDiv.innerText = jsonString;
+        responseDiv.innerText = jsonString; */
 
         // Aquí pots fer altres coses amb les dades JSON
       })
       .catch(error => console.error('Error:', error));
-</script>
+}
+
+function funcioInici(seccio){
+  carrega=0
+          switch(seccio){
+            case "trobades":
+              google.script.run.withSuccessHandler((trobadaRebuda)=>{
+                trobada = trobadaRebuda
+                carrega = 4
+                
+                if(trobada){
+                var assistents = trobada.assistents  
+                assistents.map((w)=>{
+                  w.Primera_partida=w.Primera_partida+w.Adv1
+                  w.Segona_partida=w.Segona_partida+w.Adv2
+                })    
+                
+                }
+            loadPagina()
+          }).getTrobades(idfull);
+
+            break;
+
+            case "classificacions":
+              google.script.run.withSuccessHandler((response)=>{
+                data = response
+                carregaUsuari()
+                renderUserCard(jugadorDesat)
+                carrega ++
+                carrega ++
+      
+                loadPagina(true)
+                data.forEach(jug=>{                  
+                  var jugadorsOpt = document.getElementById("jugadors")
+                  jugadorsOpt.innerHTML+=`<option value="${jug.ID}">${jug.Nom}</option>`              
+                })
+                document.getElementById("loaded").innerHTML="<span>loaded2</span>"
+
+               //swipe()                       
+
+            }).getData(idfull)
+
+            google.script.run.withSuccessHandler((response)=>{
+                aparellaments = response.filter(p=>p.ID>0)            
+                carrega ++
+                carrega ++
+                loadPagina(true)
+              
+              }).recuperaAparellaments(idfull)
+              
+
+            break;
+
+            default:          
+              google.script.run.withSuccessHandler((response)=>{
+                data = response
+                carregaUsuari()
+                renderUserCard(jugadorDesat)
+                carrega ++
+      
+                loadPagina()
+                data.forEach(jug=>{
+                  
+                  var jugadorsOpt = document.getElementById("jugadors")
+                  jugadorsOpt.innerHTML+=`<option value="${jug.ID}">${jug.Nom}</option>`              
+                })
+                document.getElementById("loaded").innerHTML="<span>loaded2</span>"
+
+                swipe()
+                        
+
+            }).getData(idfull)
+
+            google.script.run.withSuccessHandler((response)=>{
+                aparellaments = response.filter(p=>p.ID>0)            
+                carrega ++
+                loadPagina()
+              
+              }).recuperaAparellaments(idfull) 
+
+              google.script.run.withSuccessHandler((response)=>{
+                rondes = response.filter(p=>p.Estat!="none")
+                carrega ++
+                            
+              }).recuperaCalendari(idfull)
+
+              google.script.run.withSuccessHandler((trobadaRebuda)=>{
+                trobada = trobadaRebuda
+                
+                carrega ++
+                if(trobada){
+                var assistents = trobada.assistents  
+                assistents.map((w)=>{
+                  w.Primera_partida=w.Primera_partida+w.Adv1
+                  w.Segona_partida=w.Segona_partida+w.Adv2
+                })    
+                
+                }
+                loadPagina()
+              }).getTrobades(idfull);
+
+          }
+
+}
+function loadPagina(vista){
+  if(carrega==4){
+    if(vista||!trobada){      
+              loadContent(parameterVista?vistaPredet:['classificacio']);
+              updateHistory(parameterVista?vistaPredet:['classificacio']);
+            }else{               
+              loadContent(parameterVista?vistaPredet:['trobades']);
+              updateHistory(parameterVista?vistaPredet:['trobades']);
+            }
+  }
+}
+function carrega(){
+ 
+    renderUserCard(jugadorDesat)        
+    aparellaments = aparellaments.filter(p=>p.ID>0)
+    rondes = rondes.filter(p=>p.Estat!="none")
+    loadContent(parameterVista?vistaPredet:['classificacio']);
+    updateHistory(parameterVista?vistaPredet:['classificacio']);
+    data.forEach(jug=>{
+      var jugadorsOpt = document.getElementById("jugadors")
+      jugadorsOpt.innerHTML+=`<option value="${jug.ID}">${jug.Nom}</option>`              
+    })
+    setTimeout(()=>{
+      document.getElementById("loaded").innerHTML="<span>loaded</span>"
+                },3000)
+ }       
+
+function preventFormSubmit() {
+    var forms = document.querySelectorAll('form');
+    for (var i = 0; i < forms.length; i++) {
+      forms[i].addEventListener('submit', function(event) {
+      event.preventDefault();
+      });
+    }
+  }
+
+  </script>
+
+<?!= include("nouswipe") ?>
+ <?!= include("navJs") ?>
 
 </body>
+
 </html>
