@@ -30,9 +30,9 @@ function desaImatgeConf(e) {
       modal.classList.add("d-none");
       document.querySelector(".modal-backdrop").classList.remove("show");
       document.querySelector(".modal-backdrop").classList.add("d-none");
-      dades.filter((j) => j.Nom == nom)[0].Imatge = data;
-      jugadorDesat.Imatge = data;
-      renderUserCard(jugadorDesat);
+      /*dades.filter((j) => j.Nom == nom)[0].Imatge = data;
+       jugadorDesat.Imatge = data;
+      renderUserCard(jugadorDesat); */
     })
     .catch((error) => console.error("Error:", error));
 
@@ -56,6 +56,8 @@ var carregaImatgeConf = function (event) {
   reader3.onload = function () {
     /* var output3 = document.getElementById("resjugImatgeConf");
     output3.src = reader3.result; */
+    dades.filter((j) => j.Nom == nom)[0].Imatge = reader3.result
+    jugadorDesat.Imatge = reader3.result
     document.querySelectorAll(".userImg").forEach(ui=>{
         ui.src = reader3.result
     })

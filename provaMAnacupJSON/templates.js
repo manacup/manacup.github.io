@@ -8,7 +8,7 @@ function renderUserCard(jugadorDesat) {
             <div class="d-flex justify-content-center">
             <div class="imgedit"  data-bs-toggle="modal" data-bs-target="#desaimatge" aria-expanded="false" aria-controls="desaimatge">
               <div class="mt-3 mb-4 imatge-cercle ">
-                <img src="${jugadorDesat.Imatge}">              
+                <img src="${jugadorDesat.Imatge}" class="userImg">              
               </div>
                 <div class="edit"><div class="icon" aria-hidden="true"><i class="bi bi-pencil"></i></div></div>
             </div>
