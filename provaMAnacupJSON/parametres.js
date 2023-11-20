@@ -10,6 +10,8 @@ let parameterVista = urlParams.vista
 let parameterOptions = urlParams.options
 let vistaPredet = { page: parameterVista, options: parameterOptions };
 let idfull = urlParams.idfull
+let plantilla = urlParams.plantilla || "d-none"
+document.getElementById("collapsetabs").classList.add(plantilla)
 const imatgeFixa =
   "https://www.infobae.com/new-resizer/izGq0GB3EIUlIN4fdPOhc_rT54c=/arc-anglerfish-arc2-prod-infobae/public/IPZBXHKPUJAOVHO662LV25OEOM.jpg";
 let dades = [];
