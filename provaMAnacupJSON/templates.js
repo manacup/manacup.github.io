@@ -56,7 +56,7 @@ function renderJugador(jugador) {
                   
                   <div class="d-flex justify-content-center imatge-container">
                     <div class="mt-3 mb-4 imatge-cercle img">
-                      <img src="${jugador.Imatge}"
+                      <img src="${userImg || jugador.Imatge}"
                          >
                     </div>
                     </div>

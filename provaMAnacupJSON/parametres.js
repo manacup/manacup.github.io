@@ -19,6 +19,7 @@ let aparellaments = [];
 let rondes = [];
 var trobada;
 var carrega = 0;
+var userImg 
 
 const urlApp = window.location.href.split('?')[0] + "?";
 let jugadorDefault = {
