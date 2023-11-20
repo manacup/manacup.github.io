@@ -1,9 +1,11 @@
+var file = document.getElementById("ImatgeamagatConf").value;
+var nom = jugadorDesat.Nom;
+
 function desaImatgeConf(e) {
   e.disabled = true;
   document.getElementById("spnbtn").classList.remove("d-none");
 
-  var file = document.getElementById("ImatgeamagatConf").value;
-  var nom = jugadorDesat.Nom;
+
 
   fetch(macroURL, {
     method: "POST",
