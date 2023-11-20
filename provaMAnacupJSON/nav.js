@@ -26,13 +26,36 @@ function loadContent(vista) {
       break;
     case "classificacio":
       navbarTitle.innerHTML = "Classificació";
+      contentDiv.innerHTML += `<div class="col-md-8 p-1" id="ordenarBoto"><i id="icona" class="float-end bi bi-percent" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Ordena per percentatge de victòries o per punts."></i></div>`;
+      var div = document.createElement("div");
+      div.id = "subcontent";
+      div.classList.add("row-md-8");
+      div.classList.add("justify-content-center");
+      div.classList.add("p-0");
+      contentDiv.appendChild(div);
+
       function ordreClassificacio(a, b) {
         return a.Posició - b.Posició;
       }
       dades.sort(ordreClassificacio);
-      //console.log(data)
+      //console.log(dades)
       dades.forEach((jugador) => {
+        jugador.percentatgeVictories = parseInt(jugador.Punts)/parseInt(jugador.PartidesJugades)
         renderClassificacio(jugador);
+      });
+      var ordenada = false;
+      var icona =  document.getElementById("icona")
+      document.getElementById("ordenarBoto").addEventListener("click", () => {
+        // Llama a la función de ordenar la tabla por la segunda columna (Edad)
+        if (!ordenada) {
+          ordenarLlistaPercentatge();
+          ordenada = true;
+          icona.classList.add("bi-list-ol")
+        } else {
+          ordenarLlistaPunts();
+          ordenada = false;
+          icona.classList.remove("bi-list-ol")
+        }
       });
       contentDiv.querySelectorAll(".card").forEach((nom) => {
         var id = nom.dataset.id;
@@ -46,9 +69,9 @@ function loadContent(vista) {
       break;
     case "conjunta":
       navbarTitle.innerHTML = `Partida conjunta`;
-      contentDiv.innerHTML += `<div class="col-md-8 p-1" id="ordenarBoto"><i class="float-end bi bi-calendar3" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Ordena per data o per punts."></i></div>`;
+      contentDiv.innerHTML += `<div class="col-md-8 p-1" id="ordenarBoto"><i id="icona" class="float-end bi bi-calendar3" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Ordena per data o per punts."></i></div>`;
       var div = document.createElement("div");
-      div.id = "contentConjunta";
+      div.id = "subcontent";
       div.classList.add("row-md-8");
       div.classList.add("justify-content-center");
       div.classList.add("p-0");
@@ -62,14 +85,17 @@ function loadContent(vista) {
         renderConjunta(jugador);
       });
       var ordenada = false;
+      var icona =  document.getElementById("icona")
       document.getElementById("ordenarBoto").addEventListener("click", () => {
         // Llama a la función de ordenar la tabla por la segunda columna (Edad)
         if (!ordenada) {
           ordenarLlistaData();
           ordenada = true;
+          icona.classList.add("bi-list-ol")
         } else {
           ordenarLlistaPunts();
           ordenada = false;
+          icona.classList.remove("bi-list-ol")
         }
       });
       vistesPartides = aparellamentsordenats.map((ap) => ap.ID.toString());

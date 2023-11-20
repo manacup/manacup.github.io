@@ -660,6 +660,7 @@ function renderDetallPartida(partida) {
 }
 
 function renderClassificacio(jugador) {
+
   const jugadorTemplate = `
            <div class="col-md-8 p-1 entrada">
            <div class="card ${
@@ -709,7 +710,7 @@ function renderClassificacio(jugador) {
                         }</span>
                           ${jugador.grup}
                         </span>                        
-                        <span class="badge text-bg-${jugador.Semafor}">
+                        <span class="badge text-bg-${jugador.Semafor} percent" data-percent="${jugador.percentatgeVictories}">
                           ${jugador.PartidesJugades}/${
     parseInt(jugador.Rondes_pendents) + parseInt(jugador.PartidesJugades)
   }
@@ -744,7 +745,26 @@ function renderClassificacio(jugador) {
           </div>      
           
             `;
-  document.getElementById("content").innerHTML += jugadorTemplate;
+  document.getElementById("subcontent").innerHTML += jugadorTemplate;
+}
+function ordenarLlistaPercentatge() {
+  const llista = document.getElementById("subcontent");
+  const filas = Array.from(llista.querySelectorAll(".percent"));
+
+  filas.sort((a, b) => {
+    const textA = a.querySelector(".dataPartida").dataset.percent;
+    const textB = b.querySelector(".dataPartida").dataset.percent;
+    //console.log(textA,textB)
+    return textB - textA;
+  });
+
+  while (llista.firstChild) {
+    llista.removeChild(llista.firstChild);
+  }
+
+  filas.forEach((fila) => {
+    llista.appendChild(fila);
+  });
 }
 function renderScrabbles(jugador) {
   const jugadorTemplate = `
@@ -1250,7 +1270,7 @@ function renderConjunta(partida) {
       </div>
          `;
 
-  document.getElementById("contentConjunta").innerHTML += partidaTemplate;
+  document.getElementById("subcontent").innerHTML += partidaTemplate;
 }
 function convertMiliseconds(miliseconds, format) {
   var days, hours, minutes, seconds, total_hours, total_minutes, total_seconds;
@@ -1278,7 +1298,7 @@ function convertMiliseconds(miliseconds, format) {
   }
 }
 function ordenarLlistaData() {
-  const llista = document.getElementById("contentConjunta");
+  const llista = document.getElementById("subcontent");
   const filas = Array.from(llista.querySelectorAll(".entrada"));
 
   filas.sort((a, b) => {
@@ -1297,7 +1317,7 @@ function ordenarLlistaData() {
   });
 }
 function ordenarLlistaPunts() {
-  const llista = document.getElementById("contentConjunta");
+  const llista = document.getElementById("subcontent");
   const filas = Array.from(llista.querySelectorAll(".entrada"));
 
   filas.sort((a, b) => {
