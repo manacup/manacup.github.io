@@ -161,7 +161,7 @@ function renderFormulari(partida) {
                       Imatge del tauler
                     </span>
                   </label>
-                  <input id="Tauler" type="file" class="visually-hidden" accept="image/jpg">
+                  <input id="Tauler" type="file" class="visually-hidden" accept="image/*">
                   <input name="tauler" id="Tauleramagat" type="hidden">
                 </div>              
               </div> 
