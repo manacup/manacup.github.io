@@ -22,15 +22,7 @@ function carregant(){
           </div>
         </div>
         `
-        var content = document.getElementById("content")
-        function repetir(n){
-            for (let i = 0; i < n; i++) {
-                setTimeout(function(){
-            content.innerHTML += template
-        },1000)
-        }
-    }
-    repetir(5)  
+ 
     
     function escribirCadaSegundo() {
         content.innerHTML=""
