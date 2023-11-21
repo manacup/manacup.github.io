@@ -33,12 +33,12 @@ function carregant(){
           content.innerHTML += template
           contador++;
       
-          if (contador === 5) {
+          if (contador === 6) {
             // Reinicia el contador después de imprimir todas las letras del alfabeto
             contador = 0;
             content.innerHTML=""
           }
-        }, 1000); // Intervalo de 1000 milisegundos (1 segundo)
+        }, 500); // Intervalo de 1000 milisegundos (1 segundo)
         return intervalo;
         
       }
