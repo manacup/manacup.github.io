@@ -47,7 +47,7 @@ function carregant(){
             content.innerHTML=""
           }
         }, 1000); // Intervalo de 1000 milisegundos (1 segundo)
-      
+        return intervalo;
         
       }
       
