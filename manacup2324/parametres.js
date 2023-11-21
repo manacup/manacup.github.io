@@ -73,6 +73,7 @@ function carregaUsuari() {
 document.addEventListener("DOMContentLoaded", iniciJSON());
 
 function iniciJSON(vista) {
+  carregant()
   carrega = 0;
   // Crida a l'API del Google Apps Script
   fetch(
