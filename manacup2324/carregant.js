@@ -1,4 +1,4 @@
-const interval = ""
+let interval = ""
 function carregant(){
     const template = `
         <div class="col-md-8 p-1">
