@@ -116,6 +116,16 @@
       </div>
     </div>
   </div>
+  <div id="modal1" class="modal">
+    <div class="modal-content">
+      <h4>Hi ha una nova verisó de l'app!</h4>
+      <p>A causa dels canvis en les restriccions de galetes en les noves versions dels navegadors, l'aplicació dóna problemes a alguns dels usuaris.</p>
+      <p>S'estava treballant en una vesrió millorada, sobretot en la navegació, i s'ha avançat el seu llençament. Podria ser que en la nova versió hi hagi coses que encara no funcionin del tot.</p>
+    </div>
+    <div class="modal-footer">
+      <a href="/manacup2324/index.html" class="modal-close waves-effect waves-green btn-flat">Ves a la nova versió</a>
+    </div>
+  </div>
 
   <div class="iframecontainer">
 
@@ -125,6 +135,15 @@
   </div>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+  <script>
+     document.addEventListener('DOMContentLoaded', function() {
+    var elems = document.querySelectorAll('.modal');
+    var instances = M.Modal.init(elems);
+    var instance = M.Modal.getInstance(document.getElementById("modal1"))
+    instance.open();
+
+  });
+  </script>
 </body>
 
 </html>
