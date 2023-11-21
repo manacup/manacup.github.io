@@ -128,6 +128,7 @@ function iniciJSON(vista) {
 }
 
 function loadPagina(vista) {
+  clearInterval(interval)
   if (carrega == 4) {
     if (vista || !trobada) {
       loadContent(parameterVista ? vistaPredet : ["classificacio"]);

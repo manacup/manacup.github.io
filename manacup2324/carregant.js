@@ -1,3 +1,4 @@
+const interval = ""
 function carregant(){
     const template = `
         <div class="col-md-8 p-1">
@@ -26,8 +27,30 @@ function carregant(){
             for (let i = 0; i < n; i++) {
                 setTimeout(function(){
             content.innerHTML += template
-        },1000,)
+        },1000)
         }
     }
-    repetir(5)    
+    repetir(5)  
+    
+    function escribirCadaSegundo() {
+        content.innerHTML=""
+        let contador = 0;
+      
+        const intervalo = setInterval(() => {
+          // Acción que se ejecutará cada segundo
+          content.innerHTML += template
+          contador++;
+      
+          if (contador === 5) {
+            // Reinicia el contador después de imprimir todas las letras del alfabeto
+            contador = 0;
+            content.innerHTML=""
+          }
+        }, 1000); // Intervalo de 1000 milisegundos (1 segundo)
+      
+        
+      }
+      
+      // Llamamos a la función para iniciar el proceso
+      interval = escribirCadaSegundo();
 }
