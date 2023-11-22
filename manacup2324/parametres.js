@@ -8,10 +8,10 @@ let parameterOptions = urlParams.options
 let vistaPredet = { page: parameterVista, options: parameterOptions };
 let idfull = urlParams.idfull
 let plantilla =  urlParams.plantilla 
-if(plantilla!="undefined"){
+/* if(plantilla!="undefined"){
   console.log(plantilla)
   document.getElementById("collapsetabs").classList.remove("collapse")
-}
+} */
 
 const imatgeFixa =
   "https://www.infobae.com/new-resizer/izGq0GB3EIUlIN4fdPOhc_rT54c=/arc-anglerfish-arc2-prod-infobae/public/IPZBXHKPUJAOVHO662LV25OEOM.jpg";
