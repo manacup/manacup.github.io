@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<html lang="en"  data-bs-theme="dark">
+<html lang="en" data-bs-theme="light">
 
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>ManaCup</title>
-<link rel="stylesheet" href="css.css">
+  <link rel="stylesheet" href="css.css">
   <link rel="stylesheet"
     href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
   <!-- Incluir los estilos de Bootstrap 5 -->
@@ -14,10 +14,11 @@
   <script
     src="https://cdn.jsdelivr.net/gh/tanaikech/HtmlFormObjectParserForGoogleAppsScript_js@master/htmlFormObjectParserForGoogleAppsScript_js.min.js">
     </script>
-  
+    <script src="tema.js"></script>
+
 </head>
 
-<body  id="body">
+<body id="body">
   <div id="loaded" class="d-none">
   </div>
 
@@ -97,6 +98,8 @@
       <div class="dropdown-menu dropdown-menu-end p-3" id="menuJugador">
         <div class="card-body text-center">
           <div id="userCard" class=" position-relative"></div>
+          <p class="text-muted form-label btn" data-bs-toggle="modal" data-bs-target="#preferencies" aria-expanded="false"
+            aria-controls="desajug">Gestiona les preferències</p>
           <p class="text-muted form-label btn" data-bs-toggle="modal" data-bs-target="#desajug" aria-expanded="false"
             aria-controls="desajug">Canvia l'usuari</p>
         </div>
@@ -132,6 +135,68 @@
                   placeholder="Escriu" />
             </div>
             <datalist id="jugadors"></datalist>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal" tabindex="-1" id="preferencies">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="modalTitol">Gestiona les preferències</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body" id="modalBody">
+          <div class="row mb-3 g-3">
+            <div id="tema">
+              <div class="row">
+                <div class="col-10 mb-3">Duré un joc</div>
+                <div class="col-2 text-end">
+                  
+                    <select class="form-select" aria-label="Default select example">
+                      
+                      <option data-bs-theme-value="light" selected><i class="bi bi-sun-fill me-2"></i>Clar</option>
+                      <option data-bs-theme-value="dark"><i class="bi bi-moon-stars-fill me-2"></i>Fosc</option>
+                      <option data-bs-theme-value="auto"> <i class="bi bi-circle-half me-2"></i>Auto</option>
+                    </select>
+
+                    <li class="nav-item dropdown">
+                      <button class="btn btn-link nav-link py-2 px-0 px-lg-2 dropdown-toggle d-flex align-items-center show" id="bd-theme" type="button" aria-expanded="true" data-bs-toggle="dropdown" data-bs-display="static" aria-label="Toggle theme (light)">
+                        <i class="bi bi-sun-fill"></i>
+                        <span class="d-lg-none ms-2" id="bd-theme-text">Tria l'esquema de colors</span>
+                      </button>
+                      <ul class="dropdown-menu dropdown-menu-end show" aria-labelledby="bd-theme-text" data-bs-popper="static">
+                        <li>
+                          <button type="button" class="dropdown-item d-flex align-items-center active" data-bs-theme-value="light" aria-pressed="true">
+                            <i class="bi bi-sun-fill"></i>
+                            Clar
+                           
+                          </button>
+                        </li>
+                        <li>
+                          <button type="button" class="dropdown-item d-flex align-items-center" data-bs-theme-value="dark" aria-pressed="false">
+                            <i class="bi bi-moon-stars-fill"></i>
+                            Fosc
+                            
+                          </button>
+                        </li>
+                        <li>
+                          <button type="button" class="dropdown-item d-flex align-items-center" data-bs-theme-value="auto" aria-pressed="false">
+                            <i class="bi bi-circle-half"></i>
+                            Auto
+                            
+                          </button>
+                        </li>
+                      </ul>
+                    </li>
+                   
+                  
+                </div>
+              </div>
+             
+            </div>
           </div>
         </div>
       </div>
@@ -210,7 +275,7 @@
             <div class="accordion-item">
               <h4 class="accordion-header">
                 <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#navegacio"
-                  aria-expanded="true" aria-controls="navegacio">
+                  aria-expanded="false" aria-controls="navegacio">
                   Navegació
                 </button>
               </h4>
@@ -228,29 +293,35 @@
 
             <div class="accordion-item">
               <h4 class="accordion-header">
-                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#Classificacions"
-                  aria-expanded="true" aria-controls="Classificacions">
+                <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                  data-bs-target="#Classificacions" aria-expanded="false" aria-controls="Classificacions">
                   Classificacions
                 </button>
               </h4>
               <div id="Classificacions" class="accordion-collapse collapse" data-bs-parent="#accordioAjuda">
                 <div class="accordion-body">
-                  <p>A les vistes de les distintes classificacions pots fer cerques per a qualsevol dada que vulguis
-                    filtrar. Per això pitja el botó de la lupa i es deplegarà el camp de cerca. A mesura que escriguis
+                  <p>A les vistes de les distintes classificacions pots fer <strong>cerques</strong> per a qualsevol dada que vulguis
+                    filtrar: pitja el botó de la lupa i es desplegarà el camp de cerca. A mesura que escriguis
                     quedaran visibles les targetes que continguin el terme de cerca.
-                    <br>Per exemple: a la vista de classificació general pots filtrar els jugadors d'un grup cercant "grupA"
-                    o "grupB".
-                    <br>També podries filtrar els jugadors que duen 5 partides jugades cercant "5/20".
-                    <br>A la vista Scrabbles podries cercar "+5" per saber qui ha fet 5 bingos a la darrera partida jugada.
-                    <br>A les vistes de millor partida individual i millor jugada es pot filtrar per "millora" per llistar
-                    els jugadors que han millorat la seva classificació a la darrera partida jugada.
+                  <ul>Per exemple: <li>a la vista de classificació general pots filtrar els jugadors d'un grup cercant
+                      "grupA"
+                      o "grupB".</li>
+                    <li>També podries filtrar els jugadors que duen 5 partides jugades cercant "5/20".</li>
+                    <li>A la vista Scrabbles podries cercar "+5" per saber qui ha fet 5 bingos a la darrera partida
+                      jugada.</li>
+                    <li>A les vistes de millor partida individual i millor jugada es pot filtrar per "millora" per
+                      llistar
+                      els jugadors que han millorat la seva classificació a la darrera partida jugada.</li>
+                  </ul>
                   </p>
-                  <p>A les targetes de cada jugador pitjant fletxeta negra (o a qualsevol punt de la targeta que no sigui el
+
+                  <p>A les <strong>targetes</strong> de cada jugador pitjant fletxeta negra (o a qualsevol punt de la targeta que no
+                    sigui el
                     nom, adversari o mot de millor jugada) es despleguen els resultats corresponents de les partides
                     jugades.</p>
-                  <p>A la classificació general hi ha una icona de percentatge adalt de tot a la dreta per a ordenar la
+                  <p>A la <strong>classificació general</strong> hi ha una icona de percentatge adalt de tot a la dreta per a ordenar la
                     llista per percentatge de victòries.</p>
-                  <p>A la vista de partides conjuntes hi ha una icona d'un calendari per a ordenar la llista
+                  <p>A la vista de <strong>partides conjuntes</strong> hi ha una icona d'un calendari per a ordenar la llista
                     cronològicament, primer la darrera partida jugada.</p>
                 </div>
               </div>
@@ -259,17 +330,17 @@
             <div class="accordion-item">
               <h4 class="accordion-header">
                 <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#Rondes"
-                  aria-expanded="true" aria-controls="Rondes">
+                  aria-expanded="false" aria-controls="Rondes">
                   Rondes
                 </button>
               </h4>
               <div id="Rondes" class="accordion-collapse collapse" data-bs-parent="#accordioAjuda">
                 <div class="accordion-body">
                   <p>Pitjant sobre les targetes de cada ronda podràs veure tots els aparellaments i els resultats.</p>
-              <p>Pitjant a cada partida s'obre el formulari d'entrada de resultats o un resum si la partida ja s'ha
-                jugat.</p>
-              <p>Al resum de la partida jugada trobareu la icona <i class="bi bi-share-fill"></i> que conté l'enllaç
-                directe a la vista per a poder compartir o desar.</p>
+                  <p>Pitjant a cada partida s'obre el formulari d'entrada de resultats o un resum si la partida ja s'ha
+                    jugat.</p>
+                  <p>Al resum de la partida jugada trobareu la icona <i class="bi bi-share-fill"></i> que conté l'enllaç
+                    directe a la vista per a poder compartir o desar.</p>
                 </div>
               </div>
             </div>
@@ -277,7 +348,7 @@
             <div class="accordion-item">
               <h4 class="accordion-header">
                 <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#resumjugador"
-                  aria-expanded="true" aria-controls="resumjugador">
+                  aria-expanded="false" aria-controls="resumjugador">
                   Resum del jugador
                 </button>
               </h4>
@@ -287,8 +358,10 @@
                     competició per saber de quin peu calça.</p>
                   <p>Aquesta vista és molt útil per a visualitzar les partides pendents i disputades de cadascú i evitam
                     haver de fer cerques per les rondes. Estan ordenades primer les disputades per ordre cronològic i la
-                    resta de rondes sense disputar. D'aquesta manera podreu veure a un poc d'ull la ratxa!!. Si voleu veure
-                    les partides ordenades per ronda, basta pitjar sobre la icona del calendari a la dreta del títol de la
+                    resta de rondes sense disputar. D'aquesta manera podreu veure a un poc d'ull la ratxa!!. Si voleu
+                    veure
+                    les partides ordenades per ronda, basta pitjar sobre la icona del calendari a la dreta del títol de
+                    la
                     secció.</p>
                 </div>
               </div>
@@ -297,66 +370,72 @@
             <div class="accordion-item">
               <h4 class="accordion-header">
                 <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#resultats"
-                  aria-expanded="true" aria-controls="resultats">
+                  aria-expanded="false" aria-controls="resultats">
                   Enviament de resultats
                 </button>
               </h4>
               <div id="resultats" class="accordion-collapse collapse" data-bs-parent="#accordioAjuda">
                 <div class="accordion-body">
-                  <p>Ja sigui des de la vista de resum personal com de la ronda corresponent, pitjant a la fletxa s'obrirà
+                  <p>Ja sigui des de la vista de resum personal com de la ronda corresponent, pitjant a la fletxa
+                    s'obrirà
                     el formulari d'enviament de resultats.</p>
                   <h4>Modificació d'un resultat enviat</h4>
                   <p>Un pic s'hagi enviat el resultat es pot editar sempre que la ronda estigui oberta. Trobareu el botó
                     "Edita" a la vista resum de la partida.</p>
                 </div>
               </div>
-            </div>            
+            </div>
 
             <div class="accordion-item">
               <h4 class="accordion-header">
                 <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#Trobades"
-                  aria-expanded="true" aria-controls="Trobades">
+                  aria-expanded="false" aria-controls="Trobades">
                   Trobades
                 </button>
               </h4>
               <div id="Trobades" class="accordion-collapse collapse" data-bs-parent="#accordioAjuda">
                 <div class="accordion-body">
-                  <p>Sempre que hi hagi una trobada programada, la primera pantalla que s'obrirà en carregar l'app serà la
+                  <p>Sempre que hi hagi una trobada programada, la primera pantalla que s'obrirà en carregar l'app serà
+                    la
                     de trobades, amb la informació relativa al dia, lloc i hora.</p>
-                  <p>Per a confirmar l'assistència o la no assistència s'ha d'obrir el formulari pitjant el botó amb la mà
+                  <p>Per a confirmar l'assistència o la no assistència s'ha d'obrir el formulari pitjant el botó amb la
+                    mà
                     vermella.
-                    <ol>
-                      <li>Identifica't, si no ho has fet ja a l'app, començant a escriure el nom i es deplegarà una llista
-                        filtrada amb tots els jugadors, pitjau sobre el vostre nom.</li>
-                      <li>Si no has d'assistir, no has de tocar res més que el botó "Confirma assistència"</li>
-                      <li>Si hi assistiràs, es desplegaran les opcions pitjant <i class="bi bi-toggle-on"></i></li>
-                      <li>Tria si jugaràs amb el que et correspon per ronda, si és un altre jugador triant de la llista o bé
-                        estàs disponible.</li>
-                      <li>Digués si duràs un joc o si quedaràs a sopar (si hi ha l'opció)</li>
-                      <li>Confirma les respostes amb el botó "Confirma assistència"</li>
-                    </ol>                  
+                  <ol>
+                    <li>Identifica't, si no ho has fet ja a l'app, començant a escriure el nom i es deplegarà una llista
+                      filtrada amb tots els jugadors, pitjau sobre el vostre nom.</li>
+                    <li>Si no has d'assistir, no has de tocar res més que el botó "Confirma assistència"</li>
+                    <li>Si hi assistiràs, es desplegaran les opcions pitjant <i class="bi bi-toggle-on"></i></li>
+                    <li>Tria si jugaràs amb el que et correspon per ronda, si és un altre jugador triant de la llista o
+                      bé
+                      estàs disponible.</li>
+                    <li>Digués si duràs un joc o si quedaràs a sopar (si hi ha l'opció)</li>
+                    <li>Confirma les respostes amb el botó "Confirma assistència"</li>
+                  </ol>
                   </p>
                   <p>Per a modificar l'assistència, repeteix el procés amb les noves opcions.</p>
                 </div>
               </div>
-            </div> 
- 
+            </div>
+
             <div class="accordion-item">
               <h4 class="accordion-header">
-                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#configuracions"
-                  aria-expanded="true" aria-controls="configuracions">
+                <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                  data-bs-target="#configuracions" aria-expanded="false" aria-controls="configuracions">
                   Altres configuracions
                 </button>
               </h4>
               <div id="configuracions" class="accordion-collapse collapse" data-bs-parent="#accordioAjuda">
                 <div class="accordion-body">
                   <p>Si el teu navegador accepta galetes, quan t'identifiquis ja sigui a la icona d'usuari de la barra
-                    superior o a l'hora de confirmar l'assistència a una trobada, el navegador desarà l'opció i no caldrà
+                    superior o a l'hora de confirmar l'assistència a una trobada, el navegador desarà l'opció i no
+                    caldrà
                     que repeteixis l'operació cada vegada que entris a l'app.</p>
                   <p>Si el teu navegador no accepta galetes però vols que entri sempre amb el teu usuari, identifica't i
                     desa l'enllaç de la icona <i class="bi bi-share-fill"></i> que trobaràs al menú d'usuari de la barra
                     principal.</p>
-                  <p>Si enyores la navegació per pestanyes, pots afegir a l'adreça de l'app "?&plantilla=pestanyes (aviat hi
+                  <p>Si enyores la navegació per pestanyes, pots afegir a l'adreça de l'app "?&plantilla=pestanyes
+                    (aviat hi
                     haurà un menú de configuració)</p>
                   <h4>Canal de Telegram</h4>
                   <p>Si te fas seguidor del canal de <a href="https://t.me/+83OoYpZNGC0zZTM8">Telegram</a> rebràs els
@@ -364,27 +443,30 @@
                     estadístiques d'interès.</p>
                 </div>
               </div>
-            </div>  
- 
+            </div>
+
             <div class="accordion-item">
               <h4 class="accordion-header">
                 <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#contacte"
-                  aria-expanded="true" aria-controls="contacte">
+                  aria-expanded="false" aria-controls="contacte">
                   Contacte i suggeriments
                 </button>
               </h4>
               <div id="contacte" class="accordion-collapse collapse" data-bs-parent="#accordioAjuda">
                 <div class="accordion-body">
-                  <p>Si teniu dubtes, trobau errades, voleu proposar millores o fer algun comentari no dubteu a contactar
+                  <p>Si teniu dubtes, trobau errades, voleu proposar millores o fer algun comentari no dubteu a
+                    contactar
                     amb mi, som en Toni Llull.</p>
-                    <div class="d-flex align-items-center">
-                      <a href="https://wa.me/34652876059" class="btn btn-success m-3"><i class="bi bi-whatsapp me-2"></i>Whatsapp</a>
-                      <a href="mailto:tonillull@gmail.com" class="btn btn-primary m-3"><i class="bi bi-envelope me-2"></i>Email</a>
-                    </div>
+                  <div class="d-flex align-items-center">
+                    <a href="https://wa.me/34652876059" class="btn btn-success m-3"><i
+                        class="bi bi-whatsapp me-2"></i>Whatsapp</a>
+                    <a href="mailto:tonillull@gmail.com" class="btn btn-primary m-3"><i
+                        class="bi bi-envelope me-2"></i>Email</a>
+                  </div>
                 </div>
               </div>
-            </div>            
-             
+            </div>
+
             <div class="modal-footer">
               <button type="button" class="btn btn-primary" data-bs-dismiss="modal">D'acord</button>
             </div>

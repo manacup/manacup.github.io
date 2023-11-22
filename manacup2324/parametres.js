@@ -1,8 +1,5 @@
 const queryString = window.location.search;
-//console.log(queryString);
 const urlParams = Object.fromEntries(new URLSearchParams(queryString));
-//console.log(urlParams);
-
 
 const macroURL = "https://script.google.com/macros/s/AKfycbwDcFyPQFV3B0bzeRxGU9yaTWhbA3PyR3SQZOQ1KEE5cU08SJb5QaOOfuXxwfVnuASk/exec"
 let parameterId = urlParams.id || "no"
@@ -20,6 +17,7 @@ let rondes = [];
 var trobada;
 var carrega = 0;
 var userImg 
+var tema = document.documentElement.setAttribute("data-bs-theme", urlParams.tema ||"light")
 
 const urlApp = window.location.href.split('?')[0] + "?";
 let jugadorDefault = {
