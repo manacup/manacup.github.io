@@ -77,8 +77,9 @@
           })
         })
 
-        document.getElementById("temaselector").addEventListener("change",() => {
-            const theme = this.value
+        var temaselector = document.getElementById("temaselector")
+        temaselector.addEventListener("change",() => {
+            const theme = temaselector.value
             console.log(theme)
             setStoredTheme(theme)
             setTheme(theme)
