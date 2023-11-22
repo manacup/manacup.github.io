@@ -29,7 +29,7 @@
   
     setTheme(getPreferredTheme())
   
-    const showActiveTheme = (theme, focus = false) => {
+   /*  const showActiveTheme = (theme, focus = false) => {
       const themeSwitcher = document.querySelector('#bd-theme')
   
       if (!themeSwitcher) {
@@ -55,7 +55,7 @@
       if (focus) {
         themeSwitcher.focus()
       }
-    }
+    } */
   
     window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', () => {
       const storedTheme = getStoredTheme()
