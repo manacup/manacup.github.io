@@ -79,6 +79,7 @@
 
         document.getElementById("temaselector").addEventListener("change",() => {
             const theme = this.value
+            console.log(theme)
             setStoredTheme(theme)
             setTheme(theme)
             showActiveTheme(theme, true)
