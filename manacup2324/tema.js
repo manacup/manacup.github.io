@@ -55,12 +55,14 @@
   });
 })();
 const getStoredPestanyes = () => localStorage.getItem("pestanyes");
+
 const setStoredPestanyes = (opcio) => localStorage.setItem("pestanyes", opcio);
 
 window.addEventListener("DOMContentLoaded", () => {
   var pestSelector = document.getElementById("pestanyes");
-  if(getStoredPestanyes=="true"){
-    document.getElementById("collapsetabs").classList.remove("collapse")
+  pestSelector.checked = getStoredPestanyes
+  if(getStoredPestanyes!="true"){
+    document.getElementById("collapsetabs").classList.add("collapse")
   }
   pestSelector.addEventListener("click", () => {
     pestSelector.checked == true
