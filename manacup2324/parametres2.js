@@ -137,6 +137,7 @@ function iniciJSON(vista) {
     .then((data) => {
       partides = data.partides;
       recuperaPartides();
+      loadPagina(vista);
     })
     .catch((error) => console.error("Error:", error));
 }
