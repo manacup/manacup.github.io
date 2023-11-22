@@ -67,7 +67,7 @@
     window.addEventListener('DOMContentLoaded', () => {
       //showActiveTheme(getPreferredTheme())
   
-      document.querySelectorAll('[data-bs-theme-value]')
+     /*  document.querySelectorAll('[data-bs-theme-value]')
         .forEach(toggle => {
           toggle.addEventListener('click', () => {
             const theme = toggle.getAttribute('data-bs-theme-value')
@@ -75,9 +75,10 @@
             setTheme(theme)
             //showActiveTheme(theme, true)
           })
-        })
+        }) */
 
         var temaselector = document.getElementById("temaselector")
+        temaselector.value= getStoredTheme()
         temaselector.addEventListener("change",() => {
             const theme = temaselector.value
             console.log(theme)
