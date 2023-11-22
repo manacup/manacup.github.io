@@ -17,7 +17,7 @@ let rondes = [];
 var trobada;
 var carrega = 0;
 var userImg 
-var tema = document.documentElement.setAttribute("data-bs-theme", urlParams.tema ||"light")
+//var tema = document.documentElement.setAttribute("data-bs-theme", urlParams.tema ||"light")
 
 const urlApp = window.location.href.split('?')[0] + "?";
 let jugadorDefault = {
