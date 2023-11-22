@@ -8,7 +8,8 @@ let parameterOptions = urlParams.options
 let vistaPredet = { page: parameterVista, options: parameterOptions };
 let idfull = urlParams.idfull
 let mostrapestanyes =  urlParams.mostrapestanyes 
-  if(mostrapestanyes=="si"){
+console.log(mostrapestanyes)
+  if(mostrapestanyes==="si"){
     document.getElementById("collapsetabs").classList.add("show")
     document.getElementById("pestanyes").checked=true
     setStoredPestanyes("true")
