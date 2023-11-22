@@ -8,7 +8,8 @@ let parameterOptions = urlParams.options
 let vistaPredet = { page: parameterVista, options: parameterOptions };
 let idfull = urlParams.idfull
 let plantilla =  urlParams.plantilla 
-if(plantilla){
+if(plantilla!="undefined"){
+  console.log(plantilla)
   document.getElementById("collapsetabs").classList.remove("collapse")
 }
 
