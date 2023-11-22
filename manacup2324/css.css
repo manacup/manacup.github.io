@@ -1,4 +1,4 @@
-[data-bs-theme=light] body .navbar {
+[data-bs-theme=light] {
   
   background-color: var(--bs-light);
 }
