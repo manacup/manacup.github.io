@@ -145,6 +145,7 @@ function recuperaPartides(){
       )
         .then((response) => response.json())
         .then((data) => {
+            console.log(data)
           dades.forEach(jug=>{
             jug.partides=data.partides.filter(partida=>
                 partida.Jugador1==jug.Nom
