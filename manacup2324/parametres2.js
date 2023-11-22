@@ -146,8 +146,11 @@ function recuperaPartides(){
         .then((response) => response.json())
         .then((data) => {
           dades.forEach(jug=>{
-            jug.partides=data.partides.filter(partida=>{partida.Jugador1==jug.Nom && partida.Estat != "none"})
+            jug.partides=data.partides.filter(partida=>
+                partida.Jugador1==jug.Nom && partida.Estat != "none"
+            )
           })
+          console.log(dades)
         })
         .catch((error) => console.error("Error:", error));
 }
