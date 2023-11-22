@@ -1,7 +1,7 @@
 function renderUserCard(jugadorDesat) {
   const menuTemplate = `
      <a class=" position-absolute top-10 end-0 translate-middle  pt-2" href="${
-       urlApp + "&id=" + jugadorDesat.ID
+       urlApp + "&id=" + jugadorDesat.ID + "&mostrapestanyes=" + mostrapestanyes
      }" target="_blank" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Enllaç a l'app amb el jugador actual per defecte.">
                     <i class="bi bi-share-fill"></i>
                   </a>
