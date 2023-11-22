@@ -14,7 +14,7 @@
   <script
     src="https://cdn.jsdelivr.net/gh/tanaikech/HtmlFormObjectParserForGoogleAppsScript_js@master/htmlFormObjectParserForGoogleAppsScript_js.min.js">
     </script>
-    <script src="tema.js"></script>
+  <script src="tema.js"></script>
 
 </head>
 
@@ -98,8 +98,8 @@
       <div class="dropdown-menu dropdown-menu-end p-3" id="menuJugador">
         <div class="card-body text-center">
           <div id="userCard" class=" position-relative"></div>
-          <p class="text-muted form-label btn" data-bs-toggle="modal" data-bs-target="#preferencies" aria-expanded="false"
-            aria-controls="desajug">Gestiona les preferències</p>
+          <p class="text-muted form-label btn" data-bs-toggle="modal" data-bs-target="#preferencies"
+            aria-expanded="false" aria-controls="desajug">Gestiona les preferències</p>
           <p class="text-muted form-label btn" data-bs-toggle="modal" data-bs-target="#desajug" aria-expanded="false"
             aria-controls="desajug">Canvia l'usuari</p>
         </div>
@@ -152,51 +152,53 @@
           <div class="row mb-3 g-3">
             <div id="tema">
               <div class="row">
-                <div class=" mb-3">Tria un tema</div>
-                <div class=" text-end">
-                  
-                    <select class="form-select" >
-                      
-                      <option data-bs-theme-value="light" selected>Clar</option>
-                      <option data-bs-theme-value="dark">Fosc</option>
-                      <option data-bs-theme-value="auto">Auto</option>
-                    </select>
-                  </div>
+                <div class="col-8 mb-3"><i class="bi bi-sun-fill me-2"></i>
+                  <span class="d-lg-none ms-2" id="bd-theme-text">Tria l'esquema de colors</span></div>
+                <div class="col-4 text-end">
 
-                    
-                      <button class="btn btn-link nav-link py-2 px-0 px-lg-2 dropdown-toggle d-flex align-items-center" id="bd-theme" type="button" aria-expanded="true" data-bs-toggle="dropdown" data-bs-display="static" aria-label="Toggle theme (light)">
+                  <select class="form-select" id="temaselector">
+
+                    <option data-bs-theme-value="light" value="light" selected>Clar</option>
+                    <option data-bs-theme-value="dark" value="dark">Fosc</option>
+                    <option data-bs-theme-value="auto" value="auto">Auto</option>
+                  </select>
+
+
+
+                  <button class="btn btn-link nav-link py-2 px-0 px-lg-2 dropdown-toggle d-flex align-items-center"
+                    id="bd-theme" type="button" aria-expanded="true" data-bs-toggle="dropdown" data-bs-display="static"
+                    aria-label="Toggle theme (light)">
+                    <i class="bi bi-sun-fill me-2"></i>
+                    <span class="d-lg-none ms-2" id="bd-theme-text">Tria l'esquema de colors</span>
+                  </button>
+                  <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="bd-theme-text" data-bs-popper="static">
+                    <li>
+                      <button type="button" class="dropdown-item d-flex align-items-center active"
+                        data-bs-theme-value="light" aria-pressed="true">
                         <i class="bi bi-sun-fill me-2"></i>
-                        <span class="d-lg-none ms-2" id="bd-theme-text">Tria l'esquema de colors</span>
+                        Clar
+
                       </button>
-                      <ul class="dropdown-menu dropdown-menu-end show" aria-labelledby="bd-theme-text" data-bs-popper="static">
-                        <li>
-                          <button type="button" class="dropdown-item d-flex align-items-center active" data-bs-theme-value="light" aria-pressed="true">
-                            <i class="bi bi-sun-fill me-2"></i>
-                            Clar
-                           
-                          </button>
-                        </li>
-                        <li>
-                          <button type="button" class="dropdown-item d-flex align-items-center" data-bs-theme-value="dark" aria-pressed="false">
-                            <i class="bi bi-moon-stars-fill me-2"></i>
-                            Fosc
-                            
-                          </button>
-                        </li>
-                        <li>
-                          <button type="button" class="dropdown-item d-flex align-items-center" data-bs-theme-value="auto" aria-pressed="false">
-                            <i class="bi bi-circle-half"></i>
-                            Auto
-                            
-                          </button>
-                        </li>
-                      </ul>
-                   
-                   
-                  
-                
+                    </li>
+                    <li>
+                      <button type="button" class="dropdown-item d-flex align-items-center" data-bs-theme-value="dark"
+                        aria-pressed="false">
+                        <i class="bi bi-moon-stars-fill me-2"></i>
+                        Fosc
+
+                      </button>
+                    </li>
+                    <li>
+                      <button type="button" class="dropdown-item d-flex align-items-center" data-bs-theme-value="auto"
+                        aria-pressed="false">
+                        <i class="bi bi-circle-half me-2"></i>
+                        Auto
+
+                      </button>
+                    </li>
+                  </ul>
+                </div>
               </div>
-             
             </div>
           </div>
         </div>
@@ -301,7 +303,8 @@
               </h4>
               <div id="Classificacions" class="accordion-collapse collapse" data-bs-parent="#accordioAjuda">
                 <div class="accordion-body">
-                  <p>A les vistes de les distintes classificacions pots fer <strong>cerques</strong> per a qualsevol dada que vulguis
+                  <p>A les vistes de les distintes classificacions pots fer <strong>cerques</strong> per a qualsevol
+                    dada que vulguis
                     filtrar: pitja el botó de la lupa i es desplegarà el camp de cerca. A mesura que escriguis
                     quedaran visibles les targetes que continguin el terme de cerca.
                   <ul>Per exemple: <li>a la vista de classificació general pots filtrar els jugadors d'un grup cercant
@@ -316,13 +319,16 @@
                   </ul>
                   </p>
 
-                  <p>A les <strong>targetes</strong> de cada jugador pitjant fletxeta negra (o a qualsevol punt de la targeta que no
+                  <p>A les <strong>targetes</strong> de cada jugador pitjant fletxeta negra (o a qualsevol punt de la
+                    targeta que no
                     sigui el
                     nom, adversari o mot de millor jugada) es despleguen els resultats corresponents de les partides
                     jugades.</p>
-                  <p>A la <strong>classificació general</strong> hi ha una icona de percentatge adalt de tot a la dreta per a ordenar la
+                  <p>A la <strong>classificació general</strong> hi ha una icona de percentatge adalt de tot a la dreta
+                    per a ordenar la
                     llista per percentatge de victòries.</p>
-                  <p>A la vista de <strong>partides conjuntes</strong> hi ha una icona d'un calendari per a ordenar la llista
+                  <p>A la vista de <strong>partides conjuntes</strong> hi ha una icona d'un calendari per a ordenar la
+                    llista
                     cronològicament, primer la darrera partida jugada.</p>
                 </div>
               </div>

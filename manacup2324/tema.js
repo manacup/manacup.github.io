@@ -76,5 +76,12 @@
             showActiveTheme(theme, true)
           })
         })
+
+        document.getElementById("temaselector").addEventListener("change",() => {
+            const theme = this.value
+            setStoredTheme(theme)
+            setTheme(theme)
+            showActiveTheme(theme, true)
+          })
     })
   })()
