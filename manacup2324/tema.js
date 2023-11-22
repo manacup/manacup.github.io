@@ -63,14 +63,17 @@ window.addEventListener("DOMContentLoaded", () => {
   console.log(getStoredPestanyes())
   if(getStoredPestanyes()=="true"){
   pestSelector.checked = true
-  document.getElementById("collapsetabs").classList.add("show")
-  document.getElementById("linkuserpref").href = urlApp + "&id=" + jugadorDesat.ID + "&mostrapestanyes=si"
- 
+  document.getElementById("collapsetabs").classList.add("show") 
 }
 
   pestSelector.addEventListener("click", () => {
-    pestSelector.checked == true
-      ? setStoredPestanyes("true")
-      : setStoredPestanyes("false");
+    if(pestSelector.checked == true){
+      setStoredPestanyes("true")
+      document.getElementById("linkuserpref").href = urlApp + "&id=" + jugadorDesat.ID + "&mostrapestanyes=si"
+    }else{
+      setStoredPestanyes("false");
+      document.getElementById("linkuserpref").href = urlApp + "&id=" + jugadorDesat.ID + "&mostrapestanyes=no"
+    }
+     
   });
 });
