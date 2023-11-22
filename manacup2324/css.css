@@ -2,7 +2,7 @@
   background-color: var(--bs-light);
 }
 [data-bs-theme=light] .bg-body {  
-  background-color: #f8f9fa;
+  background-color: var(--bs-light)!important;
 }
 
 .missatge {
