@@ -8,7 +8,7 @@ let parameterOptions = urlParams.options
 let vistaPredet = { page: parameterVista, options: parameterOptions };
 let idfull = urlParams.idfull
 let pestanyes =  urlParams.pestanyes || ""
-  document.getElementById("collapsetabs").classList.add("pestanyes")
+  document.getElementById("collapsetabs").classList.add(pestanyes)
 const imatgeFixa =
   "https://www.infobae.com/new-resizer/izGq0GB3EIUlIN4fdPOhc_rT54c=/arc-anglerfish-arc2-prod-infobae/public/IPZBXHKPUJAOVHO662LV25OEOM.jpg";
 let dades = [];
