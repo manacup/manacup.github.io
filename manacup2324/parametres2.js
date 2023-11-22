@@ -147,7 +147,7 @@ function recuperaPartides(){
         .then((data) => {
           dades.forEach(jug=>{
             jug.partides=data.partides.filter(partida=>
-                partida.Jugador1==jug.Nom && partida.Estat != "none"
+                partida.Jugador1==jug.Nom
             )
           })
           console.log(dades)
