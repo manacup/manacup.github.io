@@ -61,12 +61,13 @@ const setStoredPestanyes = (opcio) => localStorage.setItem("pestanyes", opcio);
 window.addEventListener("DOMContentLoaded", () => {
   var pestSelector = document.getElementById("pestanyes");
   pestSelector.checked = getStoredPestanyes
-  if(getStoredPestanyes!="true"){
+  if(getStoredPestanyes=="false"){
     document.getElementById("collapsetabs").classList.add("collapse")
+    document.getElementById("collapsetabs").classList.remove("show")
   }
   pestSelector.addEventListener("click", () => {
     pestSelector.checked == true
       ? setStoredPestanyes("true")
-      : setStoredPestanyes("");
+      : setStoredPestanyes("false");
   });
 });
