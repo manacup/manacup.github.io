@@ -61,7 +61,8 @@ const setStoredPestanyes = (opcio) => localStorage.setItem("pestanyes", opcio);
 window.addEventListener("DOMContentLoaded", () => {
   var pestSelector = document.getElementById("pestanyes");
   pestSelector.checked = getStoredPestanyes
-  if(getStoredPestanyes=="false"){
+  if(getStoredPestanyes!="true"){
+    console.log("amaga pestanyes")
     document.getElementById("collapsetabs").classList.add("collapse")
     document.getElementById("collapsetabs").classList.remove("show")
   }
