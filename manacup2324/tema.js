@@ -62,12 +62,9 @@ window.addEventListener("DOMContentLoaded", () => {
   var pestSelector = document.getElementById("pestanyes");
   if(getStoredPestanyes=="true"){
   pestSelector.checked = true
+  document.getElementById("collapsetabs").classList.add("show")
 }
-  if(getStoredPestanyes!="true"){
-    console.log("amaga pestanyes")
-    document.getElementById("collapsetabs").classList.add("collapse")
-    document.getElementById("collapsetabs").classList.remove("show")
-  }
+
   pestSelector.addEventListener("click", () => {
     pestSelector.checked == true
       ? setStoredPestanyes("true")
