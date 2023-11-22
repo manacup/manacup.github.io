@@ -1,3 +1,7 @@
+[data-bs-theme=light] body .navbar {
+  
+  background-color: var(--bs-light);
+}
 .missatge {
     cursor: pointer;
   }
