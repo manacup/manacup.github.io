@@ -7,7 +7,7 @@ let parameterVista = urlParams.vista
 let parameterOptions = urlParams.options
 let vistaPredet = { page: parameterVista, options: parameterOptions };
 let idfull = urlParams.idfull
-let mostrapestanyes =  urlParams.mostrapestanyes 
+let mostrapestanyes =  urlParams.mostrapestanyes || "no"
 console.log(mostrapestanyes)
   if(mostrapestanyes==="si"){
     document.getElementById("collapsetabs").classList.add("show")
