@@ -64,7 +64,8 @@ window.addEventListener("DOMContentLoaded", () => {
   if(getStoredPestanyes()=="true"){
   pestSelector.checked = true
   document.getElementById("collapsetabs").classList.add("show")
-  mostrapestanyes="si"
+  document.getElementById("linkuserpref").href = urlApp + "&id=" + jugadorDesat.ID + "&mostrapestanyes=si"
+  mostrapestanyes = "si"
 }
 
   pestSelector.addEventListener("click", () => {
