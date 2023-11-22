@@ -11,7 +11,8 @@ let mostrapestanyes =  urlParams.mostrapestanyes
   if(mostrapestanyes="si"){
     document.getElementById("collapsetabs").classList.add("show")
     document.getElementById("pestanyes").checked=true
-  }
+    setStoredPestanyes("true")
+  }  
 const imatgeFixa =
   "https://www.infobae.com/new-resizer/izGq0GB3EIUlIN4fdPOhc_rT54c=/arc-anglerfish-arc2-prod-infobae/public/IPZBXHKPUJAOVHO662LV25OEOM.jpg";
 let dades = [];
