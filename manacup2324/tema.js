@@ -65,7 +65,7 @@ window.addEventListener("DOMContentLoaded", () => {
   pestSelector.checked = true
   document.getElementById("collapsetabs").classList.add("show")
   document.getElementById("linkuserpref").href = urlApp + "&id=" + jugadorDesat.ID + "&mostrapestanyes=si"
-  mostrapestanyes = "si"
+ 
 }
 
   pestSelector.addEventListener("click", () => {
