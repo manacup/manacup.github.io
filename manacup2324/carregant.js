@@ -1,7 +1,7 @@
 let interval = ""
 function carregant(){
     const template = `
-        <div class="col-md-8 p-1">
+        <div class="p-1">
           <div class="card ">
             <div class="card-body">
               <div class="row ">
