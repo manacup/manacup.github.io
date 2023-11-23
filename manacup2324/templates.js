@@ -16,9 +16,13 @@ function renderUserCard(jugadorDesat) {
             <h4 class="mb-2">Uep! com va, ${jugadorDesat.Nom}?</h4>
             <p class="text-muted p-4">${jugadorDesat.Malnom2}</p>
             <div class="mb-4 pb-2">
-              <button type="button" class="btn btn-primary btn-rounded btn-lg" id="btnInfo">
+              <button type="button" class="btn btn-primary btn-rounded btn-lg ${!jugadorDesat.Nom?"d-none":""}" id="btnInfo">
                 <i class="bi bi-bar-chart-line me-2"></i>Informació
               </button>
+              <button type="button" class="btn btn-primary btn-rounded btn-lg ${jugadorDesat.Nom?"d-none":""}" data-bs-toggle="modal" data-bs-target="#desajug" aria-expanded="false"
+            aria-controls="desajug">
+                <i class="bi bi-person-check me-2"></i>Identifica't
+              </button>  
             </div>          
             `;
 
