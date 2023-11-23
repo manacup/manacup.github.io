@@ -6,7 +6,7 @@ function renderUserCard(jugadorDesat) {
                     <i class="bi bi-share-fill"></i>
                   </a>
             <div class="d-flex justify-content-center">
-            <div class="imgedit"  data-bs-toggle="modal" data-bs-target="#desaimatge" aria-expanded="false" aria-controls="desaimatge">
+            <div class="imgedit"  ${jugadorDesat.Nom?"data-bs-toggle="modal" data-bs-target="#desaimatge" aria-expanded="false"":""}  aria-controls="desaimatge">
               <div class="mt-3 mb-4 imatge-cercle ">
                 <img src="${jugadorDesat.Imatge}" class="userImg">              
               </div>
