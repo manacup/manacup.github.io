@@ -44,7 +44,7 @@ function renderJugador(jugador) {
     .filter((pa) => !Number.isNaN(pa));
 
   const jugadorTemplate = `
-              <div class="col-md-8 p-1">
+              <div class=" p-1">
                 <div class="card" >
                   <div class="card-body text-center position-relative">
                   <a class=" position-absolute top-10 end-0 translate-middle pt-2 pe-1" href="${
@@ -540,7 +540,7 @@ function renderJugador(jugador) {
 function renderDetallPartida(partida) {
   const partidaTemplate = `
     
-      <div class="col-md-8 p-1">
+      <div class="p-1">
         <div class="d-flex align-items-center p-2">
           <h1 class="flex-grow-1">Ronda ${partida.Ronda}</h1>
           <div class=" position-relative me-4" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Jugada a trobada oficial">
@@ -662,7 +662,7 @@ function renderDetallPartida(partida) {
 function renderClassificacio(jugador) {
 
   const jugadorTemplate = `
-           <div class="col-md-8 p-1 entrada">
+           <div class="p-1 entrada">
            <div class="card ${
              jugador.Posició <= 3
                ? "border-danger"
@@ -768,7 +768,7 @@ function ordenarLlistaPercentatge() {
 }
 function renderScrabbles(jugador) {
   const jugadorTemplate = `
-      <div class="col-md-8 p-1 entrada">
+      <div class="p-1 entrada">
           <div class="card
           ${
             parseFloat(jugador.mitjanaScrabbles) >= 4
@@ -849,7 +849,7 @@ function ompleTaulaScrabbles(partides) {
 }
 function renderPartida(jugador) {
   const jugadorTemplate = `
-      <div class="col-md-8 p-1 entrada">
+      <div class="p-1 entrada">
           <div class="card ${
             jugador.Punts_Partida >= 600
               ? " border-danger"
@@ -949,7 +949,7 @@ function ompleTaulaConjunta(partides) {
 
 function renderJugada(jugador) {
   const jugadorTemplate = `
-      <div class="col-md-8 p-1 entrada">
+      <div class="p-1 entrada">
           <div class="card ${
             jugador.Punts_mot_jugada >= 100 ? "border-danger" : ""
           }" data-bs-toggle="collapse"
@@ -1039,7 +1039,7 @@ function ompleTaulaJugada(partides) {
 
 function renderSocial(jugador) {
   const jugadorTemplate = `
-      <div class="col-md-8 p-1 entrada">
+      <div class="p-1 entrada">
           <div class="card  desplega" data-bs-toggle="collapse"
               data-bs-target="#collapse${jugador.ID}">
               <div class="card-body">
@@ -1108,7 +1108,7 @@ function ompleTaulaSocial(partides) {
 }
 function renderVelocitat(jugador) {
   const jugadorTemplate = `
-      <div class="col-md-8 p-1 entrada">
+      <div class="p-1 entrada">
           <div class="card  desplega" data-bs-toggle="collapse"
               data-bs-target="#collapse${jugador.ID}">
               <div class="card-body">
@@ -1214,7 +1214,7 @@ function renderConjunta(partida) {
   var dies = convertMiliseconds(difereciaMS, "d");
 
   const partidaTemplate = `
-      <div class="col-md-8 p-1 entrada">
+      <div class="p-1 entrada">
       
           <div class="card ${
             partida.Suma_punts >= 1000
@@ -1337,7 +1337,7 @@ function ordenarLlistaPunts() {
 function renderRondes(ronda) {
   var partidesRonda = aparellaments.filter((p) => p.Ronda == ronda.Ronda);
   const rondaTemplate = `
-      <div class="col-md-8 p-1 entrada">
+      <div class="p-1 entrada">
           <div class="card  ${
             ronda.Estat == "Ronda tancada" ? "border-danger" : ""
           }" >
@@ -1540,7 +1540,7 @@ function desordenarTabla() {
 
 function renderAparellaments(partida) {
   const aparellamentsTemplate = `
-        <div class="col-md-8 p-1 entrada">
+        <div class="p-1 entrada">
           <div class="card ${
             partida.Suma_punts > 0
               ? "border-success"

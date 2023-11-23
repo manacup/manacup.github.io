@@ -26,11 +26,11 @@ function loadContent(vista) {
       break;
     case "classificacio":
       navbarTitle.innerHTML = "Classificació";
-      contentDiv.innerHTML += `<div class="col-md-8 p-1" id="ordenarBoto"><i id="icona" class="float-end bi bi-percent" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Ordena per percentatge de victòries o per punts."></i></div>`;
+      contentDiv.innerHTML += `<div class="p-1" id="ordenarBoto"><i id="icona" class="float-end bi bi-percent" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Ordena per percentatge de victòries o per punts."></i></div>`;
       var div = document.createElement("div");
       div.id = "subcontent";
-      div.classList.add("row-md-8");
-      div.classList.add("justify-content-center");
+      /* div.classList.add("row-md-8");
+      div.classList.add("justify-content-center"); */
       div.classList.add("p-0");
       contentDiv.appendChild(div);
 
@@ -71,11 +71,11 @@ function loadContent(vista) {
       break;
     case "conjunta":
       navbarTitle.innerHTML = `Partida conjunta`;
-      contentDiv.innerHTML += `<div class="col-md-8 p-1" id="ordenarBoto"><i id="icona" class="float-end bi bi-calendar3" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Ordena per data o per punts."></i></div>`;
+      contentDiv.innerHTML += `<div class="p-1" id="ordenarBoto"><i id="icona" class="float-end bi bi-calendar3" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Ordena per data o per punts."></i></div>`;
       var div = document.createElement("div");
       div.id = "subcontent";
-      div.classList.add("row-md-8");
-      div.classList.add("justify-content-center");
+      //div.classList.add("row-md-8");
+      //div.classList.add("justify-content-center");
       div.classList.add("p-0");
       contentDiv.appendChild(div);
       function ordreConjunta(a, b) {
