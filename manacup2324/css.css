@@ -5,6 +5,13 @@
   background-color: var(--bs-light)!important;
 }
 
+[data-bs-theme=auto] body {  
+  background-color: var(--bs-light);
+}
+[data-bs-theme=auto] .bg-body {  
+  background-color: var(--bs-light)!important;
+}
+
 .missatge {
     cursor: pointer;
   }
