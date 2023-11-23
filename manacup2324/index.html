@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ca" data-bs-theme="light">
+<html lang="en" data-bs-theme="light">
 
 <head>
   <meta charset="UTF-8">
@@ -22,20 +22,26 @@
   <div id="loaded" class="d-none">
   </div>
 
-  <!-- Usar clases de Bootstrap para el diseño -->
+  <nav class="navbar pb-0 bg-light">
+    <div class="container-fluid">
+      <a class="navbar-brand text-dark" href="#">
+        <img src="/icons/favicon-96x96.png" alt="Logo" width="30" height="auto"
+          class="d-inline-block align-text-center">
+        X ManaCup
+      </a>
+      <span class="float-end badge text-secondary">2023-24</span>
+    </div>
+  </nav>
   <nav class=" navbar  bg-body sticky-top">
     <div class="container-fluid">
       <div class="navbar-brand flex-grow-1 ">
         <div class="d-flex align-items-center" id="goBack" style="cursor: pointer;">
           <i class="bi bi-arrow-left me-2 d-none" id="botoEnrera"></i>
           <div class="nav-link ">
-            <span id="navbar-title">X ManaCup 23-24</span>
+            <span id="navbar-title"></span>
           </div>
         </div>
       </div>
-      <!--  <div class="navbar-toggler me-2" data-bs-toggle="collapse" data-bs-target="#collapsetabs">
-        <i class="bi bi-chevron-down"></i>
-      </div> -->
 
       <div class="navbar-toggler me-2" data-bs-toggle="collapse" data-bs-target="#collapseCerca">
         <i class="bi bi-search"></i>
@@ -414,13 +420,19 @@
               </h4>
               <div id="configuracions" class="accordion-collapse collapse" data-bs-parent="#accordioAjuda">
                 <div class="accordion-body">
-                  <p>Al botó d'usuari pots identificar-te pitjant sobre <strong>Canvia l'usuari</strong> per tal de tenir un accés directe a la teva informació. 
-                  <p>També pots gestionar les preferències de visualització de l'app pitjant sobre <strong>Gestiona les preferències</strong>. Aquí hi trobaràs l'opció de visualitzar la navegació per <strong>pestanyes</strong> i l'<strong>esquema de colors</strong>.</p>
-                  <p>L'esquema de colors, per defecte, canviarà al tema del teu sistema operatiu, ja sigui fosc o clar.</p>
-                  <p>Si el teu navegador <strong>accepta galetes</strong>, totes aquestes preferències es desaran al sistema i no
+                  <p>Al botó d'usuari pots identificar-te pitjant sobre <strong>Canvia l'usuari</strong> per tal de
+                    tenir un accés directe a la teva informació.
+                  <p>També pots gestionar les preferències de visualització de l'app pitjant sobre <strong>Gestiona les
+                      preferències</strong>. Aquí hi trobaràs l'opció de visualitzar la navegació per
+                    <strong>pestanyes</strong> i l'<strong>esquema de colors</strong>.</p>
+                  <p>L'esquema de colors, per defecte, canviarà al tema del teu sistema operatiu, ja sigui fosc o clar.
+                  </p>
+                  <p>Si el teu navegador <strong>accepta galetes</strong>, totes aquestes preferències es desaran al
+                    sistema i no
                     caldrà
                     que repeteixis l'operació cada vegada que entris a l'app.</p>
-                  <p>Si el teu navegador <strong>no accepta galetes</strong> però vols que entri sempre amb el teu usuari i preferències, identifica't, fes els canvis per posar-ho al teu gust i
+                  <p>Si el teu navegador <strong>no accepta galetes</strong> però vols que entri sempre amb el teu
+                    usuari i preferències, identifica't, fes els canvis per posar-ho al teu gust i
                     desa l'enllaç de la icona <i class="bi bi-share-fill"></i> que trobaràs al menú d'usuari de la barra
                     principal.</p>
                 </div>
@@ -441,7 +453,7 @@
                     estadístiques d'interès.</p>
                 </div>
               </div>
-            </div>                         
+            </div>
 
             <div class="accordion-item">
               <h4 class="accordion-header">
@@ -473,7 +485,7 @@
       </div>
       <script src="carregant.js"></script>
       <script type="module" src="moduls.js"></script>
-      <script src="parametres.js"></script>
+      <script src="parametres2.js"></script>
       <script async defer src="templates.js"></script>
       <script async defer src="respostes.js"></script>
       <script async defer src="trobades.js"></script>
