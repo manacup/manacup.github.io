@@ -123,20 +123,8 @@ function renderJugador(jugador) {
                   </div>
                 </div>
               </div>
-            <!--  <div class="col-md-8 p-1">
-                <div class="card">
-                <div class="card-header">Palmarès</div>
-                  <div class="card-body">
-                    <div class="card-text"><details><summary>Campionats:</summary> <ol>${campionats
-                      .map((cp) => "<li>" + cp + "</li>")
-                      .join("")}</ol></details></div>
-                    <div class="card-text"><details><summary>Podis: </summary><ol>${podis
-                      .map((cp) => "<li>" + cp + "</li>")
-                      .join("")}</ol></details></div>
-                  </div>
-              </div>
-            </div> -->
-            <div class="col-md-8 p-1">
+           
+            <div class=" p-1">
                 <div class="card">
                 <div class="card-header">Un per un</div>
                   <div class="card-body">
@@ -144,7 +132,7 @@ function renderJugador(jugador) {
                   </div>
               </div>
             </div>
-            <div class="col-md-8 p-1 ">
+            <div class=" p-1 ">
               <div class="card">
                 <div class="card-header d-flex align-items-center">
                 <span class="flex-fill">Classificació general</span>
@@ -233,7 +221,7 @@ function renderJugador(jugador) {
                 </div>
               </div>
             </div>
-            <div class="col-md-8 p-1 ">
+            <div class=" p-1 ">
               <div class="card">
                 <div class="card-header d-flex align-items-center">
                 <span class="flex-fill">Scrabbles</span>
@@ -275,7 +263,7 @@ function renderJugador(jugador) {
                 </div>
               </div>
             </div>
-            <div class="col-md-8 p-1 ">
+            <div class=" p-1 ">
               <div class="card">
                 <div class="card-header d-flex align-items-center">
                 <span class="flex-fill">Millor partida individual</span>
@@ -319,7 +307,7 @@ function renderJugador(jugador) {
                 </div>
               </div>
             </div>
-            <div class="col-md-8 p-1 ">
+            <div class=" p-1 ">
               <div class="card">
                 <div class="card-header d-flex align-items-center">
                 <span class="flex-fill">Millor partida conjunta</span>
@@ -363,7 +351,7 @@ function renderJugador(jugador) {
                 </div>
               </div>
             </div>
-            <div class="col-md-8 p-1 ">
+            <div class=" p-1 ">
               <div class="card">
                 <div class="card-header d-flex align-items-center">
                 <span class="flex-fill">Millor jugada</span>
@@ -414,7 +402,7 @@ function renderJugador(jugador) {
                 </div>
               </div>
             </div>
-            <div class="col-md-8 p-1 ">
+            <div class=" p-1 ">
               <div class="card">
                 
                 <div class="card-header d-flex align-items-center">
@@ -453,7 +441,7 @@ function renderJugador(jugador) {
                 </div>
               </div>
             </div>
-            <div class="col-md-8 p-1 ">
+            <div class=" p-1 ">
               <div class="card">
                 <div class="card-header d-flex align-items-center">
                   <span class="flex-fill">Partides a trobades oficials</span>
@@ -493,7 +481,7 @@ function renderJugador(jugador) {
                 </div>
               </div>
             </div>
-            <div class="col-md-8 p-1 ">
+            <div class=" p-1 ">
               <div class="card">
                 <div class="card-header d-flex"><span class="flex-fill">Partides pendents i disputades</span><i class="bi bi-calendar3" id="ordenarBoton" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Ordena per número de ronda o per ordre de les partides jugades per veure la ratxa."></i></div>
                   <div class="">
