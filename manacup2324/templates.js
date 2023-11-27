@@ -6,20 +6,30 @@ function renderUserCard(jugadorDesat) {
                     <i class="bi bi-share-fill"></i>
                   </a>
             <div class="d-flex justify-content-center">
-            <div class="imgedit"  ${jugadorDesat.Nom?"data-bs-toggle='modal' data-bs-target='#desaimatge' aria-expanded='false'":""}  aria-controls="desaimatge">
+            <div class="imgedit"  ${
+              jugadorDesat.Nom
+                ? "data-bs-toggle='modal' data-bs-target='#desaimatge' aria-expanded='false'"
+                : ""
+            }  aria-controls="desaimatge">
               <div class="mt-3 mb-4 imatge-cercle ">
                 <img src="${jugadorDesat.Imatge}" class="userImg">              
               </div>
-                <div class="edit ${!jugadorDesat.Nom?"d-none":""}"><div class="icon" aria-hidden="true"><i class="bi bi-pencil"></i></div></div>
+                <div class="edit ${
+                  !jugadorDesat.Nom ? "d-none" : ""
+                }"><div class="icon" aria-hidden="true"><i class="bi bi-pencil"></i></div></div>
             </div>
             </div>
             <h4 class="mb-2">Uep! com va, ${jugadorDesat.Nom}?</h4>
             <p class="text-muted p-4">${jugadorDesat.Malnom2}</p>
             <div class="mb-4 pb-2">
-              <button type="button" class="btn btn-primary btn-rounded btn-lg ${!jugadorDesat.Nom?"d-none":""}" id="btnInfo">
+              <button type="button" class="btn btn-primary btn-rounded btn-lg ${
+                !jugadorDesat.Nom ? "d-none" : ""
+              }" id="btnInfo">
                 <i class="bi bi-bar-chart-line me-2"></i>Informació
               </button>
-              <button type="button" class="btn btn-primary btn-rounded btn-lg ${jugadorDesat.Nom?"d-none":""}" data-bs-toggle="modal" data-bs-target="#desajug" aria-expanded="false"
+              <button type="button" class="btn btn-primary btn-rounded btn-lg ${
+                jugadorDesat.Nom ? "d-none" : ""
+              }" data-bs-toggle="modal" data-bs-target="#desajug" aria-expanded="false"
             aria-controls="desajug">
                 <i class="bi bi-person-check me-2"></i>Identifica't
               </button>  
@@ -648,11 +658,13 @@ function renderDetallPartida(partida) {
       </div>
           
   `;
-  document.getElementById("content").innerHTML += partidaTemplate;
+  var cardpart = document.createElement("div");
+  cardpart.innerHTML = partidaTemplate;
+  document.getElementById("content").appendChild(cardpart);
+  //document.getElementById("content").innerHTML += partidaTemplate;
 }
 
 function renderClassificacio(jugador) {
-
   const jugadorTemplate = `
            <div class="p-1 entrada">
            <div class="card ${
@@ -702,7 +714,11 @@ function renderClassificacio(jugador) {
                         }</span>
                           ${jugador.grup}
                         </span>                        
-                        <span class="badge text-bg-${jugador.Semafor} percent" data-percent="${jugador.percentatgeVictories}">
+                        <span class="badge text-bg-${
+                          jugador.Semafor
+                        } percent" data-percent="${
+    jugador.percentatgeVictories
+  }">
                           ${jugador.PartidesJugades}/${
     parseInt(jugador.Rondes_pendents) + parseInt(jugador.PartidesJugades)
   }
@@ -713,7 +729,11 @@ function renderClassificacio(jugador) {
                           <div class="col">
                               <div class="d-flex align-items-start flex-column">
                                   <small>Punts:</small>
-                                  <div>${jugador.Punts} <small class="badge text-primary">${parseFloat(jugador.percentatgeVictories*100).toFixed(1)}%</small></div>
+                                  <div>${
+                                    jugador.Punts
+                                  } <small class="badge text-primary">${parseFloat(
+    jugador.percentatgeVictories * 100
+  ).toFixed(1)}%</small></div>
                               </div>
                           </div>
                            <div class="col">
@@ -737,7 +757,10 @@ function renderClassificacio(jugador) {
           </div>      
           
             `;
-  document.getElementById("subcontent").innerHTML += jugadorTemplate;
+  var cardjug = document.createElement("div");
+  cardjug.innerHTML = jugadorTemplate;
+  document.getElementById("subcontent").appendChild(cardjug);
+  //document.getElementById("subcontent").innerHTML += jugadorTemplate;
 }
 function ordenarLlistaPercentatge() {
   const llista = document.getElementById("subcontent");
@@ -766,7 +789,7 @@ function renderScrabbles(jugador) {
             parseFloat(jugador.mitjanaScrabbles) >= 4
               ? "border-danger"
               : parseFloat(jugador.mitjanaScrabbles) >= 3
-              ? "border-primary"              
+              ? "border-primary"
               : ""
           }" data-bs-toggle="collapse" data-bs-target="#collapse${jugador.ID}">
               <div class="card-body desplega">
@@ -815,7 +838,10 @@ function renderScrabbles(jugador) {
           </div>
       </div>
           `;
-  document.getElementById("content").innerHTML += jugadorTemplate;
+  var cardjug = document.createElement("div");
+  cardjug.innerHTML = jugadorTemplate;
+  document.getElementById("content").appendChild(cardjug);
+  //document.getElementById("content").innerHTML += jugadorTemplate;
 
   vistesPartides.push(
     ...jugador.partides.filter((p) => p.Suma_punts > 0).map((ap) => ap.ID)
@@ -895,7 +921,10 @@ function renderPartida(jugador) {
           </div>
       </div>
           `;
-  document.getElementById("content").innerHTML += jugadorTemplate;
+  var cardjug = document.createElement("div");
+  cardjug.innerHTML = jugadorTemplate;
+  document.getElementById("content").appendChild(cardjug);
+  //document.getElementById("content").innerHTML += jugadorTemplate;
   vistesPartides.push(
     ...jugador.partides.filter((p) => p.Suma_punts > 0).map((ap) => ap.ID)
   );
@@ -1003,7 +1032,10 @@ function renderJugada(jugador) {
           </div>
       </div>
           `;
-  document.getElementById("content").innerHTML += jugadorTemplate;
+  var cardjug = document.createElement("div");
+  cardjug.innerHTML = jugadorTemplate;
+  document.getElementById("content").appendChild(cardjug);
+  //document.getElementById("content").innerHTML += jugadorTemplate;
   vistesPartides.push(
     ...jugador.partides.filter((p) => p.Suma_punts > 0).map((ap) => ap.ID)
   );
@@ -1074,7 +1106,9 @@ function renderSocial(jugador) {
           </div>
       </div>
           `;
-  document.getElementById("content").innerHTML += jugadorTemplate;
+  var cardsocial = document.createElement("div");
+  cardsocial.innerHTML = jugadorTemplate;
+  document.getElementById("content").appendChild(cardsocial);
   vistesPartides.push(
     ...jugador.partides.filter((p) => p.Suma_punts > 0).map((ap) => ap.ID)
   );
@@ -1143,7 +1177,9 @@ function renderVelocitat(jugador) {
           </div>
       </div>
           `;
-  document.getElementById("content").innerHTML += jugadorTemplate;
+  var cardvel = document.createElement("div");
+  cardvel.innerHTML = jugadorTemplate;
+  document.getElementById("content").appendChild(cardvel);
   vistesPartides.push(
     ...jugador.partides.filter((p) => p.Suma_punts > 0).map((ap) => ap.ID)
   );
@@ -1259,9 +1295,9 @@ function renderConjunta(partida) {
           </div>
       </div>
          `;
-var cardconjunta = document.createElement("div")
-cardconjunta.innerHTML = partidaTemplate;
-  document.getElementById("subcontent").appendChild(cardconjunta)
+  var cardconjunta = document.createElement("div");
+  cardconjunta.innerHTML = partidaTemplate;
+  document.getElementById("subcontent").appendChild(cardconjunta);
 }
 function convertMiliseconds(miliseconds, format) {
   var days, hours, minutes, seconds, total_hours, total_minutes, total_seconds;
