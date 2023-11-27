@@ -1259,8 +1259,8 @@ function renderConjunta(partida) {
           </div>
       </div>
          `;
-
-  document.getElementById("subcontent").innerHTML += partidaTemplate;
+var card = document.createElement("div").innerHTML = partidaTemplate;
+  document.getElementById("subcontent").appendChild(card)
 }
 function convertMiliseconds(miliseconds, format) {
   var days, hours, minutes, seconds, total_hours, total_minutes, total_seconds;
