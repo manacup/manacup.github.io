@@ -159,6 +159,7 @@ function loadPagina(vista) {
   if (carrega == 2) {
     
     if (!!trobada && vista === undefined) {
+      console.log("yeah")
       loadContent(parameterVista ? vistaPredet : ["trobades"]);
       updateHistory(parameterVista ? vistaPredet : ["trobades"]);
     } else {
