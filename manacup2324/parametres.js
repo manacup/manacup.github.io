@@ -130,7 +130,7 @@ function iniciJSON(vista) {
           w.Segona_partida = w.Segona_partida + w.Adv2;
         });
       }
-      loadPagina(vista);
+      loadPagina("trobades");
     })
     .catch((error) => console.error("Error:", error));
   fetch(macroURL + "?page=partides&idfull=" + idfull)
