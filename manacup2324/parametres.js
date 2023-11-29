@@ -123,14 +123,14 @@ function iniciJSON(vista) {
       trobada = data.trobades;
       carrega++;
       if (trobada) {
-        vista="trobades"
+        
         var assistents = trobada.assistents;
         assistents.map((w) => {
           w.Primera_partida = w.Primera_partida + w.Adv1;
           w.Segona_partida = w.Segona_partida + w.Adv2;
         });
       }
-      loadPagina("trobades");
+      loadPagina(vista);
     })
     .catch((error) => console.error("Error:", error));
   fetch(macroURL + "?page=partides&idfull=" + idfull)
@@ -153,12 +153,12 @@ function recuperaPartides() {
 function loadPagina(vista) {
   clearInterval(interval);
   if (carrega == 2) {
-    if (vista || !trobada) {
-      loadContent(parameterVista ? vistaPredet : ["classificacio"]);
-      updateHistory(parameterVista ? vistaPredet : ["classificacio"]);
-    } else {
+    if (trobada && vista === undefined) {
       loadContent(parameterVista ? vistaPredet : ["trobades"]);
       updateHistory(parameterVista ? vistaPredet : ["trobades"]);
+    } else {
+      loadContent(parameterVista ? vistaPredet : ["classificacio"]);
+      updateHistory(parameterVista ? vistaPredet : ["classificacio"]);
     }
   }
 }
