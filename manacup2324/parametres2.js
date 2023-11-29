@@ -154,6 +154,7 @@ function recuperaPartides() {
 }
 
 function loadPagina(vista) {
+  console.log(vista)
   clearInterval(interval);
   if (carrega == 2) {
     if (vista || !trobada) {
