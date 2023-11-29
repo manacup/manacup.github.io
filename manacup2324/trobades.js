@@ -19,7 +19,7 @@ function renderTrobada(trobada) {
               <div class="card-body">
                   <div class="row">
                      <div class="mb-3 text-center">
-                      <div class="h5">${trobada.Trobada}</div>
+                      <div class="h5 mb-3">${trobada.Trobada}</div>
                       <button id="botoAssisteix" class="btn btn-lg btn-danger ${
                         jugadorDesat.Nom == "" ? "d-none" : ""
                       }" onclick="loadContent(['assistencia']);updateHistory(['assistencia']);">
