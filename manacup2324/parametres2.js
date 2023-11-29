@@ -80,7 +80,7 @@ function carregaUsuari() {
 document.addEventListener("DOMContentLoaded", iniciJSON());
 
 function iniciJSON(vista) {
-  var vista = vista
+  
   carregant();
   carrega = 0;
   // Crida a l'API del Google Apps Script
@@ -90,15 +90,15 @@ function iniciJSON(vista) {
       trobada = data.trobades;
       carrega++;
       if (trobada) {
-        vista = "trobades"
+       
         var assistents = trobada.assistents;
         assistents.map((w) => {
           w.Primera_partida = w.Primera_partida + w.Adv1;
           w.Segona_partida = w.Segona_partida + w.Adv2;
         });
-        loadPagina("trobades");
+        
       }
-      //loadPagina(vista);
+      loadPagina(vista);
     })
     .catch((error) => console.error("Error:", error));
   fetch(macroURL + "?page=jugadors&idfull=" + idfull)
@@ -154,7 +154,7 @@ function recuperaPartides() {
 }
 
 function loadPagina(vista) {
-  console.log(vista)
+  console.log(trobada)
   clearInterval(interval);
   if (carrega == 2) {
     if (vista || !trobada) {
