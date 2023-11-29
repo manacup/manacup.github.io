@@ -153,7 +153,7 @@ function recuperaPartides() {
 function loadPagina(vista) {
   clearInterval(interval);
   if (carrega == 2) {
-    if (trobada && vista === undefined) {
+    if (!!trobada && vista === undefined) {
       loadContent(parameterVista ? vistaPredet : ["trobades"]);
       updateHistory(parameterVista ? vistaPredet : ["trobades"]);
     } else {
