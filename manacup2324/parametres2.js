@@ -154,9 +154,10 @@ function recuperaPartides() {
 }
 
 function loadPagina(vista) {
-  console.log(trobada)
+  console.log(!trobada)
   clearInterval(interval);
   if (carrega == 2) {
+    
     if (vista!=undefined || !trobada) {
       loadContent(parameterVista ? vistaPredet : ["classificacio"]);
       updateHistory(parameterVista ? vistaPredet : ["classificacio"]);
