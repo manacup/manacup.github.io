@@ -158,7 +158,7 @@ function loadPagina(vista) {
   clearInterval(interval);
   if (carrega == 2) {
     
-    if (vista!=undefined || trobada) {
+    if (vista || !trobada) {
       loadContent(parameterVista ? vistaPredet : ["classificacio"]);
       updateHistory(parameterVista ? vistaPredet : ["classificacio"]);
     } else {
