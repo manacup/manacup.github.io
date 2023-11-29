@@ -80,10 +80,27 @@ function carregaUsuari() {
 document.addEventListener("DOMContentLoaded", iniciJSON());
 
 function iniciJSON(vista) {
-  vista = vista
+  var vista = vista
   carregant();
   carrega = 0;
   // Crida a l'API del Google Apps Script
+  fetch(macroURL + "?page=trobades&idfull=" + idfull)
+    .then((response) => response.json())
+    .then((data) => {
+      trobada = data.trobades;
+      carrega++;
+      if (trobada) {
+        vista = "trobades"
+        var assistents = trobada.assistents;
+        assistents.map((w) => {
+          w.Primera_partida = w.Primera_partida + w.Adv1;
+          w.Segona_partida = w.Segona_partida + w.Adv2;
+        });
+        loadPagina("trobades");
+      }
+      //loadPagina(vista);
+    })
+    .catch((error) => console.error("Error:", error));
   fetch(macroURL + "?page=jugadors&idfull=" + idfull)
     .then((response) => response.json())
     .then((data) => {
@@ -118,23 +135,7 @@ function iniciJSON(vista) {
       //carrega++;
     })
     .catch((error) => console.error("Error:", error));
-  fetch(macroURL + "?page=trobades&idfull=" + idfull)
-    .then((response) => response.json())
-    .then((data) => {
-      trobada = data.trobades;
-      carrega++;
-      if (trobada) {
-        vista = "trobades"
-        var assistents = trobada.assistents;
-        assistents.map((w) => {
-          w.Primera_partida = w.Primera_partida + w.Adv1;
-          w.Segona_partida = w.Segona_partida + w.Adv2;
-        });
-        loadPagina("trobades");
-      }
-      loadPagina(vista);
-    })
-    .catch((error) => console.error("Error:", error));
+  
   fetch(macroURL + "?page=partides&idfull=" + idfull)
     .then((response) => response.json())
     .then((data) => {
