@@ -143,7 +143,7 @@ function iniciJSON(vista) {
     .catch((error) => console.error("Error:", error));
 }
 function recuperaPartides() {
-  if ((carrega = 2)) {
+  if (carrega === 2) {
     dades.forEach((jug) => {
       jug.partides = partides.filter((partida) => partida.Jugador1 == jug.Nom);
     });
