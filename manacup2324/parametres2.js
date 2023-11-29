@@ -123,6 +123,7 @@ function iniciJSON(vista) {
       trobada = data.trobades;
       carrega++;
       if (trobada) {
+        vista = "trobades"
         var assistents = trobada.assistents;
         assistents.map((w) => {
           w.Primera_partida = w.Primera_partida + w.Adv1;
