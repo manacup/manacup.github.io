@@ -130,6 +130,7 @@ function iniciJSON(vista) {
           w.Primera_partida = w.Primera_partida + w.Adv1;
           w.Segona_partida = w.Segona_partida + w.Adv2;
         });
+        loadPagina("trobades");
       }
       loadPagina(vista);
     })
