@@ -18,15 +18,15 @@ function renderTrobada(trobada) {
           <div class="card mb-3"> <!-- Replace with Bootstrap list group -->
               <div class="card-body">
                   <div class="row">
-                     <div class="d-flex mb-3 align-items-center">
-                      <div class="h5 flex-grow-1">${trobada.Trobada}</div>
-                      <button id="botoAssisteix" class="btn btn-danger ${
+                     <div class="mb-3 text-center">
+                      <div class="h5">${trobada.Trobada}</div>
+                      <button id="botoAssisteix" class="btn btn-lg btn-danger ${
                         jugadorDesat.Nom == "" ? "d-none" : ""
                       }" onclick="loadContent(['assistencia']);updateHistory(['assistencia']);">
                           <i class="bi bi-hand-index"></i>
                           Confirma assistència
                       </button>
-                      <button id="botoAssisteix2" class="btn btn-danger ${
+                      <button id="botoAssisteix2" class="btn btn-lg btn-danger ${
                         jugadorDesat.Nom != "" ? "d-none" : ""
                       }" data-bs-toggle="modal" data-bs-target="#desajug" aria-expanded="false"
               aria-controls="desajug">
