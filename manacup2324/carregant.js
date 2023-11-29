@@ -25,6 +25,7 @@ function carregant(){
  
     
     function escribirCadaSegundo() {
+      //let content = document.getElementById("content")
         content.innerHTML=""
         let contador = 0;
       
@@ -32,7 +33,7 @@ function carregant(){
           // Acción que se ejecutará cada segundo
           var div = document.createElement("div")
           div.innerHTML = template
-          content.appenChild(div)
+          content.appendChild(div)
           contador++;
       
           if (contador === 6) {
