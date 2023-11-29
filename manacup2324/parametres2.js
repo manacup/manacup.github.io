@@ -88,7 +88,7 @@ function iniciJSON(vista) {
     .then((response) => response.json())
     .then((data) => {
       trobada = data.trobades;
-      carrega++;
+      
       if (trobada) {
        
         var assistents = trobada.assistents;
@@ -98,6 +98,7 @@ function iniciJSON(vista) {
         });
         
       }
+      carrega++;
       loadPagina(vista);
     })
     .catch((error) => console.error("Error:", error));
