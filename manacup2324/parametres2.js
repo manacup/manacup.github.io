@@ -158,12 +158,12 @@ function loadPagina(vista) {
   clearInterval(interval);
   if (carrega == 2) {
     
-    if (vista || !trobada) {
-      loadContent(parameterVista ? vistaPredet : ["classificacio"]);
-      updateHistory(parameterVista ? vistaPredet : ["classificacio"]);
-    } else {
+    if (trobada && vista === undefined) {
       loadContent(parameterVista ? vistaPredet : ["trobades"]);
       updateHistory(parameterVista ? vistaPredet : ["trobades"]);
+    } else {
+      loadContent(parameterVista ? vistaPredet : ["classificacio"]);
+      updateHistory(parameterVista ? vistaPredet : ["classificacio"]);
     }
   }
 }
