@@ -30,7 +30,9 @@ function carregant(){
       
         const intervalo = setInterval(() => {
           // Acción que se ejecutará cada segundo
-          content.innerHTML += template
+          var div = document.createElement("div")
+          div.innerHTML = template
+          content.appenChild(div)
           contador++;
       
           if (contador === 6) {
