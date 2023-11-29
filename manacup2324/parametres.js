@@ -80,9 +80,28 @@ function carregaUsuari() {
 document.addEventListener("DOMContentLoaded", iniciJSON());
 
 function iniciJSON(vista) {
+  
   carregant();
   carrega = 0;
   // Crida a l'API del Google Apps Script
+  fetch(macroURL + "?page=trobades&idfull=" + idfull)
+    .then((response) => response.json())
+    .then((data) => {
+      trobada = data.trobades;
+      
+      if (trobada) {
+       
+        var assistents = trobada.assistents;
+        assistents.map((w) => {
+          w.Primera_partida = w.Primera_partida + w.Adv1;
+          w.Segona_partida = w.Segona_partida + w.Adv2;
+        });
+        
+      }
+      carrega++;
+      loadPagina(vista);
+    })
+    .catch((error) => console.error("Error:", error));
   fetch(macroURL + "?page=jugadors&idfull=" + idfull)
     .then((response) => response.json())
     .then((data) => {
@@ -117,22 +136,7 @@ function iniciJSON(vista) {
       //carrega++;
     })
     .catch((error) => console.error("Error:", error));
-  fetch(macroURL + "?page=trobades&idfull=" + idfull)
-    .then((response) => response.json())
-    .then((data) => {
-      trobada = data.trobades;
-      carrega++;
-      if (trobada) {
-        
-        var assistents = trobada.assistents;
-        assistents.map((w) => {
-          w.Primera_partida = w.Primera_partida + w.Adv1;
-          w.Segona_partida = w.Segona_partida + w.Adv2;
-        });
-      }
-      loadPagina(vista);
-    })
-    .catch((error) => console.error("Error:", error));
+  
   fetch(macroURL + "?page=partides&idfull=" + idfull)
     .then((response) => response.json())
     .then((data) => {
@@ -143,7 +147,7 @@ function iniciJSON(vista) {
     .catch((error) => console.error("Error:", error));
 }
 function recuperaPartides() {
-  if (carrega === 2) {
+  if ((carrega = 2)) {
     dades.forEach((jug) => {
       jug.partides = partides.filter((partida) => partida.Jugador1 == jug.Nom);
     });
@@ -151,9 +155,12 @@ function recuperaPartides() {
 }
 
 function loadPagina(vista) {
+  console.log(!!trobada&& vista === undefined)
   clearInterval(interval);
-  if (carrega === 2) {
+  if (carrega == 2) {
+    
     if (!!trobada && vista === undefined) {
+      console.log("yeah")
       loadContent(parameterVista ? vistaPredet : ["trobades"]);
       updateHistory(parameterVista ? vistaPredet : ["trobades"]);
     } else {
