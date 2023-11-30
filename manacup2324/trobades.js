@@ -24,14 +24,14 @@ function renderTrobada(trobada) {
                         jugadorDesat.Nom == "" ? "d-none" : ""
                       }" onclick="loadContent(['assistencia']);updateHistory(['assistencia']);">
                           <i class="bi bi-hand-index"></i>
-                          Confirma assistència
+                          Confirma l'assistència
                       </button>
                       <button id="botoAssisteix2" class="btn btn-lg btn-danger ${
                         jugadorDesat.Nom != "" ? "d-none" : ""
                       }" data-bs-toggle="modal" data-bs-target="#desajug" aria-expanded="false"
               aria-controls="desajug">
                           <i class="bi bi-hand-index"></i>
-                          Confirma assistència
+                          Confirma l'assistència
                       </button>
               </div>
                       <p class="mb-2">${trobada.Data} a les ${trobada.Hora}</p>
@@ -126,7 +126,7 @@ function renderFormTrobada(trobada) {
         <div class="col-10 mb-3">Assistiré a la trobada</div>
         <div class="col-2 text-end">
           <div class="form-check form-switch">
-            <input class="form-check-input" name="Assistencia" type="checkbox" role="switch" id="siAssistire"  value="si" data-bs-toggle="collapse" data-bs-target="#assisteix" onchange="this.checked?document.getElementById('noAssistire').checked=false:document.getElementById('noAssistire').checked=true">
+            <input class="form-check-input" name="Assistencia" type="checkbox" role="switch" id="siAssistire"  value="si" data-bs-toggle="collapse" data-bs-target="#assisteix" onchange="this.checked?{document.getElementById('noAssistire').checked=false;document.getElementById("textboto").innerHTML="Envia la meva assistència"}:{document.getElementById('noAssistire').checked=true";document.getElementById("textboto").innerHTML="Envia la meva NO assistència"}>
           </div>
           <div class="form-check form-switch">
             <input class="form-check-input visually-hidden" name="Assistencia" type="checkbox" role="switch" id="noAssistire"  value="no" checked>        
@@ -275,7 +275,7 @@ function renderFormTrobada(trobada) {
         <div class="col-12 text-end">
           <button id="enviaAssistencia" class="btn btn-primary" type="submit" onclick="main()">
              <span class="spinner-border spinner-border-sm d-none" role="status" aria-hidden="true" id="spnbtn3"></span>
-             Confirma assistència
+             <span id="textboto">Envia la meva NO assistència</span>
           </button>
            
         </div>
