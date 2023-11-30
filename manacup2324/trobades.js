@@ -275,7 +275,7 @@ function renderFormTrobada(trobada) {
         <div class="col-12 text-end">
           <button id="enviaAssistencia" class="btn btn-primary" type="submit" onclick="main()">
              <span class="spinner-border spinner-border-sm d-none" role="status" aria-hidden="true" id="spnbtn3"></span>
-             Envia la meva ${document.getElementById('noAssistire').checked?"NO ":""}assistència
+             Envia la meva ${document.getElementById('noAssistire').addEventListener("change",()=>{return document.getElementById('noAssistire').checked?"NO ":""})}assistència
           </button>
            
         </div>
