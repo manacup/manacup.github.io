@@ -13,15 +13,16 @@
 }
 :root,
 [data-bs-theme=light] {
-  --bs-border-radius: 1rem;
+  --bs-card-border-radius: 1rem;
+  border-radius: 1rem;
 }
 :root,
 [data-bs-theme=dark] {
-  --bs-border-radius: 1rem;
+  --bs-card-border-radius: 1rem;
 }
 :root,
 [data-bs-theme=auto] {
-  --bs-border-radius: 1rem;
+  --bs-card-border-radius: 1rem;
 }
 .missatge {
     cursor: pointer;
