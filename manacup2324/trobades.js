@@ -126,7 +126,7 @@ function renderFormTrobada(trobada) {
         <div class="col-10 mb-3">Assistiré a la trobada</div>
         <div class="col-2 text-end">
           <div class="form-check form-switch">
-            <input class="form-check-input" name="Assistencia" type="checkbox" role="switch" id="siAssistire"  value="si" data-bs-toggle="collapse" data-bs-target="#assisteix" onchange="this.checked?()=>{document.getElementById('noAssistire').checked=false;document.getElementById("textboto").innerHTML="Envia la meva assistència"}:()=>{document.getElementById('noAssistire').checked=true";document.getElementById("textboto").innerHTML="Envia la meva NO assistència"}>
+            <input class="form-check-input" name="Assistencia" type="checkbox" role="switch" id="siAssistire"  value="si" data-bs-toggle="collapse" data-bs-target="#assisteix" onchange="this.checked?()=>{document.getElementById('noAssistire').checked=false;document.getElementById('textboto').innerHTML='Envia la meva assistència'}:()=>{document.getElementById('noAssistire').checked=true;document.getElementById('textboto').innerHTML='Envia la meva NO assistència'}">
           </div>
           <div class="form-check form-switch">
             <input class="form-check-input visually-hidden" name="Assistencia" type="checkbox" role="switch" id="noAssistire"  value="no" checked>        
