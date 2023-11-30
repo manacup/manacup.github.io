@@ -12,6 +12,15 @@
   background-color: var(--bs-light)!important;
 }
 
+[data-bs-theme=light] {
+  --bs-border-radius: 1rem;
+}
+[data-bs-theme=dark] {
+  --bs-border-radius: 1rem;
+}
+[data-bs-theme=auto] {
+  --bs-border-radius: 1rem;
+}
 .missatge {
     cursor: pointer;
   }
