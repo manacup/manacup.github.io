@@ -11,11 +11,14 @@
 [data-bs-theme=auto] .bg-body {  
   background-color: var(--bs-light)!important;
 }
-.card {  
-  border-radius: 1rem;
+[data-bs-theme=light]{
+      --bs-border-radius: 1rem!important;
 }
-.list-group {
-  border-radius: 1rem;
+[data-bs-theme=dark]{
+      --bs-border-radius: 1rem!important;
+}
+[data-bs-theme=auto]{
+      --bs-border-radius: 1rem!important;
 }
 .missatge {
     cursor: pointer;
