@@ -11,13 +11,15 @@
 [data-bs-theme=auto] .bg-body {  
   background-color: var(--bs-light)!important;
 }
-
+:root,
 [data-bs-theme=light] {
   --bs-border-radius: 1rem;
 }
+:root,
 [data-bs-theme=dark] {
   --bs-border-radius: 1rem;
 }
+:root,
 [data-bs-theme=auto] {
   --bs-border-radius: 1rem;
 }
