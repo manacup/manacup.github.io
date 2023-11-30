@@ -122,7 +122,7 @@ function iniciJSON(vista) {
        // Process 'aparellaments' data...
    
        // Example: Accessing data from the 'calendari' response
-       calendari = dataCalendari.calendari.filter((p) => p.Estat != "none");
+       rondes = dataCalendari.calendari.filter((p) => p.Estat != "none");
        // Process 'calendari' data...
    
        // Example: Accessing data from the 'partides' response
@@ -130,7 +130,7 @@ function iniciJSON(vista) {
        // Process 'partides' data...
    
        // Continue with your logic here..
-       recuperaPartides();
+      recuperaPartides();
       carregaUsuari();
       renderUserCard(jugadorDesat);
       swipe();
