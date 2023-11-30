@@ -839,6 +839,7 @@ function renderScrabbles(jugador) {
       </div>
           `;
   var cardjug = document.createElement("div");
+  cardjug.classList.add("p-0")
   cardjug.innerHTML = jugadorTemplate;
   document.getElementById("content").appendChild(cardjug);
   //document.getElementById("content").innerHTML += jugadorTemplate;
@@ -922,6 +923,7 @@ function renderPartida(jugador) {
       </div>
           `;
   var cardjug = document.createElement("div");
+  cardjug.classList.add("p-0")
   cardjug.innerHTML = jugadorTemplate;
   document.getElementById("content").appendChild(cardjug);
   //document.getElementById("content").innerHTML += jugadorTemplate;
@@ -1033,6 +1035,7 @@ function renderJugada(jugador) {
       </div>
           `;
   var cardjug = document.createElement("div");
+  cardjug.classList.add("p-0")
   cardjug.innerHTML = jugadorTemplate;
   document.getElementById("content").appendChild(cardjug);
   //document.getElementById("content").innerHTML += jugadorTemplate;
@@ -1107,6 +1110,7 @@ function renderSocial(jugador) {
       </div>
           `;
   var cardsocial = document.createElement("div");
+  cardsocial.classList.add("p-0")
   cardsocial.innerHTML = jugadorTemplate;
   document.getElementById("content").appendChild(cardsocial);
   vistesPartides.push(
@@ -1178,6 +1182,7 @@ function renderVelocitat(jugador) {
       </div>
           `;
   var cardvel = document.createElement("div");
+  cardvel.classList.add("p-0")
   cardvel.innerHTML = jugadorTemplate;
   document.getElementById("content").appendChild(cardvel);
   vistesPartides.push(
