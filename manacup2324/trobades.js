@@ -126,7 +126,7 @@ function renderFormTrobada(trobada) {
         <div class="col-10 mb-3">Assistiré a la trobada</div>
         <div class="col-2 text-end">
           <div class="form-check form-switch">
-            <input class="form-check-input" name="Assistencia" type="checkbox" role="switch" id="siAssistire"  value="si" data-bs-toggle="collapse" data-bs-target="#assisteix" onchange="this.checked?()=>{document.getElementById('noAssistire').checked=false;document.getElementById('textboto').innerHTML='Envia la meva assistència'}:()=>{document.getElementById('noAssistire').checked=true;document.getElementById('textboto').innerHTML='Envia la meva NO assistència'}">
+            <input class="form-check-input" name="Assistencia" type="checkbox" role="switch" id="siAssistire"  value="si" data-bs-toggle="collapse" data-bs-target="#assisteix" onchange="this.checked?document.getElementById('noAssistire').checked=false:document.getElementById('noAssistire').checked=true">
           </div>
           <div class="form-check form-switch">
             <input class="form-check-input visually-hidden" name="Assistencia" type="checkbox" role="switch" id="noAssistire"  value="no" checked>        
@@ -275,7 +275,7 @@ function renderFormTrobada(trobada) {
         <div class="col-12 text-end">
           <button id="enviaAssistencia" class="btn btn-primary" type="submit" onclick="main()">
              <span class="spinner-border spinner-border-sm d-none" role="status" aria-hidden="true" id="spnbtn3"></span>
-             <span id="textboto">Envia la meva NO assistència</span>
+             Envia la meva ${document.getElementById('noAssistire').checked?"NO ":""}assistència
           </button>
            
         </div>
