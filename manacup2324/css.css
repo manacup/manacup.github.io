@@ -285,11 +285,12 @@
       font-size: 1rem;
       color: #333;
       position: absolute;
-      top: 50%;
+      top: 30%;
       left: 50%;
       transform: translate(-50%, -50%) scale(0.5);
       opacity: 0;
       transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+  z-index:3000;
     }
 
   .desapareixesquerra {
