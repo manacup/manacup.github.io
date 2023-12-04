@@ -1,8 +1,14 @@
- function elimina(el){
+let costat = true
+function elimina(el){
      el.style.color="red"
-     el.classList.add("desapareixdreta")
-     setTimeOut((el)=>{
-         el.remove()},100)
+     if(costat){
+      el.classList.add("desapareixdreta")
+      costat=false
+     }else{el.classList.add("desapareixesquerra")
+      costat=true
+          }
+     setTimeout((el)=>{
+         el.remove()},250)
  }
 let interval = ""
 function carregant(){
