@@ -1,5 +1,6 @@
 let costat = true
 function elimina(el){
+     showNumber
      el.style.color="red"
      if(costat){
       el.classList.add("desapareixdreta")
@@ -9,6 +10,21 @@ function elimina(el){
           }
      setTimeout(function(){el.remove()},400)
  }
+let num = 1
+    function showNumber() {
+      const numberElement = document.getElementById('number');
+      numberElement.innerText = num;
+      num++
+      numberElement.style.transform = 'translate(-50%, -50%) scale(10)';
+      numberElement.style.opacity = 1;
+
+      setTimeout(() => {
+        numberElement.style.transform = 'translate(-50%, -50%) scale(0.5)';
+        numberElement.style.opacity = 0;
+      }, 500);
+    }
+
+    
 let interval = ""
 function carregant(){
     const template = `
