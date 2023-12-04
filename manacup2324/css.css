@@ -281,6 +281,10 @@
       opacity: 1;
     }
   }
+.desapareixesquerra {
+    animation: desapareixesquerra 0.5s;
+  }
+
 #number {
       font-size: 1rem;
       color: #333;
@@ -293,6 +297,4 @@
   z-index:3000;
     }
 
-  .desapareixesquerra {
-    animation: desapareixesquerra 0.5s;
-  }
+  
