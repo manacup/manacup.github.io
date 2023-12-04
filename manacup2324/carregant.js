@@ -1,3 +1,9 @@
+ function elimina(el){
+     el.style.color="red"
+     el.classList.add("desapareixdreta")
+     setTimeOut((el)=>{
+         el.remove()},100)
+ }
 let interval = ""
 function carregant(){
     const template = `
@@ -22,12 +28,7 @@ function carregant(){
           </div>
         </div>
         `
- function elimina(el){
-     el.style.color="red"
-     el.classList.add("desapareixdreta")
-     setTimeOut((el)=>{
-         el.remove()},100)
- }
+
     
     function escribirCadaSegundo() {
       //let content = document.getElementById("content")
