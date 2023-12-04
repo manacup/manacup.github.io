@@ -2,7 +2,7 @@ let interval = ""
 function carregant(){
     const template = `
         <div class="p-1">
-          <div class="card " onclick="this.classList.add("desapareixdreta");>
+          <div class="card " onclick="elimina(this);>
             <div class="card-body">
               <div class="row ">
                 <div class="col-2">
@@ -22,7 +22,11 @@ function carregant(){
           </div>
         </div>
         `
- 
+ function elimina(el){
+     el.style.color="red"
+     setTimeOut((el)=>{
+         el.remove()},100)
+ }
     
     function escribirCadaSegundo() {
       //let content = document.getElementById("content")
