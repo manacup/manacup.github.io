@@ -1,6 +1,6 @@
 let costat = true
 function elimina(el){
-     showNumber
+     showNumber()
      el.style.color="red"
      if(costat){
       el.classList.add("desapareixdreta")
