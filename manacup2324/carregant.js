@@ -2,7 +2,7 @@ let interval = ""
 function carregant(){
     const template = `
         <div class="p-1">
-          <div class="card ">
+          <div class="card " onclick="this.remove()">
             <div class="card-body">
               <div class="row ">
                 <div class="col-2">
