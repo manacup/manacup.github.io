@@ -7,7 +7,7 @@ function elimina(el){
      }else{el.classList.add("desapareixesquerra")
       costat=true
           }
-     setTimeout(el.remove(),500)
+     setTimeout(function(){el.remove()},500)
  }
 let interval = ""
 function carregant(){
