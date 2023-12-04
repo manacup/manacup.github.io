@@ -24,6 +24,7 @@ function carregant(){
         `
  function elimina(el){
      el.style.color="red"
+     el.classList.add("desapareixdreta")
      setTimeOut((el)=>{
          el.remove()},100)
  }
