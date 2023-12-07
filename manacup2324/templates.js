@@ -1496,7 +1496,7 @@ function ompleTaulaRonda(partidesRonda) {
                 <div>
                   
                   <span class="text-primary ${
-                    partida.Puntuacio_1 > partida.Puntuacio_2
+                    parseInt(partida.Puntuacio_1) > parseInt(partida.Puntuacio_2)
                       ? "fw-bold"
                       : partida.Suma_punts > 0
                       ? ""
@@ -1504,7 +1504,7 @@ function ompleTaulaRonda(partidesRonda) {
                   }">${partida.Puntuacio_1}</span>
   <span class="vr"></span>
                   <span class="text-primary ${
-                    partida.Puntuacio_2 > partida.Puntuacio_1
+                    parseInt(partida.Puntuacio_2) > parseInt(partida.Puntuacio_1)
                       ? "fw-bold"
                       : partida.Suma_punts > 0
                       ? ""
