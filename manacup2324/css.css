@@ -20,6 +20,9 @@
 [data-bs-theme=auto]{
       --bs-border-radius: 1rem!important;
 }
+.click {
+  cursor: pointer;
+}
 .missatge {
     cursor: pointer;
   }
