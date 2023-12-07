@@ -151,7 +151,7 @@ function renderJugador(jugador) {
                 }</span>
                 </div>
                   <div class="card-body ">
-                    <ul class="list-group list-group-flush rounded-3">
+                    <ul class="list-group list-group-flush rounded-4">
                       <li class="list-group-item d-flex justify-content-between align-items-center" data-bs-toggle="collapse" data-bs-target="#collapseResum${
                         jugador.ID
                       }">
@@ -240,7 +240,7 @@ function renderJugador(jugador) {
                 }</span>
                 </div>
                   <div class="card-body ">
-                    <ul class="list-group list-group-flush rounded-3">
+                    <ul class="list-group list-group-flush rounded-4">
   
                       <li class="list-group-item d-flex justify-content-between align-items-center">
                         <div class="">Numero total de Scrabbles al campionat	:</div>
@@ -282,7 +282,7 @@ function renderJugador(jugador) {
                 }</span>
                 </div>
                   <div class="card-body ">
-                    <ul class="list-group list-group-flush rounded-3">
+                    <ul class="list-group list-group-flush rounded-4">
   
                       <li class="list-group-item d-flex justify-content-between align-items-center">
                         <div class="">Punts de la millor partida:</div>
@@ -326,7 +326,7 @@ function renderJugador(jugador) {
                 )}</span>
                 </div>
                   <div class="card-body ">
-                    <ul class="list-group list-group-flush rounded-3">
+                    <ul class="list-group list-group-flush rounded-4">
   
                       <li class="list-group-item d-flex justify-content-between align-items-center">
                         <div class="">Punts de la millor partida conjunta:</div>
@@ -370,7 +370,7 @@ function renderJugador(jugador) {
                 }</span>
                 </div>
                   <div class="card-body ">
-                    <ul class="list-group list-group-flush rounded-3">
+                    <ul class="list-group list-group-flush rounded-4">
   
                       <li class="list-group-item d-flex justify-content-between align-items-center">
                         <div class="">Punts de la millor jugada:</div>
@@ -422,7 +422,7 @@ function renderJugador(jugador) {
                 }</span>
                 </div>
                   <div class="card-body ">
-                    <ul class="list-group list-group-flush rounded-3">
+                    <ul class="list-group list-group-flush rounded-4">
                       <li class="list-group-item d-flex justify-content-between align-items-center">
                         <div class="">Punts per immediatesa:</div>
                         <div class="">${jugador.Punts_velocitat}</div>
@@ -460,7 +460,7 @@ function renderJugador(jugador) {
                   }</span>
                 </div>
                   <div class="card-body ">
-                    <ul class="list-group list-group-flush rounded-3">
+                    <ul class="list-group list-group-flush rounded-4">
                       <li class="list-group-item d-flex justify-content-between align-items-center">
                         <div class="">Total partides:</div>
                         <div class="">${jugador.Punts_social}</div>
@@ -495,7 +495,7 @@ function renderJugador(jugador) {
               <div class="card">
                 <div class="card-header d-flex"><span class="flex-fill">Partides pendents i disputades</span><i class="bi bi-calendar3" id="ordenarBoton" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Ordena per número de ronda o per ordre de les partides jugades per veure la ratxa."></i></div>
                   <div class="">
-                    <ul class="list-group list-group-flush rounded-3">
+                    <ul class="list-group list-group-flush rounded-4">
   
       
                         <table class="table" id="miTabla">
@@ -1405,7 +1405,7 @@ function renderRondes(ronda) {
                   </div>
               </div>             
               <div class="collapse" id="collapseronda${ronda.Ronda}">
-                  <ul class="list-group list-group-flush rounded-3">
+                  <ul class="list-group list-group-flush rounded-4">
                     <li class="list-group-item d-flex justify-content-between align-items-top">
                       <div>Partides mil·lenàries:</div>
                       <div>${ronda.Mil·lenàries}</div>                    	
