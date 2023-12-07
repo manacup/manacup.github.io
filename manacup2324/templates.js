@@ -667,7 +667,7 @@ function renderDetallPartida(partida) {
 function renderClassificacio(jugador) {
   const jugadorTemplate = `
            <div class="p-1 entrada">
-           <div class="card ${
+           <div class="card click ${
              jugador.Posició <= 3
                ? "border-danger"
                : jugador.Posició <= 8
