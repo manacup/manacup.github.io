@@ -1479,9 +1479,9 @@ function ompleTaulaRonda(partidesRonda) {
     const llistaTemplate = ` 
   
             <tr class="${
-              partida.Puntuacio_1 > partida.Puntuacio_2
+              parseint(partida.Puntuacio_1) > parseint(partida.Puntuacio_2)
                 ? "table-success"
-                : partida.Puntuacio_2 > partida.Puntuacio_1
+                : parseint(partida.Puntuacio_2) >parseint( partida.Puntuacio_1)
                 ? "table-danger"
                 : ""
             }">              
