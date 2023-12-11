@@ -5,7 +5,7 @@ var timer = null;
 let temps = 60; // temps en segons
 var qryStrCache = '';
 var comptador = 0
-var numParaules = comptador+1	
+
 let errors = 0;
 let incorrectWords = [];
 
@@ -257,7 +257,13 @@ var qryDelInterval = function () {
 }
 
 function showWord(){
-	jQuery('.qry').val(combinarParaules(Math.ceil((comptador+1)/10)))
+	var numParaules
+	if(comptador>0){
+		numParaules = Math.ceil(comptador/10)
+	}else{
+		numParaules = 1
+	}
+	jQuery('.qry').val(combinarParaules(numParaules))
 }
 var qryDelete = function(force) {
 	
