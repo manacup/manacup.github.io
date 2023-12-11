@@ -257,7 +257,7 @@ var qryDelInterval = function () {
 }
 
 function showWord(){
-	jQuery('.qry').val(combinarParaules(Math.ceil(numParaules/10)))
+	jQuery('.qry').val(combinarParaules(Math.ceil((comptador+1)/10)))
 }
 var qryDelete = function(force) {
 	
