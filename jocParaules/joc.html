@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+    <meta charset="UTF-8">
+    <title>Word Game</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="word-display"></div>
+    <button id="correct-btn">Correcte</button>
+    <button id="incorrect-btn">Incorrecte</button>
+    <div id="score">Punts: 0</div>
+    <div id="timer">Temps: 60 segons</div>
+
+<!-- Modal -->
+<div id="modal" class="modal">
+    <div class="modal-content">
+        <p id="modal-score"></p>
+        <p id="modal-errors"></p>
+        <button onclick="restartGame()">Reinicia el joc</button>
+    </div>
+</div>
+
+    <script src="app.js"></script>
+</body>
+</html>
