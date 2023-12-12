@@ -19,7 +19,7 @@ const DnD = {
     this.classList.add("drag--moving");
     if(this.classList.contains("comodi")){
       e.dataTransfer.setData("class","comodi")
-      this.classList.remove("comodi")
+      
     }
     
     DnD.dragEl = this;
@@ -50,11 +50,16 @@ const DnD = {
   }else{
     obrirModal(this)
     this.classList.add("comodi")
+    if(DnD.dragEl!=this){
+      DnD.dragEl.classList.remove("comodi")
+    }
   }
+
     return false;
   },
   onDragEnd: function (e) {
     this.classList.remove("drag--moving");
+    
     [].forEach.call(boxes, function (box) {
       box.classList.remove("drag--hover");
     });
