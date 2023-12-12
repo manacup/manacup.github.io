@@ -229,12 +229,12 @@ button {
 }
 .correct {
   color: green;
-  transform: scale(10); /* Augmenta el tamany */
+  transform: scale(2); /* Augmenta el tamany */
   transition: color 0.3s ease-in-out, transform 0.3s ease-in-out;
 }
 
 .incorrect {
   color: red;
-  transform: scale(10); /* Augmenta el tamany */
+  transform: scale(2); /* Augmenta el tamany */
   transition: color 0.3s ease-in-out, transform 0.3s ease-in-out;
 }
