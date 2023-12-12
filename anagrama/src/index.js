@@ -228,7 +228,7 @@ function actualitzarClasses() {
       element.classList.add("escarras");
       element.classList.add("comodi");
       
-      //element.addEventListener("click",trialletra)
+     
       
     }else{element.classList.remove("escarras");}
   });
@@ -256,12 +256,12 @@ var elementsToObserve = document.querySelectorAll(".grid-item");
 elementsToObserve.forEach(function (element) {
   observer.observe(element, config);
 });
-function trialletra(){
-  var kk = obrirModal(this)
-  console.log("escarràs",this)
-  this.classList.add("comodi")
-  
-}
+
+document.addEventListener("click",(e)=>{
+  if(e.target.classList.contains("comodi")){
+    obrirModal(e.target)
+  }
+})
 
 function obrirModal(element) {
   const modal = document.getElementById('modallletres');
