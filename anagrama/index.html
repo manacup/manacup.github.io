@@ -5,6 +5,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, user-scalable=no" />
     <link rel="stylesheet" href="src/styles.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
     <script type="text/javascript" src="js/jquery.js"></script>
 	
 	<script type="text/javascript" src="js/generalq.js"></script>
@@ -14,7 +15,7 @@
 
   <body>
     <div id="app">
-      <div class="grid" id="scrabble-board">
+      <div class="grid" id="scrabbleBoard">
         <div class="grid-item" draggable="true"></div>
         <div class="grid-item" draggable="true"></div>
         <div class="grid-item" draggable="true"></div>
@@ -36,9 +37,16 @@
       </div>
 
       <div class="botons-auxiliars">
-        <button type="button" id="barreja" class="aux">barreja</button>
-        <button type="button" id="retorna" class="aux">retorna</button>
-        <button type="button" id="reinicia" class="aux">nou</button>
+        <span  id="barreja" class="aux"><span class="material-symbols-outlined">
+          shuffle
+          </span></span>
+        <span  id="retorna" class="aux"><span class="material-symbols-outlined">
+          place_item
+          </span></span>
+        <span  id="reinicia" class="aux"><span class="material-symbols-outlined">
+          refresh
+          </span></span>
+          
 
       </div>
     
@@ -68,6 +76,11 @@
 				<button onclick="restartGame()" class="restart">Reinicia el joc</button>
 			</div>
 		</div>
+    <div id="modallletres" class="modal">
+      <div id="modal-content" class="modal-content">
+        <div id="lletra-grid"></div>
+      </div>
+    </div>
     </div>
     <script src="src/index.js"></script>
    

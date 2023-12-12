@@ -15,124 +15,141 @@ import "./dndPolyfill";
 
 const DnD = {
   dragEl: null,
-  onDragStart: function(e) {
+  onDragStart: function (e) {
     this.classList.add("drag--moving");
+    if(this.classList.contains("comodi")){
+      e.dataTransfer.setData("class","comodi")
+      this.classList.remove("comodi")
+    }
+    
     DnD.dragEl = this;
     e.dataTransfer.effectAllowed = "move";
     e.dataTransfer.setData("text/html", this.innerHTML);
+    
   },
-  onDragOver: function(e) {
+  onDragOver: function (e) {
     if (e.preventDefault) {
       e.preventDefault();
     }
     e.dataTransfer.dropEffect = "move";
     return false;
   },
-  onDragEnter: function(e) {
+  onDragEnter: function (e) {
     this.classList.add("drag--hover");
   },
-  onDragLeave: function(e) {
+  onDragLeave: function (e) {
     this.classList.remove("drag--hover");
   },
-  onDrop: function(e) {
+  onDrop: function (e) {
     if (e.stopPropagation) e.stopPropagation();
     DnD.dragEl.innerHTML = this.innerHTML;
-    this.innerHTML = e.dataTransfer.getData("text/html");
-   
+    var content = e.dataTransfer.getData("text/html");
+    var classcomodi = e.dataTransfer.getData("class")
+    if(classcomodi!="comodi"){
+    this.innerHTML = content    
+  }else{
+    obrirModal(this)
+    this.classList.add("comodi")
+  }
     return false;
   },
-  onDragEnd: function(e) {
+  onDragEnd: function (e) {
     this.classList.remove("drag--moving");
-    [].forEach.call(boxes, function(box) {
+    [].forEach.call(boxes, function (box) {
       box.classList.remove("drag--hover");
     });
-  }
-  
+  },
 };
 
 function obtenerFichasAleatorias(distribucion) {
-  const letrasDisponibles = distribucion
+  const letrasDisponibles = distribucion;
 
   // Función auxiliar para obtener un elemento aleatorio y actualizar la distribución
   function obtenerLetraAleatoria() {
-    const letra = letrasDisponibles[Math.floor(Math.random() * letrasDisponibles.length)];
+    const letra =
+      letrasDisponibles[Math.floor(Math.random() * letrasDisponibles.length)];
     //distribucion[letra].cantidad--;
 
     // Eliminar letras agotadas de la lista
-  /*   if (distribucion[letra].cantidad === 0) {
+    /*   if (distribucion[letra].cantidad === 0) {
       const index = letrasDisponibles.indexOf(letra);
       letrasDisponibles.splice(index, 1);
     }*/
 
-    return letra; 
+    return letra;
   }
 
-  let noufichasAleatorias = ["","","","","","",""]
-  
+  let noufichasAleatorias = ["", "", "", "", "", "", ""];
+
   for (let i = 0; i < 7; i++) {
     const letraAleatoria = obtenerLetraAleatoria();
     noufichasAleatorias.push(letraAleatoria);
   }
-console.log(noufichasAleatorias)
+  console.log(noufichasAleatorias);
   return noufichasAleatorias;
-
 }
 
 // Ejemplo de uso con la distribución de Scrabble en catalán
 const distribucionScrabbleCatala = {
-  'A': { cantidad: 12, valor: 1 },
-  'B': { cantidad: 2, valor: 3 },
-  'C': { cantidad: 3, valor: 3 },
-  'D': { cantidad: 3, valor: 2 },
-  'E': { cantidad: 13, valor: 1 },
-  'F': { cantidad: 1, valor: 4 },
-  'G': { cantidad: 2, valor: 2 },
-  'H': { cantidad: 1, valor: 4 },
-  'I': { cantidad: 8, valor: 1 },
-  'J': { cantidad: 1, valor: 8 },
-  'L': { cantidad: 4, valor: 1 },
-  'M': { cantidad: 3, valor: 3 },
-  'N': { cantidad: 6, valor: 1 },
-  'O': { cantidad: 5, valor: 1 },
-  'P': { cantidad: 2, valor: 3 },
-  'Qu': { cantidad: 1, valor: 8 },
-  'R': { cantidad: 8, valor: 1 },
-  'S': { cantidad: 8, valor: 1 },
-  'T': { cantidad: 5, valor: 1 },
-  'U': { cantidad: 4, valor: 1 },
-  'V': { cantidad: 1, valor: 4 },
-  'X': { cantidad: 1, valor: 8 },
-  
-  'Z': { cantidad: 1, valor: 10 },
-  'Ç': { cantidad: 1, valor: 4 },
-  'L·L': { cantidad: 1, valor: 8 },
-  'NY': { cantidad: 1, valor: 8 },
-  
+  A: { cantidad: 12, valor: 1 },
+  B: { cantidad: 2, valor: 3 },
+  C: { cantidad: 3, valor: 2 },
+  Ç: { cantidad: 1, valor: 10 },
+  D: { cantidad: 3, valor: 2 },
+  E: { cantidad: 13, valor: 1 },
+  F: { cantidad: 1, valor: 4 },
+  G: { cantidad: 2, valor: 3 },
+  H: { cantidad: 1, valor: 8 },
+  I: { cantidad: 8, valor: 1 },
+  J: { cantidad: 1, valor: 8 },
+  L: { cantidad: 4, valor: 1 },
+  "L·L": { cantidad: 1, valor: 10 },
+  M: { cantidad: 3, valor: 2 },
+  N: { cantidad: 6, valor: 1 },
+  NY: { cantidad: 1, valor: 10 },
+  O: { cantidad: 5, valor: 1 },
+  P: { cantidad: 2, valor: 3 },
+  Qu: { cantidad: 1, valor: 8 },
+  R: { cantidad: 8, valor: 1 },
+  S: { cantidad: 8, valor: 1 },
+  T: { cantidad: 5, valor: 1 },
+  U: { cantidad: 4, valor: 1 },
+  V: { cantidad: 1, valor: 4 },
+  X: { cantidad: 1, valor: 10 },
+  Z: { cantidad: 1, valor: 8 },
+  "?": { cantidad: 2, valor: 0 },
 };
-const arrayRepetido = Object.entries(distribucionScrabbleCatala)
-  .flatMap(([letra, { cantidad }]) => Array(cantidad).fill(letra));
+const arrayRepetido = Object.entries(distribucionScrabbleCatala).flatMap(
+  ([letra, { cantidad }]) => Array(cantidad).fill(letra)
+);
 
-//console.log(arrayRepetido);
+const arrayLletres = Object.keys(distribucionScrabbleCatala).map((key) => key);
+arrayLletres.pop();
+
+console.log(arrayLletres);
 
 var fichasAleatorias = obtenerFichasAleatorias(arrayRepetido);
 console.log(fichasAleatorias);
 
-
 const boxes = document.querySelectorAll(".grid-item[draggable]");
-function inici(){
-  [].forEach.call(boxes, function(box, index) {
-    box.textContent = fichasAleatorias[index]; })
+function inici() {
+  [].forEach.call(boxes, function (box, index) {
+    box.textContent = fichasAleatorias[index];
+  });
+  netejaClasses("scrabbleBoard")
 }
 
-function reinici(){
+function reinici() {
   fichasAleatorias = obtenerFichasAleatorias(arrayRepetido);
   console.log(fichasAleatorias);
-  [].forEach.call(boxes, function(box, index) {
-    box.textContent = fichasAleatorias[index]; })
+  [].forEach.call(boxes, function (box, index) {
+    box.textContent = fichasAleatorias[index];
+  });
+  netejaClasses("scrabbleBoard")
+  netejaClasses("rack")
 }
 
-
-[].forEach.call(boxes, function(box, index) {
+[].forEach.call(boxes, function (box, index) {
   //box.textContent = randomNumsArray[index];
 
   box.addEventListener("dragstart", DnD.onDragStart, false);
@@ -141,27 +158,28 @@ function reinici(){
   box.addEventListener("dragleave", DnD.onDragLeave, false);
   box.addEventListener("drop", DnD.onDrop, false);
   box.addEventListener("dragend", DnD.onDragEnd, false);
- 
-  
 });
 
-inici()
+inici();
 function updateWordInput() {
-  var board = document.getElementById("scrabble-board");
-  var tiles = board.getElementsByClassName("grid-item");
+  var board = document.getElementById("scrabbleBoard");
+  var tiles = board.getElementsByClassName("grid-item");  
   var wordInput = document.getElementById("word-input");
   var word = "";
-
   for (var i = 0; i < tiles.length; i++) {
-      word += tiles[i].innerText;
+    word += tiles[i].innerText;
   }
-
-  wordInput.value = word;
-  
+  wordInput.value = word;  
 }
-$('#barreja').click(barreja);
-$('#retorna').click(inici);
-$('#reinicia').click(reinici);
+$("#barreja").click(barreja);
+$("#retorna").click(inici);
+$("#reinicia").click(reinici);
+
+function netejaClasses(node){
+  var board = document.getElementById(node);
+  board.querySelectorAll(".grid-item").forEach(t=>t.classList.remove("comodi"))
+console.log("kk")
+}
 
 function barreja() {
   const miDiv = document.getElementById("rack");
@@ -182,23 +200,28 @@ function barreja() {
   miDiv.innerHTML = "";
 
   // Agregar los elementos reordenados al div
-  elementos.forEach(function(elemento) {
+  elementos.forEach(function (elemento) {
     miDiv.appendChild(elemento);
   });
-};
-
+}
 
 function actualitzarClasses() {
-  var elements = document.querySelectorAll('.grid-item');
+  var elements = document.querySelectorAll(".grid-item");
 
-  elements.forEach(function(element) {
-    if (element.textContent.trim() !== '') {
-      element.classList.remove('grid-buit');
-      
+  elements.forEach(function (element) {
+    if (element.textContent.trim() !== "") {
+      element.classList.remove("grid-buit");
     } else {
-      
-      element.classList.add('grid-buit');
+      element.classList.add("grid-buit");
     }
+    if (element.textContent.trim() == "?") {  
+        
+      element.classList.add("escarras");
+      element.classList.add("comodi");
+      
+      //element.addEventListener("click",trialletra)
+      
+    }else{element.classList.remove("escarras");}
   });
 }
 
@@ -206,10 +229,13 @@ function actualitzarClasses() {
 actualitzarClasses();
 
 // Crear una observació de les mutations
-var observer = new MutationObserver(function(mutations) {
-  mutations.forEach(function(mutation) {
+var observer = new MutationObserver(function (mutations) {
+  mutations.forEach(function (mutation) {
     // Si la mutació afecta al `textContent`, actualitza les classes
-    if (mutation.type === 'childList' && mutation.target.classList.contains('grid-item')) {
+    if (
+      mutation.type === "childList" &&
+      mutation.target.classList.contains("grid-item")
+    ) {
       actualitzarClasses();
     }
   });
@@ -217,7 +243,49 @@ var observer = new MutationObserver(function(mutations) {
 
 // Observar els canvis en el contingut dels divs amb la classe "item"
 var config = { childList: true, subtree: true };
-var elementsToObserve = document.querySelectorAll('.grid-item');
-elementsToObserve.forEach(function(element) {
+var elementsToObserve = document.querySelectorAll(".grid-item");
+elementsToObserve.forEach(function (element) {
   observer.observe(element, config);
 });
+function trialletra(){
+  var kk = obrirModal(this)
+  console.log("escarràs",this)
+  this.classList.add("comodi")
+  
+}
+
+function obrirModal(element) {
+  const modal = document.getElementById('modallletres');
+  const lletraGrid = document.getElementById('lletra-grid');
+  
+
+  // Afegir les lletres al grid del modal
+  arrayLletres.forEach(lletra => {
+    const lletraElement = document.createElement('div');
+    lletraElement.classList.add('lletra');
+    lletraElement.textContent = lletra;
+    lletraElement.addEventListener('click', () => {
+      element.textContent=lletra
+      tancarModal(lletra)
+    });
+    lletraGrid.appendChild(lletraElement);
+  });
+
+  modal.style.display = 'flex';
+  
+}
+
+
+function tancarModal(lletra) {
+  const modal = document.getElementById('modallletres');
+  const lletraGrid = document.getElementById('lletra-grid');
+
+  // Eliminar les lletres del grid abans de tancar el modal
+  lletraGrid.innerHTML = '';
+
+  modal.style.display = 'none';
+
+  // Retornar la lletra
+  console.log('Lletra premuda:', lletra);
+  
+}
