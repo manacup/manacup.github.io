@@ -122,7 +122,7 @@ var qryParse = function(wds) {
 var qryShow = function() {
 console.log(paraulesUsades)
 	updateWordInput()
-	inici()
+	//inici()
 	let resp=true
 	
 	qryStrCache = jQuery('.qry').val();
@@ -333,7 +333,7 @@ jQuery(function ($) {
 	$('.qry').focus();
 	$('.qry').keydown(qryUpdate);	
 	$('.sch').click(qryShow);
-	$('.schf').click(qryShowfalse);
+	//$('.schf').click(qryShowfalse);
 	//$('.clr').click(qryDelete);
 	$('form').submit(function (e) { 
 		e.preventDefault(); 

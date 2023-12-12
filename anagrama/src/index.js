@@ -38,6 +38,7 @@ const DnD = {
     if (e.stopPropagation) e.stopPropagation();
     DnD.dragEl.innerHTML = this.innerHTML;
     this.innerHTML = e.dataTransfer.getData("text/html");
+   
     return false;
   },
   onDragEnd: function(e) {
@@ -134,6 +135,7 @@ function inici(){
   box.addEventListener("dragleave", DnD.onDragLeave, false);
   box.addEventListener("drop", DnD.onDrop, false);
   box.addEventListener("dragend", DnD.onDragEnd, false);
+ 
   
 });
 
@@ -149,8 +151,12 @@ function updateWordInput() {
   }
 
   wordInput.value = word;
+  
 }
-/* document.addEventListener("DOMContentLoaded", function() {
+$('#barreja').click(barreja);
+$('#retorna').click(inici);
+
+function barreja() {
   const miDiv = document.getElementById("rack");
   const elementos = Array.from(miDiv.querySelectorAll(".grid-item"));
 
@@ -172,4 +178,39 @@ function updateWordInput() {
   elementos.forEach(function(elemento) {
     miDiv.appendChild(elemento);
   });
-}); */
+};
+
+
+function actualitzarClasses() {
+  var elements = document.querySelectorAll('.grid-item');
+
+  elements.forEach(function(element) {
+    if (element.textContent.trim() !== '') {
+      element.classList.remove('grid-buit');
+      
+    } else {
+      
+      element.classList.add('grid-buit');
+    }
+  });
+}
+
+// Rastrejar tots els div amb la classe "item"
+actualitzarClasses();
+
+// Crear una observació de les mutations
+var observer = new MutationObserver(function(mutations) {
+  mutations.forEach(function(mutation) {
+    // Si la mutació afecta al `textContent`, actualitza les classes
+    if (mutation.type === 'childList' && mutation.target.classList.contains('grid-item')) {
+      actualitzarClasses();
+    }
+  });
+});
+
+// Observar els canvis en el contingut dels divs amb la classe "item"
+var config = { childList: true, subtree: true };
+var elementsToObserve = document.querySelectorAll('.grid-item');
+elementsToObserve.forEach(function(element) {
+  observer.observe(element, config);
+});
