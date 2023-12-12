@@ -1,0 +1,33 @@
+.board {
+    width: 336px; /* El ancho total de las celdas debe ser menor que el del tablero para evitar desbordamientos */
+    height: 42px;
+    border: 2px solid #000;
+    display: flex;
+    gap: 5px;
+    overflow: hidden;
+}
+
+
+
+.tile-rack {
+    display: flex;
+    gap: 5px;
+    margin-top: 10px;
+    width: 336px; /* El ancho total de las celdas debe ser menor que el del tablero para evitar desbordamientos */
+    height: 42px;
+}
+
+.tile {
+    width: 40px;
+    height: 40px;
+    background-color: #eee;
+    text-align: center;
+    line-height: 40px;
+    user-select: none;
+    border-radius: 5px;
+  
+}
+
+#word-input {
+    margin-top: 10px;
+}

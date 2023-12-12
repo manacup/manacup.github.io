@@ -1,0 +1,2086 @@
+<html lang="en"><head>
+    
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="theme-color" content="#33b5e5">
+
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+    
+
+    
+    <link rel="stylesheet" href="https://mdbootstrap.com/wp-content/themes/mdbootstrap4/docs-app/css/dist/mdb5/standard/core.min.css">
+    
+
+    <link rel="stylesheet" id="roboto-subset.css-css" href="https://mdbcdn.b-cdn.net/wp-content/themes/mdbootstrap4/docs-app/css/mdb5/fonts/roboto-subset.css?ver=3.9.0-update.5" type="text/css" media="all">
+
+    
+    <meta charset="utf-8">
+    <title>Bootstrap Drag and drop (draggable &amp; sortable} - examples &amp; tutorial</title>
+    
+    <meta name="description" content="Drag and Drop plugin built with Bootstrap 5. Draggable list, cards, tables, grid, buttons. Sort, copy, scroll, disable, delay, nested &amp; other options. ">
+    <meta name="image" content="https://mdbootstrap.com/docs/standard/plugins/drag-and-drop/drag-and-drop.jpg">
+    
+    <meta itemprop="name" content="Bootstrap Drag and drop (draggable &amp; sortable} - examples &amp; tutorial">
+    <meta itemprop="description" content="Drag and Drop plugin built with Bootstrap 5. Draggable list, cards, tables, grid, buttons. Sort, copy, scroll, disable, delay, nested &amp; other options. ">
+    <meta itemprop="image" content="https://mdbootstrap.com/docs/standard/plugins/drag-and-drop/drag-and-drop.jpg">
+    
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:title" content="Bootstrap Drag and drop (draggable &amp; sortable} - examples &amp; tutorial">
+    <meta property="twitter:description" content="Drag and Drop plugin built with Bootstrap 5. Draggable list, cards, tables, grid, buttons. Sort, copy, scroll, disable, delay, nested &amp; other options. ">
+    <meta property="twitter:site" content="@MDBootstrap">
+    <meta property="twitter:creator" content="@MDBootstrap">
+    <meta property="twitter:image:src" content="https://mdbootstrap.com/docs/standard/plugins/drag-and-drop/drag-and-drop.jpg">
+    <meta property="twitter:player" content="https://www.youtube.com/watch?v=rQryOSyfXmI">
+    
+    <meta property="og:title" content="Bootstrap Drag and drop (draggable &amp; sortable} - examples &amp; tutorial">
+    <meta property="og:description" content="Drag and Drop plugin built with Bootstrap 5. Draggable list, cards, tables, grid, buttons. Sort, copy, scroll, disable, delay, nested &amp; other options. ">
+    <meta property="og:image" content="https://mdbootstrap.com/docs/standard/plugins/drag-and-drop/drag-and-drop.jpg">
+    <meta property="og:url" content="https://mdbootstrap.com/docs/standard/plugins/drag-and-drop/">
+    <meta property="og:site_name" content="MDB - Material Design for Bootstrap">
+    <meta property="og:locale" content="en_US">
+    <meta property="og:video" content="https://www.youtube.com/watch?v=rQryOSyfXmI">
+    <meta property="fb:admins" content="443467622524287">
+    <meta property="og:type" content="website">
+
+    <link rel="shortcut icon" href="https://mdbcdn.b-cdn.net/wp-content/themes/mdbootstrap4/favicon.ico">
+
+    <link rel="canonical" href="https://mdbootstrap.com/docs/standard/plugins/drag-and-drop/">
+    <script>
+     window.dataLayer = window.dataLayer || [];
+    </script>
+
+    
+
+    
+    <script type="application/ld+json">
+        {
+            "@context": "https://schema.org",
+            "@type": "BreadcrumbList",
+            "itemListElement": [{
+                "@type": "ListItem",
+                "position": 1,
+                "name": "MDBootstrap",
+                "item": "https://mdbootstrap.com/",
+                "image": "https://mdbcdn.b-cdn.net/img/Marketing/mdb-press-pack/mdb-main.webp"
+            }, {
+                "@type": "ListItem",
+                "position": 2,
+                "name": "Standard",
+                "item": "https://mdbootstrap.com/docs/standard/",
+                "image": "https://mdbcdn.b-cdn.net/wp-content/themes/mdbootstrap4/content/en/_mdb5/standard/about/assets/mdb5-about.webp"
+            }, {
+                "@type": "ListItem",
+                "position": 3,
+                "name": "Drag and drop",
+                "item": "https://mdbootstrap.com/docs/standard/plugins/drag-and-drop/",
+                "image": "https://mdbootstrap.com/docs/standard/plugins/drag-and-drop/drag-and-drop.jpg"
+            }]
+        }
+    </script>
+
+    <style>
+        #navbarNotification::after {
+            content: none !important;
+        }
+
+         
+        #main-navbar .badge {
+            position: absolute;
+            font-size: .6rem;
+            margin-top: -.1rem;
+            margin-left: -.5rem;
+            padding: .2em .45em;
+        }
+
+         
+        #main-navbar .nav-link {
+            font-size: 1rem !important;
+            font-weight: 400;
+        }
+    </style>
+    <style>
+        [data-mdb-theme="dark"]
+        .docs-pills .btn-copy-code,
+        .docs-tab-content .export-to-snippet {
+            color: #E5E7EB !important;
+        }
+
+        .docs-pills {
+            border-radius: 0.5rem;
+        }
+
+        .docs-pills pre[class*="language-"] {
+            border-bottom-right-radius: 0.5rem;
+            border-bottom-left-radius: 0.5rem;
+        }
+
+        .docs-pills .btn-copy-code,
+        .docs-tab-content .export-to-snippet {
+            position: absolute;
+            top: 16px;
+            right: 16px;
+            box-shadow: none !important;
+            color: #616161 !important;
+            background-color: transparent !important;
+            padding: 6px 15px !important;
+        }
+    </style>
+    <style>
+        @media (max-width: 576px) {
+            [id^=dpl-], [class^=dpl-], .mobile-hidden {
+                display: none!important;
+            }
+        }
+    </style>
+
+
+
+    <style>
+        .mdb-skin-custom {
+            transition-duration: .5s;
+            transition-property: color,background-color,border-color,text-decoration-color,fill,stroke,-webkit-text-decoration-color;
+            transition-timing-function: cubic-bezier(.4,0,.2,1);
+        }
+
+    </style>
+
+     <script>
+        const pagesExcludedFromDarkTheme = [
+          "docs/angular",
+          "docs/b4/angular",
+          "docs/react",
+          "docs/b4/react",
+          "docs/vue",
+          "docs/b4/vue",
+          "/docs/standard/pro/demo/",
+          "/learn",
+          "/docs/standard/pro/enterprise",
+          "/cart",
+          "/docs/standard/tools/",
+          "/user",
+          "/blog",
+          "/services",
+          "/bootstrap-6",
+          "/bootstrap-6-release-date/"
+        ]
+        const isPageExcludedFromDarkTheme = () => {
+            const currentPage = window.location.pathname
+            return pagesExcludedFromDarkTheme.some(page => currentPage.indexOf(page) !== -1);
+        }
+        const isPageShouldUseDarkTheme = !isPageExcludedFromDarkTheme();
+        const isDarkThemeSetInLocalStorageOrPreferColorScheme =
+            localStorage.theme === "dark" ||
+            (!("theme" in localStorage) &&
+            window.matchMedia("(prefers-color-scheme: dark)").matches)
+
+        try {
+            if (isPageShouldUseDarkTheme && isDarkThemeSetInLocalStorageOrPreferColorScheme) {
+                document.documentElement.dataset.mdbTheme = "dark";
+                document
+                .querySelector('meta[name="theme-color"]')
+                .setAttribute("content", "#0B1120");
+            } else {
+                delete document.documentElement.dataset.mdbTheme;
+            }
+        } catch (_) {}
+      </script>
+
+
+
+
+
+
+
+<body class="mdb-skin-custom" data-mdb-scrollspy-init="" data-mdb-target="#scrollspy" data-mdb-offset="250" data-mdb-scrollspy-initialized="true">
+
+
+
+<header>
+  <style>
+     
+    [data-mdb-theme="dark"] #mdb-sidenav {
+      background-color: var(--mdb-body-bg) !important;
+
+      .sidenav-link {
+        color: #d3d5db !important;
+      }
+
+      #breakdown-link {
+        border-bottom: 1px solid var(--mdb-divider-color) !important;
+      }
+
+      .active {
+        background-color: #fff3;
+      }
+
+      :focus {
+        background-color: #ffffff1a
+      }
+    }
+
+    #mdb-sidenav .sidenav-collapse, .sidenav .rotate-icon {
+      transition-property: none;
+    }
+
+    #mdb-sidenav .fas {
+      color: #9FA6B2;
+    }
+    #mdb-sidenav a {
+      color: #4B5563;
+    }
+    #mdb-sidenav a.active {
+      background-color: rgba(18,102,241,.05);
+    }
+    #mdb-sidenav .sidenav-item {
+      margin-left: 5px;
+      margin-right: 0.5rem;
+    }
+    #mdb-sidenav .sidenav-item:first-child {
+      margin-top: 4px;
+    }
+    #mdb-sidenav .sidenav-item:last-child {
+      margin-bottom: 4px;
+    }
+
+    #mdb-sidenav-toggler {
+      display: none;
+      background-color: transparent;
+    }
+
+    .mdb-docs-layout {
+      padding-left: 240px;
+    }
+
+    @media (max-width: 1440px) {
+      #mdb-sidenav-toggler {
+        display: unset;
+      }
+
+      #mdb-sidenav {
+        transform: translate(-100%);
+      }
+
+      .mdb-docs-layout {
+        padding-left: 0px;
+      }
+    }
+
+    .sidenav-icon {
+      color: #9fa6b2;
+      height: 14px;
+    }
+  </style>
+
+  <div class="ps__rail-x" style="left: 0px; bottom: 0px;"><div class="ps__thumb-x" tabindex="0" style="left: 0px; width: 0px;"></div></div><div class="ps__rail-y" style="top: 0px; height: 667px; right: 0px;"><div class="ps__thumb-y" tabindex="0" style="top: 0px; height: 382px;"></div></div></div>
+
+  <span id="dpl-auth-modal"></span>
+
+  <style>
+    [data-mdb-theme="dark"] #mdb-navbar {
+      background-color: var(--mdb-body-bg) !important;
+    }
+
+    #mdb-navbar {
+      padding-left: 240px;
+      height: 58px;
+    }
+
+    #mdb-navbar-brand-logo {
+      display: none;
+    }
+
+    #sidenav-toggler {
+      display: none;
+    }
+    
+
+    @media (max-width: 1440px) {
+      #sidenav-toggler {
+        display: inline-block;
+      }
+    }
+
+    @media (max-width: 1440px) {
+      #mdb-navbar {
+        padding-left: 0;
+      }
+    }
+  </style>
+  <nav id="mdb-navbar" class="  navbar fixed-top navbar-expand-lg navbar-light bg-white shadow-2">
+    <div class="container-fluid">
+      <button id="sidenav-toggler" data-mdb-toggle="sidenav" data-mdb-target="#mdb-sidenav" type="button" class="btn shadow-0 p-0 me-3" aria-expanded="false"><i class="fas fa-bars fa-lg"></i></button>
+      <a class="navbar-brand me-2" id="mdb-navbar-brand-logo" href="https://mdbootstrap.com/">
+        <img src="https://mdbcdn.b-cdn.net/img/logo/mdb-transaprent-noshadows.webp" height="16" alt="" loading="lazy" style="margin-top: -1px">
+      </a>
+      
+      
+      <span id="dpl-navbar-new-right-buttons" class="navbar-nav ms-auto d-flex flex-row"></span>
+
+      
+      <ul id="main-navbar" class="nav navbar-nav nav-flex-icons ml-auto ms-auto flex-row">
+        <li class="nav-item me-3 me-lg-0">
+          <a class="nav-link" href="/pro/">
+            <span class="">Pricing</span>
+          </a>
+        </li>
+        <li class="nav-item me-3 me-lg-0">
+          <a class="nav-link" href="/license/">
+            <span class="">License</span>
+          </a>
+        </li>
+        <li class="nav-item me-3 me-lg-0">
+          <a class="nav-link" href="/services/">
+            <span class="">Services</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="https://github.com/mdbootstrap/mdb-ui-kit" rel="nofollow" target="_blank">
+            <i class="fab fa-github"></i>
+          </a>
+        </li>
+      </ul>
+      
+    </div>
+    </nav>
+
+  
+  
+</header>
+
+
+
+
+
+
+
+<main class=" pt-5  mdb-docs-layout">
+    <div class="container  mt-5  px-lg-5">
+        
+        
+        
+        
+
+        
+        <ul id="docs-nav-pills" class="nav nav-pills mb-4" role="tablist">
+            <li class="nav-item" role="presentation">
+                <a id="docs-tab-overview" class="nav-link px-5 font-weight-bold" data-mdb-tab-init="" href="#docsTabsOverview" role="tab" aria-selected="true" data-mdb-tab-initialized="true">Overview</a>
+            </li>
+
+            
+
+            
+                <li class="nav-item" role="presentation">
+                    <a class="nav-link px-5 font-weight-bold" href="https://mdb-builder.com" target="_blank" aria-selected="false" tabindex="-1" role="tab">Builder<i class="fas fa-external-link-alt ms-1"></i></a>
+                </li>
+            
+
+            
+        </ul>
+        
+        <div class="tab-content">
+            <div class="tab-pane fade in show active" id="docsTabsOverview" role="tabpanel" aria-labelledby="docs-tab-overview">
+                <div class="row">
+                    
+                    <div class=" col-md-12">
+                        
+
+<link rel="stylesheet" href="https://mdbootstrap.com/wp-content/themes/mdbootstrap4/docs-app/css/dist/mdb5/plugins/standard/drag-and-drop.min.css">
+
+
+
+<style>
+  .draggable-element {
+    display: flex;
+    width: 200px;
+    height: 200px;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--mdb-secondary-bg-subtle);
+  }
+
+  .draggable-drag-ico {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 1.5rem;
+    color: grey;
+  }
+
+  .sortable-list {
+    width: 500px;
+    max-width: 100%;
+    border: solid 1px var(--mdb-secondary-border-subtle);
+    min-height: 60px;
+    display: block;
+    background: var(--mdb-secondary-bg-subtle);
+    border-radius: 4px;
+  }
+
+  .sortable-item {
+    padding: 20px 10px;
+    border-bottom: solid 1px var(--mdb-secondary-border-subtle);
+    color: var(--mdb-body-color);
+    background: var(--mdb-secondary-bg-subtle);
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    user-select: none;
+  }
+
+  #sortable-horizontal .sortable-item {
+    width: 100%;
+    border-bottom: none;
+    border-left: 1px solid var(--mdb-secondary-border-subtle);
+  }
+
+  #sortable-grid {
+    border: none;
+  }
+
+  #sortable-grid .sortable-item {
+    width: 125px;
+    height: 125px;
+    margin: 15px;
+    border: 1px solid var(--mdb-secondary-border-subtle);
+    text-align: center;
+  }
+
+  #sortable-condition-1,
+  #sortable-condition-2 {
+    width: 500px;
+    max-width: 100%;
+    border: solid 1px var(--mdb-secondary-border-subtle);
+    min-height: 60px;
+    display: block;
+    background: var(--mdb-secondary-bg-subtle);
+    border-radius: 4px;
+  }
+
+      [data-mdb-theme="dark"] .col-example {
+      background-color: #212529;
+      border: 1px solid #404040;
+    }
+    .img-transition {
+        transition-duration: .3s;
+        transition-property: opacity;
+        transition-timing-function: cubic-bezier(.4,0,.2,1);
+      }
+
+      .img-light, [data-mdb-theme="dark"] .img-dark {
+        opacity: 1;
+      }
+
+      .img-dark, [data-mdb-theme="dark"] .img-light {
+        opacity: 0;
+      }
+
+</style>
+
+<!--Section: Docs content-->
+<section class="mdb-docs-content-pro">
+  <!--Section: Introduction-->
+  <section id="section-introduction">
+    <!-- Main title -->
+    <h2 class="h1 fw-bold">
+      Drag and drop
+
+  <span>    
+    <a href="https://mdbootstrap.com/docs/standard/pro/" role="button">
+      <i class="far fa-xs fa-gem ms-1 text-danger"></i>
+    </a>
+  </span>
+
+
+
+    </h2>
+
+    <!-- Seo title -->
+    <h1 class="h6">Bootstrap 5 Drag and drop plugin
+</h1>
+
+    <div class="row gx-lg-5 mb-4">
+      <div class="col-md-7 mb-4 mb-md-0">
+        <!-- Description -->
+        <p>
+          Drag and Drop plugin built with Bootstrap 5. Examples of draggable list, cards, tables,
+          grid, buttons. Available sort, copy, scroll, disable, delay, nested &amp; other options.
+        </p>
+
+        <p class="note note-light">
+          <strong>Note:</strong> Read the <strong>API</strong> tab to find all available options and
+          advanced customization
+        </p>
+      </div>
+
+      <div class="col-md-5 mb-4 mb-md-0 text-center">
+        <p class="mb-3">
+          <strong>Try out MDB Drag &amp; Drop Builder</strong>
+        </p>
+
+        <div class="bg-image hover-overlay ripple shadow-1-strong rounded">
+          <picture>
+            <source srcset="https://mdbcdn.b-cdn.net/img/components/builder-light.webp" type="image/webp">
+            <img src="https://mdbcdn.b-cdn.net/img/components/builder-light.webp" class="img-transition img-light position-absolute w-100" alt="MDB 5 - Bootstrap 5 &amp; Material Design Radio Component">
+          </picture>
+          <picture>
+            <source srcset="https://mdbcdn.b-cdn.net/img/components/builder-dark.webp" type="image/webp">
+            <img src="https://mdbcdn.b-cdn.net/img/components/builder-dark.webp" class="img-transition img-dark w-100" alt="MDB 5 - Bootstrap 5 &amp; Material Design Radio Component">
+          </picture>
+          <a href="https://mdb-builder.com" target="_blank">
+            <div class="mask" style="background-color: rgba(251, 251, 251, 0.2);"></div>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    
+
+
+    <p class="note note-primary mt-4">
+  <strong>Note:</strong> Currently, the plugin is only compatible with the basic MDB package imported in UMD format. More about <a href="/docs/standard/getting-started/migration-guide/#section-javascript">import MDB formats</a>.
+</p>
+  </section>
+  <!--Section: Introduction-->
+
+  <hr class="my-5">
+
+  <!--Section: Basic example-->
+  <section id="section-basic-example">
+    <!-- Section title -->
+    <h2 class="mb-4">Draggable basic example</h2>
+
+    <!-- description -->
+    <p class="mb-4">
+      Make an element draggable by adding the <code>data-mdb-draggable-init</code> attribute to the element with the
+      class <code>.draggable-element</code>.
+    </p>
+
+    <!--Section: Live Preview-->
+   
+
+
+<section class="pb-4">
+  <div class="border rounded-5">
+    
+
+    <section class="w-100 p-4 d-flex justify-content-center" style="height: 400px;">
+      <div class="draggable-element shadow-1-strong draggable-cursor-grab" data-mdb-draggable-init="" style="transform: translate3d(15px, 54px, 0px);">
+        <p>Drag me!</p>
+      </div>
+    </section>
+   
+    
+    <div class="p-4 text-center border-top">
+      <a class="btn btn-link px-3 show-mobile-toast">
+        Show code
+      </a>
+    </div>
+    
+  </div>
+</section>
+
+    <!--Section: Live Preview-->
+
+    <!--Section: Code-->
+    <section>
+      <!-- prettier-ignore -->
+            <section class="collapse" id="example1">
+        <div class="pb-4">
+        
+
+
+
+
+
+
+
+
+
+
+  <div class="alert" role="alert" data-mdb-color="primary" style="background-color: #dfe7f6;color: #2c58a0;">
+    <strong>This is a <i class="fas fa-mobile-alt"></i> mobile version of the documentation.</strong>
+    <div class="mt-2">View this website on the desktop to copy &amp; edit the source code of the component.</div>
+  </div>
+
+ </div> </section>
+    </section>
+    <!--Section: Code-->
+  </section>
+  <!--Section: Basic example-->
+
+  <hr class="my-5">
+
+  <!--Section: Draggable with container-->
+  <section id="section-draggable-with-container-example">
+    <!-- Section title -->
+    <h2 class="mb-4">Custom container</h2>
+
+    <!-- description -->
+    <p class="mb-4">
+      Disable the x-axis or y-axis by adding the <code>data-mdb-block-x-axis</code> or
+      <code>data-mdb-block-y-axis</code> attribute, respectively.
+    </p>
+
+    <!--Section: Live Preview-->
+   
+
+
+<section class="pb-4">
+  <div class="border rounded-5">
+    
+
+    <section id="draggable-container" class="w-100 p-4" style="height: 400px; overflow: hidden;">
+      <div class="draggable-element shadow-1-strong draggable-cursor-grab" data-mdb-draggable-init="" data-mdb-container="#draggable-container" style="transform: translate3d(542px, 80px, 0px);">
+        <p>Drag me!</p>
+      </div>
+    </section>
+   
+    
+    <div class="p-4 text-center border-top">
+      <a class="btn btn-link px-3 show-mobile-toast">
+        Show code
+      </a>
+    </div>
+    
+  </div>
+</section>
+
+    <!--Section: Live Preview-->
+
+    <!--Section: Code-->
+    <section>
+      <!-- prettier-ignore -->
+            <section class="collapse" id="example2">
+          <div class="pb-4">
+          
+
+
+
+
+
+
+
+
+
+
+  <div class="alert" role="alert" data-mdb-color="primary" style="background-color: #dfe7f6;color: #2c58a0;">
+    <strong>This is a <i class="fas fa-mobile-alt"></i> mobile version of the documentation.</strong>
+    <div class="mt-2">View this website on the desktop to copy &amp; edit the source code of the component.</div>
+  </div>
+
+ </div> </section>
+    </section>
+    <!--Section: Code-->
+  </section>
+  <!--Section: Draggable with container-->
+
+  <hr class="my-5">
+
+  <!--Section: Draggable with blocked axis-->
+  <section id="section-draggable-with-blocked-axis">
+    <!-- Section title -->
+    <h2 class="mb-4">Blocked axis</h2>
+
+    <!-- description -->
+    <p class="mb-4">
+      Thanks to <code>data-mdb-block-x-axis</code> attribute or
+      <code>data-mdb-block-y-axis</code> attribute you can disable x or y axis.
+    </p>
+
+
+    <!--Section: Live Preview-->
+
+    
+
+
+<section class="pb-4">
+  <div class="border rounded-5">
+    
+    <section id="draggable-container-2" class="w-100 p-4 d-flex justify-content-center" style="height: 400px; overflow: hidden;">
+      <div class="draggable-element shadow-1-strong draggable-cursor-grab" data-mdb-draggable-init="" data-mdb-block-x-axis="true" data-mdb-container="#draggable-container-2" style="transform: translate3d(0px, -24px, 0px);">
+        <p>Drag me!</p>
+      </div>
+
+      <div class="draggable-element shadow-1-strong draggable-cursor-grab" data-mdb-draggable-init="" data-mdb-block-y-axis="true" data-mdb-container="#draggable-container-2" style="transform: translate3d(-142px, 0px, 0px);">
+        <p>Drag me!</p>
+      </div>
+    </section>
+   
+    
+    <div class="p-4 text-center border-top">
+      <a class="btn btn-link px-3 show-mobile-toast">
+        Show code
+      </a>
+    </div>
+    
+  </div>
+</section>
+
+    <!--Section: Live Preview-->
+
+    <!--Section: Code-->
+    <section>
+      <!-- prettier-ignore -->
+            <section class="collapse" id="example3">
+          <div class="pb-4">
+          
+
+
+
+
+
+
+
+
+
+
+  <div class="alert" role="alert" data-mdb-color="primary" style="background-color: #dfe7f6;color: #2c58a0;">
+    <strong>This is a <i class="fas fa-mobile-alt"></i> mobile version of the documentation.</strong>
+    <div class="mt-2">View this website on the desktop to copy &amp; edit the source code of the component.</div>
+  </div>
+
+ </div> </section>
+    </section>
+    <!--Section: Code-->
+  </section>
+  <!--Section: Draggable with blocked axis-->
+
+  <hr class="my-5">
+
+  <!--Section: Draggable with delay-->
+  <section id="section-draggable-with-delay">
+    <!-- Section title -->
+    <h2 class="mb-4">Delay</h2>
+
+    <!-- description -->
+    <p class="mb-4">
+      Set the delay for starting dragging by adding the <code>data-mdb-delay</code> attribute with a value in milliseconds.
+    </p>
+
+    <!--Section: Live Preview-->
+    
+
+
+<section class="pb-4">
+  <div class="border rounded-5">
+     
+    <section id="draggable-container-3" class="w-100 p-4 d-flex justify-content-center" style="height: 400px;">
+      <div class="draggable-element shadow-1-strong draggable-cursor-grab" data-mdb-draggable-init="" data-mdb-delay="1000" style="transform: translate3d(-19px, 106px, 0px);">
+        <p>Drag me after one second!</p>
+      </div>
+    </section>
+   
+    
+    <div class="p-4 text-center border-top">
+      <a class="btn btn-link px-3 show-mobile-toast">
+        Show code
+      </a>
+    </div>
+    
+  </div>
+</section>
+
+    <!--Section: Live Preview-->
+
+    <!--Section: Code-->
+    <section>
+      <!-- prettier-ignore -->
+            <section class="collapse" id="example4">
+          <div class="pb-4">
+          
+
+
+
+
+
+
+
+
+
+
+  <div class="alert" role="alert" data-mdb-color="primary" style="background-color: #dfe7f6;color: #2c58a0;">
+    <strong>This is a <i class="fas fa-mobile-alt"></i> mobile version of the documentation.</strong>
+    <div class="mt-2">View this website on the desktop to copy &amp; edit the source code of the component.</div>
+  </div>
+
+ </div> </section>
+    </section>
+    <!--Section: Code-->
+  </section>
+  <!--Section: Draggable with delay-->
+
+  <hr class="my-5">
+
+  <!--Section: Disabled draggable-->
+  <section id="section-draggable-disabled">
+    <!-- Section title -->
+    <h2 class="mb-4">Disabled</h2>
+
+    <!-- description -->
+    <p class="mb-4">
+      You can set your draggable element as disabled by adding
+      <code>data-mdb-disabled</code> with <code>true</code> value.
+    </p>
+
+    <!--Section: Live Preview-->
+    
+
+
+<section class="pb-4">
+  <div class="border rounded-5">
+    
+    <section id="draggable-container-4" class="w-100 p-4 d-flex justify-content-center" style="height: 400px;">
+      <div class="draggable-element shadow-1-strong draggable-disabled" data-mdb-draggable-init="" data-mdb-disabled="true">
+        <p>Disabled</p>
+      </div>
+    </section>
+   
+    
+    <div class="p-4 text-center border-top">
+      <a class="btn btn-link px-3 show-mobile-toast">
+        Show code
+      </a>
+    </div>
+    
+  </div>
+</section>
+
+    <!--Section: Live Preview-->
+
+    <!--Section: Code-->
+    <section>
+      <!-- prettier-ignore -->
+            <section class="collapse" id="example5">
+          <div class="pb-4">
+          
+
+
+
+
+
+
+
+
+
+
+  <div class="alert" role="alert" data-mdb-color="primary" style="background-color: #dfe7f6;color: #2c58a0;">
+    <strong>This is a <i class="fas fa-mobile-alt"></i> mobile version of the documentation.</strong>
+    <div class="mt-2">View this website on the desktop to copy &amp; edit the source code of the component.</div>
+  </div>
+
+ </div> </section>
+    </section>
+    <!--Section: Code-->
+  </section>
+  <!--Section: Disabled draggable-->
+
+  <hr class="my-5">
+
+  <!--Section: Draggable with custom drag button-->
+  <section id="section-draggable-with-custom-drag-button">
+    <!-- Section title -->
+    <h2 class="mb-4">Custom drag button</h2>
+
+    <!-- description -->
+    <p class="mb-4">
+      By adding <code>data-mdb-drag-handle</code> with selector you can set drag handler of your
+      element. Note that drag handler has to be inside an element.
+    </p>
+
+    <!--Section: Live Preview-->
+   
+
+
+<section class="pb-4">
+  <div class="border rounded-5">
+    
+   <section id="draggable-container-5" class="w-100 p-4 d-flex justify-content-center" style="height: 400px;">
+      <div class="draggable-element shadow-1-strong" data-mdb-draggable-init="" data-mdb-drag-handle=".draggable-drag-ico" style="transform: translate3d(134px, 32px, 0px);">
+        <i class="fas fa-arrows-alt draggable-drag-ico draggable-cursor-grab"></i>
+        <p>Drag only on button!</p>
+      </div>
+    </section>
+   
+    
+    <div class="p-4 text-center border-top">
+      <a class="btn btn-link px-3 show-mobile-toast">
+        Show code
+      </a>
+    </div>
+    
+  </div>
+</section>
+
+    <!--Section: Live Preview-->
+
+    <!--Section: Code-->
+    <section>
+      <!-- prettier-ignore -->
+            <section class="collapse" id="example6">
+          <div class="pb-4">
+          
+
+
+
+
+
+
+
+
+
+
+  <div class="alert" role="alert" data-mdb-color="primary" style="background-color: #dfe7f6;color: #2c58a0;">
+    <strong>This is a <i class="fas fa-mobile-alt"></i> mobile version of the documentation.</strong>
+    <div class="mt-2">View this website on the desktop to copy &amp; edit the source code of the component.</div>
+  </div>
+
+ </div> </section>
+    </section>
+    <!--Section: Code-->
+  </section>
+  <!--Section: Draggable with custom drag button-->
+
+  <hr class="my-5">
+
+  <!--Section: Draggable with scrolling option-->
+  <section id="section-draggable-with-scroll">
+    <!-- Section title -->
+    <h2 class="mb-4">Scrolling option</h2>
+
+    <!-- description -->
+    <p class="mb-4">
+      When your draggable element is inside a scrollable container, the container will scroll when you approach its edge.
+    </p>
+
+    <!--Section: Live Preview-->
+    
+
+
+<section class="pb-4">
+  <div class="border rounded-5">
+    
+    <section id="draggable-container-6" class="w-100 p-4" style="height: 400px; overflow: auto;">
+      <div id="draggable-scroll" class="draggable-element shadow-1-strong draggable-cursor-grab" data-mdb-draggable-init="" data-mdb-container="#draggable-container-6" style="transform: translate3d(326px, 536px, 0px);">
+        <p>Drag!</p>
+      </div>
+
+      <div style="height: 800px; width: 2000px;"></div>
+    </section>
+   
+    
+    <div class="p-4 text-center border-top">
+      <a class="btn btn-link px-3 show-mobile-toast">
+        Show code
+      </a>
+    </div>
+    
+  </div>
+</section>
+
+    <!--Section: Live Preview-->
+
+    <!--Section: Code-->
+    <section>
+      <!-- prettier-ignore -->
+            <section class="collapse" id="example7">
+          <div class="pb-4">
+          
+
+
+
+
+
+
+
+
+
+
+  <div class="alert" role="alert" data-mdb-color="primary" style="background-color: #dfe7f6;color: #2c58a0;">
+    <strong>This is a <i class="fas fa-mobile-alt"></i> mobile version of the documentation.</strong>
+    <div class="mt-2">View this website on the desktop to copy &amp; edit the source code of the component.</div>
+  </div>
+
+ </div> </section>
+    </section>
+    <!--Section: Code-->
+  </section>
+  <!--Section: Draggable with scrolling option-->
+
+  <hr class="my-5">
+
+  <!--Section: Sortable Basic example-->
+  <section id="section-sortable-basic-example">
+    <!-- Section title -->
+    <h2 class="mb-4">Sortable basic example</h2>
+
+    <!-- description -->
+    <p class="mb-4">
+      Make your list sortable by adding the <code>data-mdb-sortable</code> attribute with a value of <code>sortable</code>. Note that only
+      elements with the <code>data-mdb-sortable-init</code> attribute will be able to be sorted.
+    </p>
+
+    <!--Section: Live Preview-->
+    
+
+
+<section class="pb-4">
+  <div class="border rounded-5">
+     
+        <section class="p-4 d-flex justify-content-center w-100">
+          <div data-mdb-sortable-init="" class="sortable-list">
+            
+            
+            
+            
+            
+          <div class="sortable-item" data-mdb-id="sortable-item-555780" style="transition: none 0s ease 0s; transform: translate3d(0px, 0px, 0px);">Item 2</div><div class="sortable-item" data-mdb-id="sortable-item-766436" style="transition: none 0s ease 0s; transform: translate3d(0px, 0px, 0px);">Item 3</div><div class="sortable-item" data-mdb-id="sortable-item-75753" style="transition: none 0s ease 0s; transform: translate3d(0px, 0px, 0px);">Item 4</div><div class="sortable-item" data-mdb-id="sortable-item-513415" style="transform: translate3d(0px, 0px, 0px); transition: none 0s ease 0s;">Item 1</div><div class="sortable-item" data-mdb-id="sortable-item-356902" style="transition: none 0s ease 0s; transform: translate3d(0px, 0px, 0px);">Item 5</div></div>
+        </section>
+   
+    
+    <div class="p-4 text-center border-top">
+      <a class="btn btn-link px-3 show-mobile-toast">
+        Show code
+      </a>
+    </div>
+    
+  </div>
+</section>
+
+    <!--Section: Live Preview-->
+
+    <!--Section: Code-->
+    <section>
+      <!-- prettier-ignore -->
+      <section class="collapse" id="example8">
+        <div class="pb-4">
+        
+
+
+
+
+
+
+
+
+
+
+  <div class="alert" role="alert" data-mdb-color="primary" style="background-color: #dfe7f6;color: #2c58a0;">
+    <strong>This is a <i class="fas fa-mobile-alt"></i> mobile version of the documentation.</strong>
+    <div class="mt-2">View this website on the desktop to copy &amp; edit the source code of the component.</div>
+  </div>
+
+ </div> </section>
+    </section>
+    <!--Section: Code-->
+  </section>
+  <!--Section: Sortable Basic example-->
+
+  <hr class="my-5">
+
+  <!--Section: Sortable horizontal example-->
+  <section id="section-sortable-horizontal-example">
+    <!-- Section title -->
+    <h2 class="mb-4">Horizontal example</h2>
+
+    <!-- description -->
+    <p class="mb-4">A sortable list will work with any element configuration or direction, as it is not limited to a vertical layout.</p>
+
+    <!--Section: Live Preview-->
+      
+
+
+<section class="pb-4">
+  <div class="border rounded-5">
+     
+           <section class="p-4 d-flex justify-content-center w-100">
+      <div id="sortable-horizontal" data-mdb-sortable-init="" class="sortable-list d-flex">
+        
+        
+        
+        
+        
+      <div class="sortable-item" data-mdb-id="sortable-item-335207" style="transform: translate3d(0px, 0px, 0px); transition: none 0s ease 0s;">Item 1</div><div class="sortable-item" data-mdb-id="sortable-item-133638" style="transition: none 0s ease 0s; transform: translate3d(0px, 0px, 0px);">Item 4</div><div class="sortable-item" data-mdb-id="sortable-item-987044" style="transition: none 0s ease 0s; transform: translate3d(0px, 0px, 0px);">Item 3</div><div class="sortable-item" data-mdb-id="sortable-item-221116" style="transition: none 0s ease 0s; transform: translate3d(0px, 0px, 0px);">Item 2</div><div class="sortable-item" data-mdb-id="sortable-item-785709" style="transition: none 0s ease 0s; transform: translate3d(0px, 0px, 0px);">Item 5</div></div>
+    </section>
+   
+    
+    <div class="p-4 text-center border-top">
+      <a class="btn btn-link px-3 show-mobile-toast">
+        Show code
+      </a>
+    </div>
+    
+  </div>
+</section>
+
+    <!--Section: Live Preview-->
+
+    <!--Section: Code-->
+    <section>
+      <!-- prettier-ignore -->
+            <section class="collapse" id="example9">
+          <div class="pb-4">
+          
+
+
+
+
+
+
+
+
+
+
+  <div class="alert" role="alert" data-mdb-color="primary" style="background-color: #dfe7f6;color: #2c58a0;">
+    <strong>This is a <i class="fas fa-mobile-alt"></i> mobile version of the documentation.</strong>
+    <div class="mt-2">View this website on the desktop to copy &amp; edit the source code of the component.</div>
+  </div>
+
+ </div> </section>
+    </section>
+    <!--Section: Code-->
+  </section>
+  <!--Section: Sortable horizontal example-->
+
+  <hr class="my-5">
+
+  <!--Section: Sortable grid example-->
+  <section id="section-sortable-grid-example">
+    <!-- Section title -->
+    <h2 class="mb-4">Grid example</h2>
+
+    <!-- description -->
+    <p class="mb-4">Sortable can also be implemented with the grid layout.</p>
+
+    <!--Section: Live Preview-->
+    
+
+
+<section class="pb-4">
+  <div class="border rounded-5">
+    
+    <section class="w-100 p-4 d-flex mb-4 d-flex justify-content-center">
+      <div id="sortable-grid" data-mdb-sortable-init="" class="sortable-list d-flex flex-wrap">
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+      <div class="sortable-item" data-mdb-id="sortable-item-480420" style="transition: none 0s ease 0s; transform: translate3d(0px, 0px, 0px);">Item 2</div><div class="sortable-item" data-mdb-id="sortable-item-952604" style="transform: translate3d(0px, 0px, 0px); transition: none 0s ease 0s;">Item 1</div><div class="sortable-item" data-mdb-id="sortable-item-333885" style="transition: none 0s ease 0s; transform: translate3d(0px, 0px, 0px);">Item 3</div><div class="sortable-item" data-mdb-id="sortable-item-898861" style="transition: none 0s ease 0s; transform: translate3d(0px, 0px, 0px);">Item 4</div><div class="sortable-item" data-mdb-id="sortable-item-950835" style="transition: none 0s ease 0s; transform: translate3d(0px, 0px, 0px);">Item 6</div><div class="sortable-item" data-mdb-id="sortable-item-281559" style="transition: none 0s ease 0s; transform: translate3d(0px, 0px, 0px);">Item 7</div><div class="sortable-item" data-mdb-id="sortable-item-401477" style="transition: none 0s ease 0s; transform: translate3d(0px, 0px, 0px);">Item 5</div><div class="sortable-item" data-mdb-id="sortable-item-3387" style="transition: none 0s ease 0s; transform: translate3d(0px, 0px, 0px);">Item 9</div><div class="sortable-item" data-mdb-id="sortable-item-83140" style="transition: none 0s ease 0s; transform: translate3d(0px, 0px, 0px);">Item 10</div><div class="sortable-item" data-mdb-id="sortable-item-880040" style="transition: none 0s ease 0s; transform: translate3d(0px, 0px, 0px);">Item 11</div><div class="sortable-item" data-mdb-id="sortable-item-748719" style="transition: none 0s ease 0s; transform: translate3d(0px, 0px, 0px);">Item 8</div><div class="sortable-item" data-mdb-id="sortable-item-849829" style="transition: none 0s ease 0s; transform: translate3d(0px, 0px, 0px);">Item 12</div></div>
+    </section>
+   
+    
+    <div class="p-4 text-center border-top">
+      <a class="btn btn-link px-3 show-mobile-toast">
+        Show code
+      </a>
+    </div>
+    
+  </div>
+</section>
+
+    <!--Section: Live Preview-->
+
+    <!--Section: Code-->
+    <section>
+      <!-- prettier-ignore -->
+      <section class="collapse" id="example10">
+        <div class="pb-4">
+        
+
+
+
+
+
+
+
+
+
+
+  <div class="alert" role="alert" data-mdb-color="primary" style="background-color: #dfe7f6;color: #2c58a0;">
+    <strong>This is a <i class="fas fa-mobile-alt"></i> mobile version of the documentation.</strong>
+    <div class="mt-2">View this website on the desktop to copy &amp; edit the source code of the component.</div>
+  </div>
+
+ </div> </section>
+    </section>
+    <!--Section: Code-->
+  </section>
+  <!--Section: Sortable grid example-->
+
+  <hr class="my-5">
+
+  <!--Section: Sortable multiple tables-->
+  <section id="section-multiple-tables">
+    <!-- Section title -->
+    <h2 class="mb-4">Multiple tables</h2>
+
+    <!-- description -->
+    <p class="mb-4">
+      Connect your list with others by adding the <code>data-mdb-connected-list</code> attribute. Note that you need to
+      set the value as a selector when initializing your component via data attributes.
+    </p>
+
+    <!--Section: Live Preview-->
+      
+
+
+<section class="pb-4">
+  <div class="border rounded-5">
+     
+           <section class="p-4 d-flex justify-content-center w-100">
+      <div id="sortable-multi-tables-1" class="sortable-list" data-mdb-sortable-init="" data-mdb-connected-list="#sortable-multi-tables-2">
+        <h4 class="text-center pt-2">To do</h4>
+        
+        
+        
+        
+        
+        
+      <div class="sortable-item" data-mdb-disabled="true" data-mdb-id="sortable-item-314849" style="transition: none 0s ease 0s; transform: translate3d(0px, 0px, 0px);">Disabled</div><div class="sortable-item" data-mdb-id="sortable-item-334304" style="transform: translate3d(0px, 0px, 0px); transition: none 0s ease 0s;">Item 1</div><div class="sortable-item" data-mdb-id="sortable-item-629225" style="transition: none 0s ease 0s; transform: translate3d(0px, 0px, 0px);">Item 5</div><div class="sortable-item" data-mdb-id="sortable-item-16709" style="transition: none 0s ease 0s; transform: translate3d(0px, 0px, 0px);">Item 7</div><div class="sortable-item" data-mdb-id="sortable-item-872629" style="transition: none 0s ease 0s; transform: translate3d(0px, 0px, 0px);">Item 4</div></div>
+
+      <div id="sortable-multi-tables-2" class="sortable-list" data-mdb-sortable-init="" data-mdb-connected-list="#sortable-multi-tables-1">
+        <h4 class="text-center pt-2">Done</h4>
+        
+        
+        
+        
+        
+      <div class="sortable-item" data-mdb-id="sortable-item-915783" style="transition: none 0s ease 0s; transform: translate3d(0px, 0px, 0px);">Item 2</div><div class="sortable-item" data-mdb-id="sortable-item-889674" style="transition: none 0s ease 0s; transform: translate3d(0px, 0px, 0px);">Item 6</div><div class="sortable-item" data-mdb-id="sortable-item-451775" style="transition: none 0s ease 0s; transform: translate3d(0px, 0px, 0px);">Item 3</div><div class="sortable-item" data-mdb-id="sortable-item-463158" style="transition: none 0s ease 0s; transform: translate3d(0px, 0px, 0px);">Item 8</div><div class="sortable-item" data-mdb-id="sortable-item-459737" style="transition: none 0s ease 0s; transform: translate3d(0px, 0px, 0px);">Item 9</div><div class="sortable-item" data-mdb-id="sortable-item-504332" style="transition: none 0s ease 0s; transform: translate3d(0px, 0px, 0px);">Item 10</div></div>
+    </section>
+   
+    
+    <div class="p-4 text-center border-top">
+      <a class="btn btn-link px-3 show-mobile-toast">
+        Show code
+      </a>
+    </div>
+    
+  </div>
+</section>
+
+    <!--Section: Live Preview-->
+
+    <!--Section: Code-->
+    <section>
+      <!-- prettier-ignore -->
+      <section class="collapse" id="example11">
+        <div class="pb-4">
+          
+
+
+
+
+
+
+
+
+
+
+  <div class="alert" role="alert" data-mdb-color="primary" style="background-color: #dfe7f6;color: #2c58a0;">
+    <strong>This is a <i class="fas fa-mobile-alt"></i> mobile version of the documentation.</strong>
+    <div class="mt-2">View this website on the desktop to copy &amp; edit the source code of the component.</div>
+  </div>
+
+ 
+        </div> 
+      </section>
+    </section>
+    <!--Section: Code-->
+  </section>
+  <!--Section: Sortable multiple tables-->
+
+  <hr class="my-5">
+
+  <!--Section: Sortable with coping items-->
+  <section id="subsection-sortable-with-coping-items">
+    <!-- Section title -->
+    <h2 class="mb-4">Coping items</h2>
+
+    <!-- description -->
+    <p class="mb-4">
+      By adding <code>data-mdb-copy</code> with value <code>true</code> you can copy your items to
+      connected table.
+    </p>
+
+    <!--Section: Live Preview-->
+      
+
+
+<section class="pb-4">
+  <div class="border rounded-5">
+     
+           <section class="p-4 d-flex justify-content-center w-100">
+      <div id="sortable-copy-1" class="sortable-list" data-mdb-sortable-init="" data-mdb-connected-list="#sortable-copy-2" data-mdb-copy="true" data-mdb-sorting="false">
+        <h4 class="text-center pt-2">Elements</h4>
+        <div class="sortable-item" data-mdb-id="sortable-item-377017">Item 1</div>
+        <div class="sortable-item" data-mdb-id="sortable-item-423367">Item 2</div>
+        <div class="sortable-item" data-mdb-id="sortable-item-262795">Item 3</div>
+        <div class="sortable-item" data-mdb-id="sortable-item-686337">Item 4</div>
+        <div class="sortable-item" data-mdb-id="sortable-item-468862">Item 5</div>
+      </div>
+
+      <div id="sortable-copy-2" class="sortable-list" data-mdb-sortable-init="" data-mdb-connected-list="#sortable-copy-1">
+        <h4 class="text-center pt-2">Copy</h4>
+        <div class="sortable-item" data-mdb-id="sortable-item-204109">Item 6</div>
+        <div class="sortable-item" data-mdb-id="sortable-item-414905">Item 7</div>
+        <div class="sortable-item" data-mdb-id="sortable-item-196479">Item 8</div>
+        <div class="sortable-item" data-mdb-id="sortable-item-536057">Item 9</div>
+        <div class="sortable-item" data-mdb-id="sortable-item-432025">Item 10</div>
+      </div>
+    </section>
+   
+    
+    <div class="p-4 text-center border-top">
+      <a class="btn btn-link px-3 show-mobile-toast">
+        Show code
+      </a>
+    </div>
+    
+  </div>
+</section>
+
+    <!--Section: Live Preview-->
+
+    <!--Section: Code-->
+    <section>
+      <!-- prettier-ignore -->
+            <section class="collapse" id="example12">
+          <div class="pb-4">
+          
+
+
+
+
+
+
+
+
+
+
+  <div class="alert" role="alert" data-mdb-color="primary" style="background-color: #dfe7f6;color: #2c58a0;">
+    <strong>This is a <i class="fas fa-mobile-alt"></i> mobile version of the documentation.</strong>
+    <div class="mt-2">View this website on the desktop to copy &amp; edit the source code of the component.</div>
+  </div>
+
+ </div> </section>
+    </section>
+    <!--Section: Code-->
+  </section>
+  <!--Section: Sortable with coping items-->
+
+  <hr class="my-5">
+
+  <!--Section: Sortable with conditions-->
+  <section id="subsection-sortable-with-conditions">
+    <!-- Section title -->
+    <h2 class="mb-4">Conditions</h2>
+
+    <!-- description -->
+    <p class="mb-4">
+      Customize the conditions for permitting the sending or copying of items to a connected table by adding your
+      custom function that return <code>true</code> or <code>false</code> to the <code>enterPredicate</code> property.
+      It's important to note that you can only initialize this via JavaScript.
+    </p>
+
+    <!--Section: Live Preview-->
+      
+
+
+<section class="pb-4">
+  <div class="border rounded-5">
+    
+           <section class="p-4 d-flex justify-content-center w-100">
+      <div id="sortable-condition-1" class="sortable-list" data-mdb-sortable-init="">
+        <h4 class="text-center pt-2">Numbers</h4>
+        <div class="sortable-item" data-mdb-value="1" data-mdb-id="sortable-item-204901">1</div>
+        <div class="sortable-item" data-mdb-value="2" data-mdb-id="sortable-item-89291">2</div>
+        <div class="sortable-item" data-mdb-value="3" data-mdb-id="sortable-item-272948">3</div>
+        <div class="sortable-item" data-mdb-value="4" data-mdb-id="sortable-item-931569">4</div>
+        <div class="sortable-item" data-mdb-value="5" data-mdb-id="sortable-item-650463">5</div>
+      </div>
+
+      <div id="sortable-condition-2" class="sortable-list" data-mdb-sortable-init="">
+        <h4 class="text-center pt-2">Only odd numbers</h4>
+        <div class="sortable-item" data-mdb-value="7" data-mdb-id="sortable-item-551289">7</div>
+      </div>
+    </section>
+   
+    
+    <div class="p-4 text-center border-top">
+      <a class="btn btn-link px-3 show-mobile-toast">
+        Show code
+      </a>
+    </div>
+    
+  </div>
+</section>
+
+    <!--Section: Live Preview-->
+
+    <!--Section: Code-->
+    <section>
+<section class="collapse" id="example13">
+<div class="pb-4">
+<!-- prettier-ignore -->
+      
+
+
+
+
+
+
+
+
+
+
+  <div class="alert" role="alert" data-mdb-color="primary" style="background-color: #dfe7f6;color: #2c58a0;">
+    <strong>This is a <i class="fas fa-mobile-alt"></i> mobile version of the documentation.</strong>
+    <div class="mt-2">View this website on the desktop to copy &amp; edit the source code of the component.</div>
+  </div>
+
+ </div> </section>
+    </section>
+    <!--Section: Code-->
+  </section>
+  <!--Section: Sortable with disabled sorting-->
+
+  <hr class="my-5">
+
+  <!--Section: Basic example-->
+  <section id="subsection-sortable-with-disabled-sorting">
+    <!-- Section title -->
+    <h2 class="mb-4">Disabled sorting</h2>
+
+    <!-- description -->
+    <p class="mb-4">
+      To disable sorting in a table, add the <code>data-mdb-sorting</code> attribute with a value of <code>false</code>.
+    </p>
+
+    <!--Section: Live Preview-->
+      
+
+
+<section class="pb-4">
+  <div class="border rounded-5">
+     
+           <section class="p-4 d-flex justify-content-center w-100">
+      <div id="sortable-disabled-1" class="sortable-list" data-mdb-sortable-init="" data-mdb-connected-list="#sortable-disabled-2">
+        <h4 class="text-center pt-2">Sorting available</h4>
+        <div class="sortable-item" data-mdb-id="sortable-item-830886">Item 1</div>
+        <div class="sortable-item" data-mdb-id="sortable-item-798184">Item 2</div>
+        <div class="sortable-item" data-mdb-id="sortable-item-420143">Item 3</div>
+        <div class="sortable-item" data-mdb-id="sortable-item-400304">Item 4</div>
+        <div class="sortable-item" data-mdb-id="sortable-item-672508">Item 5</div>
+      </div>
+
+      <div id="sortable-disabled-2" class="sortable-list" data-mdb-sortable-init="" data-mdb-connected-list="#sortable-disabled-1" data-mdb-sorting="false">
+        <h4 class="text-center pt-2">Sorting not available</h4>
+        <div class="sortable-item" data-mdb-id="sortable-item-274843">item 6</div>
+        <div class="sortable-item" data-mdb-id="sortable-item-216007">item 7</div>
+      </div>
+    </section>
+   
+    
+    <div class="p-4 text-center border-top">
+      <a class="btn btn-link px-3 show-mobile-toast">
+        Show code
+      </a>
+    </div>
+    
+  </div>
+</section>
+
+    <!--Section: Live Preview-->
+
+    <!--Section: Code-->
+    <section>
+      <!-- prettier-ignore -->
+      <section class="collapse" id="example14">
+        <div class="pb-4">
+          
+
+
+
+
+
+
+
+
+
+
+  <div class="alert" role="alert" data-mdb-color="primary" style="background-color: #dfe7f6;color: #2c58a0;">
+    <strong>This is a <i class="fas fa-mobile-alt"></i> mobile version of the documentation.</strong>
+    <div class="mt-2">View this website on the desktop to copy &amp; edit the source code of the component.</div>
+  </div>
+
+
+        </div>
+      </section>
+    </section>
+    <!--Section: Code-->
+  </section>
+  <!--Section: Sortable with disabled sorting-->
+
+  <hr class="my-5">
+
+  <!--Section: Sortable nested-->
+  <section id="subsection-sortable-nested">
+    <!-- Section title -->
+    <h2 class="mb-4">Nested</h2>
+
+    <!-- description -->
+    <p class="mb-4">
+      By adding <code>data-mdb-item-class</code> you can set what class has to be in your list item
+      to make them sortable. Thanks to that you can make nested lists.
+    </p>
+
+    <!--Section: Live Preview-->
+      
+
+
+<section class="pb-4">
+  <div class="border rounded-5">
+     
+           <section class="p-4 d-flex justify-content-center w-100">
+             <div id="sortable-multi-1-1" class="sortable-list d-flex align-items-start" data-mdb-sortable-init="" data-mdb-item-class="sortable-item-nested">
+               <div id="sortable-multi-2-2" data-mdb-sortable-init="" class="sortable-list sortable-item-nested" data-mdb-connected-list="#sortable-multi-2-1" data-mdb-drag-handle=".drag-handler" data-mdb-id="sortable-item-887952">
+                 <h4 class="text-center pt-2 drag-handler">To do</h4>
+                 <div class="sortable-item" data-mdb-id="sortable-item-552310">Item 1</div>
+                 <div class="sortable-item" data-mdb-id="sortable-item-3533">Item 2</div>
+                 <div class="sortable-item" data-mdb-id="sortable-item-706129">Item 3</div>
+                 <div class="sortable-item" data-mdb-id="sortable-item-472645">Item 4</div>
+                 <div class="sortable-item" data-mdb-id="sortable-item-610726">Item 5</div>
+               </div>
+
+               <div id="sortable-multi-2-1" class="sortable-list sortable-item-nested" data-mdb-sortable-init="" data-mdb-connected-list="#sortable-multi-2-2" data-mdb-drag-handle=".drag-handler" data-mdb-id="sortable-item-241921">
+                 <h4 class="text-center pt-2 drag-handler">Done</h4>
+                 <div class="sortable-item" data-mdb-id="sortable-item-299008">item 6</div>
+                 <div class="sortable-item" data-mdb-id="sortable-item-277014">item 7</div>
+                 <div class="sortable-item" data-mdb-id="sortable-item-840762">item 8</div>
+                 <div class="sortable-item" data-mdb-id="sortable-item-83283">item 9</div>
+               </div>
+             </div>
+           </section>
+   
+    
+    <div class="p-4 text-center border-top">
+      <a class="btn btn-link px-3 show-mobile-toast">
+        Show code
+      </a>
+    </div>
+    
+  </div>
+</section>
+
+    <!--Section: Live Preview-->
+
+    <!--Section: Code-->
+    <section>
+      <!-- prettier-ignore -->
+            <section class="collapse" id="example15">
+          <div class="pb-4">
+          
+
+
+
+
+
+
+
+
+
+
+  <div class="alert" role="alert" data-mdb-color="primary" style="background-color: #dfe7f6;color: #2c58a0;">
+    <strong>This is a <i class="fas fa-mobile-alt"></i> mobile version of the documentation.</strong>
+    <div class="mt-2">View this website on the desktop to copy &amp; edit the source code of the component.</div>
+  </div>
+
+ </div> </section>
+    </section>
+    <!--Section: Code-->
+  </section>
+  <!--Section: Sortable nested-->
+
+  <hr class="my-5">
+
+  <!-- Section: Related resources -->
+  <section class="" id="section-related-resources">
+
+    <style>
+      .btn-tag {
+        background-color: var(--mdb-tertiary-bg) !important;
+        text-transform: capitalize !important;
+        margin-bottom: 10px;
+        box-shadow: none;
+      }
+
+      .btn-tag:hover {
+        box-shadow: 0 2px 5px 0 rgba(0, 0, 0, .25), 0 3px 10px 5px rgba(0, 0, 0, 0.05) !important;
+      }
+
+    </style>
+
+    <h2>Related resources</h2>
+
+      <!--Chips with links-->
+      <div class="justify-content-start text-start w-100 my-5">
+
+          <!--Main docs-->
+          <a href="https://mdbootstrap.com/docs/standard/data/tables/" class="btn btn-tag btn-rounded" data-mdb-close="true">
+          Tables</a>
+          
+          <a href="https://mdbootstrap.com/docs/standard/layout/grid/" class="btn btn-tag btn-rounded" data-mdb-close="true">
+          Grid</a>
+          
+          <a href="https://mdbootstrap.com/docs/standard/layout/horizontal-alignment/" class="btn btn-tag btn-rounded" data-mdb-close="true">
+          Horizontal alignment</a>
+          
+          <a href="https://mdbootstrap.com/docs/standard/methods/scrollbar/" class="btn btn-tag btn-rounded" data-mdb-close="true">
+          Scrollbar</a>
+          
+          <a href="https://mdbootstrap.com/docs/standard/components/buttons/" class="btn btn-tag btn-rounded" data-mdb-close="true">
+          Buttons</a>
+
+          <!-- Extended -->
+
+          <a href="https://mdbootstrap.com/docs/standard/extended/file-input-image/" class="btn btn-tag btn-rounded" data-mdb-close="true">
+            File input image</a>
+
+      </div>
+  </section>
+  <!-- Section: Related resources -->
+</section>
+<!--Section: Docs content-->
+
+                    </div>
+                    
+
+                    
+                </div>
+            </div>
+
+            
+        </div>
+    </div>
+</main>
+
+<style>
+  @media (max-width: 1440px) {
+    #mdb-footer {
+      padding-left: 0;
+    }
+  }
+
+  #mdb-footer, #mdb-footer div{
+  background-color: hsl(216, 25%, 95.1%);
+}
+
+  [data-mdb-theme="dark"] #mdb-footer,
+  [data-mdb-theme="dark"] #mdb-footer div {
+    background-color: hsl(0, 0%, 10%)  !important
+  }
+
+  #mdb-footer .copyright {
+  background-color: hsl(216, 25%, 90%) !important;
+}
+
+  [data-mdb-theme="dark"] #mdb-footer .copyright {
+  background-color: hsl(0, 0%, 0%) !important;
+}
+
+</style>
+
+<footer id="mdb-footer" class="mt-5" style="">
+    <div class="container py-5">
+        
+        <div class="text-center">
+
+        <p class="">
+          Get useful tips &amp; free resources directly to your inbox along with exclusive subscriber-only content.
+        </p>
+        <a href="https://mdbootstrap.com/newsletter/" class="btn btn-primary">JOIN OUR MAILING LIST NOW<i class="fas fa-angle-double-right ms-2"></i></a>
+
+
+
+
+        </div>
+        
+        
+    </div>
+
+    
+    <div class="text-center p-3 copyright">© 2023
+        Copyright:
+        <a class="" href="https://mdbootstrap.com/"> <strong>MDBootstrap.com</strong></a>
+    </div>
+    
+</footer>
+
+<div class="modal fade" id="apiRestrictedModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-body">
+                
+                <section>
+                    <div class="text-center">
+                        <h3 class="font-weight-bold border border-primary p-3 mb-3">Access restricted</h3>
+
+                        <h5><strong>To view this section you must have an active PRO account</strong></h5>
+
+                        <p>
+                            <strong>Log in</strong> to your account or
+                            <strong>purchase an MDB5 PRO subscription</strong> if you don't have one.
+                        </p>
+
+                        <a class="btn btn-primary me-1 auth-modal-toggle" data-auth-modal-tab="sign-in" data-mdb-dismiss="modal">Login</a>
+                        <a class="btn btn-secondary" target="_blank" href="https://mdbootstrap.com/docs/standard/pro/" role="button">Buy MDB Pro</a>
+                    </div>
+                </section>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-mdb-dismiss="modal">
+                    Close
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="toast fade mx-auto bg-primary toast-fixed hide" id="basic-primary-example-mobile" role="alert" aria-live="assertive" aria-atomic="true" data-mdb-autohide="true" data-mdb-delay="5000" data-mdb-position="top-right" data-mdb-append-to-body="true" data-mdb-stacking="true" data-mdb-width="350px" data-mdb-color="primary" style="width: 350px; display: none; top: 10px; right: 10px; bottom: unset; left: unset; transform: unset;">
+    <div class="toast-header text-white bg-primary">
+        <strong class="me-auto">This is a <i class="fas fa-mobile-alt"></i> mobile version of the documentation.</strong>
+        <button type="button" class="btn-close btn-close-white" data-mdb-dismiss="toast" aria-label="Close"></button>
+    </div>
+    <div class="toast-body text-white">View this website on the desktop to copy &amp; edit the source code of the component.</div>
+</div>
+
+
+    <script>
+        const CONFIG = {
+            docsApiUrl: "https://mdbootstrap.com/api/docs"
+        };
+
+        const supportedLanguages = {
+            en: {
+                flag: 'flag-united-kingdom',
+                name: 'English'
+            },
+            cn: {
+                flag: 'flag-china',
+                name: '中文'
+            }
+        };
+
+        const currencySymbols = {
+            USD: '$',
+            EUR: '€',
+            GBP: '£',
+            INR: '₹',
+        };
+
+        function getSiteLanguage() {
+            const [, language ] = location.pathname.split('/');
+            switch (language) {
+                case 'cn': return 'cn';
+                case 'es': return 'cn';
+                default: return 'en';
+            }
+        }
+
+        function getCurrentTechnology(url) {
+            const currentUrl = url || location.pathname;
+            switch (true) {
+                case (currentUrl.indexOf('/docs/standard') === 0): return 'standard';
+                case (currentUrl.indexOf('/docs/angular') === 0): return 'b5-angular';
+                case (currentUrl.indexOf('/docs/b5/angular') === 0): return 'b5-angular';
+                case (currentUrl.indexOf('/docs/react') === 0): return 'b5-react';
+                case (currentUrl.indexOf('/docs/b5/react') === 0): return 'b5-react';
+                case (currentUrl.indexOf('/docs/b5/vue') === 0): return 'b5-vue';
+                case (currentUrl.indexOf('/docs/b4/jquery') === 0): return 'jquery';
+                case (currentUrl.indexOf('/docs/b4/angular') === 0): return 'angular';
+                case (currentUrl.indexOf('/docs/b4/react') === 0): return 'react';
+                case (currentUrl.indexOf('/docs/vue') === 0): return 'b5-vue';
+                case (currentUrl.indexOf('/docs/b4/vue') === 0): return 'vue';
+            }
+        }
+
+        function getCookie(name) {
+            const decodedCookie = decodeURIComponent(document.cookie);
+            const cookies = decodedCookie.split(';');
+
+            for (let i = 0; i < cookies.length; i++) {
+                let cookie = cookies[i];
+                while (cookie.charAt(0) === ' ') {
+                    cookie = cookie.substring(1);
+                }
+                if (cookie.indexOf(name) === 0) {
+                    return cookie.substring(name.length, cookie.length);
+                }
+            }
+
+            return null;
+        }
+
+        document.addEventListener('dpl_loaded', e => {
+          const cookieName = 'MDBGoSubscriptionTier';
+          const authUser = e.detail;
+          if (authUser.isGoPro && !getCookie(cookieName)) {
+            _setCookie(cookieName, 'Professional', 365);
+          }
+        });
+
+        function _setCookie(cname, cvalue, exdays) {
+          const d = new Date();
+          d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
+          let expires = "expires="+d.toUTCString();
+          document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+        }
+    </script>
+    <script>
+
+      document.addEventListener('DOMContentLoaded', (e) => {
+
+        function checkSidenavActiveLinks() {
+
+          document.querySelectorAll('.sidenav-menu li').forEach((menu)=>{
+
+            var collapse = document.querySelectorAll('ul.sidenav-collapse li').forEach((link)=>{
+              var is_active = link.querySelector('a.sidenav-link').classList.contains('active');
+              var collapseIcon = menu.querySelector('.rotate-icon');
+
+              if (is_active && collapseIcon) {
+                link.classList.add('show');
+                return false;
+              }
+            });
+          });
+        }
+
+
+        checkSidenavActiveLinks();
+
+        const setTransitionProperties = () => {
+          const sidenav = document.getElementById('mdb-sidenav');
+          const rotateIcons = sidenav.querySelectorAll('.rotate-icon');
+          const collapse = sidenav.querySelectorAll('.sidenav-collapse');
+
+          rotateIcons.forEach(icon => {
+            icon.style.transitionProperty = 'transform'
+          });
+
+          collapse.forEach(collapse => {
+            collapse.style.transitionProperty = 'height'
+          });
+        }
+
+
+        setTimeout(setTransitionProperties, 1);
+      });
+    </script>
+
+    
+
+    
+    <script type="text/javascript" src="https://mdbootstrap.com/wp-content/themes/mdbootstrap4/docs-app/js/dist/mdb5/standard/core.min.js"></script>
+    
+
+    
+
+    <script>
+        let isSidenavHidden = false;
+        isSidenavHidden =  false ;
+        const sidenav = document.getElementById('mdb-sidenav');
+        const instance = mdb.Sidenav.getInstance(sidenav);
+
+
+        let innerWidth = null;
+
+        const setMode = () => {
+            if (window.innerWidth === innerWidth) return;
+
+            innerWidth = window.innerWidth;
+            const isFrontPage = 0;
+
+            if (innerWidth <= 1440 || isFrontPage || isSidenavHidden) {
+                instance.changeMode('over');
+                instance.hide();
+                return;
+            }
+            instance.changeMode('side');
+            instance.show();
+        };
+
+        if( sidenav ) {
+            window.addEventListener('resize', setMode);
+            setMode();
+        }
+
+        
+
+        
+        window.addEventListener("load", (event) => {
+            const locationHash = window.location.hash;
+            const scrollTop = () => {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }
+            const overviewTab = document.querySelector('#docs-nav-pills a[href="#docsTabsOverview"]');  
+            const apiTab = document.querySelector('#docs-nav-pills a[href="#docsTabsAPI"]');
+
+            if (apiTab) {
+              const scrollSpyEl = document.querySelector('body');
+              const scrollSpyTargetOvervie = document.querySelector('#scrollspy');
+              const scrollSpyTargetApi = document.querySelector('#scrollspy-api');
+              let scrollSpyInstance = mdb.ScrollSpy.getInstance(scrollSpyEl);
+
+              overviewTab.addEventListener('shown.mdb.tab', (event) => {
+                scrollSpyInstance.dispose;
+                scrollSpyInstance = new mdb.ScrollSpy(scrollSpyEl, { target: scrollSpyTargetOvervie }); 
+              })
+              apiTab.addEventListener('shown.mdb.tab', (event) => {
+                scrollSpyInstance.dispose;
+                scrollSpyInstance = new mdb.ScrollSpy(scrollSpyEl, { target: scrollSpyTargetApi });
+              })
+            }
+
+            if (locationHash === "#docsTabsAPI") {
+              if (apiTab) {
+                const apiTabsInstance = new mdb.Tab(apiTab);
+
+                apiTabsInstance.show();
+                scrollTop();
+              }
+            } else if (locationHash === "#docsTabsOverview") {
+              scrollTop();
+            } else if (["#topTemplates", "#newTemplates", "#trendingTemplates"].indexOf(locationHash) !== -1) {
+              const templateTab = document.querySelector('#templates-nav-pills a[href="' + locationHash + '"]');
+
+              if (templateTab) {
+                const templateTabsInstance = new mdb.Tab(templateTab);
+
+                templateTabsInstance.show();
+                scrollTop();
+              }
+            } else if (locationHash) {
+              const el = document.querySelector(locationHash);
+              const width = el && getComputedStyle(el).width;
+
+              if (el && width === "auto") {
+                const apiTab = document.querySelector(
+                  '#docs-nav-pills a[href="#docsTabsAPI"]'
+                );
+
+                const apiTabsInstance = new mdb.Tab(apiTab);
+                apiTabsInstance.show();
+
+                setTimeout(() => {
+                  window.scrollTo({ top: el.offsetTop - 75, behavior: "smooth" });
+                }, 200);
+              }
+            }
+
+            const navPills = document.querySelectorAll('#docs-nav-pills a[data-mdb-tab-init]');
+
+            if (navPills.length) {
+                navPills.forEach((el) => {
+                    el.addEventListener('click', (e) => {
+                        window.location.hash = e.target.hash;
+
+                        scrollTop();
+                    });
+                });
+            }
+
+            const templatePills = document.querySelectorAll('#templates-nav-pills a[data-mdb-pill-init]');
+
+            if (templatePills.length) {
+                templatePills.forEach((el) => {
+                    el.addEventListener('click', (e) => {
+                        window.location.hash = e.target.hash;
+
+                        scrollTop();
+                    });
+                });
+            }
+        });
+    </script>
+
+
+
+<script>
+    setTimeout(() => {
+        const element = document.getElementById('basic-primary-example-mobile');
+        const basicInstance = mdb.Toast.getInstance(element);
+        Array.from(document.getElementsByClassName('show-mobile-toast')).forEach(el => {
+            el.addEventListener('click', () => {
+                basicInstance.show()
+            });
+        });
+    });
+</script>
+
+
+
+
+
+
+
+    
+    
+        <script src="https://mdbootstrap.com/wp-content/themes/mdbootstrap4/docs-app/js/dist/mdb5/plugins/standard/drag-and-drop.min.js"></script>
+<script>
+  // Sortable with conditions
+  const accessOddNumbers = (value) => {
+    return parseInt(value) % 2;
+  };
+
+  const sortableCondition1 = document.getElementById('sortable-condition-1');
+  const sortableCondition2 = document.getElementById('sortable-condition-2');
+
+  const instanceSortableCondition1 = new DragAndDrop.Sortable(sortableCondition1, {
+    connectedList: sortableCondition2,
+    enterPredicate: accessOddNumbers,
+  });
+  const instanceSortableCondition2 = new DragAndDrop.Sortable(sortableCondition2);
+</script>
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body></html>
