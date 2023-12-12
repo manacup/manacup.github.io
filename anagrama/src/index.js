@@ -46,7 +46,11 @@ const DnD = {
     var content = e.dataTransfer.getData("text/html");
     var classcomodi = e.dataTransfer.getData("class")
     if(classcomodi!="comodi"){
-    this.innerHTML = content    
+    this.innerHTML = content 
+    if(this.classList.contains("comodi")){
+      this.classList.remove("comodi")
+      DnD.dragEl.classList.add("comodi")
+    }   
   }else{
     obrirModal(this)
     this.classList.add("comodi")
