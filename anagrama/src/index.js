@@ -49,7 +49,6 @@ const DnD = {
   }
   
 };
-const randomNumsArray = ["","","","","","",""];
 
 function obtenerFichasAleatorias(distribucion) {
   const letrasDisponibles = distribucion
@@ -68,13 +67,15 @@ function obtenerFichasAleatorias(distribucion) {
     return letra; 
   }
 
-  const fichasAleatorias = randomNumsArray;
+  let noufichasAleatorias = ["","","","","","",""]
+  
   for (let i = 0; i < 7; i++) {
     const letraAleatoria = obtenerLetraAleatoria();
-    fichasAleatorias.push(letraAleatoria);
+    noufichasAleatorias.push(letraAleatoria);
   }
+console.log(noufichasAleatorias)
+  return noufichasAleatorias;
 
-  return fichasAleatorias;
 }
 
 // Ejemplo de uso con la distribución de Scrabble en catalán
@@ -111,16 +112,21 @@ const distribucionScrabbleCatala = {
 const arrayRepetido = Object.entries(distribucionScrabbleCatala)
   .flatMap(([letra, { cantidad }]) => Array(cantidad).fill(letra));
 
-console.log(arrayRepetido);
+//console.log(arrayRepetido);
 
-let fichasAleatorias = obtenerFichasAleatorias(arrayRepetido);
+var fichasAleatorias = obtenerFichasAleatorias(arrayRepetido);
 console.log(fichasAleatorias);
-
-
 
 
 const boxes = document.querySelectorAll(".grid-item[draggable]");
 function inici(){
+  [].forEach.call(boxes, function(box, index) {
+    box.textContent = fichasAleatorias[index]; })
+}
+
+function reinici(){
+  fichasAleatorias = obtenerFichasAleatorias(arrayRepetido);
+  console.log(fichasAleatorias);
   [].forEach.call(boxes, function(box, index) {
     box.textContent = fichasAleatorias[index]; })
 }
@@ -155,6 +161,7 @@ function updateWordInput() {
 }
 $('#barreja').click(barreja);
 $('#retorna').click(inici);
+$('#reinicia').click(reinici);
 
 function barreja() {
   const miDiv = document.getElementById("rack");

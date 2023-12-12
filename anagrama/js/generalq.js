@@ -471,6 +471,7 @@ function restartGame() {
     temps = 60;
 	incorrectWords = []
 	updateScoreDisplay()
-    startGame();
+    reinici();
+	startGame()
 }
 window.onload = startGame;
