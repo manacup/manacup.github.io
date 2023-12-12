@@ -427,11 +427,11 @@ function combinarParaules(numParaules) {
 
     //showWord();
 
-    var interval = setInterval(updatetemps, 1000);
+    let interval = setInterval(updatetemps, 1000);
 
     setTimeout(function () {
         clearInterval(interval);
-        console.log('Interval aturat');
+        //console.log('Interval aturat');
     }, (temps+1) * 1000);
 }
 
