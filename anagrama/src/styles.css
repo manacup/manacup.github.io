@@ -101,6 +101,7 @@ body {
 }
 .grid-item[draggable].drag--moving {
   opacity: 0.4;
+  transform:  rotate(-5deg);
 }
 
 #req .sch,
