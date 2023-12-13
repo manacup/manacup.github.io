@@ -298,6 +298,9 @@ button {
 }
 
 .lletra {
+  width: 24px;
+  aspect-ratio: 1/1;
+  font-size: larger;
   cursor: pointer;
   padding: 10px;
   border: 1px solid #ccc;
