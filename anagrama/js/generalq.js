@@ -156,8 +156,8 @@ console.log(paraulesUsades)
 	
 	if (resultat==resp) {
 		// mostra html ok
-		jQuery('#res').removeClass('tornKO').addClass('tornOK');
-		jQuery('#res_info').html('La jugada '+sep+'<strong>'+qryStr+'</strong>'+sep+' és correcta!');
+		/* jQuery('#res').removeClass('tornKO').addClass('tornOK');
+		jQuery('#res_info').html('La jugada '+sep+'<strong>'+qryStr+'</strong>'+sep+' és correcta!'); */
 		comptador++		
 		paraulesUsades.push(qryStrCache).flat
 		//showWord()
@@ -165,8 +165,8 @@ console.log(paraulesUsades)
 		showCorrectAnimation()
 	} else {
 		// mostra html ko
-		jQuery('#res').removeClass('tornOK').addClass('tornKO');
-		jQuery('#res_info').html('Ohhh! La jugada '+sep+'<strong>'+qryStr+'</strong>'+sep+' NO és vàlida.');
+		/* jQuery('#res').removeClass('tornOK').addClass('tornKO');
+		jQuery('#res_info').html('Ohhh! La jugada '+sep+'<strong>'+qryStr+'</strong>'+sep+' NO és vàlida.'); */
 		//comptador--
 		updateScoreDisplay()
 		showIncorrectAnimation()
@@ -175,17 +175,17 @@ console.log(paraulesUsades)
 	}
 }else{
 	jQuery('#res').removeClass('tornOK').addClass('tornKO');
-		jQuery('#res_info').html('Ohhh! La jugada <strong>'+qryStrCache+'</strong> ja havia estat introduida.');
+		jQuery('#res_info').html('Ohhh! La jugada <br><strong>'+qryStrCache+'</strong><br> ja havia estat introduida.');
 }
 
-	jQuery('#res').slideDown(100);
+	/* jQuery('#res').slideDown(100); */
 	
 	// Inicia el timer per esborrar i el compte enrere, amb qryDelete
-	var esbCDwn = 1; 
+	/* var esbCDwn = 1; 
 	jQuery('#res_timer').html('S\'amagarà en <span>'+esbCDwn+'</span> segons.');
 	
 	if (timer) clearInterval(timer);
-	timer = setInterval(qryDelInterval, 1000);
+	timer = setInterval(qryDelInterval, 1000); */
 }
 
 
@@ -195,6 +195,17 @@ function showCorrectAnimation() {
     setTimeout(() => {
         scoreDisplay.classList.remove('correct');
     }, 300); // Elimina la classe després d'1 segon (ajusta-ho segons la teva preferència)
+
+	const tauler = document.getElementById("scrabbleBoard")
+	tauler.querySelectorAll(".grid-item").forEach(gi=>{
+		if(gi.textContent){
+			gi.classList.add("glow-text")
+			setTimeout(() => {
+				gi.classList.remove('glow-text');
+			}, 500); // Elimina la classe després d'1 segon (ajusta-ho segons la teva preferència)
+		}
+	})
+	
 }
 function showIncorrectAnimation() {
     const scoreDisplay = document.getElementById('score');
@@ -202,6 +213,16 @@ function showIncorrectAnimation() {
     setTimeout(() => {
         scoreDisplay.classList.remove('incorrect');
     }, 300); // Elimina la classe després d'1 segon (ajusta-ho segons la teva preferència)
+
+	const tauler = document.getElementById("scrabbleBoard")
+	tauler.querySelectorAll(".grid-item").forEach(gi=>{
+		if(gi.textContent){
+			gi.classList.add("glow-text-error")
+			setTimeout(() => {
+				gi.classList.remove('glow-text-error');
+			}, 500); // Elimina la classe després d'1 segon (ajusta-ho segons la teva preferència)
+		}
+	})
 }
 
 var qryDelInterval = function () {
