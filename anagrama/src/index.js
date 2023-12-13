@@ -15,7 +15,6 @@ import "./dndPolyfill";
 const queryString = window.location.search;
 const urlParams = Object.fromEntries(new URLSearchParams(queryString));
 
-
 let faristol = urlParams.faristol || false;
 
 const DnD = {
@@ -94,26 +93,23 @@ function obtenerFichasAleatorias(distribucion) {
 
   let noufichasAleatorias = ["", "", "", "", "", "", ""];
 
-  if(faristol){
-    
-    let lletres=faristol.toUpperCase().split("-")
+  if (faristol) {
+    let lletres = faristol.toUpperCase().split("-");
     /* lletres.map(l=>l.replace(/W/g,"NY"))
     lletres.map(l=>l.replace(/W/g,"NY")) */
-    lletres.forEach(lletra=>{
-      noufichasAleatorias.push(lletra) 
-    })
-  }else{
+    lletres.forEach((lletra) => {
+      noufichasAleatorias.push(lletra);
+    });
+  } else {
     for (let i = 0; i < 7; i++) {
-    const letraAleatoria = obtenerLetraAleatoria();
-    noufichasAleatorias.push(letraAleatoria);
-  }
+      const letraAleatoria = obtenerLetraAleatoria();
+      noufichasAleatorias.push(letraAleatoria);
+    }
   }
 
-  
   console.log(noufichasAleatorias);
   return noufichasAleatorias;
 }
-
 
 const arrayRepetido = Object.entries(distribucionScrabbleCatala).flatMap(
   ([letra, { cantidad }]) => Array(cantidad).fill(letra)
@@ -136,6 +132,7 @@ function inici() {
 }
 
 function reinici() {
+  if(faristol){window.location = window.location.href.split('?')[0];}
   fichasAleatorias = obtenerFichasAleatorias(arrayRepetido);
   console.log(fichasAleatorias);
   [].forEach.call(boxes, function (box, index) {
@@ -143,9 +140,9 @@ function reinici() {
   });
   netejaClasses("scrabbleBoard");
   netejaClasses("rack");
-  paraulesUsades=[]
-  comptador = 0
-  updateScoreDisplay()
+  paraulesUsades = [];
+  comptador = 0;
+  updateScoreDisplay();
 }
 
 [].forEach.call(boxes, function (box, index) {
