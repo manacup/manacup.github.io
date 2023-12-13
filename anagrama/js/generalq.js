@@ -163,6 +163,7 @@ console.log(paraulesUsades)
 		//showWord()
 		updateScoreDisplay()
 		showCorrectAnimation()
+		desaPartida()
 	} else {
 		// mostra html ko
 		/* jQuery('#res').removeClass('tornOK').addClass('tornKO');
@@ -344,7 +345,7 @@ jQuery(function ($) {
 
 function updateScoreDisplay() {
     const scoreDisplay = document.getElementById('score');
-    scoreDisplay.textContent = `Paraules vàlides: ${comptador}`;
+    scoreDisplay.textContent = `Paraules vàlides: ${paraulesUsades.length}`;
 	const llistaDisplay = document.getElementById('llistavalid');
     llistaDisplay.textContent = `Llista: ${paraulesUsades.sort((a, b) => a.toLowerCase().localeCompare(b.toLowerCase())).join(", ")}`;
 
