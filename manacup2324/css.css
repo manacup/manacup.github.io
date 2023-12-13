@@ -20,6 +20,10 @@
 [data-bs-theme=auto]{
       --bs-border-radius: 1rem!important;
 }
+html,
+body {
+    overscroll-behavior-y: contain;
+}
 .click {
   cursor: pointer;
 }
