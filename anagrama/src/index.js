@@ -126,6 +126,9 @@ function reinici() {
   });
   netejaClasses("scrabbleBoard");
   netejaClasses("rack");
+  paraulesUsades=[]
+  comptador = 0
+  updateScoreDisplay()
 }
 
 [].forEach.call(boxes, function (box, index) {
