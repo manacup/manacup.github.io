@@ -3,6 +3,7 @@ html,
 body {
     overscroll-behavior-y: contain;
 }
+
 body {
   background: #ccc;
   font-family: "Raleway", "helvetica", arial, sans-serif;
@@ -78,6 +79,7 @@ body {
 .escarras, .comodi{
   background-color:rgb(253, 165, 165); 
   font-style: italic;
+  text-transform: lowercase !important;
 
 }
 .grid-item[draggable] {
@@ -242,13 +244,13 @@ button {
 }
 .correct {
   color: green;
-  transform: scale(2); /* Augmenta el tamany */
+  transform: scale(1.2); /* Augmenta el tamany */
   transition: color 0.3s ease-in-out, transform 0.3s ease-in-out;
 }
 
 .incorrect {
   color: red;
-  transform: scale(2); /* Augmenta el tamany */
+  transform: scale(1.2); /* Augmenta el tamany */
   transition: color 0.3s ease-in-out, transform 0.3s ease-in-out;
 }
 

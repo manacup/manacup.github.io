@@ -158,17 +158,16 @@ console.log(paraulesUsades)
 		// mostra html ok
 		jQuery('#res').removeClass('tornKO').addClass('tornOK');
 		jQuery('#res_info').html('La jugada '+sep+'<strong>'+qryStr+'</strong>'+sep+' és correcta!');
-		comptador++
-		updateScoreDisplay()
-		showCorrectAnimation()
+		comptador++		
 		paraulesUsades.push(qryStrCache).flat
 		//showWord()
-		
+		updateScoreDisplay()
+		showCorrectAnimation()
 	} else {
 		// mostra html ko
 		jQuery('#res').removeClass('tornOK').addClass('tornKO');
 		jQuery('#res_info').html('Ohhh! La jugada '+sep+'<strong>'+qryStr+'</strong>'+sep+' NO és vàlida.');
-		comptador--
+		//comptador--
 		updateScoreDisplay()
 		showIncorrectAnimation()
 		incorrectWords.push(qryStr);
@@ -189,63 +188,7 @@ console.log(paraulesUsades)
 	timer = setInterval(qryDelInterval, 1000);
 }
 
-var qryShowfalse = function() {
-	let resp=false
-	
-	qryStrCache = jQuery('.qry').val();
-	
-	var wds = qryNorm();
-	
-	if (!wds)
-		return false;
-	
-	var resultat = qryParse(wds);
-	
-	var qryStr = [];
-	var qryHist = [];
-	jQuery.each(wds, function() {
-		qryStr.push(this.nd);
-		qryHist.push(this.o);	 
-	});
-	qryStr = qryStr.join(' ');
-	qryHist = qryHist.join(' ');
 
-	// guarda resultat i consulta feta a cache_torn
-	if (histTorns.length == caches_size) histTorns.shift(); // Si ha arribat al tope, treu primer		
-	histTorns.push([qryHist, resultat]);
-	histPointer = histTorns.length;
-	
-	var sep = (qryStr.length > 25)? '<br />' : '';
-	
-	if (resultat==resp) {
-		// mostra html ok
-		/* jQuery('#res').removeClass('tornKO').addClass('tornOK');
-		jQuery('#res_info').html('HAS ENCERTAT! La jugada '+sep+'<strong>'+qryStr+'</strong>'+sep+' NO és correcta!'); */
-		comptador++
-		updateScoreDisplay()
-		showCorrectAnimation()
-		//showWord()
-		
-	} else {
-		// mostra html ko
-		/* jQuery('#res').removeClass('tornOK').addClass('tornKO');
-		jQuery('#res_info').html('OOOHHHH!!! La jugada '+sep+'<strong>'+qryStr+'</strong>'+sep+' SÍ que és vàlida.'); */
-		comptador--
-		updateScoreDisplay()
-		showIncorrectAnimation()
-		incorrectWords.push(qryStr);
-		//showWord()
-	}
-
-	/* jQuery('#res').slideDown(100); */
-	
-	// Inicia el timer per esborrar i el compte enrere, amb qryDelete
-	/* var esbCDwn = 1; 
-	jQuery('#res_timer').html('S\'amagarà en <span>'+esbCDwn+'</span> segons.');
-	
-	if (timer) clearInterval(timer);
-	timer = setInterval(qryDelInterval, 1000); */
-}
 function showCorrectAnimation() {
     const scoreDisplay = document.getElementById('score');
     scoreDisplay.classList.add('correct');
@@ -333,7 +276,7 @@ jQuery(function ($) {
 	$('.qry').focus();
 	$('.qry').keydown(qryUpdate);	
 	$('.sch').click(qryShow);
-	//$('.schf').click(qryShowfalse);
+
 	//$('.clr').click(qryDelete);
 	$('form').submit(function (e) { 
 		e.preventDefault(); 
@@ -423,22 +366,22 @@ function combinarParaules(numParaules) {
   }
 
   function startGame() {
-	
 
-    //showWord();
-
-    let interval = setInterval(updatetemps, 1000);
+   /*  var interval = setInterval(updatetemps, 1000);
 
     setTimeout(function () {
         clearInterval(interval);
-        //console.log('Interval aturat');
-    }, (temps+1) * 1000);
+       // console.log('Interval aturat');
+    }, (temps+1) * 1000); */
 }
 
 
 function updateScoreDisplay() {
     const scoreDisplay = document.getElementById('score');
-    scoreDisplay.textContent = `Punts: ${comptador}`;
+    scoreDisplay.textContent = `Paraules vàlides: ${comptador}`;
+	const llistaDisplay = document.getElementById('llistavalid');
+    llistaDisplay.textContent = `Llista: ${paraulesUsades.join(", ")}`;
+
  }
  function updatetemps() {
     const tempsDisplay = document.getElementById('temps');
