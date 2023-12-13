@@ -174,20 +174,33 @@ console.log(paraulesUsades)
 		//showWord()
 	}
 }else{
-	jQuery('#res').removeClass('tornOK').addClass('tornKO');
-		jQuery('#res_info').html('Ohhh! La jugada <br><strong>'+qryStrCache+'</strong><br> ja havia estat introduida.');
+	jQuery('#res').removeClass('tornKO').addClass('tornOK');
+		jQuery('#res_info').html("Aquesta ja l'havies jugat!");
+		showTremolaAnimation()
 }
 
-	/* jQuery('#res').slideDown(100); */
+	/* jQuery('#res').slideDown(100);
 	
 	// Inicia el timer per esborrar i el compte enrere, amb qryDelete
-	/* var esbCDwn = 1; 
+	 var esbCDwn = 1; 
 	jQuery('#res_timer').html('S\'amagarà en <span>'+esbCDwn+'</span> segons.');
 	
 	if (timer) clearInterval(timer);
 	timer = setInterval(qryDelInterval, 1000); */
 }
-
+function showTremolaAnimation() {
+    
+	const tauler = document.getElementById("scrabbleBoard")
+	tauler.querySelectorAll(".grid-item").forEach(gi=>{
+		if(gi.textContent){
+			gi.classList.add("glow-text-error")
+			setTimeout(() => {
+				gi.classList.remove('glow-text-error');
+			}, 300); // Elimina la classe després d'1 segon (ajusta-ho segons la teva preferència)
+		}
+	})
+	
+}
 
 function showCorrectAnimation() {
     const scoreDisplay = document.getElementById('score');
@@ -200,9 +213,11 @@ function showCorrectAnimation() {
 	tauler.querySelectorAll(".grid-item").forEach(gi=>{
 		if(gi.textContent){
 			gi.classList.add("glow-text")
+			//gi.classList.add("saltant")
 			setTimeout(() => {
 				gi.classList.remove('glow-text');
-			}, 500); // Elimina la classe després d'1 segon (ajusta-ho segons la teva preferència)
+				//gi.classList.remove("saltant")
+			}, 400); // Elimina la classe després d'1 segon (ajusta-ho segons la teva preferència)
 		}
 	})
 	
@@ -217,10 +232,10 @@ function showIncorrectAnimation() {
 	const tauler = document.getElementById("scrabbleBoard")
 	tauler.querySelectorAll(".grid-item").forEach(gi=>{
 		if(gi.textContent){
-			gi.classList.add("glow-text-error")
+			gi.classList.add("tremolant")
 			setTimeout(() => {
-				gi.classList.remove('glow-text-error');
-			}, 500); // Elimina la classe després d'1 segon (ajusta-ho segons la teva preferència)
+				gi.classList.remove('tremolant');
+			}, 300); // Elimina la classe després d'1 segon (ajusta-ho segons la teva preferència)
 		}
 	})
 }
@@ -294,11 +309,9 @@ jQuery(function ($) {
 	
 	getDict('disc');
 	
-	$('.qry').focus();
-	$('.qry').keydown(qryUpdate);	
+	//$('.qry').focus();
+	//$('.qry').keydown(qryUpdate);	
 	$('.sch').click(qryShow);
-
-	//$('.clr').click(qryDelete);
 	$('form').submit(function (e) { 
 		e.preventDefault(); 
 		qryShow();
@@ -308,83 +321,15 @@ jQuery(function ($) {
 		actdict = $(this).val();
 	});	
 			
-	$(window).keydown(function(e){				  
+	/* $(window).keydown(function(e){				  
 
 	  if (e.which == 27) qryDelete(); // Esc
 	  if (e.which == 38) histMove(-1); // Keyup, down: recupera consultes anteriors
 	  if (e.which == 40) histMove(1);
 	  
-	});
+	}); */
 	
 });
-
-// Llistes de sil·labes, prefixos i sufixos
-const sil·labes = ['ba', 'te', 'li', 'on', 'sa', 'per',   'mi', 'ca','ma','ple','gre','ça','nya','gue','go'];
-const prefixos = ['pre', 'post', 'sub', 'trans', 're', 'pro','al','ha'];
-const sufixos = ['ment', 'or', 'ar', 'er', 'ir', 'ic','dre','at','o','a','t','tge'];
-
-// Llista de paraules predefinides
-//const paraulesPredefinides = ['gat', 'casa', 'arbre', 'cotxe', 'sol', 'mar'];
-
-// Funció per generar una paraula
-function generarParaula() {
-  // Amb una probabilitat del 80%, retornar una paraula predefinida
-  if (Math.random() < 0.8) {
-    const paraulaPredefinida = paraulesPredefinides[Math.floor(Math.random() * paraulesPredefinides.length)];
-    return paraulaPredefinida;
-  }
-
-  const longitud = Math.floor(Math.random() * 3) + 2; // Longitud de la paraula (2 a 4 síl·labes)
-
-  // Generar la paraula combinant sil·labes, prefixos i sufixos aleatòriament
-  let paraula = '';
-  for (let i = 0; i < longitud && paraula.length < 10; i++) {
-    if (i === 0 && Math.random() < 0.3) {
-      paraula += prefixos[Math.floor(Math.random() * prefixos.length)];
-    } else {
-      const sil·laba = sil·labes[Math.floor(Math.random() * sil·labes.length)];
-      if (paraula.length + sil·laba.length <= 9) {
-        paraula += sil·laba;
-      }
-    }
-
-    if (i === longitud - 1 && Math.random() < 0.3) {
-      const sufix = sufixos[Math.floor(Math.random() * sufixos.length)];
-      if (paraula.length + sufix.length <= 9) {
-        paraula += sufix;
-      }
-    }
-  }
-
-  return paraula;
-}
-// Funció per combinar un nombre específic de paraules
-function combinarParaules(numParaules) {
-	// Verificar si el nombre de paraules és vàlid
-	/* if (numParaules < 2) {
-	  console.error('Cal com a mínim dues paraules per combinar.');
-	  return null;
-	} */
-  
-	const paraulesCombinades = [];
-  
-	for (let i = 0; i < numParaules; i++) {
-	  let paraula;
-  
-	  // Amb una probabilitat del 50%, seleccionar una paraula predefinida
-	  if (Math.random() < 0.5) {
-		paraula = paraulesPredefinides[Math.floor(Math.random() * paraulesPredefinides.length)];
-	  } else {
-		paraula = generarParaula();
-	  }
-  
-	  paraulesCombinades.push(paraula);
-	}
-  
-	// Combinar les paraules amb espais entre elles
-	const paraulesCombinadesString = paraulesCombinades.join(' ');
-	return paraulesCombinadesString;
-  }
 
   function startGame() {
 
@@ -401,7 +346,7 @@ function updateScoreDisplay() {
     const scoreDisplay = document.getElementById('score');
     scoreDisplay.textContent = `Paraules vàlides: ${comptador}`;
 	const llistaDisplay = document.getElementById('llistavalid');
-    llistaDisplay.textContent = `Llista: ${paraulesUsades.join(", ")}`;
+    llistaDisplay.textContent = `Llista: ${paraulesUsades.sort((a, b) => a.toLowerCase().localeCompare(b.toLowerCase())).join(", ")}`;
 
  }
  function updatetemps() {
@@ -438,4 +383,4 @@ function restartGame() {
     reinici();
 	startGame()
 }
-window.onload = startGame;
+//window.onload = startGame;

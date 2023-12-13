@@ -12,6 +12,11 @@ import "./dndPolyfill";
  *    e.dataTransfer.setDragImage(imgElement, x, y)
  *
  */
+const queryString = window.location.search;
+const urlParams = Object.fromEntries(new URLSearchParams(queryString));
+
+
+let faristol = urlParams.faristol || false;
 
 const DnD = {
   dragEl: null,
@@ -89,10 +94,22 @@ function obtenerFichasAleatorias(distribucion) {
 
   let noufichasAleatorias = ["", "", "", "", "", "", ""];
 
-  for (let i = 0; i < 7; i++) {
+  if(faristol){
+    
+    let lletres=faristol.toUpperCase().split("-")
+    /* lletres.map(l=>l.replace(/W/g,"NY"))
+    lletres.map(l=>l.replace(/W/g,"NY")) */
+    lletres.forEach(lletra=>{
+      noufichasAleatorias.push(lletra) 
+    })
+  }else{
+    for (let i = 0; i < 7; i++) {
     const letraAleatoria = obtenerLetraAleatoria();
     noufichasAleatorias.push(letraAleatoria);
   }
+  }
+
+  
   console.log(noufichasAleatorias);
   return noufichasAleatorias;
 }
