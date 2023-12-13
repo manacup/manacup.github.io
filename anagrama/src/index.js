@@ -16,13 +16,21 @@ const queryString = window.location.search;
 const urlParams = Object.fromEntries(new URLSearchParams(queryString));
 
 let faristol = urlParams.faristol || false;
-let nouFaristol = []
-var partidaDesada = localStorage.getItem("anagramix") || false
+let nouFaristol = [];
+var partidaDesada = localStorage.getItem("anagram") || false;
+let partidaObj = JSON.parse(partidaDesada);
+if (!faristol) {
+  if (partidaDesada) {
+    faristol = partidaObj.faristol;
+    paraulesUsades = partidaObj.jugades;
+  }
+} else {
   if(partidaDesada){
-    let partidaObj = JSON.parse(partidaDesada)
-  console.log(partidaObj)
-  faristol=partidaObj.faristol
-  paraulesUsades = partidaObj.jugades}
+  if (faristol.toUpperCase() == partidaObj.faristol.toUpperCase()) {
+    paraulesUsades = partidaObj.jugades;
+  }
+}
+}
 
 const DnD = {
   dragEl: null,
@@ -101,9 +109,13 @@ function obtenerFichasAleatorias(distribucion) {
   let noufichasAleatorias = ["", "", "", "", "", "", ""];
 
   if (faristol) {
-    let lletres = faristol.toUpperCase().split("-");
-     lletres.map(l=>l.replace(/Q/g,"Qu"))
-    
+    let lletres = faristol
+      .toUpperCase()
+      .split("-")
+      .map((l) =>
+        l === "Q" || l === "QU" || l === "q" || l === "qu" ? "Qu" : l
+      );
+
     lletres.forEach((lletra) => {
       noufichasAleatorias.push(lletra);
     });
@@ -111,12 +123,11 @@ function obtenerFichasAleatorias(distribucion) {
     for (let i = 0; i < 7; i++) {
       const letraAleatoria = obtenerLetraAleatoria();
       noufichasAleatorias.push(letraAleatoria);
-      
     }
   }
 
   console.log(noufichasAleatorias);
-  nouFaristol=noufichasAleatorias.filter(al=>al!="")
+  nouFaristol = noufichasAleatorias.filter((al) => al != "");
   return noufichasAleatorias;
 }
 
@@ -129,7 +140,7 @@ arrayLletres.pop();
 
 console.log(arrayLletres);
 
-var fichasAleatorias //= obtenerFichasAleatorias(arrayRepetido);
+var fichasAleatorias; //= obtenerFichasAleatorias(arrayRepetido);
 console.log(fichasAleatorias);
 
 const boxes = document.querySelectorAll(".grid-item[draggable]");
@@ -141,8 +152,11 @@ function inici() {
 }
 
 function reinici() {
-  faristol = ""
-  if(faristol){window.location = window.location.href.split('?')[0];}
+  //faristol = ""
+  if (faristol) {
+    window.location = window.location.href.split("?")[0];
+    localStorage.removeItem("anagram");
+  }
   fichasAleatorias = obtenerFichasAleatorias(arrayRepetido);
   console.log(fichasAleatorias);
   [].forEach.call(boxes, function (box, index) {
@@ -165,7 +179,6 @@ function reinici() {
   box.addEventListener("drop", DnD.onDrop, false);
   box.addEventListener("dragend", DnD.onDragEnd, false);
 });
-
 
 function updateWordInput() {
   var board = document.getElementById("scrabbleBoard");
@@ -291,17 +304,16 @@ function tancarModal(lletra) {
   // Retornar la lletra
   console.log("Lletra premuda:", lletra);
 }
-function desaPartida(){
+function desaPartida() {
   partida = {
-      faristol:nouFaristol.join("-"),
-      jugades:paraulesUsades
-  }
-localStorage.setItem("anagramix",JSON.stringify(partida))
+    faristol: nouFaristol.join("-"),
+    jugades: paraulesUsades,
+  };
+  localStorage.setItem("anagram", JSON.stringify(partida));
 }
-window.addEventListener("DOMContentLoaded",function(){
-  
+window.addEventListener("DOMContentLoaded", function () {
   fichasAleatorias = obtenerFichasAleatorias(arrayRepetido);
-  updateScoreDisplay()
+  updateScoreDisplay();
 
   inici();
-})
+});
