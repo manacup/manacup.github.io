@@ -1,4 +1,4 @@
-let urlactual = window.location.href
+let urlactual = window.location.href.split("?")[0]
 function toggleBotons() {
   var botonsCompartir = document.getElementById('botonscompartir');
   botonsCompartir.classList.toggle('mostrar');
