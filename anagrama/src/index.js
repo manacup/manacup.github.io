@@ -372,7 +372,10 @@ function sendRequest(faristolArray) {
 function gestionaTotals(e){
   if(e.err==0){
   totalParaules = e.words.total
-  document.getElementById('totalWorder').textContent = " de "+totalParaules + " possibles."
-  
-}
+  document.getElementById('totalWorder').textContent = " de "+totalParaules + " possibles."  
+  }else if(e.err == 2){
+      totalParaules = e.words.total;
+      document.getElementById("totalWorder").innerHTML =
+        " de més de" + totalParaules + " possibles.";
+  }
 }
