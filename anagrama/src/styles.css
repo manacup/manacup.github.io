@@ -396,15 +396,7 @@ button {
     opacity: 1;
   }
 }
-* {
-  margin: 0;
-  padding: 0;
-}
 
-html, body {
-  background: #eaedf2;
-  font-family: 'Roboto', sans-serif;
-}
 
 .floating-container {
   position: fixed;
