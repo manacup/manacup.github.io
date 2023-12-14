@@ -354,48 +354,136 @@ button {
  
   animation: jump 0.5s ease-in-out infinite; /* Pots ajustar la duració i altres propietats segons les teves preferències */
 }
-.botoflotant {
-  width: 24px;
-  height: 24px;
+
+
+@-webkit-keyframes come-in {
+  0% {
+    -webkit-transform: translatey(100px);
+            transform: translatey(100px);
+    opacity: 0;
+  }
+  30% {
+    -webkit-transform: translateX(-50px) scale(0.4);
+            transform: translateX(-50px) scale(0.4);
+  }
+  70% {
+    -webkit-transform: translateX(0px) scale(1.2);
+            transform: translateX(0px) scale(1.2);
+  }
+  100% {
+    -webkit-transform: translatey(0px) scale(1);
+            transform: translatey(0px) scale(1);
+    opacity: 1;
+  }
+}
+@keyframes come-in {
+  0% {
+    -webkit-transform: translatey(100px);
+            transform: translatey(100px);
+    opacity: 0;
+  }
+  30% {
+    -webkit-transform: translateX(-50px) scale(0.4);
+            transform: translateX(-50px) scale(0.4);
+  }
+  70% {
+    -webkit-transform: translateX(0px) scale(1.2);
+            transform: translateX(0px) scale(1.2);
+  }
+  100% {
+    -webkit-transform: translatey(0px) scale(1);
+            transform: translatey(0px) scale(1);
+    opacity: 1;
+  }
+}
+* {
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  background: #eaedf2;
+  font-family: 'Roboto', sans-serif;
+}
+
+.floating-container {
   position: fixed;
-  bottom: 20px;
-  right: 20px;
-  background-color: rgb(85, 119, 88);
-  color: white;
-  border: none;
-  border-radius: 50%;
-  padding: 15px;
-  cursor: pointer;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  align-items: center;
+  width: 50px;
+  height: 100px;
+  bottom: 0;
+  right: 0;
+  margin: 35px 25px;
 }
-
-.botons {
-  display: none;
-  flex-direction: column;
+.floating-container:hover {
+  height: 180px;
+}
+.floating-container:hover .floating-button {
+  box-shadow: 0 10px 25px rgba(85, 119, 88, 0.6);
+  -webkit-transform: translatey(5px);
+          transform: translatey(5px);
+  -webkit-transition: all 0.3s;
+  transition: all 0.3s;
+}
+.floating-container:hover .element-container .float-element:nth-child(1) {
+  -webkit-animation: come-in 0.4s forwards 0.2s;
+          animation: come-in 0.4s forwards 0.2s;
+}
+.floating-container:hover .element-container .float-element:nth-child(2) {
+  -webkit-animation: come-in 0.4s forwards 0.4s;
+          animation: come-in 0.4s forwards 0.4s;
+}
+.floating-container:hover .element-container .float-element:nth-child(3) {
+  -webkit-animation: come-in 0.4s forwards 0.6s;
+          animation: come-in 0.4s forwards 0.6s;
+}
+.floating-container .floating-button {
   position: absolute;
-  bottom: 60px;
-  right: 10px;
-  align-items: center;
- 
-  padding: 5px;
-  
- 
-}
-.boto{
-  width: 24px;
-  height: 24px;
-  margin: 5px;
-  padding: 5px;
+  width: 50px;
+  height: 50px;
+  background:  rgb(85, 119, 88);
+  bottom: 0;
   border-radius: 50%;
+  left: 0;
+  right: 0;
+  margin: auto;
+  color: white;
+  line-height: 62px;
+  text-align: center;
+  
+  
+  z-index: 100;
+  box-shadow: 0 10px 25px -5px rgba(85, 119, 88, 0.6);
+  cursor: pointer;
+  -webkit-transition: all 0.3s;
+  transition: all 0.3s;
 }
-.WhatsApp{
-  background-color:rgb(0, 153, 20);
+.floating-container .float-element {
+  position: relative;
+  display: block;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  margin: 15px auto;
+  color: white;
+  font-weight: 500;
+  text-align: center;
+  
+  line-height: 38px;
+  z-index: 0;
+  opacity: 0;
+  -webkit-transform: translateY(100px);
+          transform: translateY(100px);
 }
-.Telegram{
-  background-color:rgb(1, 110, 173);
+.floating-container .float-element .material-symbols-outlined {
+  vertical-align: middle;
+ 
+}
+.floating-container .float-element:nth-child(1) {
+  background: #42A5F5;
+  box-shadow: 0 20px 20px -10px rgba(66, 165, 245, 0.5);
+}
+.floating-container .float-element:nth-child(2) {
+  background: #4CAF50;
+  box-shadow: 0 20px 20px -10px rgba(76, 175, 80, 0.5);
 }
 
-.botons.mostrar {
-  display: flex;
-}
