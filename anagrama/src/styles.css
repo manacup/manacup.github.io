@@ -354,3 +354,48 @@ button {
  
   animation: jump 0.5s ease-in-out infinite; /* Pots ajustar la duració i altres propietats segons les teves preferències */
 }
+.botoflotant {
+  width: 24px;
+  height: 24px;
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background-color: rgb(85, 119, 88);
+  color: white;
+  border: none;
+  border-radius: 50%;
+  padding: 15px;
+  cursor: pointer;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  align-items: center;
+}
+
+.botons {
+  display: none;
+  flex-direction: column;
+  position: absolute;
+  bottom: 60px;
+  right: 10px;
+  align-items: center;
+ 
+  padding: 5px;
+  
+ 
+}
+.boto{
+  width: 24px;
+  height: 24px;
+  margin: 5px;
+  padding: 5px;
+  border-radius: 50%;
+}
+.WhatsApp{
+  background-color:rgb(0, 153, 20);
+}
+.Telegram{
+  background-color:rgb(1, 110, 173);
+}
+
+.botons.mostrar {
+  display: flex;
+}
