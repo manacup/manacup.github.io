@@ -331,7 +331,7 @@ var req_key = 'H4DbmQYCH23qiUWkrmihRGYiC';
 var req_recaptchaKey = '6LfSgA8TAAAAAJ8TMvW_HEYNrSL4-3KVg4PRozcF';
 
 function sendRequest(faristolArray) {
-  let faristol = faristolArray.join("").toUpperCase();
+  let faristol = faristolArray.join("").toUpperCase().replace(/\?/g,"*");;
   (wsrv = "https://vuto-m.worder.cat/get_words.php"),//$("#wsrv").val()), //"https://vuto-m.worder.cat/get_words.php"
     "default" == wsrv && (wsrv = wwwDir + "/get_words.php"),
     $.ajax({
