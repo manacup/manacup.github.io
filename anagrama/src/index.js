@@ -167,7 +167,7 @@ function reinici() {
   paraulesUsades = [];
   comptador = 0;
   updateScoreDisplay();
-  sendRequest(nouFaristol)
+  sendRequest(nouFaristol);
 }
 
 [].forEach.call(boxes, function (box, index) {
@@ -318,32 +318,32 @@ window.addEventListener("DOMContentLoaded", function () {
   //console.log(permutacions(nouFaristol),totalParaules);
 
   updateScoreDisplay();
-  sendRequest(nouFaristol)
+  sendRequest(nouFaristol);
   inici();
 });
 
-var wdVer = '1.2.15';
-var wwwDir = '';
-var wwwLang = '/buscarparaules';
-var req_lang = 'ca';
-var req_key = 'H4DbmQYCH23qiUWkrmihRGYiC';
-var req_key = 'H4DbmQYCH23qiUWkrmihRGYiC';
-var req_recaptchaKey = '6LfSgA8TAAAAAJ8TMvW_HEYNrSL4-3KVg4PRozcF';
+var wdVer = "1.2.15";
+var wwwDir = "";
+var wwwLang = "/buscarparaules";
+var req_lang = "ca";
+var req_key = "H4DbmQYCH23qiUWkrmihRGYiC";
+var req_key = "H4DbmQYCH23qiUWkrmihRGYiC";
+var req_recaptchaKey = "6LfSgA8TAAAAAJ8TMvW_HEYNrSL4-3KVg4PRozcF";
 
 function sendRequest(faristolArray) {
-  let faristol = faristolArray.join("").toUpperCase().replace(/\?/g,"*");;
-  (wsrv = "https://vuto-m.worder.cat/get_words.php"),//$("#wsrv").val()), //"https://vuto-m.worder.cat/get_words.php"
+  let faristol = faristolArray.join("").toUpperCase().replace(/\?/g, "*");
+  (wsrv = "https://vuto-m.worder.cat/get_words.php"), //$("#wsrv").val()), //"https://vuto-m.worder.cat/get_words.php"
     "default" == wsrv && (wsrv = wwwDir + "/get_words.php"),
     $.ajax({
       url: "https://vuto-m.worder.cat/get_words.php",
       data: {
-                            lg:  req_lang,
-                            dicc:  "disc",
-                            lttr: faristol,//.toUpperCase(), //faristol
-                            pttn: "",//$("#p").val().toUpperCase(), //patro
-                            key: req_key,
-                            ver:  wdVer,
-                        },
+        lg: req_lang,
+        dicc: "disc",
+        lttr: faristol, //.toUpperCase(), //faristol
+        pttn: "", //$("#p").val().toUpperCase(), //patro
+        key: req_key,
+        ver: wdVer,
+      },
       type: "GET",
       dataType: "jsonp",
       jsonp: "cb",
@@ -351,13 +351,11 @@ function sendRequest(faristolArray) {
       timeout: 25e3,
       success: function (e) {
         void 0 !== e.wsrv
-          ? ($("#wsrv").val(e.wsrv),            
-            sendRequest(t))
-          : (console.log(e), 
-          gestionaTotals(e),           
+          ? ($("#wsrv").val(e.wsrv), sendRequest(t))
+          : (console.log(e),
+            gestionaTotals(e),
             void 0 !== e.gsjs && $.getScript(wwwDir + "/js/" + e.gsjs),
-            e.err < 10 
-            );
+            e.err < 10);
       },
       error: function () {
         var e = {
@@ -369,13 +367,14 @@ function sendRequest(faristolArray) {
       },
     });
 }
-function gestionaTotals(e){
-  if(e.err==0){
-  totalParaules = e.words.total
-  document.getElementById('totalWorder').textContent = " de "+totalParaules + " possibles."  
-  }else if(e.err == 2){
-      totalParaules = e.words.total;
-      document.getElementById("totalWorder").innerHTML =
-        " de més de" + totalParaules + " possibles.";
+function gestionaTotals(e) {
+  if (e.err == 0) {
+    totalParaules = e.words.total;
+    document.getElementById("totalWorder").innerHTML =
+      " de " + totalParaules + " possibles.";
+  } else if (e.err == 2) {
+    totalParaules = e.words.total;
+    document.getElementById("totalWorder").innerHTML =
+      " de més de" + totalParaules + " possibles.";
   }
 }

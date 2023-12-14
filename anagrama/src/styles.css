@@ -110,15 +110,19 @@ body {
   color: #fff;
 
   margin: 0.6em;
-  padding: 0.5em;
+  padding-top: 0.5em;
+  padding-bottom: 0.5em;
+  padding-left: 1em;
+  padding-right: 1em;
   width: max-content;
 }
 
 #req .sch {
   background-color: rgb(85, 119, 88);
-  border-radius: 0.5em;
+  border-radius: 0.5rem;
   border-color: rgb(85, 119, 88);
   color: white;
+ /*  box-shadow:  inset  0 3px 5px rgba(0, 0, 0, 0.125); */
 }
 
 #res {
@@ -280,6 +284,26 @@ button {
 }
 @keyframes glow-error {
   0% {
+    color: rgb(43, 0, 0);
+    
+  }
+  50% {
+    color: rgb(119, 85, 85);
+    
+    box-shadow: 0 0 1px 1px #ffffff85, 0 0 5px 5px rgba(200, 0, 0, 0.3);
+  }
+  100% {
+    color: rgb(43, 0, 0);
+    
+  }
+  0% { transform: translateX(0); }
+  25% { transform: translateX(-5px) rotate(-5deg); }
+  50% { transform: translateX(5px) rotate(5deg); }
+  75% { transform: translateX(-5px) rotate(-5deg); }
+  100% { transform: translateX(0); }
+}
+@keyframes glow-existeix {
+  0% {
     color: rgb(0, 43, 0);
     
   }
@@ -300,8 +324,11 @@ button {
   animation-delay: calc(var(--delay) * 0.1s); /* Calculem el retard basat en una variable personalitzada --delay */
     
 }
-.glow-text-error {
-  animation: glow-error 0.4s ease-in-out; /* Duració i funció de temporització de l'animació */
+.glow-existeix {
+  animation: glow-existeix 0.4s ease-in-out; /* Duració i funció de temporització de l'animació */
+}
+.glow-error {
+  animation: glow-error 0.3s ease-in-out; /* Duració i funció de temporització de l'animació */
 }
 
 #lletra-grid {
@@ -331,7 +358,7 @@ button {
 @keyframes shake {
   0% { transform: translateX(0); }
   25% { transform: translateX(-5px) rotate(-5deg); }
-  50% { transform: translateX(5px) rotate(5deg); }
+  50% { transform: translateX(5px) rotate(5deg); background-color:red}
   75% { transform: translateX(-5px) rotate(-5deg); }
   100% { transform: translateX(0); }
 }
@@ -382,10 +409,7 @@ button {
     opacity: 1;
   }
 }
-* {
-  margin: 0;
-  padding: 0;
-}
+
 
 .floating-container {
   position: fixed;
@@ -468,3 +492,64 @@ button {
   box-shadow: 0 20px 20px -10px rgba(76, 175, 80, 0.5);
 }
 
+.btn {
+  font-size: 14px;
+  padding: 6px 12px;
+  margin-bottom: 0;
+  border-radius: .5rem;
+
+  display: inline-block;
+  text-decoration: none;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: middle;
+  -ms-touch-action: manipulation;
+  touch-action: manipulation;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  background-image: none;
+  border: 1px solid transparent;
+}
+.btn:focus,
+.btn:active:focus {
+  outline: thin dotted;
+  outline: 5px auto -webkit-focus-ring-color;
+  outline-offset: -2px;
+}
+.btn:hover,
+ .btn:focus {
+  color: #333;
+  text-decoration: none;
+}
+.btn:active {
+  background-image: none;
+  outline: 0;
+  -webkit-box-shadow: inset 0 3px 5px rgba(0, 0, 0, .125);
+  box-shadow: inset 0 3px 5px rgba(0, 0, 0, .125);
+}
+
+/* default
+---------------------------- */
+.btn-default {
+  color: #ffffff;
+  background-color: rgb(85, 119, 88);
+  border-color: rgb(85, 119, 88);
+}
+.btn-default:focus {
+  color: #ffffff;
+  background-color: rgb(85, 119, 88);
+  border-color: rgb(85, 119, 88);
+}
+.btn-default:hover {
+  color: #ffffff;
+  background-color: rgb(35, 54, 39);
+  border-color: rgb(35, 54, 39);
+}
+.btn-default:active {
+  color: #ffffff;
+  background-color: rgb(35, 54, 39);
+  border-color: rgb(35, 54, 39);
+}

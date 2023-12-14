@@ -180,7 +180,7 @@ console.log(paraulesUsades)
 }else{
 	jQuery('#res').removeClass('tornKO').addClass('tornOK');
 		jQuery('#res_info').html("Aquesta ja l'havies jugat!");
-		showTremolaAnimation()
+		showExisteixAnimacio()
 }
 
 	/* jQuery('#res').slideDown(100);
@@ -192,14 +192,14 @@ console.log(paraulesUsades)
 	if (timer) clearInterval(timer);
 	timer = setInterval(qryDelInterval, 1000); */
 }
-function showTremolaAnimation() {
+function showExisteixAnimacio() {
     
 	const tauler = document.getElementById("scrabbleBoard")
 	tauler.querySelectorAll(".grid-item").forEach(gi=>{
 		if(gi.textContent){
-			gi.classList.add("glow-text-error")
+			gi.classList.add("glow-existeix")
 			setTimeout(() => {
-				gi.classList.remove('glow-text-error');
+				gi.classList.remove('glow-existeix');
 			}, 300); // Elimina la classe després d'1 segon (ajusta-ho segons la teva preferència)
 		}
 	})
@@ -214,11 +214,13 @@ function showCorrectAnimation() {
     }, 300); // Elimina la classe després d'1 segon (ajusta-ho segons la teva preferència)
 
 	const tauler = document.getElementById("scrabbleBoard")
+	var scrabble = 0
 	tauler.querySelectorAll(".grid-item").forEach((gi, index)=>{
-		if(gi.length==7){
-
-		}
+	
+		
+		
 		if(gi.textContent){
+			scrabble++
 			gi.classList.add("glow-text")
 			gi.style.setProperty('--delay', index + 1);
 			
@@ -228,7 +230,12 @@ function showCorrectAnimation() {
 			}, 1000); // Elimina la classe després d'1 segon (ajusta-ho segons la teva preferència)
 		}
 	})
-	
+	if(scrabble==7){
+		tauler.classList.add("glow-text")
+		setTimeout(() => {
+			tauler.classList.remove('glow-text');			
+		}, 1000)
+	}
 }
 function showIncorrectAnimation() {
     const scoreDisplay = document.getElementById('score');
@@ -240,9 +247,9 @@ function showIncorrectAnimation() {
 	const tauler = document.getElementById("scrabbleBoard")
 	tauler.querySelectorAll(".grid-item").forEach(gi=>{
 		if(gi.textContent){
-			gi.classList.add("tremolant")
+			gi.classList.add("glow-error")
 			setTimeout(() => {
-				gi.classList.remove('tremolant');
+				gi.classList.remove('glow-error');
 			}, 300); // Elimina la classe després d'1 segon (ajusta-ho segons la teva preferència)
 		}
 	})
@@ -352,9 +359,9 @@ jQuery(function ($) {
 
 function updateScoreDisplay() {
     const scoreDisplay = document.getElementById('score');
-    scoreDisplay.textContent = `Paraules vàlides: ${paraulesUsades.length}`;
+    scoreDisplay.innerHTML = `Paraules vàlides: ${paraulesUsades.length}`;
 	const llistaDisplay = document.getElementById('llistavalid');
-    llistaDisplay.textContent = `Llista: ${paraulesUsades.sort((a, b) => a.toLowerCase().localeCompare(b.toLowerCase())).join(", ")}`;
+    llistaDisplay.innerHTML = `Llista: <strong>${paraulesUsades.sort((a, b) => a.toLowerCase().localeCompare(b.toLowerCase())).join(", ")}</strong>`;
 
  }
  function updatetemps() {
