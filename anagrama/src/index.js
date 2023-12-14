@@ -25,13 +25,13 @@ if (!faristol) {
     paraulesUsades = partidaObj.jugades;
   }
 } else {
-  if(partidaDesada){
-  if (faristol.toUpperCase() == partidaObj.faristol.toUpperCase()) {
-    paraulesUsades = partidaObj.jugades;
+  if (partidaDesada) {
+    if (faristol.toUpperCase() == partidaObj.faristol.toUpperCase()) {
+      paraulesUsades = partidaObj.jugades;
+    }
   }
 }
-}
-
+let totalParaules = 0;
 const DnD = {
   dragEl: null,
   onDragStart: function (e) {
@@ -167,6 +167,7 @@ function reinici() {
   paraulesUsades = [];
   comptador = 0;
   updateScoreDisplay();
+  sendRequest(nouFaristol)
 }
 
 [].forEach.call(boxes, function (box, index) {
@@ -311,9 +312,67 @@ function desaPartida() {
   };
   localStorage.setItem("anagram", JSON.stringify(partida));
 }
+
 window.addEventListener("DOMContentLoaded", function () {
   fichasAleatorias = obtenerFichasAleatorias(arrayRepetido);
-  updateScoreDisplay();
+  //console.log(permutacions(nouFaristol),totalParaules);
 
+  updateScoreDisplay();
+  sendRequest(nouFaristol)
   inici();
 });
+
+var wdVer = '1.2.15';
+var wwwDir = '';
+var wwwLang = '/buscarparaules';
+var req_lang = 'ca';
+var req_key = 'H4DbmQYCH23qiUWkrmihRGYiC';
+var req_key = 'H4DbmQYCH23qiUWkrmihRGYiC';
+var req_recaptchaKey = '6LfSgA8TAAAAAJ8TMvW_HEYNrSL4-3KVg4PRozcF';
+
+function sendRequest(faristolArray) {
+  let faristol = faristolArray.join("").toUpperCase();
+  (wsrv = "https://vuto-m.worder.cat/get_words.php"),//$("#wsrv").val()), //"https://vuto-m.worder.cat/get_words.php"
+    "default" == wsrv && (wsrv = wwwDir + "/get_words.php"),
+    $.ajax({
+      url: "https://vuto-m.worder.cat/get_words.php",
+      data: {
+                            lg:  req_lang,
+                            dicc:  "disc",
+                            lttr: faristol,//.toUpperCase(), //faristol
+                            pttn: "",//$("#p").val().toUpperCase(), //patro
+                            key: req_key,
+                            ver:  wdVer,
+                        },
+      type: "GET",
+      dataType: "jsonp",
+      jsonp: "cb",
+      jsonpCallback: "wdrp",
+      timeout: 25e3,
+      success: function (e) {
+        void 0 !== e.wsrv
+          ? ($("#wsrv").val(e.wsrv),            
+            sendRequest(t))
+          : (console.log(e), 
+          gestionaTotals(e),           
+            void 0 !== e.gsjs && $.getScript(wwwDir + "/js/" + e.gsjs),
+            e.err < 10 
+            );
+      },
+      error: function () {
+        var e = {
+          err: 60,
+          err_msg: "UNKNOWN ERROR",
+          err_info: "UNKNOWN_FROM_CLIENT",
+        };
+        showResult(e), rmCookie("wdSrv"), $("#wsrv").val("default");
+      },
+    });
+}
+function gestionaTotals(e){
+  if(e.err==0){
+  totalParaules = e.words.total
+  document.getElementById('totalWorder').textContent = " de "+totalParaules + " possibles."
+  
+}
+}

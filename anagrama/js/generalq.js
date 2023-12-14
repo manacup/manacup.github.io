@@ -63,8 +63,8 @@ var histMove = function(jmp) { //jmp, 1 o -1
 }
 
 
-var qryNorm = function() {
-	var str = jQuery('.qry').val();
+var qryNorm = function(str) {
+	//var str = jQuery('.qry').val();
 	var qnorm = [];
 	
 	// Separa en paraules
@@ -83,9 +83,10 @@ var qryNorm = function() {
 var qryParse = function(wds) {
 	
 	d = actdict;
-	
+	var str = jQuery('.qry').val();
+
 	if (typeof wds == 'undefined')
-		var wds = qryNorm();
+		var wds = qryNorm(str);
 	
 	if (!wds)
 		return false;
@@ -125,9 +126,10 @@ console.log(paraulesUsades)
 	//inici()
 	let resp=true
 	
+	
 	qryStrCache = jQuery('.qry').val();
 	
-	var wds = qryNorm();
+	var wds = qryNorm(qryStrCache);
 
 	if (!wds)
 		return false;
@@ -137,6 +139,7 @@ console.log(paraulesUsades)
 	
 	  
 	var resultat = qryParse(wds);
+	console.log(resultat)
 	
 	var qryStr = [];
 	var qryHist = [];
@@ -211,14 +214,18 @@ function showCorrectAnimation() {
     }, 300); // Elimina la classe després d'1 segon (ajusta-ho segons la teva preferència)
 
 	const tauler = document.getElementById("scrabbleBoard")
-	tauler.querySelectorAll(".grid-item").forEach(gi=>{
+	tauler.querySelectorAll(".grid-item").forEach((gi, index)=>{
+		if(gi.length==7){
+
+		}
 		if(gi.textContent){
 			gi.classList.add("glow-text")
-			//gi.classList.add("saltant")
+			gi.style.setProperty('--delay', index + 1);
+			
 			setTimeout(() => {
 				gi.classList.remove('glow-text');
-				//gi.classList.remove("saltant")
-			}, 400); // Elimina la classe després d'1 segon (ajusta-ho segons la teva preferència)
+				gi.style.removeProperty('--delay');
+			}, 1000); // Elimina la classe després d'1 segon (ajusta-ho segons la teva preferència)
 		}
 	})
 	

@@ -274,9 +274,9 @@ button {
   40% {
     transform: translateY(-15px);
   }
-  /* 60% {
-    transform: translateY(-15px);
-  } */
+  60% {
+    transform: translateY(-5px);
+  }
 }
 @keyframes glow-error {
   0% {
@@ -295,8 +295,10 @@ button {
 }
 
 .glow-text {
-  animation: glow .4s ease-in-out; /* Duració i funció de temporització de l'animació */
-  /* animation: jump 0.4s ease-in-out infinite; */
+  animation: glow .7s ease-in-out; /* Duració i funció de temporització de l'animació */
+  /*opacity: 0;  Inicialment, les lletres són invisibles */
+  animation-delay: calc(var(--delay) * 0.1s); /* Calculem el retard basat en una variable personalitzada --delay */
+    
 }
 .glow-text-error {
   animation: glow-error 0.4s ease-in-out; /* Duració i funció de temporització de l'animació */
@@ -337,22 +339,6 @@ button {
 .tremolant {
  
   animation: shake 0.3s ease-in-out infinite; /* 0.5s és la duració, pots ajustar-ho segons les teves preferències */
-}
-@keyframes jump {
-  0%, 20%, 50%, 80%, 100% {
-    transform: translateY(0);
-  }
-  40% {
-    transform: translateY(-15px);
-  }
-  60% {
-    transform: translateY(-15px);
-  }
-}
-
-.saltant {
- 
-  animation: jump 0.5s ease-in-out infinite; /* Pots ajustar la duració i altres propietats segons les teves preferències */
 }
 
 
@@ -396,7 +382,10 @@ button {
     opacity: 1;
   }
 }
-
+* {
+  margin: 0;
+  padding: 0;
+}
 
 .floating-container {
   position: fixed;
