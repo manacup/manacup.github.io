@@ -17,59 +17,55 @@
 
 <body>
   <div id="app">
-    <div class="grid" id="scrabbleBoard">
-      <div class="grid-item" draggable="true"></div>
-      <div class="grid-item" draggable="true"></div>
-      <div class="grid-item" draggable="true"></div>
-      <div class="grid-item" draggable="true"></div>
-      <div class="grid-item" draggable="true"></div>
-      <div class="grid-item" draggable="true"></div>
-      <div class="grid-item" draggable="true"></div>
-
+    <div id="fixe">
+      <div class="grid" id="scrabbleBoard">
+        <div class="grid-item" draggable="true"></div>
+        <div class="grid-item" draggable="true"></div>
+        <div class="grid-item" draggable="true"></div>
+        <div class="grid-item" draggable="true"></div>
+        <div class="grid-item" draggable="true"></div>
+        <div class="grid-item" draggable="true"></div>
+        <div class="grid-item" draggable="true"></div>
+      </div>
+      <div class="grid" id="rack">
+        <div class="grid-item" draggable="true"></div>
+        <div class="grid-item" draggable="true"></div>
+        <div class="grid-item" draggable="true"></div>
+        <div class="grid-item" draggable="true"></div>
+        <div class="grid-item" draggable="true"></div>
+        <div class="grid-item" draggable="true"></div>
+        <div class="grid-item" draggable="true"></div>
+      </div>
+      <div class="botons-auxiliars">
+        <span id="barreja" class="aux"><span class="material-symbols-outlined">
+            shuffle
+          </span></span>
+        <span id="retorna" class="aux"><span class="material-symbols-outlined">
+            place_item
+          </span></span>
+        <span id="reinicia" class="aux"><span class="material-symbols-outlined">
+            refresh
+          </span></span>
+      </div>
+      <div id="req">
+        <form id="wdtform" name="wdtform" action="wordertorn">
+          <div id="input">
+            <input type="hidden" class="qry" name="q" id="word-input" />
+          </div>
+          <div id="buttons">
+            <div class="sch btn btn-default" name="sch" type="button">Valida</div>
+          </div>
+        </form>
+      </div>
+      <div id="res">
+        <div id="res_info"></div>
+        <div id="res_timer"></div>
+      </div>
+      <div><span id="score">Paraules vàlides: 0></span><span id="totalWorder"></span></div>
     </div>
-    <div class="grid" id="rack">
-      <div class="grid-item" draggable="true"></div>
-      <div class="grid-item" draggable="true"></div>
-      <div class="grid-item" draggable="true"></div>
-      <div class="grid-item" draggable="true"></div>
-      <div class="grid-item" draggable="true"></div>
-      <div class="grid-item" draggable="true"></div>
-      <div class="grid-item" draggable="true"></div>
-
-    </div>
-
-    <div class="botons-auxiliars">
-      <span id="barreja" class="aux"><span class="material-symbols-outlined">
-          shuffle
-        </span></span>
-      <span id="retorna" class="aux"><span class="material-symbols-outlined">
-          place_item
-        </span></span>
-      <span id="reinicia" class="aux"><span class="material-symbols-outlined">
-          refresh
-        </span></span>
-
-
-    </div>
-
-
-    <div id="req">
-      <form id="wdtform" name="wdtform" action="wordertorn">
-        <div id="input">
-          <input type="hidden" class="qry" name="q" id="word-input" />
-        </div>
-        <div id="buttons">
-          <div class="sch btn btn-default" name="sch" type="button" >Valida</div>
-        </div>
-      </form>
-    </div>
-    <div id="res">
-      <div id="res_info"></div>
-      <div id="res_timer"></div>
-    </div>
-    <div><span id="score">Paraules vàlides: 0></span><span id="totalWorder"></span></div> 
-    <div id="llistavalid"></div>
     <div id="temps" style="display: none;">Temps: 60 segons</div>
+    <div id="llistavalid"></div>
+    
     <!-- Modal -->
     <div id="modal" class="modal">
       <div class="modal-content">
@@ -103,7 +99,7 @@
           chat_bubble
         </span>
       </span>
-      
+
     </div>
   </div>
   <script src="src/compartir.js"></script>

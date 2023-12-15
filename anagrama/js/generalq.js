@@ -195,12 +195,16 @@ console.log(paraulesUsades)
 function showExisteixAnimacio() {
     
 	const tauler = document.getElementById("scrabbleBoard")
-	tauler.querySelectorAll(".grid-item").forEach(gi=>{
+	let index = 0;
+	tauler.querySelectorAll(".grid-item").forEach((gi)=>{
 		if(gi.textContent){
 			gi.classList.add("glow-existeix")
+			gi.style.setProperty('--delay', index + 1);
 			setTimeout(() => {
 				gi.classList.remove('glow-existeix');
-			}, 300); // Elimina la classe després d'1 segon (ajusta-ho segons la teva preferència)
+				gi.style.removeProperty('--delay');
+			}, 1000); // Elimina la classe després d'1 segon (ajusta-ho segons la teva preferència)
+			index++
 		}
 	})
 	
@@ -211,13 +215,12 @@ function showCorrectAnimation() {
     scoreDisplay.classList.add('correct');
     setTimeout(() => {
         scoreDisplay.classList.remove('correct');
-    }, 300); // Elimina la classe després d'1 segon (ajusta-ho segons la teva preferència)
+    }, 400); // Elimina la classe després d'1 segon (ajusta-ho segons la teva preferència)
 
 	const tauler = document.getElementById("scrabbleBoard")
 	var scrabble = 0
-	tauler.querySelectorAll(".grid-item").forEach((gi, index)=>{
-	
-		
+	let index = 0;
+	tauler.querySelectorAll(".grid-item").forEach((gi)=>{		
 		
 		if(gi.textContent){
 			scrabble++
@@ -228,6 +231,7 @@ function showCorrectAnimation() {
 				gi.classList.remove('glow-text');
 				gi.style.removeProperty('--delay');
 			}, 1000); // Elimina la classe després d'1 segon (ajusta-ho segons la teva preferència)
+			index++;
 		}
 	})
 	if(scrabble==7){
@@ -245,12 +249,16 @@ function showIncorrectAnimation() {
     }, 300); // Elimina la classe després d'1 segon (ajusta-ho segons la teva preferència)
 
 	const tauler = document.getElementById("scrabbleBoard")
-	tauler.querySelectorAll(".grid-item").forEach(gi=>{
+	let index = 0;
+	tauler.querySelectorAll(".grid-item").forEach((gi)=>{
 		if(gi.textContent){
 			gi.classList.add("glow-error")
+			gi.style.setProperty('--delay', index + 1);
 			setTimeout(() => {
 				gi.classList.remove('glow-error');
-			}, 300); // Elimina la classe després d'1 segon (ajusta-ho segons la teva preferència)
+				gi.style.removeProperty('--delay');
+			}, 1000); // Elimina la classe després d'1 segon (ajusta-ho segons la teva preferència)
+			index++
 		}
 	})
 }
