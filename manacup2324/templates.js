@@ -786,9 +786,9 @@ function renderScrabbles(jugador) {
       <div class="p-1 entrada">
           <div class="card
           ${
-            parseFloat(jugador.mitjanaScrabbles) >= 4
+            parseFloat(jugador.mitjanaScrabbles) >= 3
               ? "border-danger"
-              : parseFloat(jugador.mitjanaScrabbles) >= 3
+              : parseFloat(jugador.mitjanaScrabbles) >= 2
               ? "border-primary"
               : ""
           }" data-bs-toggle="collapse" data-bs-target="#collapse${jugador.ID}">
@@ -850,7 +850,7 @@ function renderScrabbles(jugador) {
 }
 function ompleTaulaScrabbles(partides) {
   var taula = "";
-  partides.sort((a,b)=>a.Scrabbles_1-b.Scrabbles_1)
+  partides.sort((a,b)=>b.Scrabbles_1-a.Scrabbles_1)
   partides.forEach((partida) => {
     const llistaTemplate = ` 
             <tr>              
@@ -936,6 +936,7 @@ function renderPartida(jugador) {
 function ompleTaulaPartida(partides) {
   //console.log(partides)
   var taula = "";
+  partides.sort((a,b)=>b.Puntuacio_1-a.Puntuacio_1)
   partides.forEach((partida) => {
     const llistaTemplate = ` 
             <tr>              
@@ -955,6 +956,7 @@ function ompleTaulaPartida(partides) {
 function ompleTaulaConjunta(partides) {
   //console.log(partides)
   var taula = "";
+  partides.sort((a,b)=>b.Suma_punts-a.Suma_punts)
   partides.forEach((partida) => {
     const llistaTemplate = ` 
             <tr>              
@@ -1048,6 +1050,7 @@ function renderJugada(jugador) {
 function ompleTaulaJugada(partides) {
   //console.log(partides)
   var taula = "";
+  partides.sort((a,b)=>b.Puntsmot_1-a.Puntsmot_1)
   partides.forEach((partida) => {
     const llistaTemplate = ` 
             <tr>              
@@ -1122,6 +1125,7 @@ function renderSocial(jugador) {
 function ompleTaulaSocial(partides) {
   //console.log(partides)
   var taula = "";
+  partides.sort((a,b)=>b.Punts_social-a.Punts_social)
   partides.forEach((partida) => {
     const llistaTemplate = ` 
             <tr>              
@@ -1194,6 +1198,7 @@ function renderVelocitat(jugador) {
 function ompleTaulaVelocitat(partides) {
   //console.log(partides)
   var taula = "";
+  partides.sort((a,b)=>b.Punts_velocitat-a.Punts_velocitat)
   partides.forEach((partida) => {
     const llistaTemplate = `
             <tr>              
