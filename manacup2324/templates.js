@@ -243,7 +243,7 @@ function renderJugador(jugador) {
                     <ul class="list-group list-group-flush rounded-4">
   
                       <li class="list-group-item d-flex justify-content-between align-items-center">
-                        <div class="">Numero total de Scrabbles al campionat	:</div>
+                        <div class="">Nombre total de Scrabbles al campionat:</div>
                         <div class="">${jugador.Scrabbles}</div>
                       </li>
                       <li class="list-group-item d-flex justify-content-between align-items-center">
@@ -253,7 +253,7 @@ function renderJugador(jugador) {
                       <li class="list-group-item d-flex justify-content-between align-items-center" data-bs-toggle="collapse" data-bs-target="#collapseScrabbles${
                         jugador.ID
                       }">
-                        <div class="dropdown-toggle">Llistat complet</div>                      
+                        <div class="dropdown-toggle">Llista completa</div>                      
                       </li>                                     
                     </ul>
                   </div> 
@@ -850,6 +850,7 @@ function renderScrabbles(jugador) {
 }
 function ompleTaulaScrabbles(partides) {
   var taula = "";
+  partides.sort((a,b)=>a.Scrabbles_1-b.Scrabbles_1)
   partides.forEach((partida) => {
     const llistaTemplate = ` 
             <tr>              
