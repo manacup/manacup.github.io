@@ -297,7 +297,7 @@ function renderJugador(jugador) {
                       <li class="list-group-item d-flex justify-content-between align-items-center" data-bs-toggle="collapse" data-bs-target="#collapsePindividual${
                         jugador.ID
                       }">
-                        <div class="dropdown-toggle">Llistat complet</div>                      
+                        <div class="dropdown-toggle">Llista completa</div>                      
                       </li>                                     
                     </ul>
                   </div>
@@ -341,7 +341,7 @@ function renderJugador(jugador) {
                       <li class="list-group-item d-flex justify-content-between align-items-center" data-bs-toggle="collapse" data-bs-target="#collapsePconjunta${
                         jugador.ID
                       }">
-                        <div class="dropdown-toggle">Llistat complet</div>                      
+                        <div class="dropdown-toggle">Llista completa</div>                      
                       </li>                                      
                     </ul>
                   </div>
@@ -391,7 +391,7 @@ function renderJugador(jugador) {
                       <li class="list-group-item d-flex justify-content-between align-items-center" data-bs-toggle="collapse" data-bs-target="#collapseJugada${
                         jugador.ID
                       }">
-                        <div class="dropdown-toggle">Llistat complet</div>                      
+                        <div class="dropdown-toggle">Llista completa</div>                      
                       </li>                                   
                     </ul>
                   </div>
@@ -430,7 +430,7 @@ function renderJugador(jugador) {
                       <li class="list-group-item d-flex justify-content-between align-items-center" data-bs-toggle="collapse" data-bs-target="#collapseVelocitat${
                         jugador.ID
                       }">
-                        <div class="dropdown-toggle">Llistat complet</div>                      
+                        <div class="dropdown-toggle">Llista completa</div>                      
                       </li>               
                     </ul>
                   </div>
@@ -468,7 +468,7 @@ function renderJugador(jugador) {
                       <li class="list-group-item d-flex justify-content-between align-items-center" data-bs-toggle="collapse" data-bs-target="#collapseSocial${
                         jugador.ID
                       }">
-                        <div class="dropdown-toggle">Llistat complet</div>                      
+                        <div class="dropdown-toggle">Llista completa</div>                      
                       </li>               
                     </ul>
                   </div>
