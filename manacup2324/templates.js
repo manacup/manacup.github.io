@@ -37,7 +37,7 @@ function renderUserCard(jugadorDesat) {
             `;
 
   document.querySelectorAll(".userImg").forEach((im) => {
-    im.src = jugadorDesat.Imatge;
+    im.src = img64(jugadorDesat.Imatge);
   });
   document.getElementById("userCard").innerHTML = "";
   document.getElementById("userCard").innerHTML += menuTemplate;
@@ -45,8 +45,7 @@ function renderUserCard(jugadorDesat) {
     document.getElementById("menuJugador").classList.remove("show");
     loadContent(["detall", jugadorDesat.ID]);
     updateHistory(["detall", jugadorDesat.ID]);
-  });
-  document.querySelector(".userImg").src=img64(jugadorDesat.Imatge)
+  }); 
 }
 
 function renderJugador(jugador) {
