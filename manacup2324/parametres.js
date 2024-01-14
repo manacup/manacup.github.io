@@ -80,6 +80,7 @@ function carregaUsuari() {
 document.addEventListener("DOMContentLoaded", iniciJSON());
 
 function img64(url){
+  console.log(url)
   var imatge64
   Promise.all([
     fetch(macroURL + "?page=imatge&options=" + url),
