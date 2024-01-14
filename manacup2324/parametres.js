@@ -78,6 +78,7 @@ function carregaUsuari() {
   }
 }
 document.addEventListener("DOMContentLoaded", iniciJSON());
+
 function img64(url){
   var imatge64
   Promise.all([
@@ -86,7 +87,8 @@ function img64(url){
   .then(responses => Promise.all(responses.map(response => response.json())))
   .then(([img])=>{
     imatge64 = img.imatge
-  }
+  })
+  .catch(error => console.error("Error:", error));
         return imatge
 }
 
