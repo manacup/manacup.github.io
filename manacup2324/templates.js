@@ -12,7 +12,7 @@ function renderUserCard(jugadorDesat) {
                 : ""
             }  aria-controls="desaimatge">
               <div class="mt-3 mb-4 imatge-cercle ">
-                <img src="${img64(jugadorDesat.Imatge)}" class="userImg">              
+                <img src="${jugadorDesat.Imatge}" class="userImg">              
               </div>
                 <div class="edit ${
                   !jugadorDesat.Nom ? "d-none" : ""
@@ -46,6 +46,7 @@ function renderUserCard(jugadorDesat) {
     loadContent(["detall", jugadorDesat.ID]);
     updateHistory(["detall", jugadorDesat.ID]);
   });
+  document.querySelector(".userImg").src=img64(jugadorDesat.Imatge)
 }
 
 function renderJugador(jugador) {
