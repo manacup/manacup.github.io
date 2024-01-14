@@ -89,7 +89,7 @@ function img64(url){
     imatge64 = img.imatge
   })
   .catch(error => console.error("Error:", error));
-        return imatge
+        return imatge64
 }
 
 function iniciJSON(vista) {
