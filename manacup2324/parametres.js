@@ -90,6 +90,7 @@ function img64(url){
     imatge64 = img.imatge
   })
   .catch(error => console.error("Error:", error));
+  console.log(imatge64)
         return imatge64
 }
 
