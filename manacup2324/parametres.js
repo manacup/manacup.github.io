@@ -86,6 +86,7 @@ function img64(url){
   ])
   .then(responses => Promise.all(responses.map(response => response.json())))
   .then(([img])=>{
+    console.log(img)
     imatge64 = img.imatge
   })
   .catch(error => console.error("Error:", error));
