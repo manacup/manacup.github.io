@@ -12,7 +12,7 @@ function renderUserCard(jugadorDesat) {
                 : ""
             }  aria-controls="desaimatge">
               <div class="mt-3 mb-4 imatge-cercle ">
-                <img src="${macroURL+"?page=imatge&id="+jugadorDesat.Imatge}" class="userImg">              
+                <img src="${fetch(macroURL+"?page=imatge&id="+jugadorDesat.Imatge)}" class="userImg">              
               </div>
                 <div class="edit ${
                   !jugadorDesat.Nom ? "d-none" : ""
