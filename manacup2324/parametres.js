@@ -78,6 +78,17 @@ function carregaUsuari() {
   }
 }
 document.addEventListener("DOMContentLoaded", iniciJSON());
+function img64(url){
+  var imatge64
+  Promise.all([
+    fetch(macroURL + "?page=imatge&options=" + url),
+  ])
+  .then(responses => Promise.all(responses.map(response => response.json())))
+  .then(([img])=>{
+    imatge64 = img.imatge
+  }
+        return imatge
+}
 
 function iniciJSON(vista) {
   
