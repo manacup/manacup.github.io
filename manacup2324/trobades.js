@@ -144,9 +144,9 @@ function renderFormTrobada(trobada) {
             <div class="card-body">        
               <h6 class="card-title">Primera partida <span id="ronda1"></span></h6>
               <div class="row">
-                <div class="col-10 mb-3">He pactat la ronda amb el meu adversari <span id="adv1">${
-               jugadorDesat.partides.filter((p) => p.Ronda == ronda1)?
-                   jugadorDesat.partides.filter((p) => p.Ronda == ronda1)[0].Jugador2:
+                <div class="col-10 mb-3">He pactat la ronda amb el meu adversari <span id="adv1">${               
+                   jugadorDesat.partides.filter((p) => p.Ronda == ronda1)[0]!=undefined?
+                  jugadorDesat.partides.filter((p) => p.Ronda == ronda1)[0].Jugador2:
                   ""
                 }</span></div>
                 <div class="col-2 text-end">
