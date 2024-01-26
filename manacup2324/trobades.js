@@ -147,14 +147,14 @@ function renderFormTrobada(trobada) {
                 <div class="col-10 mb-3">He pactat la ronda amb el meu adversari <span id="adv1">${               
                    jugadorDesat.partides.filter((p) => p.Ronda == ronda1)[0]!=undefined?
                   jugadorDesat.partides.filter((p) => p.Ronda == ronda1)[0].Jugador2:
-                  ""
+                  "(no tenc adversari definit en aquesta ronda)"
                 }</span></div>
                 <div class="col-2 text-end">
                   <div class="form-check form-switch">
                     <input class="form-check-input ch1" type="radio" role="switch" name="Primera_partida" id="Primera_partida" value="1a Partida oficial amb " onchange="this.checked?document.getElementById('jugPacte1').value='${
                    jugadorDesat.partides.filter((p) => p.Ronda == ronda1)[0]!=undefined?
                   jugadorDesat.partides.filter((p) => p.Ronda == ronda1)[0].Jugador2:
-                  ""   
+                  "(no tenc adversari definit en aquesta ronda)"   
                     }':''">
                    
                   </div>
@@ -200,14 +200,14 @@ function renderFormTrobada(trobada) {
                 <div class="col-10 mb-3">He pactat la ronda amb el meu adversari <span id="adv2">${
                 jugadorDesat.partides.filter((p) => p.Ronda == ronda2)[0]!=undefined?
                   jugadorDesat.partides.filter((p) => p.Ronda == ronda2)[0].Jugador2:
-                  ""
+                  "(no tenc adversari definit en aquesta ronda)"
                 }</span></div>
                 <div class="col-2 text-end">
                   <div class="form-check form-switch">
                     <input class="form-check-input ch2" type="radio" role="switch" name="Segona_partida" id="Segona_partida" value="2a Partida oficial amb " onchange="this.checked?document.getElementById('jugPacte2').value='${
                       jugadorDesat.partides.filter((p) => p.Ronda == ronda2)[0]!=undefined?
                   jugadorDesat.partides.filter((p) => p.Ronda == ronda2)[0].Jugador2:
-                  ""
+                  "(no tenc adversari definit en aquesta ronda)"
                     }':''">
                    
                   </div>
