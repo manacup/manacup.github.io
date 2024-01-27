@@ -70,7 +70,7 @@ function renderJugador(jugador) {
                   
                   <div class="d-flex justify-content-center imatge-container">
                     <div class="mt-3 mb-4 imatge-cercle img">
-                      <img src=""https://drive.google.com/thumbnail?id=${
+                      <img src="https://drive.google.com/thumbnail?id=${
                         jugador.ID == jugadorDesat.ID
                           ? userImg || jugador.Imatge
                           : jugador.Imatge
@@ -625,12 +625,12 @@ function renderDetallPartida(partida) {
         <div id="carouselExampleControls" class="carousel slide mb-4" data-bs-ride="carousel">
           <div class="carousel-inner" >
             <div class="carousel-item active quadrat">
-              <img src=""https://drive.google.com/thumbnail?id=${
+              <img src="https://drive.google.com/thumbnail?id=${
                 partida.Full || imatgeFixa
               }" class="d-block  rounded cover img-fluid" onclick="loadContent(['imatge',this])">
             </div>
             <div class="carousel-item quadrat">
-              <img src=""https://drive.google.com/thumbnail?id=${
+              <img src="https://drive.google.com/thumbnail?id=${
                 partida.Tauler || imatgeFixa
               }" class="d-block rounded cover img-fluid" onclick="loadContent(['imatge',this])">
             </div>
