@@ -290,7 +290,7 @@ function loadContent(vista) {
   cerca();
   afegeixEsdeveniments();
   tooltips();
-  carregaImatges();
+  //carregaImatges();
 }
 function carregaImatges() {
    let contentDiv = document.getElementById("content");
