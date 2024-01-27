@@ -290,8 +290,17 @@ function loadContent(vista) {
   cerca();
   afegeixEsdeveniments();
   tooltips();
+  carregaImatges();
 }
-
+function carregaImatges() {
+   let contentDiv = document.getElementById("content");
+  contentDiv.querySelectorAll("img").forEach((img)=>{
+    var url = img.src
+    var img64b =img64(url)
+    console.log(img64b)
+    img.src = img64b
+  })
+}
 function afegeixEsdeveniments() {
   let contentDiv = document.getElementById("content");
 
