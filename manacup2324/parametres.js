@@ -32,7 +32,7 @@ let jugadorDefault = {
   Nom: "",
   Malnom2: "",
   Imatge:
-    "https://drive.google.com/uc?export=download&id=1smxezxXK12OGMJ-1uBu68aVAwBGaYSnE",
+    "https://drive.google.com/thumbnail?id=1smxezxXK12OGMJ-1uBu68aVAwBGaYSnE",
   ID: "1",
 };
 let jugadorDesat = {};
@@ -78,19 +78,6 @@ function carregaUsuari() {
   }
 }
 document.addEventListener("DOMContentLoaded", iniciJSON());
-
-function img64(url){
-  Promise.all([
-    fetch(macroURL + "?page=imatge&options=" + url),
-  ])
-  .then(responses => Promise.all(responses.map(response => response.json())))
-  .then(([img])=>{
-    return img.imatge
-  })
-  .catch(error => console.error("Error:", error));
- 
-    
-}
 
 function iniciJSON(vista) {
   
