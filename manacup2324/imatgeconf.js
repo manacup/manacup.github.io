@@ -28,30 +28,10 @@ function desaImatgeConf(e) {
       var modal = document.getElementById("desaimatge");
       var myModal = new bootstrap.Modal(modal);
       myModal.hide();
-      /*  modal.classList.remove("show");
-      modal.classList.add("d-none");
-      document.querySelector(".modal-backdrop").classList.remove("show");
-      document.querySelector(".modal-backdrop").classList.add("d-none"); */
-      /*dades.filter((j) => j.Nom == nom)[0].Imatge = data;
-       jugadorDesat.Imatge = data;
-      renderUserCard(jugadorDesat); */
+     
     })
     .catch((error) => console.error("Error:", error));
 
-  /*       google.script.run.withSuccessHandler((url) => {
-      console.log(url)
-      e.disabled = false
-      document.getElementById("spnbtn").classList.add("d-none")
-      var modal = document.getElementById('desaimatge')
-      modal.classList.remove('show');
-      modal.classList.add('d-none');
-      document.querySelector(".modal-backdrop").classList.remove('show');
-      document.querySelector(".modal-backdrop").classList.add('d-none');
-      data.filter(j => j.Nom == nom)[0].Imatge = url
-      jugadorDesat.Imatge = url
-      renderUserCard(jugadorDesat)
-
-    }).uploadFilesImatge(nom, file); */
 }
 var carregaImatgeConf = function (event) {
   var reader3 = new FileReader();
