@@ -32,7 +32,7 @@ let jugadorDefault = {
   Nom: "",
   Malnom2: "",
   Imatge:
-    "https://drive.google.com/uc?export=download&id=1smxezxXK12OGMJ-1uBu68aVAwBGaYSnE",
+    "https://drive.google.com/thumbnail?id=1smxezxXK12OGMJ-1uBu68aVAwBGaYSnE",
   ID: "1",
 };
 let jugadorDesat = {};
