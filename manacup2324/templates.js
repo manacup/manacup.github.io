@@ -804,7 +804,7 @@ function renderScrabbles(jugador) {
                               <span class="badge text-bg-primary ${
                                 jugador.movimentScrabbles > 0 ? "" : "d-none"
                               } percent" data-percent="${
-    jugador.mitjanaScrabbles
+    +jugador.mitjanaScrabbles
   }">+${jugador.movimentScrabbles}</span>
                           </div>
                           <div class="row">
