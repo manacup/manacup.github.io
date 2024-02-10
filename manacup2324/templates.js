@@ -1469,6 +1469,19 @@ function renderRondes(ronda) {
 
 function ompleTaulaRonda(partidesRonda) {
   // console.log(partidesRonda)
+  const datesAsObjects = partidesRonda.map((date) => {
+  const parts = date.Data.split("/");
+  return new Date(parts[2], parts[1] - 1, parts[0]);
+});
+  function compareDates(a,b){
+    const parts1 = a.Data.split("/");
+    var data1  = new Date(parts1[2], parts1[1] - 1, parts1[0])
+    const parts2 = b.Data.split("/");
+    var data2  = new Date(parts2[2], parts2[1] - 1, parts2[0])
+    
+    return data1.getTime() - data2.getTime();
+  }
+  partidesRonda.sort(compareDates);
   var taula = "";
   function ordreRondes(a, b) {
     return a.Ronda - b.Ronda;
