@@ -154,17 +154,17 @@ function loadContent(vista) {
         }
       });
       //console.log(vistesPartides)
-       var ordenada = false;
+     var ordenada = false;
       var icona =  document.getElementById("icona")
       document.getElementById("ordenarBoto").addEventListener("click", () => {
         // Llama a la función de ordenar la tabla por la segunda columna (Edad)
         if (!ordenada) {
-          ordenarScrabbleMitjana();
+          ordenarLlistaPercentatge();
           ordenada = true;
           icona.classList.add("bi-list-ol")
           icona.classList.remove("bi-percent")
         } else {
-          ordenarLlistaPercentatge();
+          ordenarLlistaPunts();
           ordenada = false;
           icona.classList.remove("bi-list-ol")
           icona.classList.add("bi-percent")
