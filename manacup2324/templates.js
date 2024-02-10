@@ -815,7 +815,7 @@ function renderScrabbles(jugador) {
                               <div class="col">
                                   <div class="d-flex align-items-start flex-column">
                                       <small>Mitjana:</small>
-                                      <div>${jugador.mitjanaScrabbles}</div>
+                                      <div class="percent">${jugador.mitjanaScrabbles}</div>
                                   </div>
                               </div>
                           </div>
@@ -841,7 +841,7 @@ function renderScrabbles(jugador) {
   var cardjug = document.createElement("div");
   cardjug.classList.add("p-0")
   cardjug.innerHTML = jugadorTemplate;
-  document.getElementById("content").appendChild(cardjug);
+  document.getElementById("subcontent").appendChild(cardjug);
   //document.getElementById("content").innerHTML += jugadorTemplate;
 
   vistesPartides.push(
