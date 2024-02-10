@@ -803,7 +803,9 @@ function renderScrabbles(jugador) {
                               <div  class="flex-grow-1"></div>
                               <span class="badge text-bg-primary ${
                                 jugador.movimentScrabbles > 0 ? "" : "d-none"
-                              }">+${jugador.movimentScrabbles}</span>
+                              } percent" data-percent="${
+    jugador.mitjanaScrabbles
+  }">+${jugador.movimentScrabbles}</span>
                           </div>
                           <div class="row">
                               <div class="col">
@@ -815,7 +817,7 @@ function renderScrabbles(jugador) {
                               <div class="col">
                                   <div class="d-flex align-items-start flex-column">
                                       <small>Mitjana:</small>
-                                      <div class="percent">${jugador.mitjanaScrabbles}</div>
+                                      <div>${jugador.mitjanaScrabbles}</div>
                                   </div>
                               </div>
                           </div>
