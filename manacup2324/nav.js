@@ -8,7 +8,10 @@ let currentPage = "home";
 
 // Función para cargar contenido en la página
 function loadContent(vista) {
-  document.querySelector(".tooltip").remove()
+  var tootltip = document.querySelector(".tooltip")
+    if(tootltip){
+      tootltip.remove()
+    }
   if (pageHistory.length != 0) {
     document.getElementById("botoEnrera").classList.remove("d-none");
   } else {
