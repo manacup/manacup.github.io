@@ -104,7 +104,9 @@ function renderJugador(jugador) {
                       "Encara no ha aconseguit cap diploma olímpic."
                     }">
                     <span class="h1 material-symbols-outlined">school</span>
-                    <p class="text-muted ">${diplomes.length}</p>
+                    <p class="text-muted ">${
+                      diplomes.length != "" ? diplomes.length : "0"
+                    }</p>
                     </div>
                     </div>
                     <button type="button" class="btn btn-primary btn-rounded btn-lg " onclick="window.open('https://wa.me/34${
