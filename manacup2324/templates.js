@@ -245,7 +245,7 @@ function renderJugador(jugador) {
                     <ul class="list-group list-group-flush rounded-4">
   
                       <li class="list-group-item d-flex justify-content-between align-items-center">
-                        <div class="">Nombre total de Scrabbles al campionat:</div>
+                        <div class="">Nombre total de Scrabbles:</div>
                         <div class="">${jugador.Scrabbles}</div>
                       </li>
                       <li class="list-group-item d-flex justify-content-between align-items-center">
