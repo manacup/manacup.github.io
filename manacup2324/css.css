@@ -166,7 +166,7 @@ body {
     content: "";
   position: absolute;
   top: 4.5rem;
-  right: 1.2rem; /* A la dreta del card-body */ 
+  left: 1.5rem; /* A la dreta del card-body */ 
   width: 0;
   height: 0;
   border-style: solid;
