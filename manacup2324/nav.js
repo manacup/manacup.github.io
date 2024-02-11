@@ -26,7 +26,7 @@ function loadContent(vista) {
       break;
     case "classificacio":
       navbarTitle.innerHTML = "Classificació";
-      contentDiv.innerHTML += `<div class="p-1" id="ordenarBoto"><i id="icona" class="float-end bi bi-percent" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Ordena per percentatge de victòries o per punts."></i></div>`;
+      contentDiv.innerHTML += `<div class="p-1" id="ordenarBoto"><i id="icona" class="float-end bi bi-percent" data-bs-toggle="tooltip" data-bs-delay='{"show":0,"hide":150}' data-bs-placement="top" data-bs-title="Ordena per percentatge de victòries o per punts."></i></div>`;
       var div = document.createElement("div");
       div.id = "subcontent";
       /* div.classList.add("row-md-8");
