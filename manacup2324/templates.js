@@ -105,7 +105,7 @@ function renderJugador(jugador) {
                     }">
                     <span class="h1 material-symbols-outlined">school</span>
                     <p class="text-muted ">${
-                      diplomes.length != "" ? diplomes.length : "0"
+                      jugador.Diplomes != "" ? diplomes.length : "0"
                     }</p>
                     </div>
                     </div>
