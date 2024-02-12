@@ -9,7 +9,7 @@ async function fetchJSON(url) {
   return 
 }
 
-function fetchJSON("https://script.google.com/macros/s/AKfycbzN6ZwJ3q46WzSnrHNg053WcXtsGxsGyuakqg1dbTg4IKTEvS_bqwhe408tbOLYwBjE/exec")
+fetchJSON("https://script.google.com/macros/s/AKfycbzN6ZwJ3q46WzSnrHNg053WcXtsGxsGyuakqg1dbTg4IKTEvS_bqwhe408tbOLYwBjE/exec")
 
 
 
