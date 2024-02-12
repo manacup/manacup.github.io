@@ -396,7 +396,8 @@ function combinarParaules(numParaules) {
   
 	  // Amb una probabilitat del 50%, seleccionar una paraula predefinida
 	  if (Math.random() < 0.5) {
-		paraula = paraulesPredefinides[Math.floor(Math.random() * paraulesPredefinides.length)];
+		  const paraules = paraulesPredefinides.concat(paraulesConsultades)
+		paraula = [Math.floor(Math.random() * paraulesPredefinides.length)];
 	  } else {
 		paraula = generarParaula();
 	  }
