@@ -381,6 +381,8 @@ function generarParaula() {
 
   return paraula;
 }
+const paraules = paraulesPredefinides.concat(paraulesConsultades)
+		  console.log (paraules)
 // Funció per combinar un nombre específic de paraules
 function combinarParaules(numParaules) {
 	// Verificar si el nombre de paraules és vàlid
@@ -396,8 +398,8 @@ function combinarParaules(numParaules) {
   
 	  // Amb una probabilitat del 50%, seleccionar una paraula predefinida
 	  if (Math.random() < 0.5) {
-		  const paraules = paraulesPredefinides.concat(paraulesConsultades)
-		paraula = [Math.floor(Math.random() * paraulesPredefinides.length)];
+		  
+		paraula = paraules[Math.floor(Math.random() * paraules.length)];
 	  } else {
 		paraula = generarParaula();
 	  }
