@@ -84,15 +84,12 @@ function iniciJSON(vista) {
   carregant();
   carrega = 0;
   // Crida a l'API del Google Apps Script
-  Promise.all([
-    fetch(macroURL + "?page=trobades&idfull=" + idfull),
-    fetch(macroURL + "?page=jugadors&idfull=" + idfull),
-    fetch(macroURL + "?page=aparellaments&idfull=" + idfull),
-    fetch(macroURL + "?page=calendari&idfull=" + idfull),
-    fetch(macroURL + "?page=partides&idfull=" + idfull),
-    {   
-    mode: 'no-cors',
-    },
+  Promise.all([    
+    fetch(macroURL + "?page=trobades&idfull=" + idfull,{ mode: 'no-cors'}),
+    fetch(macroURL + "?page=jugadors&idfull=" + idfull,{ mode: 'no-cors'}),
+    fetch(macroURL + "?page=aparellaments&idfull=" + idfull,{ mode: 'no-cors'}),
+    fetch(macroURL + "?page=calendari&idfull=" + idfull,{ mode: 'no-cors'}),
+    fetch(macroURL + "?page=partides&idfull=" + idfull,{ mode: 'no-cors'}),    
   ])
   .then(responses => Promise.all(responses.map(response => response.json())))
   .then(([dataTrobades, dataJugadors, dataAparellaments, dataCalendari, dataPartides]) => {
