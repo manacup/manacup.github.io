@@ -84,6 +84,7 @@ function iniciJSON(vista) {
   carregant();
   carrega = 0;
   // Crida a l'API del Google Apps Script
+  var myHeaders = new Headers();
   var myInit = {
   method: "GET",
   headers: myHeaders,
