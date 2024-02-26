@@ -90,6 +90,9 @@ function iniciJSON(vista) {
     fetch(macroURL + "?page=aparellaments&idfull=" + idfull),
     fetch(macroURL + "?page=calendari&idfull=" + idfull),
     fetch(macroURL + "?page=partides&idfull=" + idfull),
+    {   
+    mode: 'no-cors',
+    },
   ])
   .then(responses => Promise.all(responses.map(response => response.json())))
   .then(([dataTrobades, dataJugadors, dataAparellaments, dataCalendari, dataPartides]) => {
