@@ -92,11 +92,11 @@ function iniciJSON(vista) {
   cache: "default",
 };
   Promise.all([    
-    fetch(macroURL + "?page=trobades&idfull=" + idfull,myInit),
-    fetch(macroURL + "?page=jugadors&idfull=" + idfull,myInit),
-    fetch(macroURL + "?page=aparellaments&idfull=" + idfull,myInit),
-    fetch(macroURL + "?page=calendari&idfull=" + idfull,myInit),
-    fetch(macroURL + "?page=partides&idfull=" + idfull,myInit),    
+    fetch(macroURL + "?page=trobades&idfull=" + idfull),
+    fetch(macroURL + "?page=jugadors&idfull=" + idfull),
+    fetch(macroURL + "?page=aparellaments&idfull=" + idfull),
+    fetch(macroURL + "?page=calendari&idfull=" + idfull),
+    fetch(macroURL + "?page=partides&idfull=" + idfull),    
   ])
   .then(responses => Promise.all(responses.map(response => response.json())))
   .then(([dataTrobades, dataJugadors, dataAparellaments, dataCalendari, dataPartides]) => {
