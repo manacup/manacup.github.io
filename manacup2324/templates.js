@@ -153,7 +153,13 @@ function renderJugador(jugador) {
                 }</span>
                 </div>
                   <div class="card-body ">
-                    <ul class="list-group list-group-flush rounded-4">
+                    <ul class="list-group list-group-flush rounded-4"> `+
+                   
+    if(jugador.Baixa=='TRUE'){'<li class="list-group-item d-flex justify-content-between align-items-center">
+                        <div class="text-body-danger">S'ha retirat de la competició</div>
+                        
+                      </li>'}+ `
+    
                       <li class="list-group-item d-flex justify-content-between align-items-center" data-bs-toggle="collapse" data-bs-target="#collapseResum${
                         jugador.ID
                       }">
@@ -174,6 +180,10 @@ function renderJugador(jugador) {
                         <div class="">${jugador.PartidesJugades}</div>
                       </li>
                       <li class="list-group-item d-flex justify-content-between align-items-center">
+                        <div class="">Partides pendents:</div>
+                        <div class="">${jugador.Rondes_pendents}</div>
+                      </li>
+                      <li class="list-group-item d-flex justify-content-between align-items-center">
                         <div class="">Punts:</div>
                         <div class="">${jugador.Punts}</div>
                       </li>
@@ -186,6 +196,10 @@ function renderJugador(jugador) {
                         <div class="">${jugador.PFavor}</div>
                       </li>
                       <li class="list-group-item d-flex justify-content-between align-items-center">
+                        <div class="">Mitjana de punts a favor:</div>
+                        <div class="">${jugador.MitjanaPFavor}</div>
+                      </li>
+                      <li class="list-group-item d-flex justify-content-between align-items-center">
                         <div class="">Suma de punts en contra:</div>
                         <div class="">${jugador.PContra}</div>
                       </li>
@@ -193,10 +207,7 @@ function renderJugador(jugador) {
                         <div class="">Diferencial:</div>
                         <div class="">${jugador.Dif_P}</div>
                       </li>
-                      <li class="list-group-item d-flex justify-content-between align-items-center">
-                        <div class="">Mitjana de punts a favor:</div>
-                        <div class="">${jugador.MitjanaPFavor}</div>
-                      </li>
+                      
                       <li class="list-group-item d-flex justify-content-between align-items-center">
                         <div class="">Mitjana del diferencial:</div>
                         <div class="">${jugador.MitjanaDif}</div>
@@ -679,7 +690,7 @@ function renderClassificacio(jugador) {
            <div class="card-body">
               <div class="row ">
                   <div class="col-2">
-                      <div class="circle">${jugador.Posició}</div>
+                      <div class="circle ${jugador.Baixa=="TRUE"? "danger" : ""}">${jugador.Posició}</div>
                   </div>
                   <div class="col-10">
                       <div class="d-flex align-items-center">
@@ -1421,7 +1432,7 @@ function renderRondes(ronda) {
                       <div>${ronda.Mil·lenàries}</div>                    	
                     </li>
                     <li class="list-group-item d-flex justify-content-between align-items-top">
-                      <div>Partides centenàries:</div>
+                      <div>Jugades centenàries:</div>
                       <div>${ronda.Centenàries}</div>                    	
                     </li>
                     <li class="list-group-item d-flex justify-content-between align-items-top">
