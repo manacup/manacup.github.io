@@ -153,12 +153,12 @@ function renderJugador(jugador) {
                 }</span>
                 </div>
                   <div class="card-body ">
-                    <ul class="list-group list-group-flush rounded-4"> `+
+                    <ul class="list-group list-group-flush rounded-4">
                    
-    if(jugador.Baixa=='TRUE'){'<li class="list-group-item d-flex justify-content-between align-items-center">
+    ${jugador.Baixa=='TRUE'?'<li class="list-group-item d-flex justify-content-between align-items-center">
                         <div class="text-body-danger">S'ha retirat de la competició</div>
                         
-                      </li>'}+ `
+                      </li>' : ''}
     
                       <li class="list-group-item d-flex justify-content-between align-items-center" data-bs-toggle="collapse" data-bs-target="#collapseResum${
                         jugador.ID
