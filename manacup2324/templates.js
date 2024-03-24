@@ -147,7 +147,7 @@ function renderJugador(jugador) {
             <div class=" p-1 ">
               <div class="card">
                 <div class="card-header d-flex align-items-center">
-                <span class="flex-fill">Classificació general</span>
+                <span class="flex-fill">Classificació general ${jugador.Baixa=="TRUE"? "(Baixa)" : ""}</span>
                 <span class="badge rounded-pill bg-secondary">Posició: ${
                   jugador.Posició
                 }</span>
@@ -687,7 +687,7 @@ function renderClassificacio(jugador) {
            <div class="card-body">
               <div class="row ">
                   <div class="col-2">
-                      <div class="circle ${jugador.Baixa=="TRUE"? "danger" : ""}">${jugador.Posició}</div>
+                      <div class="circle ${jugador.Baixa=="TRUE"? "bg-danger" : ""}">${jugador.Posició}</div>
                   </div>
                   <div class="col-10">
                       <div class="d-flex align-items-center">
