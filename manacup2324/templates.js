@@ -654,7 +654,7 @@ function renderDetallPartida(partida) {
             </button>
           </div>
         </div>
-    <p>Jugada el ${ExcelDateToJSDate(partida.Data)}</p>
+    <p>Resultats enviats el ${ExcelDateToJSDate(partida.Data)}</p>
         <blockquote class="blockquote bg-danger bg-opacity-25 mb-4" style="border-left: 2px solid red;">
           <div class="mb-0 p-3 ${!partida.Comentaris ? "d-none" : ""}">${
     partida.Comentaris
