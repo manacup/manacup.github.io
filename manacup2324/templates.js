@@ -654,7 +654,7 @@ function renderDetallPartida(partida) {
             </button>
           </div>
         </div>
-    
+    <p>Jugada el ${ExcelDateToJSDate(partida.Data)}</p>
         <blockquote class="blockquote bg-danger bg-opacity-25 mb-4" style="border-left: 2px solid red;">
           <div class="mb-0 p-3 ${!partida.Comentaris ? "d-none" : ""}">${
     partida.Comentaris
@@ -1674,4 +1674,22 @@ function zoom(e) {
 
   zoomState = (zoomState + 1) % zoomLevels.length; // Alterna entre els nivells de zoom
   zoomer.style.backgroundSize = zoomLevels[zoomState] * 100 + "%";
+}
+function ExcelDateToJSDate(serial) {
+   var utc_days  = Math.floor(serial - 25569);
+   var utc_value = utc_days * 86400;                                        
+   var date_info = new Date(utc_value * 1000);
+
+   var fractional_day = serial - Math.floor(serial) + 0.0000001;
+
+   var total_seconds = Math.floor(86400 * fractional_day);
+
+   var seconds = total_seconds % 60;
+
+   total_seconds -= seconds;
+
+   var hours = Math.floor(total_seconds / (60 * 60));
+   var minutes = Math.floor(total_seconds / 60) % 60;
+var jsdate = new Date(date_info.getFullYear(), date_info.getMonth(), date_info.getDate(), hours, minutes, seconds)
+   return jsdate.toLocaleDateString();
 }
