@@ -718,7 +718,7 @@ function renderClassificacio(jugador) {
                         </div>
                         <div  class="flex-grow-1">
                         </div>
-                        <span class="badge text-bg-secondary me-1">
+                        <span class="badge text-bg-secondary me-1 ${jugador.grup!=''?'':'d-none'}">
                         <span class="visually-hidden-focusable">grup${
                           jugador.grup
                         }</span>
