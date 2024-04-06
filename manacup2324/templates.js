@@ -730,7 +730,7 @@ function renderClassificacio(jugador) {
     jugador.percentatgeVictories
   }">
                           ${jugador.PartidesJugades}/${
-    parseInt(jugador.Rondes_pendents) + parseInt(jugador.PartidesJugades)
+    jugador.partides.filter(p=>p.Estat!="none").length
   }
                         </span>  
                       </div>
