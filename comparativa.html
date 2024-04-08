@@ -14,7 +14,7 @@
     <div class="row">
       <div class="col-md-6">
         <h2>Jugador</h2>
-        <select id="vell" class="form-select">
+        <select id="jugador" class="form-select seljugadors">
           <option disabled selected>Tria el jugador</option>
          <? var data = llistaJugadorsBarruf();
       for (var i = 0; i < data.length; i++) { ?>
@@ -25,7 +25,7 @@
       <div class="col-md-6">
         <h2>Adversari</h2>
        
-          <select id="nou" class="form-select">
+          <select id="adversari" class="form-select seljugadors">
           <option selected></option>
           <? 
       for (var i = 0; i < data.length; i++) { ?>
@@ -45,14 +45,14 @@
   </div>
 </div>
   <script>
+    const macroURL = "https://script.google.com/macros/s/AKfycbzI7IQHgb4g4T_7KVuTwW8Wm-nYFKnUz8VZTNKCo-iQW7-Hf2di1db1c3DE55Jar_WTVA/exec"
+    var data = llistaJugadorsBarruf()
     function canvia(){
-    var vell = document.getElementById("vell").value;
-    var nou = document.getElementById("nou").value;
-    document.getElementById("resposta").innerHTML=""
- 
+    var jugador = document.getElementById("jugador").value;
+    var adversari = document.getElementById("adversari").value;
+    document.getElementById("resposta").innerHTML="" 
     
-    
-      google.script.run.withSuccessHandler(mostraOK).llistaPartidesJugador(vell,nou);
+    iniciJSON(jugador,adversari)
     
   }
   
@@ -82,6 +82,71 @@ function addNouJugador() {
 google.script.run.dialegnoujug()
 }
 
+  </script>
+  <script>
+function llistaJugadorsBarruf(){
+   // Crida a l'API del Google Apps Script
+  var myHeaders = new Headers();
+  var myInit = {
+  method: "GET",
+  headers: myHeaders,
+  mode: "no-cors",
+  cache: "default",
+};
+  Promise.all([    
+    fetch(macroURL + "?page=jugadors),
+     
+  ])
+  .then(responses => Promise.all(responses.map(response => response.json())))
+  .then(([data) => {
+
+      
+       let jugadors = data.dades
+    document.querySelectorAll(".seljugadors").forEach(sel=>{
+for(index in jugadors) {
+    sel.options[sel.options.length] = new Option(jugadors[index].Nom, index);
+}
+    }
+   
+     
+       
+   
+       // Continue with your logic here..
+  
+  })
+  .catch(error => console.error("Error:", error));
+}    
+function iniciJSON(jugador,adversari) { 
+
+  // Crida a l'API del Google Apps Script
+  var myHeaders = new Headers();
+  var myInit = {
+  method: "GET",
+  headers: myHeaders,
+  mode: "no-cors",
+  cache: "default",
+};
+  Promise.all([    
+    fetch(macroURL + "?page=JSON&jugador=jugador&adversari=adversari),
+     
+  ])
+  .then(responses => Promise.all(responses.map(response => response.json())))
+  .then(([data) => {
+    // Process dataTrobades, dataJugadors, etc.
+    // ...
+       // Example: Accessing data from the 'trobades' response
+       let partides = data.dades
+      
+       // Process 'trobades' data...
+   
+       // Example: Accessing data from the 'jugadors' response
+       
+   
+       // Continue with your logic here..
+  mostraOK(partides)
+  })
+  .catch(error => console.error("Error:", error));
+}
   </script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous">
