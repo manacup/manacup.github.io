@@ -89,7 +89,7 @@ function llistaJugadorsBarruf(){
      
   ])
   .then(responses => Promise.all(responses.map(response => response.json())))
-  .then(([data) => {
+  .then(([data]) => {
 
       
        let jugadors = data.dades
@@ -97,13 +97,8 @@ function llistaJugadorsBarruf(){
 for(index in jugadors) {
     sel.options[sel.options.length] = new Option(jugadors[index].Nom, index);
 }
-    }
-   
-     
-       
-   
-       // Continue with your logic here..
-  
+    })
+
   })
   .catch(error => console.error("Error:", error));
 }    
@@ -122,7 +117,7 @@ function iniciJSON(jugador,adversari) {
      
   ])
   .then(responses => Promise.all(responses.map(response => response.json())))
-  .then(([data) => {
+  .then(([data]) => {
     // Process dataTrobades, dataJugadors, etc.
     // ...
        // Example: Accessing data from the 'trobades' response
