@@ -116,7 +116,7 @@ function iniciJSON(jugador,adversari) {
 var adversari=encodeURIComponent(adversari)
   
   Promise.all([    
-    fetch(macroURL + "?page=JSON&jugador=jugador&adversari=adversari"),
+    fetch(macroURL + "?page=JSON&jugador="+jugador+"&adversari="+adversari),
      
   ])
   .then(responses => Promise.all(responses.map(response => response.json())))
