@@ -72,9 +72,7 @@ document.getElementById("resposta").innerHTML+=partidatemplate
     })
      
   }
-function addNouJugador() {
-google.script.run.dialegnoujug()
-}
+
 
 
 function llistaJugadorsBarruf(){
@@ -87,7 +85,7 @@ function llistaJugadorsBarruf(){
   cache: "default",
 };
   Promise.all([    
-    fetch(macroURL + "?page=jugadors),
+    fetch(macroURL + "?page=jugadors"),
      
   ])
   .then(responses => Promise.all(responses.map(response => response.json())))
@@ -120,7 +118,7 @@ function iniciJSON(jugador,adversari) {
   cache: "default",
 };
   Promise.all([    
-    fetch(macroURL + "?page=JSON&jugador=jugador&adversari=adversari),
+    fetch(macroURL + "?page=JSON&jugador=jugador&adversari=adversari"),
      
   ])
   .then(responses => Promise.all(responses.map(response => response.json())))
