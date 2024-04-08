@@ -6,6 +6,16 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Canvi de Jugadors</title>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css">
+  <style>
+    .blackout {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      width: 100%;
+      z-index: 10000;
+      background: #0000008c;
+    }
+    </style>
 </head>
 
 <body>
@@ -38,10 +48,18 @@
   <ul id="resposta"  class="list-group  rounded-4"></ul>
   </div>
 </div>
+    <div class="blackout" id="spinner">
+    <div class="d-flex justify-content-center pt-5">
+      <div class="spinner-border" role="status">
+        <span class="visually-hidden">Loading...</span>
+      </div>
+    </div>
+  </div>
   <script>
     const macroURL = "https://script.google.com/macros/s/AKfycbzI7IQHgb4g4T_7KVuTwW8Wm-nYFKnUz8VZTNKCo-iQW7-Hf2di1db1c3DE55Jar_WTVA/exec"
     var data = llistaJugadorsBarruf()
     function canvia(){
+      spinner("")
     var jugador = document.getElementById("jugador").value;
     var adversari = document.getElementById("adversari").value;
     document.getElementById("resposta").innerHTML="" 
@@ -70,7 +88,7 @@ const partidatemplate = `
 document.getElementById("resposta").innerHTML+=partidatemplate
 
     })
-     
+   spinner("d-none")  
   }
 
 
@@ -98,7 +116,7 @@ for(index in jugadors) {
     sel.options[sel.options.length] = new Option(jugadors[index].Nom, jugadors[index].Nom);
 }
     })
-
+spinner("d-none")
   })
   .catch(error => console.error("Error:", error));
 }    
@@ -135,6 +153,14 @@ var adversari=encodeURIComponent(adversari)
   mostraOK(partides)
   })
   .catch(error => console.error("Error:", error));
+}
+    function spinner(estat){
+  var spinner = document.getElementById("spinner")
+  if(estat=="d-none"){
+    spinner.classList.add("d-none")
+  }else{
+    spinner.classList.remove("d-none")
+  }
 }
   </script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
