@@ -16,10 +16,7 @@
         <h2>Jugador</h2>
         <select id="jugador" class="form-select seljugadors">
           <option disabled selected>Tria el jugador</option>
-         <? var data = llistaJugadorsBarruf();
-      for (var i = 0; i < data.length; i++) { ?>
-        <option value="<?= data[i].Nom ?>"><?= data[i].Nom ?></option>
-    <? } ?>
+        
         </select>
       </div>
       <div class="col-md-6">
@@ -27,10 +24,7 @@
        
           <select id="adversari" class="form-select seljugadors">
           <option selected></option>
-          <? 
-      for (var i = 0; i < data.length; i++) { ?>
-        <option value="<?= data[i].Nom ?>"><?= data[i].Nom ?></option>
-    <? } ?>
+         
         </select>
      
       </div>
