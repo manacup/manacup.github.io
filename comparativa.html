@@ -112,6 +112,9 @@ function iniciJSON(jugador,adversari) {
   mode: "no-cors",
   cache: "default",
 };
+  var jugador=encodeURIComponent(jugador)
+var adversari=encodeURIComponent(adversari)
+  
   Promise.all([    
     fetch(macroURL + "?page=JSON&jugador=jugador&adversari=adversari"),
      
