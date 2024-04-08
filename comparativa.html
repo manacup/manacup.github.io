@@ -95,7 +95,7 @@ function llistaJugadorsBarruf(){
        let jugadors = data.dades
     document.querySelectorAll(".seljugadors").forEach(sel=>{
 for(index in jugadors) {
-    sel.options[sel.options.length] = new Option(jugadors[index].Nom, index);
+    sel.options[sel.options.length] = new Option(jugadors[index].Nom, jugadors[index].Nom);
 }
     })
 
