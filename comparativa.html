@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="ca">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Canvi de Jugadors</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css">
+</head>
+
+<body>
+  <div class="container">
+    <h1>Informació jugador</h1>
+    <div class="row">
+      <div class="col-md-6">
+        <h2>Jugador</h2>
+        <select id="vell" class="form-select">
+          <option disabled selected>Tria el jugador</option>
+         <? var data = llistaJugadorsBarruf();
+      for (var i = 0; i < data.length; i++) { ?>
+        <option value="<?= data[i].Nom ?>"><?= data[i].Nom ?></option>
+    <? } ?>
+        </select>
+      </div>
+      <div class="col-md-6">
+        <h2>Adversari</h2>
+       
+          <select id="nou" class="form-select">
+          <option selected></option>
+          <? 
+      for (var i = 0; i < data.length; i++) { ?>
+        <option value="<?= data[i].Nom ?>"><?= data[i].Nom ?></option>
+    <? } ?>
+        </select>
+     
+      </div>
+
+
+    </div>
+  
+  <br>
+  <button onclick="canvia()" class="btn btn-primary">Cerca</button>
+  <br><br>
+  <ul id="resposta"  class="list-group  rounded-4"></ul>
+  </div>
+</div>
+  <script>
+    function canvia(){
+    var vell = document.getElementById("vell").value;
+    var nou = document.getElementById("nou").value;
+    document.getElementById("resposta").innerHTML=""
+ 
+    
+    
+      google.script.run.withSuccessHandler(mostraOK).llistaPartidesJugador(vell,nou);
+    
+  }
+  
+  function mostraOK(partides) {
+    console.log(partides)
+ var campionat    
+    partides.forEach(partida=>{
+
+if(partida.campionat!=campionat){
+  campionat=partida.campionat
+  const campionattemplate = `
+<li class="list-group-item d-flex  align-items-center active">${partida.campionat}</li>
+`
+document.getElementById("resposta").innerHTML+=campionattemplate
+}
+
+
+const partidatemplate = `
+<li class="list-group-item d-flex align-items-center">${partida.Jugador1} (${partida.Puntuacio_1}-${partida.Puntuacio_2}) ${partida.Jugador2}</li>
+`
+document.getElementById("resposta").innerHTML+=partidatemplate
+
+    })
+     
+  }
+function addNouJugador() {
+google.script.run.dialegnoujug()
+}
+
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous">
+  </script>
+</body>
+
+</html>
