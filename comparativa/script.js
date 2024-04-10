@@ -25,7 +25,7 @@ document.getElementById("resposta").innerHTML+=campionattemplate
 
 
 const partidatemplate = `
-<li class="list-group-item d-flex align-items-center">${partida.jugador} (${partida.puntsJugador}-${partida.puntsAdversari}) ${partida.adversari}</li>
+<li class="list-group-item d-flex align-items-center" data-bs-toggle="modal" data-bs-target="#partidaModal">${partida.jugador} (${partida.puntsJugador}-${partida.puntsAdversari}) ${partida.adversari}</li>
 `
 document.getElementById("resposta").innerHTML+=partidatemplate
 
@@ -104,3 +104,26 @@ var adversari=encodeURIComponent(adversari)
     spinner.classList.remove("d-none")
   }
 }
+function recuperaPartida(full,row){
+   // Crida a l'API del Google Apps Script
+  var myHeaders = new Headers();
+  var myInit = {
+  method: "GET",
+  headers: myHeaders,
+  mode: "no-cors",
+  cache: "default",
+};
+  Promise.all([    
+    fetch(macroURL + "?page=partida&full="+full+"&row="+row),
+     
+  ])
+  .then(responses => Promise.all(responses.map(response => response.json())))
+  .then(([data]) => {
+
+      
+       let partida = data.dades
+    
+mostraPartida(partida)
+  })
+  .catch(error => console.error("Error:", error));
+}   
