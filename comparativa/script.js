@@ -213,12 +213,12 @@ var body = document.getElementById("partidaModalBody")
           <div class="carousel-inner" >
             <div class="carousel-item active quadrat">
               <img src="${
-                partida.Full || imatgeFixa
+                partida.Full
               }" class="d-block  rounded cover img-fluid" onclick="loadContent(['imatge',this])">
             </div>
             <div class="carousel-item quadrat">
               <img src="${
-                partida.Tauler || imatgeFixa
+                partida.Tauler
               }" class="d-block rounded cover img-fluid" onclick="loadContent(['imatge',this])">
             </div>
             <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
