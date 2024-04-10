@@ -124,13 +124,13 @@ function recuperaPartida(full,row){
       
        let partida = data.dades
     
-mostraPartida(partida)
+mostraPartida(partida,full)
   })
   .catch(error => console.error("Error:", error));
 }   
-function mostraPartida(partida){
+function mostraPartida(partida,full){
 var body = document.getElementById("partidaModalBody")
-
+var titol = document.getElementById("partidaModalTitol")=full
   const partidaTemplate = `
     
       <div class="p-1">
