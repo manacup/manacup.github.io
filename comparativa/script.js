@@ -123,14 +123,15 @@ function recuperaPartida(full,row){
 
       
        let partida = data.dades
+      partida.campionat=full
     
-mostraPartida(partida,full)
+mostraPartida(partida)
   })
   .catch(error => console.error("Error:", error));
 }   
-function mostraPartida(partida,full){
+function mostraPartida(partida){
 var body = document.getElementById("partidaModalBody")
-var titol = document.getElementById("partidaModalTitol")=full
+var titol = document.getElementById("partidaModalTitol")=partida.campionat
   const partidaTemplate = `
     
       <div class="p-1">
