@@ -154,11 +154,7 @@ var body = document.getElementById("partidaModalBody")
         </div>
         <div class="card mb-4 ">
           <div class="text-center position-relative">
-          <a class="position-absolute top-10 end-0 translate-middle-x pt-2 pe-1" href="${
-            urlApp + "&vista=detallpartida&options=" + partida.ID
-          }" target="_blank" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Enllaç a la vista actual">
-                    <i class="bi bi-share-fill"></i>
-                  </a>
+       
             <div class="d-flex justify-content-center">
               <div class="input-group mt-4 d-flex justify-content-center">
                 <span class="input-group-text ${
