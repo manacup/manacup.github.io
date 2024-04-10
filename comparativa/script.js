@@ -25,7 +25,7 @@ document.getElementById("resposta").innerHTML+=campionattemplate
 
 
 const partidatemplate = `
-<li class="list-group-item d-flex align-items-center" data-bs-toggle="modal" data-bs-target="#partidaModal" onclick="recuperaPartida(${partida.campionat},${partida.row})">${partida.jugador} (${partida.puntsJugador}-${partida.puntsAdversari}) ${partida.adversari}</li>
+<li class="list-group-item d-flex align-items-center" data-bs-toggle="modal" data-bs-target="#partidaModal" onclick="recuperaPartida('${partida.campionat}',${partida.row})">${partida.jugador} (${partida.puntsJugador}-${partida.puntsAdversari}) ${partida.adversari}</li>
 `
 document.getElementById("resposta").innerHTML+=partidatemplate
 
