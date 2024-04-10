@@ -127,3 +127,7 @@ mostraPartida(partida)
   })
   .catch(error => console.error("Error:", error));
 }   
+function mostraPartida(partida){
+var body = document.getElementById("partidaModalBody")
+    
+}
