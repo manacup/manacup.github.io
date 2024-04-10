@@ -25,7 +25,7 @@ document.getElementById("resposta").innerHTML+=campionattemplate
 
 
 const partidatemplate = `
-<li class="list-group-item d-flex align-items-center">${partida.Jugador1} (${partida.Puntuacio_1}-${partida.Puntuacio_2}) ${partida.Jugador2}</li>
+<li class="list-group-item d-flex align-items-center">${partida.jugador} (${partida.puntsJugador}-${partida.puntsAdversari}) ${partida.adversari}</li>
 `
 document.getElementById("resposta").innerHTML+=partidatemplate
 
