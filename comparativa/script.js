@@ -121,9 +121,10 @@ function recuperaPartida(full,row){
   .then(responses => Promise.all(responses.map(response => response.json())))
   .then(([data]) => {
 
-      
+      console.log(data.dades)
        let partida = data.dades
       partida.campionat=full
+      
     
 mostraPartida(partida)
   })
