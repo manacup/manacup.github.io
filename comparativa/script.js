@@ -1,137 +1,182 @@
-const macroURL = "https://script.google.com/macros/s/AKfycbzI7IQHgb4g4T_7KVuTwW8Wm-nYFKnUz8VZTNKCo-iQW7-Hf2di1db1c3DE55Jar_WTVA/exec"
-    var data = llistaJugadorsBarruf()
-    function canvia(){
-      spinner("")
-    var jugador = document.getElementById("jugador").value;
-    var adversari = document.getElementById("adversari").value;
-    document.getElementById("resposta").innerHTML="" 
-    
-    iniciJSON(jugador,adversari)
-    
-  }
+const macroURL =
+  "https://script.google.com/macros/s/AKfycbzI7IQHgb4g4T_7KVuTwW8Wm-nYFKnUz8VZTNKCo-iQW7-Hf2di1db1c3DE55Jar_WTVA/exec";
+var data = llistaJugadorsBarruf();
+const selectJugador = document.getElementById("jugador");
+const selectAdversari = document.getElementById("adversari");
+const llistaResposta = document.getElementById("resposta");
+const text = document.getElementById("estadistica");
+let partides =[]
+
+function canvia() {
+  spinner("");
+  var jugador = selectJugador.value;
+  var adversari = selectAdversari.value;
+  llistaResposta.innerHTML = "";
+  text.innerHTML = "";
+
+  iniciJSON(jugador, adversari);
+}
+
+function mostraOK() {
+  console.log(partides);
+  var campionat;
+  var adversaris = [];
   
-  function mostraOK(partides) {
-    console.log(partides)
- var campionat    
-    partides.forEach(partida=>{
+  var scrabbles = 0;
+  var mot = "";
+  var puntsmot = 0;
+  var puntsfavor = 0;
+  var puntscontra = 0;
+  var totalPartides = partides.length;
+  var victories = 0
+  var campionats = 0
 
-if(partida.campionat!=campionat){
-  campionat=partida.campionat
-  const campionattemplate = `
-<li class="list-group-item d-flex  align-items-center active">${partida.campionat}</li>
-`
-document.getElementById("resposta").innerHTML+=campionattemplate
+
+  partides.forEach((partida) => {
+    scrabbles += partida.scrabbles;
+    if (partida.puntsMot > puntsmot) {
+      puntsmot=partida.puntsMot;
+      mot=partida.mot
+    } 
+    if(partida.puntsJugador>partida.puntsAdversari){
+      victories ++
+    }
+    puntsfavor += partida.puntsJugador
+    puntscontra += partida.puntsAdversari
+    if (partida.campionat != campionat) {
+      campionat = partida.campionat;
+      campionats++
+      const campionattemplate = `
+<li class="list-group-item d-flex  align-items-center active campionat" data-camp="${partida.campionat}">${partida.campionat}</li>
+`;
+llistaResposta.innerHTML += campionattemplate;
+    }
+
+    const partidatemplate = `
+<li class="list-group-item d-flex align-items-center partida" data-bs-toggle="modal" data-bs-target="#partidaModal" onclick="recuperaPartida('${partida.campionat}',${partida.row})" data-camp="${partida.campionat}">${partida.jugador} (${partida.puntsJugador}-${partida.puntsAdversari}) ${partida.adversari}</li>
+`;
+llistaResposta.innerHTML += partidatemplate;
+    adversaris.push(partida.adversari);
+
+    selectAdversari
+      .querySelector("option[value='" + partida.adversari + "']")
+      .classList.remove("d-none");
+  });
+  text.innerHTML += `<li class="list-group-item d-flex align-items-center">${totalPartides} partides computades en ${campionats} competicions.</li>`
+  text.innerHTML += `<li class="list-group-item d-flex align-items-center">Victòries: ${victories}</li>`
+  //text.innerHTML += `<li class="list-group-item d-flex align-items-center">Total punts a favor: ${puntsfavor}</li>`
+  text.innerHTML += `<li class="list-group-item d-flex align-items-center">Mitjana punts a favor: ${(puntsfavor/totalPartides).toFixed(2)}</li>`
+  //text.innerHTML += `<li class="list-group-item d-flex align-items-center">Total punts en contra: ${puntscontra}</li>`
+  text.innerHTML += `<li class="list-group-item d-flex align-items-center">Mitjana del diferencial: ${((puntsfavor-puntscontra)/totalPartides).toFixed(2)}</li>`
+  text.innerHTML += `<li class="list-group-item d-flex align-items-center">Total Scrabbles computats: ${scrabbles}</li>`
+  text.innerHTML += `<li class="list-group-item d-flex align-items-center">Millor jugada computada: ${mot} ( ${puntsmot})</li>`
+  
+  spinner("d-none");
 }
 
-
-const partidatemplate = `
-<li class="list-group-item d-flex align-items-center" data-bs-toggle="modal" data-bs-target="#partidaModal" onclick="recuperaPartida('${partida.campionat}',${partida.row})">${partida.jugador} (${partida.puntsJugador}-${partida.puntsAdversari}) ${partida.adversari}</li>
-`
-document.getElementById("resposta").innerHTML+=partidatemplate
-
-    })
-   spinner("d-none")  
-  }
-
-
-
-function llistaJugadorsBarruf(){
-   // Crida a l'API del Google Apps Script
-  var myHeaders = new Headers();
-  var myInit = {
-  method: "GET",
-  headers: myHeaders,
-  mode: "no-cors",
-  cache: "default",
-};
-  Promise.all([    
-    fetch(macroURL + "?page=jugadors"),
-     
-  ])
-  .then(responses => Promise.all(responses.map(response => response.json())))
-  .then(([data]) => {
-
-      
-       let jugadors = data.dades
-    document.querySelectorAll(".seljugadors").forEach(sel=>{
-for(index in jugadors) {
-    sel.options[sel.options.length] = new Option(jugadors[index], jugadors[index]);
-}
-    })
-spinner("d-none")
-  })
-  .catch(error => console.error("Error:", error));
-}    
-function iniciJSON(jugador,adversari) { 
-
+function llistaJugadorsBarruf() {
   // Crida a l'API del Google Apps Script
   var myHeaders = new Headers();
   var myInit = {
-  method: "GET",
-  headers: myHeaders,
-  mode: "no-cors",
-  cache: "default",
-};
-  var jugador=encodeURIComponent(jugador)
-var adversari=encodeURIComponent(adversari)
-  
-  Promise.all([    
-    fetch(macroURL + "?page=JSON&jugador="+jugador+"&adversari="+adversari),
-     
-  ])
-  .then(responses => Promise.all(responses.map(response => response.json())))
-  .then(([data]) => {
-    // Process dataTrobades, dataJugadors, etc.
-    // ...
-       // Example: Accessing data from the 'trobades' response
-       let partides = data.dades
-      
-       // Process 'trobades' data...
-   
-       // Example: Accessing data from the 'jugadors' response
-       
-   
-       // Continue with your logic here..
-  mostraOK(partides)
-  })
-  .catch(error => console.error("Error:", error));
+    method: "GET",
+    headers: myHeaders,
+    mode: "no-cors",
+    cache: "default",
+  };
+  Promise.all([fetch(macroURL + "?page=jugadors")])
+    .then((responses) =>
+      Promise.all(responses.map((response) => response.json()))
+    )
+    .then(([data]) => {
+      let jugadors = data.dades;
+      document.querySelectorAll(".seljugadors").forEach((sel) => {
+        for (index in jugadors) {
+          sel.options[sel.options.length] = new Option(
+            jugadors[index],
+            jugadors[index]
+          );
+        }
+      });
+      spinner("d-none");
+    })
+    .catch((error) => console.error("Error:", error));
 }
-    function spinner(estat){
-  var spinner = document.getElementById("spinner")
-  if(estat=="d-none"){
-    spinner.classList.add("d-none")
-  }else{
-    spinner.classList.remove("d-none")
-  }
-}
-function recuperaPartida(full,row){
-    spinner("")
-   // Crida a l'API del Google Apps Script
+function iniciJSON(jugador, adversari) {
+  // Crida a l'API del Google Apps Script
+
+  const optarr = selectAdversari.querySelectorAll("option");
+  optarr.forEach((op) => op.classList.add("d-none"));
+  optarr[0].classList.remove("d-none");
   var myHeaders = new Headers();
   var myInit = {
-  method: "GET",
-  headers: myHeaders,
-  mode: "no-cors",
-  cache: "default",
-};
-  Promise.all([    
-    fetch(macroURL + "?page=partida&full="+full+"&row="+row),
-     
-  ])
-  .then(responses => Promise.all(responses.map(response => response.json())))
-  .then(([data]) => {
+    method: "GET",
+    headers: myHeaders,
+    mode: "no-cors",
+    cache: "default",
+  };
+  var jugador = encodeURIComponent(jugador);
+  var adversari = encodeURIComponent(adversari);
 
+  Promise.all([
+    fetch(
+      macroURL + "?page=JSON&jugador=" + jugador + "&adversari=" + adversari
+    ),
+  ])
+    .then((responses) =>
+      Promise.all(responses.map((response) => response.json()))
+    )
+    .then(([data]) => {
+      // Process dataTrobades, dataJugadors, etc.
+      // ...
+      // Example: Accessing data from the 'trobades' response
+      partides = data.dades;
+
+      // Process 'trobades' data...
+
+      // Example: Accessing data from the 'jugadors' response
+
+      // Continue with your logic here..
       
-       let partida = data.dades
-      partida.campionat=full
-    
-mostraPartida(partida)
-  })
-  .catch(error => console.error("Error:", error));
-}   
-function mostraPartida(partida){
-var body = document.getElementById("partidaModalBody")
-var titol = document.getElementById("partidaModalTitol")=partida.campionat
+      mostraOK();
+    })
+    .catch((error) => console.error("Error:", error));
+}
+function spinner(estat) {
+  var spinner = document.getElementById("spinner");
+  if (estat == "d-none") {
+    spinner.classList.add("d-none");
+  } else {
+    spinner.classList.remove("d-none");
+  }
+}
+function recuperaPartida(full, row) {
+  spinner("");
+  // Crida a l'API del Google Apps Script
+  var myHeaders = new Headers();
+  var myInit = {
+    method: "GET",
+    headers: myHeaders,
+    mode: "no-cors",
+    cache: "default",
+  };
+  Promise.all([
+    fetch(macroURL + "?page=partida&full=" + encodeURI(full) + "&row=" + row),
+  ])
+    .then((responses) =>
+      Promise.all(responses.map((response) => response.json()))
+    )
+    .then(([data]) => {
+      //console.log(data.dades)
+      let partida = data.dades;
+      partida.campionat = full;
+
+      mostraPartida(partida);
+    })
+    .catch((error) => console.error("Error:", error));
+}
+function mostraPartida(partida) {
+  var body = document.getElementById("partidaModalBody");
+  document.getElementById("partidaModalTitol").innerHTML = partida.campionat;
   const partidaTemplate = `
     
       <div class="p-1">
@@ -159,20 +204,20 @@ var titol = document.getElementById("partidaModalTitol")=partida.campionat
                 </span>
               </div>
             </div>
-            <div class="text-muted mb-3">Suma: ${partida.Suma_punts}</div>
+            <div class="text-muted mb-3">Suma: ${partida.Puntuacio_1+partida.Puntuacio_2}</div>
             <div class="d-flex justify-content-center mb-4">
               <div class="col align-items-start">
                 <h4 class="m-2 nom">${partida.Jugador1}</h4>
                 <div class="d-flex flex-column align-items-center">
-                  <div class="card m-2 p-2 w-75 bg-primary bg-opacity-25 rounded-4">
+                  <div class="card m-2 p-2 w-75 bg-primary bg-opacity-25 rounded-4 ${!partida.Mot_1 ? "d-none" : ""}">
                     <small>Millor jugada</small>
-                    <h6 class="m-2 mot">${partida.Mot_1}</h6>
-                    <h4>${partida.Puntsmot_1}</h4>
+                    <h6 class="m-2 mot">${partida.Mot_1||"?"}</h6>
+                    <h4>${partida.Puntsmot_1||"?"}</h4>
                     <small class="text-muted">Punts</small>
                   </div>
-                  <div class="card m-2 p-2 w-75 bg-primary bg-opacity-25 rounded-4">
+                  <div class="card m-2 p-2 w-75 bg-primary bg-opacity-25 rounded-4 ${!partida.Scrabbles_1 ? "d-none" : ""}">
                     <small>Scrabbles</small>
-                    <h4>${partida.Scrabbles_1}</h4>
+                    <h4>${partida.Scrabbles_1||"?"}</h4>
                   </div>
                 </div>
               </div>
@@ -180,15 +225,15 @@ var titol = document.getElementById("partidaModalTitol")=partida.campionat
               <div class="col align-items-end">
                 <h4 class="m-2 nom">${partida.Jugador2}</h4>
                 <div class="d-flex flex-column align-items-center">
-                  <div class="card m-2 p-2 w-75 bg-primary bg-opacity-25 rounded-4">
+                  <div class="card m-2 p-2 w-75 bg-primary bg-opacity-25 rounded-4 ${!partida.Mot_2 ? "d-none" : ""}">
                     <small>Millor jugada</small>
-                    <h6 class="m-2 mot">${partida.Mot_2}</h6>
-                    <h4>${partida.Puntsmot_2}</h4>
+                    <h6 class="m-2 mot">${partida.Mot_2||"?"}</h6>
+                    <h4>${partida.Puntsmot_2||"?"}</h4>
                     <small class="text-muted">Punts</small>
                   </div>
-                  <div class="card m-2 p-2 w-75 bg-primary bg-opacity-25 rounded-4">
+                  <div class="card m-2 p-2 w-75 bg-primary bg-opacity-25 rounded-4 ${!partida.Scrabbles_2 ? "d-none" : ""}">
                     <small>Scrabbles</small>
-                    <h4>${partida.Scrabbles_2}</h4>
+                    <h4>${partida.Scrabbles_2||"?"}</h4>
                   </div>
                 </div>
               </div>
@@ -199,12 +244,12 @@ var titol = document.getElementById("partidaModalTitol")=partida.campionat
           <div class="carousel-inner" >
             <div class="carousel-item active quadrat">
               <img src="${
-                partida.Full
+                partida.Full||""
               }" class="d-block  rounded cover img-fluid" onclick="loadContent(['imatge',this])">
             </div>
             <div class="carousel-item quadrat">
               <img src="${
-                partida.Tauler
+                partida.Tauler||""
               }" class="d-block rounded cover img-fluid" onclick="loadContent(['imatge',this])">
             </div>
             <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
@@ -217,7 +262,7 @@ var titol = document.getElementById("partidaModalTitol")=partida.campionat
             </button>
           </div>
         </div>
-    <p>Resultats enviats el ${ExcelDateToJSDate(partida.Data)}</p>
+    <p class="${!partida.Data ? "d-none" : ""}">Resultats enviats el ${ExcelDateToJSDate(partida.Data||"?")}</p>
         <blockquote class="blockquote bg-danger bg-opacity-25 mb-4" style="border-left: 2px solid red;">
           <div class="mb-0 p-3 ${!partida.Comentaris ? "d-none" : ""}">${
     partida.Comentaris
@@ -227,25 +272,59 @@ var titol = document.getElementById("partidaModalTitol")=partida.campionat
       </div>
           
   `;
- 
+
   body.innerHTML = partidaTemplate;
- spinner("d-none")
+  spinner("d-none");
 }
 function ExcelDateToJSDate(serial) {
-   var utc_days  = Math.floor(serial - 25569);
-   var utc_value = utc_days * 86400;                                        
-   var date_info = new Date(utc_value * 1000);
+  var utc_days = Math.floor(serial - 25569);
+  var utc_value = utc_days * 86400;
+  var date_info = new Date(utc_value * 1000);
 
-   var fractional_day = serial - Math.floor(serial) + 0.0000001;
+  var fractional_day = serial - Math.floor(serial) + 0.0000001;
 
-   var total_seconds = Math.floor(86400 * fractional_day);
+  var total_seconds = Math.floor(86400 * fractional_day);
 
-   var seconds = total_seconds % 60;
+  var seconds = total_seconds % 60;
 
-   total_seconds -= seconds;
+  total_seconds -= seconds;
 
-   var hours = Math.floor(total_seconds / (60 * 60));
-   var minutes = Math.floor(total_seconds / 60) % 60;
-var jsdate = new Date(date_info.getFullYear(), date_info.getMonth(), date_info.getDate(), hours, minutes, seconds)
-   return jsdate.toLocaleDateString();
+  var hours = Math.floor(total_seconds / (60 * 60));
+  var minutes = Math.floor(total_seconds / 60) % 60;
+  var jsdate = new Date(
+    date_info.getFullYear(),
+    date_info.getMonth(),
+    date_info.getDate(),
+    hours,
+    minutes,
+    seconds
+  );
+  return jsdate.toLocaleDateString();
 }
+selectJugador.addEventListener("change", () => {
+  selectAdversari
+    .querySelectorAll("option")
+    .forEach((op) => op.classList.remove("d-none"));
+});
+selectAdversari.addEventListener("change", (op) => {
+  var adv = op.target.value;
+  var camp = [];
+  llistaResposta.querySelectorAll(".partida").forEach((li) => {
+    var index = li.innerHTML.indexOf(adv);
+    if (index < 0) {
+      li.classList.add("d-none");
+    } else {
+      li.classList.remove("d-none");
+      camp.push(li.dataset.camp);
+    }
+  });
+  console.log(camp);
+  llistaResposta.querySelectorAll(".campionat").forEach((li) => {
+    console.log(li.dataset.camp);
+    if (camp.indexOf(li.dataset.camp) < 0) {
+      li.classList.add("d-none");
+    } else {
+      li.classList.remove("d-none");
+    }
+  });
+});

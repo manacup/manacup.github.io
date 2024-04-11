@@ -25,17 +25,21 @@
 
 <body>
   <div class="container">
-    <h1>Informació jugador</h1>
-    <div class="row">
-      <div class="col-md-6">
-        <h2>Jugador</h2>
+    <h3 class="mt-4">Informació històrica del jugador</h3>
+    <p>Només surten dades de les competicions recopilades.</p>
+    <div class="">
+      <div class="">
+        <h4 class="mt-4">Jugador</h4>
         <select id="jugador" class="form-select seljugadors">
           <option disabled selected>Tria el jugador</option>
         
         </select>
       </div>
-      <div class="col-md-6">
-        <h2>Adversari</h2>
+      
+  <ul id="estadistica"  class="list-group mt-4"></ul>
+ 
+      <div class="">
+        <h4 class="mt-4">Adversari</h4>
        
           <select id="adversari" class="form-select seljugadors">
           <option selected></option>
@@ -47,10 +51,10 @@
 
     </div>
   
-  <br>
-  <button onclick="canvia()" class="btn btn-primary">Cerca</button>
-  <br><br>
-  <ul id="resposta"  class="list-group  rounded-4"></ul>
+  
+  <button onclick="canvia()" class="btn btn-primary mt-4">Cerca</button>
+  
+  <ul id="resposta"  class="list-group mt-4"></ul>
   </div>
 </div>
     <div class="blackout" id="spinner">
@@ -60,8 +64,8 @@
       </div>
     </div>
   </div>
-  <div class="modal fade modal-fullscreen-sm-down" id="partidaModal" tabindex="-1" aria-labelledby="partidaModal" aria-hidden="true">
-  <div class="modal-dialog">
+  <div class="modal fade" id="partidaModal" tabindex="-1" aria-labelledby="partidaModal" aria-hidden="true">
+  <div class="modal-dialog modal-fullscreen-sm-down">
     <div class="modal-content">
       <div class="modal-header">
         <h1 class="modal-title fs-5" id="partidaModalTitol">Resum partida</h1>
