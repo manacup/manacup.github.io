@@ -5,35 +5,42 @@ const selectJugador = document.getElementById("jugador");
 const selectAdversari = document.getElementById("adversari");
 const llistaResposta = document.getElementById("resposta");
 const text = document.getElementById("estadistica");
-let partides =[]
+let partides = [];
 
 function canvia() {
   spinner("");
   var jugador = selectJugador.value;
-  var adversari = selectAdversari.value;
+  //var adversari = selectAdversari.value;
+  var adversari = "";
   llistaResposta.innerHTML = "";
   text.innerHTML = "";
+  document.getElementById("adv").classList.remove("d-none");
 
   iniciJSON(jugador, adversari);
 }
 
 function mostraOK() {
+  const optarr = selectAdversari.querySelectorAll("option");
+  optarr.forEach((op) => op.classList.add("d-none"));
+  optarr[0].classList.remove("d-none");
+  
   console.log(partides);
   var campionat;
   var adversaris = [];
-  
-  var scrabbles = 0;
+
+  /*   var scrabbles = 0;
   var mot = "";
   var puntsmot = 0;
   var puntsfavor = 0;
   var puntscontra = 0;
   var totalPartides = partides.length;
   var victories = 0
-  var campionats = 0
-
+  var campionats = 0 */
 
   partides.forEach((partida) => {
-    scrabbles += partida.scrabbles;
+    /* if(partida.scrabbles>0){
+      scrabbles += partida.scrabbles;
+    }
     if (partida.puntsMot > puntsmot) {
       puntsmot=partida.puntsMot;
       mot=partida.mot
@@ -42,36 +49,89 @@ function mostraOK() {
       victories ++
     }
     puntsfavor += partida.puntsJugador
-    puntscontra += partida.puntsAdversari
+    puntscontra += partida.puntsAdversari */
     if (partida.campionat != campionat) {
       campionat = partida.campionat;
-      campionats++
+      //campionats++
       const campionattemplate = `
 <li class="list-group-item d-flex  align-items-center active campionat" data-camp="${partida.campionat}">${partida.campionat}</li>
 `;
-llistaResposta.innerHTML += campionattemplate;
+      llistaResposta.innerHTML += campionattemplate;
     }
 
     const partidatemplate = `
 <li class="list-group-item d-flex align-items-center partida" data-bs-toggle="modal" data-bs-target="#partidaModal" onclick="recuperaPartida('${partida.campionat}',${partida.row})" data-camp="${partida.campionat}">${partida.jugador} (${partida.puntsJugador}-${partida.puntsAdversari}) ${partida.adversari}</li>
 `;
-llistaResposta.innerHTML += partidatemplate;
+    llistaResposta.innerHTML += partidatemplate;
     adversaris.push(partida.adversari);
 
     selectAdversari
       .querySelector("option[value='" + partida.adversari + "']")
       .classList.remove("d-none");
   });
-  text.innerHTML += `<li class="list-group-item d-flex align-items-center">${totalPartides} partides computades en ${campionats} competicions.</li>`
+  /* text.innerHTML += `<li class="list-group-item d-flex align-items-center">${totalPartides} partides computades en ${campionats} competicions.</li>`
   text.innerHTML += `<li class="list-group-item d-flex align-items-center">Victòries: ${victories}</li>`
   //text.innerHTML += `<li class="list-group-item d-flex align-items-center">Total punts a favor: ${puntsfavor}</li>`
   text.innerHTML += `<li class="list-group-item d-flex align-items-center">Mitjana punts a favor: ${(puntsfavor/totalPartides).toFixed(2)}</li>`
   //text.innerHTML += `<li class="list-group-item d-flex align-items-center">Total punts en contra: ${puntscontra}</li>`
   text.innerHTML += `<li class="list-group-item d-flex align-items-center">Mitjana del diferencial: ${((puntsfavor-puntscontra)/totalPartides).toFixed(2)}</li>`
   text.innerHTML += `<li class="list-group-item d-flex align-items-center">Total Scrabbles computats: ${scrabbles}</li>`
-  text.innerHTML += `<li class="list-group-item d-flex align-items-center">Millor jugada computada: ${mot} ( ${puntsmot})</li>`
-  
+  text.innerHTML += `<li class="list-group-item d-flex align-items-center">Millor jugada computada: ${mot} ( ${puntsmot})</li>` */
+  mostraestadistica();
   spinner("d-none");
+}
+function mostraestadistica() {
+  text.innerHTML = "";
+  var partidesFiltrades;
+  if (selectAdversari.value != "") {
+    partidesFiltrades = partides.filter(
+      (part) => part.adversari == selectAdversari.value
+    );
+  } else {
+    partidesFiltrades = partides;
+  }
+  var campionat;
+
+  var scrabbles = 0;
+  var mot = "";
+  var puntsmot = 0;
+  var puntsfavor = 0;
+  var puntscontra = 0;
+  var totalPartides = partidesFiltrades.length;
+  var victories = 0;
+  var campionats = 0;
+
+  partidesFiltrades.forEach((partida) => {
+    if (partida.scrabbles > 0) {
+      scrabbles += partida.scrabbles;
+    }
+    if (partida.puntsMot > puntsmot) {
+      puntsmot = partida.puntsMot;
+      mot = partida.mot;
+    }
+    if (partida.puntsJugador > partida.puntsAdversari) {
+      victories++;
+    }
+    puntsfavor += partida.puntsJugador;
+    puntscontra += partida.puntsAdversari;
+    if (partida.campionat != campionat) {
+      campionat = partida.campionat;
+      campionats++;
+    }
+  });
+  text.innerHTML += `<li class="list-group-item d-flex align-items-center">${totalPartides} partides computades en ${campionats} competicions.</li>`;
+  text.innerHTML += `<li class="list-group-item d-flex align-items-center">Victòries: ${victories}</li>`;
+  //text.innerHTML += `<li class="list-group-item d-flex align-items-center">Total punts a favor: ${puntsfavor}</li>`
+  text.innerHTML += `<li class="list-group-item d-flex align-items-center">Mitjana punts a favor: ${(
+    puntsfavor / totalPartides
+  ).toFixed(2)}</li>`;
+  //text.innerHTML += `<li class="list-group-item d-flex align-items-center">Total punts en contra: ${puntscontra}</li>`
+  text.innerHTML += `<li class="list-group-item d-flex align-items-center">Mitjana del diferencial: ${(
+    (puntsfavor - puntscontra) /
+    totalPartides
+  ).toFixed(2)}</li>`;
+  text.innerHTML += `<li class="list-group-item d-flex align-items-center">Total Scrabbles computats: ${scrabbles}</li>`;
+  text.innerHTML += `<li class="list-group-item d-flex align-items-center">Millor jugada computada: ${mot} ( ${puntsmot})</li>`;
 }
 
 function llistaJugadorsBarruf() {
@@ -104,9 +164,9 @@ function llistaJugadorsBarruf() {
 function iniciJSON(jugador, adversari) {
   // Crida a l'API del Google Apps Script
 
-  const optarr = selectAdversari.querySelectorAll("option");
+  /* const optarr = selectAdversari.querySelectorAll("option");
   optarr.forEach((op) => op.classList.add("d-none"));
-  optarr[0].classList.remove("d-none");
+  optarr[0].classList.remove("d-none"); */
   var myHeaders = new Headers();
   var myInit = {
     method: "GET",
@@ -136,7 +196,7 @@ function iniciJSON(jugador, adversari) {
       // Example: Accessing data from the 'jugadors' response
 
       // Continue with your logic here..
-      
+
       mostraOK();
     })
     .catch((error) => console.error("Error:", error));
@@ -204,20 +264,26 @@ function mostraPartida(partida) {
                 </span>
               </div>
             </div>
-            <div class="text-muted mb-3">Suma: ${partida.Puntuacio_1+partida.Puntuacio_2}</div>
+            <div class="text-muted mb-3">Suma: ${
+              partida.Puntuacio_1 + partida.Puntuacio_2
+            }</div>
             <div class="d-flex justify-content-center mb-4">
               <div class="col align-items-start">
                 <h4 class="m-2 nom">${partida.Jugador1}</h4>
                 <div class="d-flex flex-column align-items-center">
-                  <div class="card m-2 p-2 w-75 bg-primary bg-opacity-25 rounded-4 ${!partida.Mot_1 ? "d-none" : ""}">
+                  <div class="card m-2 p-2 w-75 bg-primary bg-opacity-25 rounded-4 ${
+                    !partida.Mot_1 ? "d-none" : ""
+                  }">
                     <small>Millor jugada</small>
-                    <h6 class="m-2 mot">${partida.Mot_1||"?"}</h6>
-                    <h4>${partida.Puntsmot_1||"?"}</h4>
+                    <h6 class="m-2 mot">${partida.Mot_1 || "?"}</h6>
+                    <h4>${partida.Puntsmot_1 || "?"}</h4>
                     <small class="text-muted">Punts</small>
                   </div>
-                  <div class="card m-2 p-2 w-75 bg-primary bg-opacity-25 rounded-4 ${!partida.Scrabbles_1 ? "d-none" : ""}">
+                  <div class="card m-2 p-2 w-75 bg-primary bg-opacity-25 rounded-4 ${
+                    !partida.Scrabbles_1 ? "d-none" : ""
+                  }">
                     <small>Scrabbles</small>
-                    <h4>${partida.Scrabbles_1||"?"}</h4>
+                    <h4>${partida.Scrabbles_1 || "?"}</h4>
                   </div>
                 </div>
               </div>
@@ -225,15 +291,19 @@ function mostraPartida(partida) {
               <div class="col align-items-end">
                 <h4 class="m-2 nom">${partida.Jugador2}</h4>
                 <div class="d-flex flex-column align-items-center">
-                  <div class="card m-2 p-2 w-75 bg-primary bg-opacity-25 rounded-4 ${!partida.Mot_2 ? "d-none" : ""}">
+                  <div class="card m-2 p-2 w-75 bg-primary bg-opacity-25 rounded-4 ${
+                    !partida.Mot_2 ? "d-none" : ""
+                  }">
                     <small>Millor jugada</small>
-                    <h6 class="m-2 mot">${partida.Mot_2||"?"}</h6>
-                    <h4>${partida.Puntsmot_2||"?"}</h4>
+                    <h6 class="m-2 mot">${partida.Mot_2 || "?"}</h6>
+                    <h4>${partida.Puntsmot_2 || "?"}</h4>
                     <small class="text-muted">Punts</small>
                   </div>
-                  <div class="card m-2 p-2 w-75 bg-primary bg-opacity-25 rounded-4 ${!partida.Scrabbles_2 ? "d-none" : ""}">
+                  <div class="card m-2 p-2 w-75 bg-primary bg-opacity-25 rounded-4 ${
+                    !partida.Scrabbles_2 ? "d-none" : ""
+                  }">
                     <small>Scrabbles</small>
-                    <h4>${partida.Scrabbles_2||"?"}</h4>
+                    <h4>${partida.Scrabbles_2 || "?"}</h4>
                   </div>
                 </div>
               </div>
@@ -244,12 +314,12 @@ function mostraPartida(partida) {
           <div class="carousel-inner" >
             <div class="carousel-item active quadrat">
               <img src="${
-                partida.Full||""
+                partida.Full || ""
               }" class="d-block  rounded cover img-fluid" onclick="loadContent(['imatge',this])">
             </div>
             <div class="carousel-item quadrat">
               <img src="${
-                partida.Tauler||""
+                partida.Tauler || ""
               }" class="d-block rounded cover img-fluid" onclick="loadContent(['imatge',this])">
             </div>
             <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
@@ -262,7 +332,9 @@ function mostraPartida(partida) {
             </button>
           </div>
         </div>
-    <p class="${!partida.Data ? "d-none" : ""}">Resultats enviats el ${ExcelDateToJSDate(partida.Data||"?")}</p>
+    <p class="${
+      !partida.Data ? "d-none" : ""
+    }">Resultats enviats el ${ExcelDateToJSDate(partida.Data || "?")}</p>
         <blockquote class="blockquote bg-danger bg-opacity-25 mb-4" style="border-left: 2px solid red;">
           <div class="mb-0 p-3 ${!partida.Comentaris ? "d-none" : ""}">${
     partida.Comentaris
@@ -302,6 +374,7 @@ function ExcelDateToJSDate(serial) {
   return jsdate.toLocaleDateString();
 }
 selectJugador.addEventListener("change", () => {
+  canvia();
   selectAdversari
     .querySelectorAll("option")
     .forEach((op) => op.classList.remove("d-none"));
@@ -327,4 +400,5 @@ selectAdversari.addEventListener("change", (op) => {
       li.classList.remove("d-none");
     }
   });
+  mostraestadistica();
 });
