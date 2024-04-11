@@ -3,6 +3,7 @@ const macroURL =
 var data = llistaJugadorsBarruf();
 const selectJugador = document.getElementById("jugador");
 const selectAdversari = document.getElementById("adversari");
+const selectCampionat = document.getElementById("campionats")
 const llistaResposta = document.getElementById("resposta");
 const text = document.getElementById("estadistica");
 let partides = [];
@@ -80,16 +81,23 @@ function mostraOK() {
   text.innerHTML += `<li class="list-group-item d-flex align-items-center">Total Scrabbles computats: ${scrabbles}</li>`
   text.innerHTML += `<li class="list-group-item d-flex align-items-center">Millor jugada computada: ${mot} ( ${puntsmot})</li>` */
   mostraestadistica();
+  llistaCampionats()
   spinner("d-none");
 }
 function mostraestadistica() {
   text.innerHTML = "";
   var partidesFiltrades;
+  if(selectAdversari.value != ""||selectCampionat.value != ""){
   if (selectAdversari.value != "") {
     partidesFiltrades = partides.filter(
       (part) => part.adversari == selectAdversari.value
     );
-  } else {
+  } else if (selectCampionat.value != "") {
+    partidesFiltrades = partides.filter(
+      (part) => part.campionat == selectCampionat.value
+    );
+  } 
+}else{
     partidesFiltrades = partides;
   }
   var campionat;
@@ -164,9 +172,9 @@ function llistaJugadorsBarruf() {
     .catch((error) => console.error("Error:", error));
 }
 function llistaCampionats(){
-  let sel = document.getElementById("campionats")
+ 
   for (index in campionatsTotals) {
-    sel.options[sel.options.length] = new Option(
+    selectCampionat.options[selectCampionat.options.length] = new Option(
       campionatsTotals[index],
       campionatsTotals[index]
     );
@@ -411,5 +419,21 @@ selectAdversari.addEventListener("change", (op) => {
       li.classList.remove("d-none");
     }
   });
+  mostraestadistica();
+});
+selectCampionat.addEventListener("change", (op) => {
+  var campi = op.target.value;
+ 
+  llistaResposta.querySelectorAll("li").forEach((li) => {
+    var index = li.dataset.camp.indexOf(campi);
+    if (index < 0) {
+      li.classList.add("d-none");
+    } else {
+      li.classList.remove("d-none");
+      
+    }
+  });
+  console.log(campi);
+ 
   mostraestadistica();
 });
