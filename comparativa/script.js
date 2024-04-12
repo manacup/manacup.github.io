@@ -1,13 +1,15 @@
 const macroURL =
   "https://script.google.com/macros/s/AKfycbzI7IQHgb4g4T_7KVuTwW8Wm-nYFKnUz8VZTNKCo-iQW7-Hf2di1db1c3DE55Jar_WTVA/exec";
 var data = llistaJugadorsBarruf();
+var dades = {};
 const selectJugador = document.getElementById("jugador");
 const selectAdversari = document.getElementById("adversari");
-const selectCampionat = document.getElementById("campionats")
+const selectCampionat = document.getElementById("campionats");
 const llistaResposta = document.getElementById("resposta");
 const text = document.getElementById("estadistica");
 let partides = [];
-let campionatsTotals = []
+let campionatsTotals = [];
+let campionatsJugador = [];
 
 function canvia() {
   spinner("");
@@ -16,10 +18,13 @@ function canvia() {
   var adversari = "";
   llistaResposta.innerHTML = "";
   text.innerHTML = "";
+  campionatsJugador = dades[jugador];
   document.getElementById("adv").classList.remove("d-none");
   document.getElementById("camp").classList.remove("d-none");
 
-  iniciJSON(jugador, adversari);
+  iniciJSON(jugador, campionatsJugador);
+
+  //spinner("d-none");
 }
 
 function mostraOK() {
@@ -27,41 +32,27 @@ function mostraOK() {
   optarr.forEach((op) => op.classList.add("d-none"));
   optarr[0].classList.remove("d-none");
 
+  const optarrcamp = selectCampionat.querySelectorAll("option");
+  optarrcamp.forEach((op) => op.classList.add("d-none"));
+  optarrcamp[0].classList.remove("d-none");
+
   console.log(partides);
   var campionat;
   var adversaris = [];
 
-  /*   var scrabbles = 0;
-  var mot = "";
-  var puntsmot = 0;
-  var puntsfavor = 0;
-  var puntscontra = 0;
-  var totalPartides = partides.length;
-  var victories = 0
-  var campionats = 0 */
-
   partides.forEach((partida) => {
-    /* if(partida.scrabbles>0){
-      scrabbles += partida.scrabbles;
-    }
-    if (partida.puntsMot > puntsmot) {
-      puntsmot=partida.puntsMot;
-      mot=partida.mot
-    } 
-    if(partida.puntsJugador>partida.puntsAdversari){
-      victories ++
-    }
-    puntsfavor += partida.puntsJugador
-    puntscontra += partida.puntsAdversari */
     if (partida.campionat != campionat) {
       campionat = partida.campionat;
-      campionatsTotals.push(partida.campionat)
+
       const campionattemplate = `
-<li class="list-group-item d-flex  align-items-center active campionat" data-camp="${partida.campionat}">${partida.campionat}</li>
+<li class="list-group-item d-flex  align-items-center active campionat" data-camp="${partida.campionat}" onclick="collapse('${partida.campionat}')">${partida.campionat}</li>
 `;
       llistaResposta.innerHTML += campionattemplate;
-    }
 
+      selectCampionat
+        .querySelector("option[value='" + campionat + "']")
+        .classList.remove("d-none");
+    }
     const partidatemplate = `
 <li class="list-group-item d-flex align-items-center partida" data-bs-toggle="modal" data-bs-target="#partidaModal" onclick="recuperaPartida('${partida.campionat}',${partida.row})" data-camp="${partida.campionat}">${partida.jugador} (${partida.puntsJugador}-${partida.puntsAdversari}) ${partida.adversari}</li>
 `;
@@ -72,32 +63,23 @@ function mostraOK() {
       .querySelector("option[value='" + partida.adversari + "']")
       .classList.remove("d-none");
   });
-  /* text.innerHTML += `<li class="list-group-item d-flex align-items-center">${totalPartides} partides computades en ${campionats} competicions.</li>`
-  text.innerHTML += `<li class="list-group-item d-flex align-items-center">Victòries: ${victories}</li>`
-  //text.innerHTML += `<li class="list-group-item d-flex align-items-center">Total punts a favor: ${puntsfavor}</li>`
-  text.innerHTML += `<li class="list-group-item d-flex align-items-center">Mitjana punts a favor: ${(puntsfavor/totalPartides).toFixed(2)}</li>`
-  //text.innerHTML += `<li class="list-group-item d-flex align-items-center">Total punts en contra: ${puntscontra}</li>`
-  text.innerHTML += `<li class="list-group-item d-flex align-items-center">Mitjana del diferencial: ${((puntsfavor-puntscontra)/totalPartides).toFixed(2)}</li>`
-  text.innerHTML += `<li class="list-group-item d-flex align-items-center">Total Scrabbles computats: ${scrabbles}</li>`
-  text.innerHTML += `<li class="list-group-item d-flex align-items-center">Millor jugada computada: ${mot} ( ${puntsmot})</li>` */
+
   mostraestadistica();
-  llistaCampionats()
-  spinner("d-none");
 }
 function mostraestadistica() {
   text.innerHTML = "";
   var partidesFiltrades;
-  if(selectAdversari.value != ""||selectCampionat.value != ""){
-  if (selectAdversari.value != "") {
-    partidesFiltrades = partides.filter(
-      (part) => part.adversari == selectAdversari.value
-    );
-  } else if (selectCampionat.value != "") {
-    partidesFiltrades = partides.filter(
-      (part) => part.campionat == selectCampionat.value
-    );
-  } 
-}else{
+  if (selectAdversari.value != "" || selectCampionat.value != "") {
+    if (selectAdversari.value != "") {
+      partidesFiltrades = partides.filter(
+        (part) => part.adversari == selectAdversari.value
+      );
+    } else if (selectCampionat.value != "") {
+      partidesFiltrades = partides.filter(
+        (part) => part.campionat == selectCampionat.value
+      );
+    }
+  } else {
     partidesFiltrades = partides;
   }
   var campionat;
@@ -131,11 +113,11 @@ function mostraestadistica() {
   });
   text.innerHTML += `<li class="list-group-item d-flex align-items-center">${totalPartides} partides computades en ${campionats} competicions.</li>`;
   text.innerHTML += `<li class="list-group-item d-flex align-items-center">Victòries: ${victories}</li>`;
-  //text.innerHTML += `<li class="list-group-item d-flex align-items-center">Total punts a favor: ${puntsfavor}</li>`
+  text.innerHTML += `<li class="list-group-item d-flex align-items-center">Total punts a favor: ${puntsfavor}</li>`
   text.innerHTML += `<li class="list-group-item d-flex align-items-center">Mitjana punts a favor: ${(
     puntsfavor / totalPartides
   ).toFixed(2)}</li>`;
-  //text.innerHTML += `<li class="list-group-item d-flex align-items-center">Total punts en contra: ${puntscontra}</li>`
+  text.innerHTML += `<li class="list-group-item d-flex align-items-center">Total punts en contra: ${puntscontra}</li>`
   text.innerHTML += `<li class="list-group-item d-flex align-items-center">Mitjana del diferencial: ${(
     (puntsfavor - puntscontra) /
     totalPartides
@@ -158,7 +140,10 @@ function llistaJugadorsBarruf() {
       Promise.all(responses.map((response) => response.json()))
     )
     .then(([data]) => {
-      let jugadors = data.dades;
+      console.log(data);
+      dades = data.dades;
+      campionatsTotals = data.campionats;
+      let jugadors = Object.keys(dades);
       document.querySelectorAll(".seljugadors").forEach((sel) => {
         for (index in jugadors) {
           sel.options[sel.options.length] = new Option(
@@ -166,21 +151,20 @@ function llistaJugadorsBarruf() {
             jugadors[index]
           );
         }
+        for (index in campionatsTotals) {
+          selectCampionat.options[selectCampionat.options.length] = new Option(
+            campionatsTotals[index],
+            campionatsTotals[index]
+          );
+        }
       });
       spinner("d-none");
     })
     .catch((error) => console.error("Error:", error));
 }
-function llistaCampionats(){
- 
-  for (index in campionatsTotals) {
-    selectCampionat.options[selectCampionat.options.length] = new Option(
-      campionatsTotals[index],
-      campionatsTotals[index]
-    );
-  }
-}
-function iniciJSON(jugador, adversari) {
+
+function iniciJSON(jugador, campionatsJugador) {
+  console.log(campionatsJugador);
   // Crida a l'API del Google Apps Script
 
   /* const optarr = selectAdversari.querySelectorAll("option");
@@ -194,11 +178,16 @@ function iniciJSON(jugador, adversari) {
     cache: "default",
   };
   var jugador = encodeURIComponent(jugador);
-  var adversari = encodeURIComponent(adversari);
+  var campionatsJugador = encodeURIComponent(JSON.stringify(campionatsJugador));
+  console.log(campionatsJugador);
 
   Promise.all([
     fetch(
-      macroURL + "?page=JSON&jugador=" + jugador + "&adversari=" + adversari
+      macroURL +
+        "?page=JSON&jugador=" +
+        jugador +
+        "&campionats=" +
+        campionatsJugador
     ),
   ])
     .then((responses) =>
@@ -217,6 +206,7 @@ function iniciJSON(jugador, adversari) {
       // Continue with your logic here..
 
       mostraOK();
+      spinner("d-none");
     })
     .catch((error) => console.error("Error:", error));
 }
@@ -394,11 +384,14 @@ function ExcelDateToJSDate(serial) {
 }
 selectJugador.addEventListener("change", () => {
   canvia();
-  selectAdversari
+  selectAdversari.selectedIndex = 0;
+  selectCampionat.selectedIndex = 0;
+  /* selectAdversari
     .querySelectorAll("option")
-    .forEach((op) => op.classList.remove("d-none"));
+    .forEach((op) => op.classList.remove("d-none")); */
 });
 selectAdversari.addEventListener("change", (op) => {
+  selectCampionat.selectedIndex = 0;
   var adv = op.target.value;
   var camp = [];
   llistaResposta.querySelectorAll(".partida").forEach((li) => {
@@ -422,18 +415,28 @@ selectAdversari.addEventListener("change", (op) => {
   mostraestadistica();
 });
 selectCampionat.addEventListener("change", (op) => {
+  selectAdversari.selectedIndex = 0;
   var campi = op.target.value;
- 
+  
   llistaResposta.querySelectorAll("li").forEach((li) => {
     var index = li.dataset.camp.indexOf(campi);
+
     if (index < 0) {
       li.classList.add("d-none");
     } else {
       li.classList.remove("d-none");
-      
     }
   });
   console.log(campi);
- 
+
   mostraestadistica();
 });
+function collapse(campi){
+  llistaResposta.querySelectorAll(".partida").forEach((li) => {
+    var index = li.dataset.camp
+
+    if (index == campi) {
+      li.classList.toggle("d-none");
+    }
+  });
+}
