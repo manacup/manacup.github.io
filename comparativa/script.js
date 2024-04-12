@@ -10,6 +10,7 @@ const text = document.getElementById("estadistica");
 let partides = [];
 let campionatsTotals = [];
 let campionatsJugador = [];
+var adversaris = []
 
 function canvia() {
   spinner("");
@@ -38,7 +39,7 @@ function mostraOK() {
 
   //console.log(partides);
   var campionat;
-  var adversaris = [];
+  adversaris = [...new Set(partides.map(ad=>ad.adversari))].map(ad=>ad)
 
   partides.forEach((partida) => {
     if (partida.campionat != campionat) {
@@ -56,8 +57,7 @@ function mostraOK() {
     const partidatemplate = `
 <li class="list-group-item d-flex align-items-center partida" data-bs-toggle="modal" data-bs-target="#partidaModal" onclick="recuperaPartida('${partida.campionat}',${partida.row})" data-camp="${partida.campionat}">${partida.jugador} (${partida.puntsJugador}-${partida.puntsAdversari}) ${partida.adversari}</li>
 `;
-    llistaResposta.innerHTML += partidatemplate;
-    adversaris.push(partida.adversari);
+    llistaResposta.innerHTML += partidatemplate;   
 
     selectAdversari
       .querySelector("option[value='" + partida.adversari + "']")
@@ -92,7 +92,8 @@ function mostraestadistica() {
   var totalPartides = partidesFiltrades.length;
   var victories = 0;
   var campionats = 0;
-
+  var adversarisfiltrats = [...new Set(partidesFiltrades.map(ad=>ad.adversari))].map(ad=>ad)
+console.log(adversaris)
   partidesFiltrades.forEach((partida) => {
     if (partida.scrabbles > 0) {
       scrabbles += partida.scrabbles;
@@ -112,7 +113,9 @@ function mostraestadistica() {
     }
   });
   text.innerHTML += `<li class="list-group-item d-flex align-items-center">${totalPartides} partides computades en ${campionats} competicions.</li>`;
+  text.innerHTML += `<li class="list-group-item d-flex align-items-center">Total adversaris únics: ${adversarisfiltrats.length}</li>`;
   text.innerHTML += `<li class="list-group-item d-flex align-items-center">Victòries: ${victories}</li>`;
+  text.innerHTML += `<li class="list-group-item d-flex align-items-center">Percentatge de victòries: ${((victories/totalPartides)*100).toFixed(2)}%</li>`;
   text.innerHTML += `<li class="list-group-item d-flex align-items-center">Total punts a favor: ${puntsfavor}</li>`
   text.innerHTML += `<li class="list-group-item d-flex align-items-center">Mitjana punts a favor: ${(
     puntsfavor / totalPartides
