@@ -36,7 +36,7 @@ function mostraOK() {
   optarrcamp.forEach((op) => op.classList.add("d-none"));
   optarrcamp[0].classList.remove("d-none");
 
-  console.log(partides);
+  //console.log(partides);
   var campionat;
   var adversaris = [];
 
