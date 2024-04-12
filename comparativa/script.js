@@ -118,6 +118,7 @@ function mostraestadistica() {
     puntsfavor / totalPartides
   ).toFixed(2)}</li>`;
   text.innerHTML += `<li class="list-group-item d-flex align-items-center">Total punts en contra: ${puntscontra}</li>`
+  text.innerHTML += `<li class="list-group-item d-flex align-items-center">Diferencial: ${puntsfavor-puntscontra}</li>`
   text.innerHTML += `<li class="list-group-item d-flex align-items-center">Mitjana del diferencial: ${(
     (puntsfavor - puntscontra) /
     totalPartides
