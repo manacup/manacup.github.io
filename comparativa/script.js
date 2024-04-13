@@ -294,7 +294,7 @@ function mostraPartida(partida) {
                     !partida.Mot_1 ? "d-none" : ""
                   }">
                     <small>Millor jugada</small>
-                    <h6 class="m-2 mot">${partida.Mot_1.toUpperCase() || "?"}</h6>
+                    <h6 class="m-2 mot">${partida.Mot_1?partida.Mot_1.toUpperCase():""}</h6>
                     <h4>${partida.Puntsmot_1 || "?"}</h4>
                     <small class="text-muted">Punts</small>
                   </div>
@@ -314,7 +314,7 @@ function mostraPartida(partida) {
                     !partida.Mot_2 ? "d-none" : ""
                   }">
                     <small>Millor jugada</small>
-                    <h6 class="m-2 mot">${partida.Mot_2.toUpperCase() || "?"}</h6>
+                    <h6 class="m-2 mot">${partida.Mot_2?partida.Mot_2.toUpperCase():""}</h6>
                     <h4>${partida.Puntsmot_2 || "?"}</h4>
                     <small class="text-muted">Punts</small>
                   </div>
