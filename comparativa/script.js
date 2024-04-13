@@ -48,7 +48,7 @@ function mostraOK() {
       campionat = partida.campionat;
 
       const campionattemplate = `
-<li class="list-group-item d-flex  align-items-center active campionat" data-camp="${partida.campionat}" onclick="collapse('${partida.campionat}')">${partida.campionat}</li>
+<li class="list-group-item d-flex  align-items-center active campionat" data-camp="${partida.campionat.replace(/\s/g, '')}" onclick="collapse('${partida.campionat}')">${partida.campionat}</li>
 `;
       llistaResposta.innerHTML += campionattemplate;
 
@@ -58,7 +58,7 @@ function mostraOK() {
         
     }
     const partidatemplate = `
-<li class="list-group-item d-flex align-items-center partida ${partida.puntsJugador>partida.puntsAdversari?'list-group-item-success':'list-group-item-danger'}" data-bs-toggle="modal" data-bs-target="#partidaModal" onclick="recuperaPartida('${partida.campionat}',${partida.row})" data-camp="${partida.campionat}">${partida.jugador} (${partida.puntsJugador}-${partida.puntsAdversari}) ${partida.adversari}</li>
+<li class="list-group-item d-flex align-items-center partida ${partida.puntsJugador>partida.puntsAdversari?'list-group-item-success':'list-group-item-danger'}" data-bs-toggle="modal" data-bs-target="#partidaModal" onclick="recuperaPartida('${partida.campionat}',${partida.row})" data-camp="${partida.campionat.replace(/\s/g, '')}">${partida.jugador} (${partida.puntsJugador}-${partida.puntsAdversari}) ${partida.adversari}</li>
 `;
     llistaResposta.innerHTML += partidatemplate;   
 
@@ -410,12 +410,12 @@ selectAdversari.addEventListener("change", (op) => {
       li.classList.add("d-none");
     } else {
       li.classList.remove("d-none");
-      camp.push(li.dataset.camp);
+      camp.push(li.dataset.camp.replace(/\s/g, ''));
     }
   });
-  console.log(camp);
+  //console.log(camp);
   llistaResposta.querySelectorAll(".campionat").forEach((li) => {
-    console.log(li.dataset.camp);
+    //console.log(li.dataset.camp);
     if (camp.indexOf(li.dataset.camp) < 0) {
       li.classList.add("d-none");
     } else {
@@ -426,12 +426,14 @@ selectAdversari.addEventListener("change", (op) => {
 });
 selectCampionat.addEventListener("change", (op) => {
   selectAdversari.selectedIndex = 0;
-  var campi = op.target.value;
+  var campi = op.target.value.replace(/\s/g, '');
   
-  llistaResposta.querySelectorAll("li").forEach((li) => {
-    var index = li.dataset.camp.indexOf(campi);
+  var list = llistaResposta.querySelectorAll("li")//.map(li=>li.dataset.camp)
+  list.forEach((li) => {
+    var index = li.dataset.camp===campi;
+    
 
-    if (index < 0) {
+    if (!index) {
       li.classList.add("d-none");
     } else {
       li.classList.remove("d-none");
@@ -445,7 +447,7 @@ function collapse(campi){
   llistaResposta.querySelectorAll(".partida").forEach((li) => {
     var index = li.dataset.camp
 
-    if (index == campi) {
+    if (index === campi) {
       li.classList.toggle("d-none");
     }
   });
