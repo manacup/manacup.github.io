@@ -40,7 +40,9 @@ function mostraOK() {
   //console.log(partides);
   var campionat;
   adversaris = [...new Set(partides.map(ad=>ad.adversari))].map(ad=>ad)
-
+  var counts = {}
+  partides.map(ad=>ad.adversari).forEach(function (x) { counts[x] = (counts[x] || 0) + 1; })
+  console.log(counts)
   partides.forEach((partida) => {
     if (partida.campionat != campionat) {
       campionat = partida.campionat;
@@ -53,15 +55,18 @@ function mostraOK() {
       selectCampionat
         .querySelector("option[value='" + campionat + "']")
         .classList.remove("d-none");
+        
     }
     const partidatemplate = `
-<li class="list-group-item d-flex align-items-center partida" data-bs-toggle="modal" data-bs-target="#partidaModal" onclick="recuperaPartida('${partida.campionat}',${partida.row})" data-camp="${partida.campionat}">${partida.jugador} (${partida.puntsJugador}-${partida.puntsAdversari}) ${partida.adversari}</li>
+<li class="list-group-item d-flex align-items-center partida ${partida.puntsJugador>partida.puntsAdversari?'list-group-item-success':'list-group-item-danger'}" data-bs-toggle="modal" data-bs-target="#partidaModal" onclick="recuperaPartida('${partida.campionat}',${partida.row})" data-camp="${partida.campionat}">${partida.jugador} (${partida.puntsJugador}-${partida.puntsAdversari}) ${partida.adversari}</li>
 `;
     llistaResposta.innerHTML += partidatemplate;   
 
-    selectAdversari
+    var sel = selectAdversari
       .querySelector("option[value='" + partida.adversari + "']")
-      .classList.remove("d-none");
+      sel.classList.remove("d-none")  
+      sel.dataset.num = counts[partida.adversari]
+      sel.innerHTML = partida.adversari + `   (${counts[partida.adversari]})`
   });
 
   mostraestadistica();
@@ -148,6 +153,7 @@ function llistaJugadorsBarruf() {
       dades = data.dades;
       campionatsTotals = data.campionats;
       let jugadors = Object.keys(dades);
+
       document.querySelectorAll(".seljugadors").forEach((sel) => {
         for (index in jugadors) {
           sel.options[sel.options.length] = new Option(
@@ -288,7 +294,7 @@ function mostraPartida(partida) {
                     !partida.Mot_1 ? "d-none" : ""
                   }">
                     <small>Millor jugada</small>
-                    <h6 class="m-2 mot">${partida.Mot_1 || "?"}</h6>
+                    <h6 class="m-2 mot">${partida.Mot_1.toUpperCase() || "?"}</h6>
                     <h4>${partida.Puntsmot_1 || "?"}</h4>
                     <small class="text-muted">Punts</small>
                   </div>
@@ -308,7 +314,7 @@ function mostraPartida(partida) {
                     !partida.Mot_2 ? "d-none" : ""
                   }">
                     <small>Millor jugada</small>
-                    <h6 class="m-2 mot">${partida.Mot_2 || "?"}</h6>
+                    <h6 class="m-2 mot">${partida.Mot_2.toUpperCase() || "?"}</h6>
                     <h4>${partida.Puntsmot_2 || "?"}</h4>
                     <small class="text-muted">Punts</small>
                   </div>
