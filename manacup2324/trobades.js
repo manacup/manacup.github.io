@@ -289,7 +289,7 @@ function renderFormTrobada(trobada) {
   
       <div class="row mt-4">
         <div class="col-12 text-end">
-          <button id="enviaAssistencia" class="btn btn-primary" type="submit" onclick="main()">
+          <button id="enviaAssistencia" class="btn btn-primary" type="submit" onclick="main()" disabled>
              <span class="spinner-border spinner-border-sm d-none" role="status" aria-hidden="true" id="spnbtn3"></span>
              Envia la resposta
           </button>
@@ -305,6 +305,9 @@ function renderFormTrobada(trobada) {
     assistencia.value == "si"
       ? document.getElementById("assisteix").classList.add("show")
       : document.getElementById("assisteix").classList.remove("show");
+    assistencia.value!=""
+    ?document.getElementById("enviaAssistencia").disabled=false
+    :document.getElementById("enviaAssistencia").disabled=true
   });
 }
 
