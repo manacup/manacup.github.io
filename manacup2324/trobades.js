@@ -123,15 +123,15 @@ function renderFormTrobada(trobada) {
       </div>
   
       <div class="row">
-        <div class="col-10 mb-3">Assistiré a la trobada</div>
-        <div class="col-2 text-end">
-          <div class="form-check form-switch">
-            <input class="form-check-input" name="Assistencia" type="checkbox" role="switch" id="siAssistire"  value="si" data-bs-toggle="collapse" data-bs-target="#assisteix" onchange="this.checked?document.getElementById('noAssistire').checked=false:document.getElementById('noAssistire').checked=true">
-          </div>
-          <div class="form-check form-switch">
-            <input class="form-check-input visually-hidden" name="Assistencia" type="checkbox" role="switch" id="noAssistire"  value="no" checked>        
-           
-          </div>
+        
+        <div class="col-12 mb-3">
+        <select class="form-select" name="Assistencia" id="Assistencia">
+          <option selected disabled>Selecciona del desplegable</option>
+          <option value="si">Assistiré a la trobada</option>
+          <option value="no">No assistiré a la trobada</option>
+          
+        </select>
+          
         </div>
       </div>
   
@@ -144,17 +144,23 @@ function renderFormTrobada(trobada) {
             <div class="card-body">        
               <h6 class="card-title">Primera partida <span id="ronda1"></span></h6>
               <div class="row">
-                <div class="col-10 mb-3">He pactat la ronda amb el meu adversari <span id="adv1" class="nom">${               
-                   jugadorDesat.partides.filter((p) => p.Ronda == ronda1)[0]!=undefined?
-                  jugadorDesat.partides.filter((p) => p.Ronda == ronda1)[0].Jugador2:
-                  "(no tenc adversari definit en aquesta ronda)"
+                <div class="col-10 mb-3">He pactat la ronda amb el meu adversari <span id="adv1" class="nom">${
+                  jugadorDesat.partides.filter((p) => p.Ronda == ronda1)[0] !=
+                  undefined
+                    ? jugadorDesat.partides.filter((p) => p.Ronda == ronda1)[0]
+                        .Jugador2
+                    : "(no tenc adversari definit en aquesta ronda)"
                 }</span></div>
                 <div class="col-2 text-end">
                   <div class="form-check form-switch">
                     <input class="form-check-input ch1" type="radio" role="switch" name="Primera_partida" id="Primera_partida" value="1a Partida oficial amb " onchange="this.checked?document.getElementById('jugPacte1').value='${
-                   jugadorDesat.partides.filter((p) => p.Ronda == ronda1)[0]!=undefined?
-                  jugadorDesat.partides.filter((p) => p.Ronda == ronda1)[0].Jugador2:
-                  "(no tenc adversari definit en aquesta ronda)"   
+                      jugadorDesat.partides.filter(
+                        (p) => p.Ronda == ronda1
+                      )[0] != undefined
+                        ? jugadorDesat.partides.filter(
+                            (p) => p.Ronda == ronda1
+                          )[0].Jugador2
+                        : "(no tenc adversari definit en aquesta ronda)"
                     }':''">
                    
                   </div>
@@ -198,16 +204,22 @@ function renderFormTrobada(trobada) {
               <h6 class="card-title">Segona partida <span id="ronda2"></span></h6>
               <div class="row">
                 <div class="col-10 mb-3">He pactat la ronda amb el meu adversari <span id="adv2" class="nom">${
-                jugadorDesat.partides.filter((p) => p.Ronda == ronda2)[0]!=undefined?
-                  jugadorDesat.partides.filter((p) => p.Ronda == ronda2)[0].Jugador2:
-                  "(no tenc adversari definit en aquesta ronda)"
+                  jugadorDesat.partides.filter((p) => p.Ronda == ronda2)[0] !=
+                  undefined
+                    ? jugadorDesat.partides.filter((p) => p.Ronda == ronda2)[0]
+                        .Jugador2
+                    : "(no tenc adversari definit en aquesta ronda)"
                 }</span></div>
                 <div class="col-2 text-end">
                   <div class="form-check form-switch">
                     <input class="form-check-input ch2" type="radio" role="switch" name="Segona_partida" id="Segona_partida" value="2a Partida oficial amb " onchange="this.checked?document.getElementById('jugPacte2').value='${
-                      jugadorDesat.partides.filter((p) => p.Ronda == ronda2)[0]!=undefined?
-                  jugadorDesat.partides.filter((p) => p.Ronda == ronda2)[0].Jugador2:
-                  "(no tenc adversari definit en aquesta ronda)"
+                      jugadorDesat.partides.filter(
+                        (p) => p.Ronda == ronda2
+                      )[0] != undefined
+                        ? jugadorDesat.partides.filter(
+                            (p) => p.Ronda == ronda2
+                          )[0].Jugador2
+                        : "(no tenc adversari definit en aquesta ronda)"
                     }':''">
                    
                   </div>
@@ -288,6 +300,12 @@ function renderFormTrobada(trobada) {
     `;
 
   document.getElementById("content").innerHTML += trobadaTemplate;
+  let assistencia = document.getElementById("Assistencia");
+  assistencia.addEventListener("change", () => {
+    assistencia.value == "si"
+      ? document.getElementById("assisteix").classList.add("show")
+      : document.getElementById("assisteix").classList.remove("show");
+  });
 }
 
 async function main() {
@@ -304,24 +322,24 @@ async function main() {
   document.getElementById("enviaAssistencia").disabled = true;
   document.getElementById("spnbtn3").classList.remove("d-none");
   fetch(macroURL, {
-    method: 'POST',
-    mode: 'no-cors',
+    method: "POST",
+    mode: "no-cors",
     headers: {
-      'Content-Type': 'application/json',
+      "Content-Type": "application/json",
     },
     body: JSON.stringify({
-      envia: 'trobada', 
-      values: values, 
+      envia: "trobada",
+      values: values,
       idfull: idfull,
     }),
   })
-  .then(response => response.text())
-  .then(data => {
-    console.log('Resposta del servidor:', data);
-    setTimeout(iniciJSON("trobades"), 2000)
-  })
-  .catch(error => console.error('Error:', error));
-/*   google.script.run
+    .then((response) => response.text())
+    .then((data) => {
+      console.log("Resposta del servidor:", data);
+      setTimeout(iniciJSON("trobades"), 2000);
+    })
+    .catch((error) => console.error("Error:", error));
+  /*   google.script.run
     .withFailureHandler((err) => console.log(err.message))
     .withSuccessHandler(function () {
       setTimeout(funcioInici("trobades"), 2000);
