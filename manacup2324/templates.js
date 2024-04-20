@@ -729,7 +729,7 @@ function renderClassificacio(jugador) {
                         } percent" data-percent="${
     jugador.percentatgeVictories
   }">
-                          ${jugador.PartidesJugades}/${
+                          ${jugador.Rondes_pendents}/${
     jugador.partides.filter(p=>p.Estat!="none").length
   }
                         </span>  
