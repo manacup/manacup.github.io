@@ -8,6 +8,7 @@ let parameterVista = urlParams.vista;
 let parameterOptions = urlParams.options;
 let vistaPredet = { page: parameterVista, options: parameterOptions };
 let idfull = urlParams.idfull || "1HDQ6YdsA5FnzHaHFeOlYXPEIDCLRpq34rm078oFqRMU";
+let idJSON = urlParams.idJSON || "1JxO5a-iFwM3pvVRFWW71-vV1whC3fNIS";
 let mostrapestanyes = urlParams.mostrapestanyes || "no";
 console.log(mostrapestanyes);
 if (mostrapestanyes === "si") {
@@ -92,19 +93,15 @@ function iniciJSON(vista) {
   cache: "default",
 };
   Promise.all([    
-    fetch(macroURL + "?page=JSON"),
-  /*   fetch(macroURL + "?page=trobades&idfull=" + idfull),
-    fetch(macroURL + "?page=jugadors&idfull=" + idfull),
-    fetch(macroURL + "?page=aparellaments&idfull=" + idfull),
-    fetch(macroURL + "?page=calendari&idfull=" + idfull),
-    fetch(macroURL + "?page=partides&idfull=" + idfull),  */   
+    fetch(macroURL + "?page=JSON&idfull="+idJSON),
+  
   ])
   .then(responses => Promise.all(responses.map(response => response.json())))
-  .then(([data]) => {
+  .then(([data,dataTrobades]) => {
     // Process dataTrobades, dataJugadors, etc.
     // ...
        // Example: Accessing data from the 'trobades' response
-       trobada = data.trobades;
+       trobada = dataTrobades.trobades;
        if (trobada) {
        
         var assistents = trobada.assistents;
@@ -146,72 +143,6 @@ function iniciJSON(vista) {
   })
   .catch(error => console.error("Error:", error));
 
-
-
-
-
-
-  /* fetch(macroURL + "?page=trobades&idfull=" + idfull)
-    .then((response) => response.json())
-    .then((data) => {
-      trobada = data.trobades;
-      
-      if (trobada) {
-       
-        var assistents = trobada.assistents;
-        assistents.map((w) => {
-          w.Primera_partida = w.Primera_partida + w.Adv1;
-          w.Segona_partida = w.Segona_partida + w.Adv2;
-        });
-        
-      }
-      carrega++;
-      loadPagina(vista);
-    })
-    .catch((error) => console.error("Error:", error));
-  fetch(macroURL + "?page=jugadors&idfull=" + idfull)
-    .then((response) => response.json())
-    .then((data) => {
-      //console.log(data);
-      dades = data.dades;
-      recuperaPartides();
-      carregaUsuari();
-      renderUserCard(jugadorDesat);
-      carrega++;
-
-      loadPagina(vista);
-      dades.forEach((jug) => {
-        var jugadorsOpt = document.getElementById("jugadors");
-        jugadorsOpt.innerHTML += `<option value="${jug.ID}">${jug.Nom}</option>`;
-      });
-      document.getElementById("loaded").innerHTML = "<span>loaded2</span>";
-      swipe();
-    })
-    .catch((error) => console.error("Error:", error));
-  fetch(macroURL + "?page=aparellaments&idfull=" + idfull)
-    .then((response) => response.json())
-    .then((data) => {
-      aparellaments = data.aparellaments.filter((p) => p.ID > 0);
-      // carrega++;
-      loadPagina(vista);
-    })
-    .catch((error) => console.error("Error:", error));
-  fetch(macroURL + "?page=calendari&idfull=" + idfull)
-    .then((response) => response.json())
-    .then((data) => {
-      rondes = data.calendari.filter((p) => p.Estat != "none");
-      //carrega++;
-    })
-    .catch((error) => console.error("Error:", error));
-  
-  fetch(macroURL + "?page=partides&idfull=" + idfull)
-    .then((response) => response.json())
-    .then((data) => {
-      partides = data.partides;
-      recuperaPartides();
-      loadPagina(vista);
-    })
-    .catch((error) => console.error("Error:", error)); */
 }
 function recuperaPartides() {
   if ((carrega = 2)) {
