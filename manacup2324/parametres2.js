@@ -94,18 +94,18 @@ function iniciJSON(vista) {
 };
   Promise.all([    
     fetch(macroURL + "?page=JSON&idfull="+idJSON),
-    fetch(macroURL + "?page=trobades&idfull=" + idfull),
-   /*  fetch(macroURL + "?page=jugadors&idfull=" + idfull),
+   /* fetch(macroURL + "?page=trobades&idfull=" + idfull),
+     fetch(macroURL + "?page=jugadors&idfull=" + idfull),
     fetch(macroURL + "?page=aparellaments&idfull=" + idfull),
     fetch(macroURL + "?page=calendari&idfull=" + idfull),
     fetch(macroURL + "?page=partides&idfull=" + idfull),  */   
   ])
   .then(responses => Promise.all(responses.map(response => response.json())))
-  .then(([data,dataTrobades]) => {
+  .then(([data]) => {
     // Process dataTrobades, dataJugadors, etc.
     // ...
        // Example: Accessing data from the 'trobades' response
-       trobada = dataTrobades.trobades;
+       trobada = data.trobades;
        if (trobada) {
        
         var assistents = trobada.assistents;
