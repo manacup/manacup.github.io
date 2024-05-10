@@ -7,7 +7,7 @@ let parameterId = urlParams.id || "no";
 let parameterVista = urlParams.vista;
 let parameterOptions = urlParams.options;
 let vistaPredet = { page: parameterVista, options: parameterOptions };
-let idfull = urlParams.idfull;
+let idfull = urlParams.idfull || "1HDQ6YdsA5FnzHaHFeOlYXPEIDCLRpq34rm078oFqRMU";
 let mostrapestanyes = urlParams.mostrapestanyes || "no";
 console.log(mostrapestanyes);
 if (mostrapestanyes === "si") {
@@ -84,19 +84,27 @@ function iniciJSON(vista) {
   carregant();
   carrega = 0;
   // Crida a l'API del Google Apps Script
-  Promise.all([
-    fetch(macroURL + "?page=trobades&idfull=" + idfull),
+  var myHeaders = new Headers();
+  var myInit = {
+  method: "GET",
+  headers: myHeaders,
+  mode: "no-cors",
+  cache: "default",
+};
+  Promise.all([    
+    fetch(macroURL + "?page=JSON"),
+  /*   fetch(macroURL + "?page=trobades&idfull=" + idfull),
     fetch(macroURL + "?page=jugadors&idfull=" + idfull),
     fetch(macroURL + "?page=aparellaments&idfull=" + idfull),
     fetch(macroURL + "?page=calendari&idfull=" + idfull),
-    fetch(macroURL + "?page=partides&idfull=" + idfull),
+    fetch(macroURL + "?page=partides&idfull=" + idfull),  */   
   ])
   .then(responses => Promise.all(responses.map(response => response.json())))
-  .then(([dataTrobades, dataJugadors, dataAparellaments, dataCalendari, dataPartides]) => {
+  .then(([data]) => {
     // Process dataTrobades, dataJugadors, etc.
     // ...
        // Example: Accessing data from the 'trobades' response
-       trobada = dataTrobades.trobades;
+       trobada = data.trobades;
        if (trobada) {
        
         var assistents = trobada.assistents;
@@ -109,7 +117,7 @@ function iniciJSON(vista) {
        // Process 'trobades' data...
    
        // Example: Accessing data from the 'jugadors' response
-       dades = dataJugadors.dades;
+       dades = data.dades;
        // Process 'jugadors' data...
        dades.forEach((jug) => {
         var jugadorsOpt = document.getElementById("jugadors");
@@ -118,19 +126,19 @@ function iniciJSON(vista) {
       document.getElementById("loaded").innerHTML = "<span>loaded2</span>";
    
        // Example: Accessing data from the 'aparellaments' response
-       aparellaments = dataAparellaments.aparellaments.filter((p) => p.ID > 0);
+       aparellaments = data.aparellaments.filter((p) => p.ID > 0);
        // Process 'aparellaments' data...
    
        // Example: Accessing data from the 'calendari' response
-       calendari = dataCalendari.calendari.filter((p) => p.Estat != "none");
+       rondes = data.calendari.filter((p) => p.Estat != "none");
        // Process 'calendari' data...
    
        // Example: Accessing data from the 'partides' response
-       partides = dataPartides.partides;
+       partides = data.partides;
        // Process 'partides' data...
    
        // Continue with your logic here..
-       recuperaPartides();
+      recuperaPartides();
       carregaUsuari();
       renderUserCard(jugadorDesat);
       swipe();
