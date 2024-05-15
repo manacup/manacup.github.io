@@ -197,7 +197,8 @@ function actualitzaJSON(){
   .then(response => response.text())
   .then(data => {
     console.log('Resposta del servidor:', data);
-    setTimeout(iniciJSON("classificacions"), 2000)
+    clearInterval(interval)
+    iniciJSON("classificacions")
   })
   .catch(error => console.error('Error:', error));
 }
