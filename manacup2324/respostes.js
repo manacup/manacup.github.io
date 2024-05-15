@@ -403,24 +403,4 @@ const parseValues = async (e) =>
       )
     ))
   );
-function actualitzaJSON(){
-   carregant();
-  carrega = 0;
-  fetch(macroURL, {
-    method: 'POST',
-    mode: 'no-cors',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify({
-      envia: 'actualitza', 
-      
-    }),
-  })
-  .then(response => response.text())
-  .then(data => {
-    console.log('Resposta del servidor:', data);
-    setTimeout(iniciJSON("classificacions"), 2000)
-  })
-  .catch(error => console.error('Error:', error));
-}
+
