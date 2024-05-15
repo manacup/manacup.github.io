@@ -196,7 +196,7 @@ function actualitzaJSON(){
   })
   .then(response => response.text())
   .then(data => {
-    console.log('Resposta del servidor:', data);
+    console.log('Resposta del servidor: JSON actualitzat!', data);
     clearInterval(interval)
     iniciJSON("classificacions")
   })
