@@ -149,17 +149,17 @@ function iniciJSON(vista) {
 
 }
 function recuperaPartides() {
-  if ((carrega = 2)) {
+ // if ((carrega == 2)) {
     dades.forEach((jug) => {
       jug.partides = partides.filter((partida) => partida.Jugador1 == jug.Nom);
     });
-  }
+ // }
 }
 
 function loadPagina(vista) {
   console.log(!!trobada&& vista === undefined)
   clearInterval(interval);
-  if (carrega == 2) {
+ // if (carrega == 2) {
     
     if (!!trobada && vista === undefined) {
       console.log("yeah")
@@ -169,7 +169,7 @@ function loadPagina(vista) {
       loadContent(parameterVista ? vistaPredet : ["classificacio"]);
       updateHistory(parameterVista ? vistaPredet : ["classificacio"]);
     }
-  }
+  //}
 }
 
 function preventFormSubmit() {
