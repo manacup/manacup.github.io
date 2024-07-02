@@ -93,7 +93,7 @@ function iniciJSON(vista) {
   cache: "default",
 };
   Promise.all([    
-    fetch(macroURL + "?page=JSON&idfull="+idJSON),
+    fetch(macroURL + "?page=JSON&idJSON="+idJSON),
    /* fetch(macroURL + "?page=trobades&idfull=" + idfull),
      fetch(macroURL + "?page=jugadors&idfull=" + idfull),
     fetch(macroURL + "?page=aparellaments&idfull=" + idfull),
