@@ -10,6 +10,7 @@ let parameterVista = urlParams.vista;
 let parameterOptions = urlParams.options;
 let vistaPredet = { page: parameterVista, options: parameterOptions };
 let idfull = urlParams.idfull || "1_5aBdjsPWf5bcMc8TIhBAfixZle_aQbkqPtZVXDKtqQ";
+let idJSON = "1tWcv5BRRDQogGkN1BFXpgDWknLGYUQeT";
 let mostrapestanyes = urlParams.mostrapestanyes || "no";
 console.log(mostrapestanyes);
 if (mostrapestanyes === "si") {

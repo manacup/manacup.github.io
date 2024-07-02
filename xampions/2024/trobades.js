@@ -313,6 +313,7 @@ async function main() {
       envia: 'trobada', 
       values: values, 
       idfull: idfull,
+      idJSON: idJSON,
     }),
   })
   .then(response => response.text())
@@ -321,10 +322,5 @@ async function main() {
     setTimeout(iniciJSON("trobades"), 2000)
   })
   .catch(error => console.error('Error:', error));
-/*   google.script.run
-    .withFailureHandler((err) => console.log(err.message))
-    .withSuccessHandler(function () {
-      setTimeout(funcioInici("trobades"), 2000);
-    })
-    .enviaTrobades(values, idfull); // The form object parsed by this library is used here. */
+
 }

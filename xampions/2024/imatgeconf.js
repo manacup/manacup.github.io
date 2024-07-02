@@ -16,6 +16,7 @@ function desaImatgeConf(e) {
       nom: nom,
       file: file,
       idfull: idfull,
+      idJSON: idJSON,
     }),
   })
     .then((response) => response.text())
