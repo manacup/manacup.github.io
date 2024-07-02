@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+    <head>
+       <script src="https://unpkg.com/dbf@latest/dbf.js" defer></script>
+    </head>
+    <body>
+        <script>
+         var dbf ,
+    fs;
+
+var buf = dbf.structure([
+    {foo:'bar',noo:10},
+    {foo:'louie'}
+]);
+
+console.log( toBuffer(buf.buffer));
+
+function toBuffer(ab) {
+    var buffer = new Buffer(ab.byteLength);
+    var view = new Uint8Array(ab);
+    for (var i = 0; i < buffer.length; ++i) {
+        buffer[i] = view[i];
+    }
+    return buffer;
+}
+        </script>
+         
+    </body>
+</html>
