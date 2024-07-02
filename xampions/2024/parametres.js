@@ -1,7 +1,13 @@
 const queryString = window.location.search;
 const urlParams = Object.fromEntries(new URLSearchParams(queryString));
 
-let fases=["Eliminatòria","Vuitens de final","Quarts de final","Semifinals","Final"]
+let fases = [
+  "Eliminatòria",
+  "Vuitens de final",
+  "Quarts de final",
+  "Semifinals",
+  "Final",
+];
 
 const macroURL =
   "https://script.google.com/macros/s/AKfycbwDcFyPQFV3B0bzeRxGU9yaTWhbA3PyR3SQZOQ1KEE5cU08SJb5QaOOfuXxwfVnuASk/exec";
@@ -41,16 +47,17 @@ let jugadorDefault = {
 let jugadorDesat = {};
 
 const vistesGenerals = [
-  "classificacio",
+  "rondes",
+
   "scrabbles",
   "jugada",
   "partida",
   "conjunta",
+  "classificacio",
   "social",
   "immediatesa",
-  "rondes",
   "trobades",
-  "classificacio",
+  "rondes",
 ];
 let vistesPartides = [];
 const vistesNoSwipe = ["imatge", "formulari", "assistencia"];
@@ -93,60 +100,59 @@ function iniciJSON(vista) {
     mode: "no-cors",
     cache: "default",
   };
-  Promise.all([    
-    fetch(macroURL + "?page=JSON&idJSON="+idJSON),
+  Promise.all([
+    fetch(macroURL + "?page=JSON&idJSON=" + idJSON),
     /*fetch(macroURL + "?page=trobades&idfull=" + idfull),
      fetch(macroURL + "?page=jugadors&idfull=" + idfull),
     fetch(macroURL + "?page=aparellaments&idfull=" + idfull),
     fetch(macroURL + "?page=calendari&idfull=" + idfull),
-    fetch(macroURL + "?page=partides&idfull=" + idfull),  */   
+    fetch(macroURL + "?page=partides&idfull=" + idfull),  */
   ])
-  .then(responses => Promise.all(responses.map(response => response.json())))
-  .then(([data]) => {
-    // Process dataTrobades, dataJugadors, etc.
-    // ...
-       // Example: Accessing data from the 'trobades' response
-       trobada = data.trobades;
-       if (trobada) {
-       
+    .then((responses) =>
+      Promise.all(responses.map((response) => response.json()))
+    )
+    .then(([data]) => {
+      // Process dataTrobades, dataJugadors, etc.
+      // ...
+      // Example: Accessing data from the 'trobades' response
+      trobada = data.trobades;
+      if (trobada) {
         var assistents = trobada.assistents;
         assistents.map((w) => {
           w.Primera_partida = w.Primera_partida + w.Adv1;
           w.Segona_partida = w.Segona_partida + w.Adv2;
         });
-        
       }
-       // Process 'trobades' data...
-   
-       // Example: Accessing data from the 'jugadors' response
-       dades = data.dades;
-       // Process 'jugadors' data...
-       dades.forEach((jug) => {
+      // Process 'trobades' data...
+
+      // Example: Accessing data from the 'jugadors' response
+      dades = data.dades;
+      // Process 'jugadors' data...
+      dades.forEach((jug) => {
         var jugadorsOpt = document.getElementById("jugadors");
         jugadorsOpt.innerHTML += `<option value="${jug.ID}">${jug.Nom}</option>`;
       });
       document.getElementById("loaded").innerHTML = "<span>loaded2</span>";
-   
-       // Example: Accessing data from the 'aparellaments' response
-       aparellaments = data.aparellaments.filter((p) => p.ID > 0);
-       // Process 'aparellaments' data...
-   
-       // Example: Accessing data from the 'calendari' response
-       rondes = data.calendari.filter((p) => p.Estat != "none");
-       // Process 'calendari' data...
-   
-       // Example: Accessing data from the 'partides' response
-       partides = data.partides;
-       // Process 'partides' data...
-   
-       // Continue with your logic here..
-        recuperaPartides();
-        carregaUsuari();
-        renderUserCard(jugadorDesat);
-        swipe();
-        loadPagina(vista);
-      }
-    )
+
+      // Example: Accessing data from the 'aparellaments' response
+      aparellaments = data.aparellaments.filter((p) => p.ID > 0);
+      // Process 'aparellaments' data...
+
+      // Example: Accessing data from the 'calendari' response
+      rondes = data.calendari.filter((p) => p.Estat != "none");
+      // Process 'calendari' data...
+
+      // Example: Accessing data from the 'partides' response
+      partides = data.partides;
+      // Process 'partides' data...
+
+      // Continue with your logic here..
+      recuperaPartides();
+      carregaUsuari();
+      renderUserCard(jugadorDesat);
+      swipe();
+      loadPagina(vista);
+    })
     .catch((error) => console.error("Error:", error));
 }
 function recuperaPartides() {

@@ -422,6 +422,7 @@ const parseValues = async (e) =>
       },
       body: JSON.stringify({
         envia: 'actualitza', 
+        idfull: idfull,
         idJSON: idJSON,
         
       }),
@@ -429,7 +430,7 @@ const parseValues = async (e) =>
     .then(response => response.text())
     .then(data => {
       console.log('Resposta del servidor:', data);
-      setTimeout(iniciJSON("classificacions"), 2000)
+      setTimeout(iniciJSON("rondes"), 2000)
     })
     .catch(error => console.error('Error:', error));
   }

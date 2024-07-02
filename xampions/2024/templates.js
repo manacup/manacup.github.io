@@ -1700,11 +1700,10 @@ function renderAparellaments(partida) {
       ? partida.resultats[1].ID
       : partida.resultats[0].ID
   }"data-estat="${partida.Estat}">
-          <div class="card-body">
-              <div class="row">
-                  <div class="row">
+          <div class="card-body">              
+                  <div>
                       <div class="d-flex align-items-center">
-                          <div class=" row col-10">
+                          <div class=" row col-6">
 
                             <span  class="h6 nom ${
                               partida.resultats[0].Puntuacio_1 +
@@ -1739,20 +1738,20 @@ function renderAparellaments(partida) {
                               : ""
                           }">${partida.resultats[0].Puntuacio_2}</span>
                           </div>
-                          <div class="row col">
-                          <span class="text-primary text-center">|</span>
+                          <div class="row col-2 d-flex align-items-center">
+                          <span class="text-primary text-center fs-1  ${sajugada?"":"d-none"}">|</span>
                           
                           </div>
                           <div class="row col detallpartida" data-id="${
                             partida.resultats[1].ID
                           }" data-estat="${partida.resultats[1].Estat}">
-                          <span class="text-primary  text-end ${
+                          <span class="text-primary  text-start ${
                             partida.resultats[1].Puntuacio_1 >
                             partida.resultats[1].Puntuacio_2
                               ? "fw-bold"
                               : ""
                           }">${partida.resultats[1].Puntuacio_1}</span>
-                          <span class="text-primary  text-end ${
+                          <span class="text-primary  text-start ${
                             partida.resultats[1].Puntuacio_2 >
                             partida.resultats[1].Puntuacio_1
                               ? "fw-bold"
@@ -1763,11 +1762,35 @@ function renderAparellaments(partida) {
                           
                           
                          </div> 
+                         <div class="row col  ${sajugada?"":"d-none"}">
+                          <span class="text-primary  text-end ${
+                            partida.resultats[0].Puntuacio_1 +
+                                partida.resultats[1].Puntuacio_1 >
+                              partida.resultats[0].Puntuacio_2 +
+                                partida.resultats[1].Puntuacio_2
+                              ? "fw-bold"
+                              : ""
+                          }">(${partida.resultats[0].Puntuacio_1 +
+                            partida.resultats[1].Puntuacio_1})</span>
+                          <span class="text-primary  text-end ${
+                            partida.resultats[0].Puntuacio_1 +
+                                partida.resultats[1].Puntuacio_1 <
+                              partida.resultats[0].Puntuacio_2 +
+                                partida.resultats[1].Puntuacio_2
+                              ? "fw-bold"
+                              : ""
+                          }">(${partida.resultats[0].Puntuacio_2 +
+                            partida.resultats[1].Puntuacio_2})</span>
+                      
+                      
+                          
+                          
+                         </div> 
                       </div>
                   </div>
               </div>
           </div>
-      </div>
+      
   </div>
 `;
   

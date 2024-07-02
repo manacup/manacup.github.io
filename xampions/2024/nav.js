@@ -109,7 +109,7 @@ function loadContent(vista) {
 
       break;
     case "rondes":
-      navbarTitle.innerHTML = "Rondes";
+      navbarTitle.innerHTML = "Fases";
       function ordreRondes(a, b) {
         return a.Ronda - b.Ronda;
       }
@@ -137,7 +137,7 @@ function loadContent(vista) {
       partidesfiltagrupades.forEach((partida) => {
         if(partida.Grup!=grup){
           grup = partida.Grup
-          document.getElementById("content").innerHTML += "Grup "+ grup
+          document.getElementById("content").innerHTML += "<h6>Grup "+ grup+"</h6>"
         }
         renderAparellaments(partida);
       });
