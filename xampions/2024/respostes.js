@@ -322,6 +322,15 @@ async function handleFormSubmit(formObject) {
   document.getElementById("submitbtn2").disabled = true;
   document.getElementById("spnbtn2").classList.remove("d-none");
 
+
+console.log(JSON.stringify({
+  envia: 'partida', 
+  obj: obj, 
+  idfull: idfull,
+  idJSON: idJSON,
+}))
+
+
   fetch(macroURL, {
     method: 'POST',
     mode: 'no-cors',
@@ -329,8 +338,8 @@ async function handleFormSubmit(formObject) {
       'Content-Type': 'application/json',
     },
     body: JSON.stringify({
-      envia: 'partida', // o 'formula2' segons la fórmula que vulguis aplicar
-      obj: obj, // ajusta els valors segons les necessitats de la teva fórmula
+      envia: 'partida', 
+      obj: obj, 
       idfull: idfull,
       idJSON: idJSON,
     }),
