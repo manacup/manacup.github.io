@@ -81,7 +81,7 @@ function renderJugador(jugador) {
                     <h4 class="mb-2">${jugador.Nom}</h4>
                     <p class="text-muted mb-4">${jugador.Malnom2}</p>
                     <div class="mb-4 pb-2">
-                    <div class="d-flex justify-content-center text-center">
+                    <div class="d-flex justify-content-center text-center d-none">
                     <div data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Campionats: ${
                       campionats.join(", ") ||
                       "Encara no ha guanyat cap campionat."
@@ -114,7 +114,7 @@ function renderJugador(jugador) {
                     }');">
                       <i class="bi bi-whatsapp  me-2"></i>Missatge
                     </button>
-                    <div class="row align-items-end text-center mt-5 mb-2">
+                    <div class="row align-items-end text-center mt-5 mb-2 d-none">
                       <div class="col">
                         <p class="mb-2 h5">${jugador.BRF}
                         <br>Núm. ${jugador.PosBRF}
@@ -136,7 +136,7 @@ function renderJugador(jugador) {
                 </div>
               </div>
            
-            <div class=" p-1">
+            <div class=" p-1 d-none">
                 <div class="card">
                 <div class="card-header">Un per un</div>
                   <div class="card-body">
@@ -1863,12 +1863,12 @@ function renderLlistaEliminatoria(jugador) {
                   </div>
                   <div class="col-10">
                       <div class="d-flex align-items-center">
-                        <div class="h5 "> 
+                        <div class="h5 nom"> 
                         ${jugador.Jugador1}
                         </div>
                         <div  class="flex-grow-1">
                         </div>                                             
-                          <span class="badge text-bg-${
+                          <span class="badge nom text-bg-${
                             jugador.totalPunts1 <
                             jugador.totalPunts2
                               ? "success"
