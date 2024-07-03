@@ -1509,7 +1509,7 @@ function renderRondes(ronda) {
             </div>   
             <div class="card-footer text-body-secondary">
             <div class="d-flex justify-content-around">
-             <button type="button" class="btn btn-primary detallronda" data-id="${ronda.Ronda}">Emparellaments</button>
+             <button type="button" class="btn btn-primary detallronda" data-id="${ronda.Ronda}">Aparellaments</button>
               <button type="button" class="btn btn-primary detalleliminatoria" data-id="${ronda.Ronda}">Classificació</button>
               </div> 
               </div> 

@@ -29,7 +29,7 @@ function loadContent(vista) {
         "<h1>Página d'inici</h1><p>Benvingut a la primera pàgina</p>";
       break;
     case "classificacio":
-      navbarTitle.innerHTML = "Classificació";
+      navbarTitle.innerHTML = "Classificació x victòries";
       contentDiv.innerHTML += `<div class="p-1" id="ordenarBoto"><i id="icona" class="float-end bi bi-sort-numeric-down" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Ordena per victòries totals o de grup."></i></div>`;
       var div = document.createElement("div");
       div.id = "subcontent";
@@ -42,16 +42,12 @@ function loadContent(vista) {
         var posicioordre = a.Posició - b.Posició;
         return posicioordre;
       }
-      function ordreGrup(a, b) {
-        var posiciogrup = a.grup - b.grup;
-        return posiciogrup;
-      }
-      dades.sort(ordreClassificacio); //.sort(ordreGrup);
-      //console.log(dades)
+     
+      dades.sort(ordreClassificacio); 
+      
       var ordrejug = 1;
       dades.forEach((jugador) => {
-        //jugador.Posició = ordrejug
-        ordrejug++;
+        
         jugador.percentatgeVictories =
           parseInt(jugador.Punts) / parseInt(jugador.PartidesJugades);
         renderClassificacio(jugador);
@@ -168,7 +164,7 @@ function loadContent(vista) {
           j.totalPunts2 = Number(j.resultats[0].Puntuacio_2) + Number(j.resultats[1].Puntuacio_2)
         })
         var grup = "";
-        function ordreClassificacio(a, b) {
+        function ordrePuntsJug(a, b) {
           var posicioordre = b.totalPunts1 - a.totalPunts1;
           return posicioordre;
         }
@@ -176,7 +172,7 @@ function loadContent(vista) {
           var posiciogrup = a.Grup - b.Grup;
           return posiciogrup;
         }
-        partidesfiltagrupades.sort(ordreClassificacio).sort(ordreGrup);
+        partidesfiltagrupades.sort(ordrePuntsJug).sort(ordreGrup);
         //console.log(dades)
         var ordrejug = 1;
       partidesfiltagrupades.forEach((partida) => {
