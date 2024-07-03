@@ -99,11 +99,11 @@ function renderTrobada(trobada) {
   }
 }
 
-function renderFormTrobada(trobada) {
+function renderFormTrobada2(trobada) {
   const ronda1 = trobada.max_ronda - trobada.Rondes_a_jugar + 1;
   const ronda2 = trobada.max_ronda - trobada.Rondes_a_jugar + 2;
-  //console.log(ronda1,ronda2,trobada)
-
+  console.log(ronda1,ronda2,trobada)
+console.log(jugadorDesat)
   const trobadaTemplate = `
   <form id="trobadaForm">
       <input type="hidden" value="${
@@ -288,6 +288,217 @@ function renderFormTrobada(trobada) {
     `;
 
   document.getElementById("content").innerHTML += trobadaTemplate;
+}
+function renderFormTrobada(trobada) {
+  const ronda1 = trobada.max_ronda - trobada.Rondes_a_jugar + 1;
+  const ronda2 = trobada.max_ronda - trobada.Rondes_a_jugar + 2;
+  //console.log(ronda1,ronda2,trobada)
+
+  const trobadaTemplate = `
+  <form id="trobadaForm">
+      <input type="hidden" value="${
+        trobada.ID_trobada
+      }" name="ID_trobada" readonly />
+  
+      <div class="row">
+        <div class="col-12">
+          <div class="mb-3">
+            
+            <input type="search" class="form-control llistajugadorsform" name="Nom" id="jugAssistencia" required data-datalist="jugadors" value="${
+              jugadorDesat.Nom || ""
+            }" placeholder="Comença a escriure el nom i tria de la llista">
+            
+          </div>
+        </div>
+      </div>
+  
+      <div class="row">
+        
+        <div class="col-12 mb-3">
+        <select class="form-select" name="Assistencia" id="Assistencia">
+          <option selected disabled>Selecciona del desplegable</option>
+          <option value="si">Assistiré a la trobada</option>
+          <option value="no">No assistiré a la trobada</option>
+          
+        </select>
+          
+        </div>
+      </div>
+  
+      <div id="assisteix" class="collapse">
+        <div class="row">
+          <div class="col-12">
+            
+  
+            <div id="partida1" class="card mb-4">  
+            <div class="card-body">        
+              <h6 class="card-title">Primera partida <span id="ronda1"></span></h6>
+              <div class="row">
+                <div class="col-10 mb-3">He pactat la ronda amb el meu adversari <span id="adv1" class="nom">${
+                  jugadorDesat.partides.filter((p) => p.Ronda == ronda1)[0] !=
+                  undefined
+                    ? jugadorDesat.partides.filter((p) => p.Ronda == ronda1)[0]
+                        .Jugador2
+                    : "(no tenc adversari definit en aquesta ronda)"
+                }</span></div>
+                <div class="col-2 text-end">
+                  <div class="form-check form-switch">
+                    <input class="form-check-input ch1" type="radio" role="switch" name="Primera_partida" id="Primera_partida" value="1a Partida oficial amb " onchange="this.checked?document.getElementById('jugPacte1').value='${
+                      jugadorDesat.partides.filter(
+                        (p) => p.Ronda == ronda1
+                      )[0] != undefined
+                        ? jugadorDesat.partides.filter(
+                            (p) => p.Ronda == ronda1
+                          )[0].Jugador2
+                        : "(no tenc adversari definit en aquesta ronda)"
+                    }':''">
+                   
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-10 mb-3">He pactat una altra partida</div>
+                <div class="col-2 text-end">
+                  <div class="form-check form-switch">
+                    <input class="form-check-input ch1" type="radio" role="switch" name="Primera_partida" id="partida_disp_pacte1" value="1a Partida pactada amb " data-bs-toggle="collapse" data-bs-target="#adversaripacte1">
+                    
+                  </div>
+                </div>
+                <div class="collapse mb-3" id="adversaripacte1" >
+                  <div class="">
+                    
+                    <input type="search" class=" form-control llistajugadorstrobada" id="jugPacte1"  name="Adv1" data-datalist="jugadors" placeholder="Comença a escriure el nom i tria de la llista">
+                    
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-10 mb-3">Estic disponible per una partida</div>
+                <div class="col-2 text-end">
+                  <div class="form-check form-switch">
+                    <input class="form-check-input ch1" type="radio" role="switch" name="Primera_partida" id="Primera_partida_disp"  value="1a Partida " data-bs-config='{"hide":true}' data-bs-target="#adversaripacte1" onchange="this.checked?document.getElementById('jugPacte1').value='disponible':''">
+                    
+                  </div>
+                </div>
+              </div>
+             
+            </div>
+            </div>
+  
+  
+            <!-- Second Game Content (partida2) -->
+            <div id="partida2" class="card mb-4 ${
+              trobada.Rondes_a_jugar == 1 ? "d-none" : ""
+            }">
+            <div class="card-body">    
+              <h6 class="card-title">Segona partida <span id="ronda2"></span></h6>
+              <div class="row">
+                <div class="col-10 mb-3">He pactat la ronda amb el meu adversari <span id="adv2" class="nom">${
+                  jugadorDesat.partides.filter((p) => p.Ronda == ronda2)[0] !=
+                  undefined
+                    ? jugadorDesat.partides.filter((p) => p.Ronda == ronda2)[0]
+                        .Jugador2
+                    : "(no tenc adversari definit en aquesta ronda)"
+                }</span></div>
+                <div class="col-2 text-end">
+                  <div class="form-check form-switch">
+                    <input class="form-check-input ch2" type="radio" role="switch" name="Segona_partida" id="Segona_partida" value="2a Partida oficial amb " onchange="this.checked?document.getElementById('jugPacte2').value='${
+                      jugadorDesat.partides.filter(
+                        (p) => p.Ronda == ronda2
+                      )[0] != undefined
+                        ? jugadorDesat.partides.filter(
+                            (p) => p.Ronda == ronda2
+                          )[0].Jugador2
+                        : "(no tenc adversari definit en aquesta ronda)"
+                    }':''">
+                   
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-10 mb-3">He pactat una altra partida</div>
+                <div class="col-2 text-end">
+                  <div class="form-check form-switch">
+                    <input class="form-check-input ch2" type="radio" role="switch" name="Segona_partida" id="partida_disp_pacte2" value="2a Partida pactada amb " data-bs-toggle="collapse" data-bs-target="#adversaripacte2">
+                   
+                  </div>
+                </div>
+                <div class="collapse mb-3" id="adversaripacte2" >
+                  <div class="">
+                   
+                    <input type="search" class="form-control llistajugadorstrobada" id="jugPacte2"  name="Adv2" data-datalist="jugadors" placeholder="Comença a escriure el nom i tria de la llista">
+                  
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-10 mb-3">Estic disponible per una partida</div>
+                <div class="col-2 text-end">
+                  <div class="form-check form-switch">
+                    <input class="form-check-input ch2" type="radio" role="switch" name="Segona_partida" id="Segona_partida_disp" value="2a Partida "  onchange="this.checked?document.getElementById('jugPacte2').value='disponible':''">
+                   
+                  </div>
+                </div>
+              </div>
+              </div>
+            </div>
+  
+            <!-- 'joc' Section -->
+            <div id="joc">
+              <div class="row">
+                <div class="col-10 mb-3">Duré un joc</div>
+                <div class="col-2 text-end">
+                  <div class="form-check form-switch">
+                    <input class="form-check-input" type="checkbox" id="ducJoc" value="Joc" name="Joc">
+                   
+                  </div>
+                </div>
+              </div>
+             
+            </div>
+  
+            <!-- 'sopar' Section -->
+            <div id="sopar" class="${trobada.Sopar != "TRUE" ? "d-none" : ""}">
+              <div class="row">
+                <div class="col-10 mb-3">Quedaré a sopar</div>
+                <div class="col-2 text-end">
+                  <div class="form-check form-switch">
+                    <input class="form-check-input" type="checkbox" id="sopare" value="Quedaré a sopar" name="Sopar">
+                   
+                  </div>
+                </div>
+              </div>
+            </div>      
+  
+  
+          </div>
+        </div>
+      </div>
+  <input type="hidden" value="${new Date().toLocaleString()}" name="Data" class="visually-hidden">
+  
+  
+      <div class="row mt-4">
+        <div class="col-12 text-end">
+          <button id="enviaAssistencia" class="btn btn-primary" type="submit" onclick="main()" disabled>
+             <span class="spinner-border spinner-border-sm d-none" role="status" aria-hidden="true" id="spnbtn3"></span>
+             Envia la resposta
+          </button>
+           
+        </div>
+      </div>
+    </form>
+    `;
+
+  document.getElementById("content").innerHTML += trobadaTemplate;
+  let assistencia = document.getElementById("Assistencia");
+  assistencia.addEventListener("change", () => {
+    assistencia.value == "si"
+      ? document.getElementById("assisteix").classList.add("show")
+      : document.getElementById("assisteix").classList.remove("show");
+    assistencia.value!=""
+    ?document.getElementById("enviaAssistencia").disabled=false
+    :document.getElementById("enviaAssistencia").disabled=true
+  });
 }
 
 async function main() {
