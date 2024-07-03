@@ -4,15 +4,14 @@ const validador = "https://diccionari.totescrable.cat/validador/";
 const blog = "https://scrabblemanacor.wordpress.com/";
 const rellotge = "https://manacup.github.io/rellotgeScrabble/index.html";
 
-
 let currentPage = "home";
 
 // Función para cargar contenido en la página
 function loadContent(vista) {
-  var tootltip = document.querySelector(".tooltip")
-    if(tootltip){
-      tootltip.remove()
-    }
+  var tootltip = document.querySelector(".tooltip");
+  if (tootltip) {
+    tootltip.remove();
+  }
   if (pageHistory.length != 0) {
     document.getElementById("botoEnrera").classList.remove("d-none");
   } else {
@@ -31,7 +30,7 @@ function loadContent(vista) {
       break;
     case "classificacio":
       navbarTitle.innerHTML = "Classificació";
-      contentDiv.innerHTML += `<div class="p-1" id="ordenarBoto"><i id="icona" class="float-end bi bi-percent" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Ordena per percentatge de victòries o per punts."></i></div>`;
+      contentDiv.innerHTML += `<div class="p-1" id="ordenarBoto"><i id="icona" class="float-end bi bi-sort-numeric-down" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Ordena per victòries totals o de grup."></i></div>`;
       var div = document.createElement("div");
       div.id = "subcontent";
       /* div.classList.add("row-md-8");
@@ -40,28 +39,37 @@ function loadContent(vista) {
       contentDiv.appendChild(div);
 
       function ordreClassificacio(a, b) {
-        return a.Posició - b.Posició;
+        var posicioordre = a.Posició - b.Posició;
+        return posicioordre;
       }
-      dades.sort(ordreClassificacio);
+      function ordreGrup(a, b) {
+        var posiciogrup = a.grup - b.grup;
+        return posiciogrup;
+      }
+      dades.sort(ordreClassificacio); //.sort(ordreGrup);
       //console.log(dades)
+      var ordrejug = 1;
       dades.forEach((jugador) => {
-        jugador.percentatgeVictories = parseInt(jugador.Punts)/parseInt(jugador.PartidesJugades)
+        //jugador.Posició = ordrejug
+        ordrejug++;
+        jugador.percentatgeVictories =
+          parseInt(jugador.Punts) / parseInt(jugador.PartidesJugades);
         renderClassificacio(jugador);
       });
       var ordenada = false;
-      var icona =  document.getElementById("icona")
+      var icona = document.getElementById("icona");
       document.getElementById("ordenarBoto").addEventListener("click", () => {
         // Llama a la función de ordenar la tabla por la segunda columna (Edad)
         if (!ordenada) {
-          ordenarLlistaPercentatge();
+          ordenarLlistaGrup();
           ordenada = true;
-          icona.classList.add("bi-list-ol")
-          icona.classList.remove("bi-percent")
+          icona.classList.add("bi-list-ol");
+          icona.classList.remove("bi-sort-numeric-down");
         } else {
           ordenarLlistaPunts();
           ordenada = false;
-          icona.classList.remove("bi-list-ol")
-          icona.classList.add("bi-percent")
+          icona.classList.remove("bi-list-ol");
+          icona.classList.add("bi-sort-numeric-down");
         }
       });
       contentDiv.querySelectorAll(".card").forEach((nom) => {
@@ -92,17 +100,17 @@ function loadContent(vista) {
         renderConjunta(jugador);
       });
       var ordenada = false;
-      var icona =  document.getElementById("icona")
+      var icona = document.getElementById("icona");
       document.getElementById("ordenarBoto").addEventListener("click", () => {
         // Llama a la función de ordenar la tabla por la segunda columna (Edad)
         if (!ordenada) {
           ordenarLlistaData();
           ordenada = true;
-          icona.classList.add("bi-list-ol")
+          icona.classList.add("bi-list-ol");
         } else {
           ordenarLlistaPunts();
           ordenada = false;
-          icona.classList.remove("bi-list-ol")
+          icona.classList.remove("bi-list-ol");
         }
       });
       vistesPartides = aparellamentsordenats.map((ap) => ap.ID.toString());
@@ -120,35 +128,75 @@ function loadContent(vista) {
       });
 
       break;
+  
     case "ronda":
-      
-      navbarTitle.innerHTML = fases[options-1];
+      navbarTitle.innerHTML = fases[options - 1];
 
       /* function ordreConjunta(a, b) {
         return b.Suma_punts - a.Suma_punts;
       }
       aparellaments.sort(ordreConjunta); */
 
-      var partidesfilt = aparellaments.filter((j) => j.Ronda == options)
+      var partidesfilt = aparellaments.filter((j) => j.Ronda == options);
       //console.log(partidesfilt)
-      var partidesfiltagrupades = groupById(partidesfilt)
-      console.log(partidesfiltagrupades)
-      let grup = ""
+      var partidesfiltagrupades = groupById(partidesfilt);
+      //console.log(partidesfiltagrupades);
+      var grup = "";
       partidesfiltagrupades.forEach((partida) => {
-        if(partida.Grup!=grup){
-          grup = partida.Grup
-          document.getElementById("content").innerHTML += "<h6>Grup "+ grup+"</h6>"
+        if (partida.Grup != grup) {
+          grup = partida.Grup;
+          document.getElementById("content").innerHTML +=
+            "<h6>Grup " + grup + "</h6>";
         }
+        partida.totalPunts_1 =
+          partida.resultats[0].Puntuacio_1 + partida.resultats[1].Puntuacio_1;
+        partida.totalPunts_2 =
+          partida.resultats[0].Puntuacio_2 + partida.resultats[1].Puntuacio_2;
         renderAparellaments(partida);
       });
       vistesPartides = partidesfilt.map((ap) => ap.ID.toString());
+      
 
       break;
+      case "faseeliminatoria":
+        navbarTitle.innerHTML = fases[options - 1];
+        var partidesfilt = partides.filter((j) => j.Ronda == options);
+        var partidesfiltagrupades = groupByJug(partidesfilt);
+        console.log(partidesfiltagrupades)
+        partidesfiltagrupades.map(j=>{
+          j.totalPunts1 = Number(j.resultats[0].Puntuacio_1) + Number(j.resultats[1].Puntuacio_1)
+          j.totalPunts2 = Number(j.resultats[0].Puntuacio_2) + Number(j.resultats[1].Puntuacio_2)
+        })
+        var grup = "";
+        function ordreClassificacio(a, b) {
+          var posicioordre = b.totalPunts1 - a.totalPunts1;
+          return posicioordre;
+        }
+        function ordreGrup(a, b) {
+          var posiciogrup = a.Grup - b.Grup;
+          return posiciogrup;
+        }
+        partidesfiltagrupades.sort(ordreClassificacio).sort(ordreGrup);
+        //console.log(dades)
+        var ordrejug = 1;
+      partidesfiltagrupades.forEach((partida) => {
+        partida.Posició = ordrejug
+        ordrejug++
+        if (partida.Grup != grup) {
+          grup = partida.Grup;
+          document.getElementById("content").innerHTML +=
+            "<h6>Grup " + grup + "</h6>";
+        }
+        
+        renderLlistaEliminatoria(partida);
+      });
+      vistesPartides = partidesfilt.map((ap) => ap.ID.toString());
+        break;
     case "scrabbles":
       vistesPartides = [];
 
       navbarTitle.innerHTML = "Scrabbles";
-       contentDiv.innerHTML += `<div class="p-1" id="ordenarBoto"><i id="icona" class="float-end bi bi-percent" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Ordena per mitjana de Scrabbles o per total."></i></div>`;
+      contentDiv.innerHTML += `<div class="p-1" id="ordenarBoto"><i id="icona" class="float-end bi bi-percent" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Ordena per mitjana de Scrabbles o per total."></i></div>`;
       var div = document.createElement("div");
       div.id = "subcontent";
       /* div.classList.add("row-md-8");
@@ -156,7 +204,6 @@ function loadContent(vista) {
       div.classList.add("p-0");
       contentDiv.appendChild(div);
 
-     
       function ordreScrabbles(a, b) {
         return a.posScrabbles - b.posScrabbles;
       }
@@ -168,20 +215,20 @@ function loadContent(vista) {
         }
       });
       //console.log(vistesPartides)
-     var ordenada = false;
-      var icona =  document.getElementById("icona")
+      var ordenada = false;
+      var icona = document.getElementById("icona");
       document.getElementById("ordenarBoto").addEventListener("click", () => {
         // Llama a la función de ordenar la tabla por la segunda columna (Edad)
         if (!ordenada) {
           ordenarLlistaPercentatge();
           ordenada = true;
-          icona.classList.add("bi-list-ol")
-          icona.classList.remove("bi-percent")
+          icona.classList.add("bi-list-ol");
+          icona.classList.remove("bi-percent");
         } else {
           ordenarLlistaPunts();
           ordenada = false;
-          icona.classList.remove("bi-list-ol")
-          icona.classList.add("bi-percent")
+          icona.classList.remove("bi-list-ol");
+          icona.classList.add("bi-percent");
         }
       });
 
@@ -249,7 +296,7 @@ function loadContent(vista) {
     case "detall":
       //console.log(data,options)
       var jugador = dades.filter((j) => j.ID === options)[0];
-      console.log(jugador)
+      console.log(jugador);
       navbarTitle.innerHTML = jugador.Nom;
       renderJugador(jugador);
       vistesPartides = jugador.partides.map((ap) => ap.ID.toString());
@@ -259,7 +306,7 @@ function loadContent(vista) {
     case "detallpartida":
       navbarTitle.innerHTML = "Detall de la partida";
       var partida = aparellaments.filter((j) => j.ID == options)[0];
-      console.log(aparellaments)
+      console.log(aparellaments);
       renderDetallPartida(partida);
 
       break;
@@ -329,28 +376,49 @@ function loadContent(vista) {
   cerca();
   afegeixEsdeveniments();
   tooltips();
- 
 }
 
 function groupById(array) {
   return array.reduce((acc, current) => {
-      const foundItem = acc.find(it => it.IDma === current.IDma);
+    const foundItem = acc.find((it) => it.IDma === current.IDma);
 
-      if (foundItem) {
-          foundItem.resultats = foundItem.resultats
-              ? [...foundItem.resultats, current]//{ 'Puntuacio_1': current.Puntuacio_1, 'Puntuacio_2': current.Puntuacio_2, 'ID':current.ID }]
-              : [current]//{ 'Puntuacio_1': current.Puntuacio_1, 'Puntuacio_2': current.Puntuacio_2, 'ID':current.ID }];
-      } else { 
-          acc.push({
-              'IDma': current.IDma,
-              'Jugador1': current.Jugador1,
-              'Jugador2': current.Jugador2, 
-              'Estat':current.Estat,
-              'Grup':current.GrupPosició,            
-              'resultats': [current]//{ 'Puntuacio_1': current.Puntuacio_1, 'Puntuacio_2': current.Puntuacio_2, 'ID':current.ID }]
-          });
-      }
-      return acc;
+    if (foundItem) {
+      foundItem.resultats = foundItem.resultats
+        ? [...foundItem.resultats, current] //{ 'Puntuacio_1': current.Puntuacio_1, 'Puntuacio_2': current.Puntuacio_2, 'ID':current.ID }]
+        : [current]; //{ 'Puntuacio_1': current.Puntuacio_1, 'Puntuacio_2': current.Puntuacio_2, 'ID':current.ID }];
+    } else {
+      acc.push({
+        IDma: current.IDma,
+        Jugador1: current.Jugador1,
+        Jugador2: current.Jugador2,
+        Estat: current.Estat,
+        Grup: current.GrupPosició,
+        resultats: [current], //{ 'Puntuacio_1': current.Puntuacio_1, 'Puntuacio_2': current.Puntuacio_2, 'ID':current.ID }]
+      });
+    }
+    return acc;
+  }, []);
+}
+
+function groupByJug(array) {
+  return array.reduce((acc, current) => {
+    const foundItem = acc.find((it) => it.Jugador1 === current.Jugador1);
+
+    if (foundItem) {
+      foundItem.resultats = foundItem.resultats
+        ? [...foundItem.resultats, current] //{ 'Puntuacio_1': current.Puntuacio_1, 'Puntuacio_2': current.Puntuacio_2, 'ID':current.ID }]
+        : [current]; //{ 'Puntuacio_1': current.Puntuacio_1, 'Puntuacio_2': current.Puntuacio_2, 'ID':current.ID }];
+    } else {
+      acc.push({
+        ID: current.ID,
+        Jugador1: current.Jugador1,
+        Jugador2: current.Jugador2,
+        Estat: current.Estat,
+        Grup: current.GrupPosició,
+        resultats: [current], //{ 'Puntuacio_1': current.Puntuacio_1, 'Puntuacio_2': current.Puntuacio_2, 'ID':current.ID }]
+      });
+    }
+    return acc;
   }, []);
 }
 
@@ -362,7 +430,7 @@ function afegeixEsdeveniments() {
     var estat = partida.dataset.estat;
     partidajugada(id);
     partida.addEventListener("click", () => {
-      console.log(partida.dataset.id)
+      console.log(partida.dataset.id);
       if (partidajugada(id)) {
         loadContent(["detallpartida", id]);
         updateHistory(["detallpartida", id]);
@@ -381,6 +449,15 @@ function afegeixEsdeveniments() {
       updateHistory(["ronda", id]);
     });
   });
+  contentDiv.querySelectorAll(".detalleliminatoria").forEach((ronda) => {
+    var id = ronda.dataset.id;
+    //console.log(id)
+    ronda.addEventListener("click", () => {
+      loadContent(["faseeliminatoria", id]);
+      updateHistory(["faseeliminatoria", id]);
+    });
+  });
+  
   contentDiv.querySelectorAll(".zoomable").forEach((image) => {
     image.addEventListener("click", function () {
       if (image.classList.contains("zoomed")) {

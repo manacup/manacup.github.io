@@ -150,16 +150,16 @@ function renderJugador(jugador) {
                 <span class="flex-fill">Classificació general ${
                   jugador.Baixa == "TRUE" ? "(Baixa)" : ""
                 }</span>
-                <span class="badge rounded-pill bg-secondary">Posició: ${
+                <!-- <span class="badge rounded-pill bg-secondary">Posició: ${
                   jugador.Posició
-                }</span>
+                }</span> -->
                 </div>
                   <div class="card-body ">
                     <ul class="list-group list-group-flush rounded-4">
                    
 
     
-                      <li class="list-group-item d-flex justify-content-between align-items-center" data-bs-toggle="collapse" data-bs-target="#collapseResum${
+                     <!-- <li class="list-group-item d-flex justify-content-between align-items-center" data-bs-toggle="collapse" data-bs-target="#collapseResum${
                         jugador.ID
                       }">
                         <div class="dropdown-toggle flex-grow-1">Posició</div>
@@ -172,7 +172,7 @@ function renderJugador(jugador) {
                             <div>${jugador.Millor_posició}</div>
                             <div>${jugador.Pitjor_posició}</div>
                           </div>
-                        </div>
+                        </div> -->
                       
                       <li class="list-group-item d-flex justify-content-between align-items-center">
                         <div class="">Partides jugades:</div>
@@ -722,9 +722,10 @@ function renderClassificacio(jugador) {
                         </div>
                         <div  class="flex-grow-1">
                         </div>
-                        <span class="badge text-bg-secondary me-1 ${
+                        <span class="badge text-bg-secondary me-1 grup ${
                           jugador.grup != "" ? "" : "d-none"
-                        }">
+                        }" data-grup="${
+                          jugador.grup}">
                         <span class="visually-hidden-focusable">grup${
                           jugador.grup
                         }</span>
@@ -787,6 +788,32 @@ function ordenarLlistaPercentatge() {
     const textB = b.querySelector(".percent").dataset.percent;
     //console.log(textA,textB)
     return textB - textA;
+  });
+
+  while (llista.firstChild) {
+    llista.removeChild(llista.firstChild);
+  }
+
+  filas.forEach((fila) => {
+    llista.appendChild(fila);
+  });
+}
+function ordenarLlistaGrup() {
+  const llista = document.getElementById("subcontent");
+  const filas = Array.from(llista.querySelectorAll(".entrada"));
+
+  filas
+  .sort((a, b) => {
+    const textA = a.querySelector(".Posició").dataset.grup;
+    const textB = b.querySelector(".Posició").dataset.grup;
+    //console.log(textA,textB)
+    return textA - textB;
+  })
+  .sort((a, b) => {
+    const textA = a.querySelector(".grup").dataset.grup;
+    const textB = b.querySelector(".grup").dataset.grup;
+    //console.log(textA,textB)
+    return textA - textB;
   });
 
   while (llista.firstChild) {
@@ -1400,34 +1427,36 @@ function renderRondes(ronda) {
             ronda.Estat == "Ronda tancada" ? "border-danger" : ""
           }" >
               <div class="card-body">
-                  <div class="row detallronda" data-id="${
-                    ronda.Ronda
-                  }">                    
+                  <div class="row" >                    
                       <div class="d-flex align-items-center">
                           <div class="h5  flex-grow-1" >${
                             fases[ronda.Ronda-1]
                           }</div>
+                          <span class="badge text-bg-secondary ${ronda.Estat != "none" ? "" : "d-none"} me-1">
+                          ${ronda.Jugades}
+                          /
+                          ${ronda.Programades}
+                          </span>
                           <span class="badge text-bg-${
                             ronda.Estat == "Ronda tancada"
                               ? "danger"
                               : "primary"
                           } ${ronda.Estat != "none" ? "" : "d-none"}">${
-    ronda.Estat
-  }</span>
+                              ronda.Estat
+                            }</span>
                       </div>
                       <p><i>Data límit per enviar el resultat: ${
                         ronda.Data_fi
                       }</i></p>
-                      <p>${ronda.Jugades} partides jugades de ${
-    ronda.Programades
-  }</p>                        
+                                  
                   </div>
                   <div class="row">
                     <div class="dropdown-toggle" data-bs-target="#collapseronda${
                       ronda.Ronda
                     }" data-bs-toggle="collapse">Estadístiques</div>
                   </div>
-              </div>             
+              </div>  
+                        
               <div class="collapse" id="collapseronda${ronda.Ronda}">
                   <ul class="list-group list-group-flush rounded-4">
                     <li class="list-group-item d-flex justify-content-between align-items-top">
@@ -1477,7 +1506,13 @@ function renderRondes(ronda) {
                         .join("")}</div>                    	
                     </li>
                   </ul>
-            </div>    
+            </div>   
+            <div class="card-footer text-body-secondary">
+            <div class="d-flex justify-content-around">
+             <button type="button" class="btn btn-primary detallronda" data-id="${ronda.Ronda}">Emparellaments</button>
+              <button type="button" class="btn btn-primary detalleliminatoria" data-id="${ronda.Ronda}">Classificació</button>
+              </div> 
+              </div> 
           </div>
       </div>
   
@@ -1806,6 +1841,100 @@ function renderAparellaments(partida) {
   document.getElementById("content").innerHTML += template;
 }
 
+function renderLlistaEliminatoria(jugador) {
+
+
+
+  const llistafasestemplate = `
+      <div class="p-1 entrada">
+        <div class="card click ${
+             jugador.Posició <= 3
+               ? "border-danger"
+               : jugador.Posició <= 8
+               ? "border-primary"
+               : ""
+           }" data-id="${jugador.ID}">
+           <div class="card-body">
+              <div class="row ">
+                  <div class="col-2">
+                      <div class="circle ${
+                        jugador.Baixa == "TRUE" ? "bg-danger" : ""
+                      }">${jugador.Posició}</div>
+                  </div>
+                  <div class="col-10">
+                      <div class="d-flex align-items-center">
+                        <div class="h5 "> 
+                        ${jugador.Jugador1}
+                        </div>
+                        <div  class="flex-grow-1">
+                        </div>                                             
+                          <span class="badge text-bg-${
+                            jugador.totalPunts1 <
+                            jugador.totalPunts2
+                              ? "success"
+                              : "danger"
+                          }">
+                            ${jugador.Jugador2}
+                          </span>  
+                      </div>
+                      
+                      <div class="row">
+                          <div class="col">
+                              <div class="d-flex align-items-start flex-column">
+                                  <small>Partida 1:</small>
+                                  <div class="detallpartida" data-id="${
+                                    jugador.resultats[0].ID
+                                    }" data-estat="${jugador.resultats[0].Estat}">
+                                    <span class=" ${
+                                      jugador.resultats[0].Puntuacio_1 >
+                                      jugador.resultats[0].Puntuacio_2
+                                        ? "fw-bold"
+                                        : ""
+                                      }">${jugador.resultats[0].Puntuacio_1}
+                                    </span> 
+                                  </div>
+                                </div>
+                              </div>
+                           <div class="col">
+                              <div class="d-flex align-items-start flex-column">
+                                  <small>Partida 2:</small>
+                                  <div class="detallpartida" data-id="${
+                                    jugador.resultats[1].ID
+                                  }" data-estat="${jugador.resultats[1].Estat}">
+                                    <span class=" ${
+                                      jugador.resultats[1].Puntuacio_1 >
+                                      jugador.resultats[1].Puntuacio_2
+                                        ? "fw-bold"
+                                        : ""
+                                    }">${jugador.resultats[1].Puntuacio_1}
+                                    </span> 
+                                  </div>
+                                </div>
+                              </div>
+                            
+                            <div class="col">
+                              <div class="d-flex align-items-start flex-column">
+                                <small>Suma:</small>
+                                <div class=" text-end ${
+                                  jugador.totalPunts1>jugador.totalPunts2
+                                    ? "fw-bold"
+                                    : ""
+                                  }">${jugador.totalPunts1}
+               </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>    
+          
+            `
+
+  document.getElementById("content").innerHTML += llistafasestemplate;
+}
+
 function showToast(obj) {
   let toast = document.getElementById("toast");
   toast.querySelector(".toast-body").innerHTML = obj;
@@ -1859,3 +1988,4 @@ function ExcelDateToJSDate(serial) {
   );
   return jsdate.toLocaleDateString();
 }
+
