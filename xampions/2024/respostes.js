@@ -414,7 +414,7 @@ const parseValues = async (e) =>
     ))
   );
   function actualitzaJSON(){
-    //carregant()
+    carregant()
     fetch(macroURL, {
       method: 'POST',
       mode: 'no-cors',
@@ -431,6 +431,7 @@ const parseValues = async (e) =>
     .then(response => response.text())
     .then(data => {
       console.log('Resposta del servidor:', data);
+      clearInterval(interval);
       setTimeout(iniciJSON("rondes"), 2000)
     })
     .catch(error => console.error('Error:', error));
