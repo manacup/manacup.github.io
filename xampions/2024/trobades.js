@@ -15,7 +15,7 @@ function renderTrobada(trobada) {
 
     const trobadaListTemplate = `
       <div >
-          <div class="card mb-3"> <!-- Replace with Bootstrap list group -->
+          <div class="card mb-3"> 
               <div class="card-body">
                   <div class="row">
                      <div class="mb-3 text-center">
@@ -36,6 +36,7 @@ function renderTrobada(trobada) {
               </div>
                       <p class="mb-2">${trobada.Data} a les ${trobada.Hora}</p>
                       <p><i class="mb-2">${trobada.Lloc}</i></p>
+                      <p><a href="${trobada.maps}">${trobada.adreça}</a>
                   </div>
                   <p>Assistiran ${
                     assistents.filter((as) => as.Assistencia == "si").length

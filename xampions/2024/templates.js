@@ -1445,12 +1445,12 @@ function renderRondes(ronda) {
                               ronda.Estat
                             }</span>
                       </div>
-                      <p><i>Data límit per enviar el resultat: ${
+                      <small><i>Data límit: ${
                         ronda.Data_fi
-                      }</i></p>
+                      }</i></small>
                                   
                   </div>
-                  <div class="row">
+                  <div class="row pt-2">
                     <div class="dropdown-toggle" data-bs-target="#collapseronda${
                       ronda.Ronda
                     }" data-bs-toggle="collapse">Estadístiques</div>
