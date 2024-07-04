@@ -414,6 +414,7 @@ const parseValues = async (e) =>
     ))
   );
   function actualitzaJSON(){
+    carregant()
     fetch(macroURL, {
       method: 'POST',
       mode: 'no-cors',
