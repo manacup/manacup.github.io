@@ -29,7 +29,7 @@ function loadContent(vista) {
         "<h1>Página d'inici</h1><p>Benvingut a la primera pàgina</p>";
       break;
     case "classificacio":
-      navbarTitle.innerHTML = "Classificació x victòries";
+      navbarTitle.innerHTML = "Victòries";
       contentDiv.innerHTML += `<div class="p-1" id="ordenarBoto"><i id="icona" class="float-end bi bi-sort-numeric-down" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Ordena per victòries totals o de grup."></i></div>`;
       var div = document.createElement("div");
       div.id = "subcontent";
