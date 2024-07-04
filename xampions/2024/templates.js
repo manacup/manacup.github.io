@@ -1864,7 +1864,7 @@ function renderLlistaEliminatoria(jugador) {
                 <span class="badge nom text-bg-${
                                 jugador.totalPunts1 <
                                 jugador.totalPunts2
-                                  ? " success" : "danger" }">
+                                  ? "success" : "danger" }">
                   ${jugador.Jugador2}
                 </span>
               </div>
