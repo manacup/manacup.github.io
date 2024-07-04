@@ -1842,95 +1842,77 @@ function renderAparellaments(partida) {
 }
 
 function renderLlistaEliminatoria(jugador) {
-
-
-
   const llistafasestemplate = `
-      <div class="p-1 entrada">
-        <div class="card click ${
-             jugador.Posició <= 3
-               ? "border-danger"
-               : jugador.Posició <= 8
-               ? "border-primary"
-               : ""
-           }" data-id="${jugador.ID}">
-           <div class="card-body">
-              <div class="row ">
-                  <div class="col-2">
-                      <div class="circle ${
-                        jugador.Baixa == "TRUE" ? "bg-danger" : ""
-                      }">${jugador.Posició}</div>
+    <div class="p-1 entrada">
+      <div class="card click ${
+                jugador.Posició <= 3
+                  ? " border-danger" : jugador.Posició <=8 ? "border-primary" : "" }" data-id="${jugador.ID}">
+        <div class="card-body">
+          <div class="row ">
+            <div class="col-2">
+              <div class="circle ${
+                            jugador.Baixa == " TRUE" ? "bg-danger" : "" }">${jugador.Posició}
+              </div>
+            </div>
+            <div class="col-10">
+              <div class="d-flex align-items-center">
+                <div class="h5 nom">
+                  ${jugador.Jugador1}
+                </div>
+                <div class="flex-grow-1">
+                </div>
+                <span class="badge nom text-bg-${
+                                jugador.totalPunts1 <
+                                jugador.totalPunts2
+                                  ? " success" : "danger" }">
+                  ${jugador.Jugador2}
+                </span>
+              </div>
+              <div class="row">
+                <div class="col">
+                  <div class="d-flex align-items-start flex-column detallpartida"  data-id="${
+                                        jugador.resultats[0].ID
+                                        }" data-estat="${jugador.resultats[0].Estat}">
+                    <small>Partida 1:</small>
+                    <div>
+                      <span class=" ${
+                                          jugador.resultats[0].Puntuacio_1 >
+                                          jugador.resultats[0].Puntuacio_2
+                                            ? " fw-bold" : "" }">${jugador.resultats[0].Puntuacio_1}
+                      </span>
+                    </div>
                   </div>
-                  <div class="col-10">
-                      <div class="d-flex align-items-center">
-                        <div class="h5 nom"> 
-                        ${jugador.Jugador1}
-                        </div>
-                        <div  class="flex-grow-1">
-                        </div>                                             
-                          <span class="badge nom text-bg-${
-                            jugador.totalPunts1 <
-                            jugador.totalPunts2
-                              ? "success"
-                              : "danger"
-                          }">
-                            ${jugador.Jugador2}
-                          </span>  
-                      </div>
-                      
-                      <div class="row">
-                          <div class="col">
-                              <div class="d-flex align-items-start flex-column">
-                                  <small>Partida 1:</small>
-                                  <div class="detallpartida" data-id="${
-                                    jugador.resultats[0].ID
-                                    }" data-estat="${jugador.resultats[0].Estat}">
-                                    <span class=" ${
-                                      jugador.resultats[0].Puntuacio_1 >
-                                      jugador.resultats[0].Puntuacio_2
-                                        ? "fw-bold"
-                                        : ""
-                                      }">${jugador.resultats[0].Puntuacio_1}
-                                    </span> 
-                                  </div>
-                                </div>
-                              </div>
-                           <div class="col">
-                              <div class="d-flex align-items-start flex-column">
-                                  <small>Partida 2:</small>
-                                  <div class="detallpartida" data-id="${
-                                    jugador.resultats[1].ID
-                                  }" data-estat="${jugador.resultats[1].Estat}">
-                                    <span class=" ${
-                                      jugador.resultats[1].Puntuacio_1 >
-                                      jugador.resultats[1].Puntuacio_2
-                                        ? "fw-bold"
-                                        : ""
-                                    }">${jugador.resultats[1].Puntuacio_1}
-                                    </span> 
-                                  </div>
-                                </div>
-                              </div>
-                            
-                            <div class="col">
-                              <div class="d-flex align-items-start flex-column">
-                                <small>Suma:</small>
-                                <div class=" text-end ${
-                                  jugador.totalPunts1>jugador.totalPunts2
-                                    ? "fw-bold"
-                                    : ""
-                                  }">${jugador.totalPunts1}
-               </div>
+                </div>
+                <div class="col">
+                  <div class="d-flex align-items-start flex-column detallpartida" data-id="${
+                                        jugador.resultats[1].ID
+                                      }" data-estat="${jugador.resultats[1].Estat}">
+                    <small>Partida 2:</small>
+                    <div>
+                      <span class=" ${
+                                          jugador.resultats[1].Puntuacio_1 >
+                                          jugador.resultats[1].Puntuacio_2
+                                            ? " fw-bold" : "" }">${jugador.resultats[1].Puntuacio_1}
+                      </span>
+                    </div>
+                  </div>
+                </div>
+                <div class="col">
+                  <div class="d-flex align-items-start flex-column">
+                    <small>Suma:</small>
+                    <div class=" text-end ${
+                                      jugador.totalPunts1>jugador.totalPunts2
+                                        ? " fw-bold" : "" }">${jugador.totalPunts1}
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
-  </div>
-</div>    
-          
-            `
+    </div>       
+    `
 
   document.getElementById("content").innerHTML += llistafasestemplate;
 }
