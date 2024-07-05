@@ -1,5 +1,16 @@
+var  timezone, startTime, endTime, title, description, venueName, address, city, state
+Date.prototype.addHours = function(h) {
+  this.setTime(this.getTime() + (h*60*60*1000));
+  return this;
+}
 function renderTrobada(trobada) {
-  //console.log(trobada)
+  startTime = new Date(ExcelDateToJSDate(parseFloat(trobada.horautc.replace(/,/g, '.')),true)).addHours(-2)
+  endTime = new Date(ExcelDateToJSDate(parseFloat(trobada.horautc.replace(/,/g, '.')),true)).addHours(1)
+  title = trobada.Trobada + " xàmpions"
+  address = trobada.adreça
+  venueName = trobada.Lloc
+
+  console.log(trobada.horautc,startTime,endTime)
 
   if (trobada === false) {
     //document.getElementById("tabTrobades").classList.add("disabled")
@@ -19,6 +30,9 @@ function renderTrobada(trobada) {
               <div class="card-body">
                   <div class="row">
                      <div class="mb-3 text-center">
+                     <a class=" position-absolute top-10 end-0 translate-middle pt-2 pe-1" id="downloadICS" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Enllaç a la vista actual">
+                    <i class="bi bi-calendar-plus"></i>
+                  </a>
                       <div class="h5 mb-3">${trobada.Trobada}</div>
                       <button id="botoAssisteix" class="btn btn-lg btn-danger ${
                         jugadorDesat.Nom == "" ? "d-none" : ""
@@ -35,9 +49,15 @@ function renderTrobada(trobada) {
                       </button>
               </div>
                       <p class="mb-2">${trobada.Data} a les ${trobada.Hora}</p>
-                      <p><i class="mb-2">${trobada.Lloc}</i></p>
-                      <p><a href="${trobada.maps}">${trobada.adreça}</a>
+                      <p><span class="fs-4">${trobada.Lloc}</span></p>
+                      <p><i class="bi bi-geo-alt"></i><a href="${trobada.maps}">${trobada.adreça}</a>
                   </div>
+
+                  </div></div>
+
+
+                  <div class="card mb-3"> 
+              <div class="card-body">
                   <p>Assistiran ${
                     assistents.filter((as) => as.Assistencia == "si").length
                   } dels ${assistents.length - 1} que han avisat.</p>
@@ -96,6 +116,20 @@ function renderTrobada(trobada) {
           </li>
     `;
       document.getElementById("ulListAssist").innerHTML += assistentsTemplate;
+    });
+  
+  document.getElementById('downloadICS').addEventListener('click', () => {
+    createDownloadICSFile(
+      'Europe/Madrid',
+      startTime,
+      endTime,
+      title,
+      '',
+      venueName,
+      address,
+      '',
+      ''
+    );  
     });
   }
 }
@@ -536,3 +570,92 @@ async function main() {
   .catch(error => console.error('Error:', error));
 
 }
+
+/**
+* Create and download a file on click
+* @params {string} filename - The name of the file with the ending
+* @params {string} filebody - The contents of the file
+*/
+function download(filename, fileBody) {
+  var element = document.createElement('a');
+  element.setAttribute('href', 'data:text/calendar;charset=utf-8,' + encodeURIComponent(fileBody));
+  element.setAttribute('download', filename);
+
+  //element.style.display = 'none';
+  document.body.appendChild(element);
+
+  element.click();
+
+  document.body.removeChild(element);
+}
+
+
+/**
+* Returns a date/time in ICS format
+* @params {Object} dateTime - A date object you want to get the ICS format for.
+* @returns {string} String with the date in ICS format
+*/
+function convertToICSDate(dateTime) {
+  const year = dateTime.getFullYear().toString();
+  const month = (dateTime.getMonth() + 1) < 10 ? "0" + (dateTime.getMonth() + 1).toString() : (dateTime.getMonth() + 1).toString();
+  const day = dateTime.getDate() < 10 ? "0" + dateTime.getDate().toString() : dateTime.getDate().toString();
+  const hours = dateTime.getHours() < 10 ? "0" + dateTime.getHours().toString() : dateTime.getHours().toString();
+  const minutes = dateTime.getMinutes() < 10 ? "0" +dateTime.getMinutes().toString() : dateTime.getMinutes().toString();
+
+  return year + month + day + "T" + hours + minutes + "00";
+}
+
+
+/**
+* Creates and downloads an ICS file
+* @params {string} timeZone - In the format America/New_York
+* @params {object} startTime - Vaild JS Date object in the event timezone
+* @params {object} endTime - Vaild JS Date object in the event timezone
+* @params {string} title
+* @params {string} description
+* @params {string} venueName
+* @params {string} address
+* @params {string} city
+* @params {string} state
+*/
+function createDownloadICSFile(timezone, startTime, endTime, title, description, venueName, address, city, state) {
+const icsBody = 'BEGIN:VCALENDAR\n' +
+'VERSION:2.0\n' +
+'PRODID:Calendar\n' +
+'CALSCALE:GREGORIAN\n' +
+'METHOD:PUBLISH\n' +
+'BEGIN:VTIMEZONE\n' +
+'TZID:' + timezone + '\n' +
+'END:VTIMEZONE\n' +
+'BEGIN:VEVENT\n' +
+'SUMMARY:' + title + '\n' +
+'UID:@Default\n' +
+'SEQUENCE:0\n' +
+'STATUS:CONFIRMED\n' +
+'TRANSP:TRANSPARENT\n' +
+'DTSTART;TZID=' + timezone + ':' + convertToICSDate(startTime) + '\n' +
+'DTEND;TZID=' + timezone + ':' + convertToICSDate(endTime)+ '\n' +
+'DTSTAMP:'+ convertToICSDate(new Date()) + '\n' +
+'LOCATION:' + venueName + '\\n' + address + ', ' + city + ', ' + state + '\n' +
+'DESCRIPTION:' + description + '\n' +
+'END:VEVENT\n' +
+'END:VCALENDAR\n';
+
+download(title + '.ics', icsBody);
+}
+
+
+/* document.getElementById('downloadICS').addEventListener('click', () => {
+createDownloadICSFile(
+  'Europe/Madrid',
+  startTime,
+  startTime,
+  title,
+  '',
+  venueName,
+  address,
+  '',
+  ''
+);  
+});
+ */

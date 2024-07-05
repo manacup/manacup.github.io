@@ -1945,7 +1945,7 @@ function zoom(e) {
   zoomState = (zoomState + 1) % zoomLevels.length; // Alterna entre els nivells de zoom
   zoomer.style.backgroundSize = zoomLevels[zoomState] * 100 + "%";
 }
-function ExcelDateToJSDate(serial) {
+function ExcelDateToJSDate(serial,utc) {
   var utc_days = Math.floor(serial - 25569);
   var utc_value = utc_days * 86400;
   var date_info = new Date(utc_value * 1000);
@@ -1968,6 +1968,13 @@ function ExcelDateToJSDate(serial) {
     minutes,
     seconds
   );
-  return jsdate.toLocaleDateString();
+  console.log(jsdate)
+  if(utc){
+    return jsdate.toISOString()
+  }else{
+    return jsdate.toLocaleDateString()
+  }
+  ;
+  //;
 }
 
