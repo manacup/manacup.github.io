@@ -30,7 +30,7 @@ function renderTrobada(trobada) {
               <div class="card-body">
                   <div class="row">
                      <div class="mb-3 text-center">
-                     <a class=" position-absolute top-10 end-0 translate-middle pt-2 pe-1" id="downloadICS" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Enllaç a la vista actual">
+                     <a class=" position-absolute top-10 end-0 translate-middle pt-2 pe-1" id="downloadICS" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Afegeix l'esdeveniment al teu calendari">
                     <i class="bi bi-calendar-plus"></i>
                   </a>
                       <div class="h5 mb-3">${trobada.Trobada}</div>
