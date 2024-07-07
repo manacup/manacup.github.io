@@ -1,0 +1,48 @@
+<div class="p-1 entrada" ng-repeat="partida in partides | orderBy : ['-Suma_punts'] | filter : {Nom:cerca}">
+
+    <div class="card {{
+      partida.Suma_punts >= 1000
+        ?  'border-danger' : partida.Suma_punts>= 900
+        ? 'border-primary'
+        : ''
+        }} detallpartida" data-id="{{partida.ID}}">
+        <div class="card-body">
+            <div class="row ">
+                <div class="col-2">
+                    <div class="circle">{{partida.Pos_Conjunta}}</div>
+                </div>
+                <div class="col-10">
+                    <div class="d-flex align-items-center">
+                        <div class="h5 flex-grow-1">Suma: {
+                            {partida.Suma_punts}
+                            }</div>
+                        <span class="badge text-bg-primary {{
+                      partida.Nova != '' ? '' : ' d-none' }}">{{partida.Nova}}</span>
+                        <span class="dataPartida badge text-bg-{{
+                      dies <= 14 ? ' primary' : 'secondary' }}" data-dia="{data.getTime()}">${datareduida}</span>
+                        <span class="visually-hidden-focusable">${
+                            dies <= 14 ? "noves" : "anteriors" }</span>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <div class="d-flex align-items-start flex-column">
+                                <small>Puntuació: ${
+                                    partida.Puntuacio_1
+                                    }</small>
+                                <div class="nom">${partida.Jugador1}</div>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="d-flex align-items-start flex-column">
+                                <small>Puntuació: ${
+                                    partida.Puntuacio_2
+                                    }</small>
+                                <div class="nom">${partida.Jugador2}</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,59 @@
+<div class="p-1 entrada" ng-repeat="jugador in jugadors | orderBy : ['-Punts','-Dif_P','-MitjanaPFavor',] | filter : {Nom:cerca}">
+    
+    <div class="card">
+        <div class="card-body">
+            <div class="row ">
+                <div class="col-2">
+                    <div class="circle ">{{jugador.Posicio}}</div>
+                </div>
+                <div class="col-10">
+                    <div class="d-flex align-items-center">
+                        <div class="h5 ">
+                            <span class="h6" ng-show="{{jugador.Diamond_Mark}}">
+                                <i class="bi bi-gem text-primary"></i>
+                            </span>
+                            <span class="h6 " ng-show="{{jugador.Golden_Mark}}">
+                                <i class="bi bi-bookmark-star-fill text-warning"></i>
+                            </span>
+                            <span class="h6" ng-show=" {{jugador.Iron_Mark}}">
+
+                                <i class="bi bi-gear-fill text-secondary"></i>
+                            </span>
+
+                            {{jugador.Nom}}
+                        </div>
+                        <div class="flex-grow-1">
+                        </div>
+
+                        <span class="badge text-bg-{{jugador.Semafor}}">
+                            {{jugador.Rondes_pendents}}
+
+                        </span>
+                    </div>
+
+                    <div class="row">
+                        <div class="col">
+                            <div class="d-flex align-items-start flex-column">
+                                <small>Punts:</small>
+                                <div>{{jugador.Punts}}</div>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="d-flex align-items-start flex-column">
+                                <small>Diferencial:</small>
+                                <div>{{jugador.Dif_P}}</div>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="d-flex align-items-start flex-column">
+                                <small>Mitjana favor:</small>
+                                <div>{{jugador.MitjanaPFavor}}</div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
