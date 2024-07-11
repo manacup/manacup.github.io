@@ -162,17 +162,31 @@ function loadContent(vista) {
         partidesfiltagrupades.map(j=>{
           j.totalPunts1 = Number(j.resultats[0].Puntuacio_1) + Number(j.resultats[1].Puntuacio_1)
           j.totalPunts2 = Number(j.resultats[0].Puntuacio_2) + Number(j.resultats[1].Puntuacio_2)
+          if(j.totalPunts1+j.totalPunts2!=0){
+          j.puntsEliminatoria1 = j.totalPunts1>j.totalPunts2 ? 1 : j.totalPunts1==j.totalPunts2 ? 0.5 : 0
+          j.puntsEliminatoria2 = j.totalPunts2>j.totalPunts1 ? 1 : j.totalPunts2==j.totalPunts1 ? 0.5 : 0
+        }else{
+          j.puntsEliminatoria1 = -1
+          j.puntsEliminatoria2 = -1
+        }
+          j.difEliminatoria1 = j.totalPunts1-j.totalPunts2
+          j.difEliminatoria2 = j.totalPunts2-j.totalPunts1
         })
         var grup = "";
         function ordrePuntsJug(a, b) {
-          var posicioordre = b.totalPunts1 - a.totalPunts1;
+          var posicioordre = b.puntsEliminatoria1 - a.puntsEliminatoria1;
+          return posicioordre;
+        }
+        function ordreDifJug(a, b) {
+          var posicioordre = b.difEliminatoria1 - a.difEliminatoria1;
           return posicioordre;
         }
         function ordreGrup(a, b) {
           var posiciogrup = a.Grup - b.Grup;
           return posiciogrup;
         }
-        partidesfiltagrupades.sort(ordrePuntsJug).sort(ordreGrup);
+        
+        partidesfiltagrupades.sort(ordreDifJug).sort(ordrePuntsJug).sort(ordreGrup);
         //console.log(dades)
         var ordrejug = 1;
       partidesfiltagrupades.forEach((partida) => {

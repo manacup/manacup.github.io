@@ -1899,10 +1899,10 @@ function renderLlistaEliminatoria(jugador) {
                 </div>
                 <div class="col">
                   <div class="d-flex align-items-start flex-column">
-                    <small>Suma:</small>
+                    <small>Suma (Dif):</small>
                     <div class=" text-end ${
                                       jugador.totalPunts1>jugador.totalPunts2
-                                        ? " fw-bold" : "" }">${jugador.totalPunts1}
+                                        ? " fw-bold" : "" }">${jugador.totalPunts1} (${jugador.difEliminatoria1})
                     </div>
                   </div>
                 </div>
