@@ -1875,11 +1875,20 @@ function renderLlistaEliminatoria(jugador) {
                                         }" data-estat="${jugador.resultats[0].Estat}">
                     <small>Partida 1:</small>
                     <div>
+                    <small>Pts:</small>
+                    
                       <span class=" ${
                                           jugador.resultats[0].Puntuacio_1 >
                                           jugador.resultats[0].Puntuacio_2
                                             ? " fw-bold" : "" }">${jugador.resultats[0].Puntuacio_1}
                       </span>
+                      </div>
+                      <div>
+                       <small>Dif:</small>
+                    
+                      <small class=" ">${jugador.resultats[0].Puntuacio_1 -
+                                              jugador.resultats[0].Puntuacio_2}
+                      </small>
                     </div>
                   </div>
                 </div>
@@ -1889,20 +1898,36 @@ function renderLlistaEliminatoria(jugador) {
                                       }" data-estat="${jugador.resultats[1].Estat}">
                     <small>Partida 2:</small>
                     <div>
+                    <small>Pts:</small>
                       <span class=" ${
                                           jugador.resultats[1].Puntuacio_1 >
                                           jugador.resultats[1].Puntuacio_2
                                             ? " fw-bold" : "" }">${jugador.resultats[1].Puntuacio_1}
                       </span>
                     </div>
+                    <div>
+                       <small>Dif:</small>
+                    
+                      <small class=" ">${jugador.resultats[1].Puntuacio_1 -
+                                              jugador.resultats[1].Puntuacio_2}
+                      </small>
+                    </div>
                   </div>
                 </div>
                 <div class="col">
                   <div class="d-flex align-items-start flex-column">
-                    <small>Suma (Dif):</small>
-                    <div class=" text-end ${
+                    <small>Total:</small>
+                    <div>
+                    <small>Pts:</small>
+                    <span class=" text-end ${
                                       jugador.totalPunts1>jugador.totalPunts2
-                                        ? " fw-bold" : "" }">${jugador.totalPunts1} (${jugador.difEliminatoria1})
+                                        ? " fw-bold" : "" }">${jugador.totalPunts1}
+                    </span>
+                    </div>
+                    <div>
+                    <small>Dif:</small>
+                    <small class=" text-end ">${jugador.difEliminatoria1}
+                    </small>
                     </div>
                   </div>
                 </div>
