@@ -101,12 +101,9 @@ function iniciJSON(vista) {
     cache: "default",
   };
   Promise.all([
-    fetch(macroURL + "?page=JSON&idJSON=" + idJSON),
-    /*fetch(macroURL + "?page=trobades&idfull=" + idfull),
-     fetch(macroURL + "?page=jugadors&idfull=" + idfull),
-    fetch(macroURL + "?page=aparellaments&idfull=" + idfull),
-    fetch(macroURL + "?page=calendari&idfull=" + idfull),
-    fetch(macroURL + "?page=partides&idfull=" + idfull),  */
+    //fetch(macroURL + "?page=JSON&idJSON=" + idJSON),
+    fetch("xampions24.json"),
+    
   ])
     .then((responses) =>
       Promise.all(responses.map((response) => response.json()))
