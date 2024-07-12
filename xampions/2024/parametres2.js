@@ -1,13 +1,22 @@
 const queryString = window.location.search;
 const urlParams = Object.fromEntries(new URLSearchParams(queryString));
 
+let fases = [
+  "Eliminatòria",
+  "Vuitens de final",
+  "Quarts de final",
+  "Semifinals",
+  "Final",
+];
+
 const macroURL =
   "https://script.google.com/macros/s/AKfycbwDcFyPQFV3B0bzeRxGU9yaTWhbA3PyR3SQZOQ1KEE5cU08SJb5QaOOfuXxwfVnuASk/exec";
 let parameterId = urlParams.id || "no";
 let parameterVista = urlParams.vista;
 let parameterOptions = urlParams.options;
 let vistaPredet = { page: parameterVista, options: parameterOptions };
-let idfull = urlParams.idfull;
+let idfull = urlParams.idfull || "1_5aBdjsPWf5bcMc8TIhBAfixZle_aQbkqPtZVXDKtqQ";
+let idJSON = "1tWcv5BRRDQogGkN1BFXpgDWknLGYUQeT";
 let mostrapestanyes = urlParams.mostrapestanyes || "no";
 console.log(mostrapestanyes);
 if (mostrapestanyes === "si") {
@@ -38,16 +47,17 @@ let jugadorDefault = {
 let jugadorDesat = {};
 
 const vistesGenerals = [
-  "classificacio",
+  "rondes",
+
   "scrabbles",
   "jugada",
   "partida",
   "conjunta",
+  "classificacio",
   "social",
   "immediatesa",
-  "rondes",
   "trobades",
-  "classificacio",
+  "rondes",
 ];
 let vistesPartides = [];
 const vistesNoSwipe = ["imatge", "formulari", "assistencia"];
@@ -80,130 +90,66 @@ function carregaUsuari() {
 document.addEventListener("DOMContentLoaded", iniciJSON());
 
 function iniciJSON(vista) {
-  
   carregant();
   carrega = 0;
   // Crida a l'API del Google Apps Script
+  var myHeaders = new Headers();
+  var myInit = {
+    method: "GET",
+    headers: myHeaders,
+    mode: "no-cors",
+    cache: "default",
+  };
   Promise.all([
-    fetch(macroURL + "?page=trobades&idfull=" + idfull),
-    fetch(macroURL + "?page=jugadors&idfull=" + idfull),
-    fetch(macroURL + "?page=aparellaments&idfull=" + idfull),
-    fetch(macroURL + "?page=calendari&idfull=" + idfull),
-    fetch(macroURL + "?page=partides&idfull=" + idfull),
+    fetch("xampions24.json"),
+   
   ])
-  .then(responses => Promise.all(responses.map(response => response.json())))
-  .then(([dataTrobades, dataJugadors, dataAparellaments, dataCalendari, dataPartides]) => {
-    // Process dataTrobades, dataJugadors, etc.
-    // ...
-       // Example: Accessing data from the 'trobades' response
-       trobada = dataTrobades.trobades;
-       if (trobada) {
-       
-        var assistents = trobada.assistents;
-        assistents.map((w) => {
-          w.Primera_partida = w.Primera_partida + w.Adv1;
-          w.Segona_partida = w.Segona_partida + w.Adv2;
-        });
-        
-      }
-       // Process 'trobades' data...
-   
-       // Example: Accessing data from the 'jugadors' response
-       dades = dataJugadors.dades;
-       // Process 'jugadors' data...
-       dades.forEach((jug) => {
-        var jugadorsOpt = document.getElementById("jugadors");
-        jugadorsOpt.innerHTML += `<option value="${jug.ID}">${jug.Nom}</option>`;
-      });
-      document.getElementById("loaded").innerHTML = "<span>loaded2</span>";
-   
-       // Example: Accessing data from the 'aparellaments' response
-       aparellaments = dataAparellaments.aparellaments.filter((p) => p.ID > 0);
-       // Process 'aparellaments' data...
-   
-       // Example: Accessing data from the 'calendari' response
-       calendari = dataCalendari.calendari.filter((p) => p.Estat != "none");
-       // Process 'calendari' data...
-   
-       // Example: Accessing data from the 'partides' response
-       partides = dataPartides.partides;
-       // Process 'partides' data...
-   
-       // Continue with your logic here..
-       recuperaPartides();
-      carregaUsuari();
-      renderUserCard(jugadorDesat);
-      swipe();
-      loadPagina(vista)
-  })
-  .catch(error => console.error("Error:", error));
-
-
-
-
-
-
-  /* fetch(macroURL + "?page=trobades&idfull=" + idfull)
-    .then((response) => response.json())
-    .then((data) => {
+    .then((responses) =>
+      Promise.all(responses.map((response) => response.json()))
+    )
+    .then(([data]) => {
+      // Process dataTrobades, dataJugadors, etc.
+      // ...
+      // Example: Accessing data from the 'trobades' response
       trobada = data.trobades;
-      
       if (trobada) {
-       
         var assistents = trobada.assistents;
         assistents.map((w) => {
           w.Primera_partida = w.Primera_partida + w.Adv1;
           w.Segona_partida = w.Segona_partida + w.Adv2;
         });
-        
       }
-      carrega++;
-      loadPagina(vista);
-    })
-    .catch((error) => console.error("Error:", error));
-  fetch(macroURL + "?page=jugadors&idfull=" + idfull)
-    .then((response) => response.json())
-    .then((data) => {
-      //console.log(data);
-      dades = data.dades;
-      recuperaPartides();
-      carregaUsuari();
-      renderUserCard(jugadorDesat);
-      carrega++;
+      // Process 'trobades' data...
 
-      loadPagina(vista);
+      // Example: Accessing data from the 'jugadors' response
+      dades = data.dades;
+      // Process 'jugadors' data...
       dades.forEach((jug) => {
         var jugadorsOpt = document.getElementById("jugadors");
         jugadorsOpt.innerHTML += `<option value="${jug.ID}">${jug.Nom}</option>`;
       });
       document.getElementById("loaded").innerHTML = "<span>loaded2</span>";
-      swipe();
-    })
-    .catch((error) => console.error("Error:", error));
-  fetch(macroURL + "?page=aparellaments&idfull=" + idfull)
-    .then((response) => response.json())
-    .then((data) => {
+
+      // Example: Accessing data from the 'aparellaments' response
       aparellaments = data.aparellaments.filter((p) => p.ID > 0);
-      // carrega++;
-      loadPagina(vista);
-    })
-    .catch((error) => console.error("Error:", error));
-  fetch(macroURL + "?page=calendari&idfull=" + idfull)
-    .then((response) => response.json())
-    .then((data) => {
+      // Process 'aparellaments' data...
+
+      // Example: Accessing data from the 'calendari' response
       rondes = data.calendari.filter((p) => p.Estat != "none");
-      //carrega++;
-    })
-    .catch((error) => console.error("Error:", error));
-  
-  fetch(macroURL + "?page=partides&idfull=" + idfull)
-    .then((response) => response.json())
-    .then((data) => {
+      // Process 'calendari' data...
+
+      // Example: Accessing data from the 'partides' response
       partides = data.partides;
+      // Process 'partides' data...
+
+      // Continue with your logic here..
       recuperaPartides();
+      carregaUsuari();
+      renderUserCard(jugadorDesat);
+      swipe();
       loadPagina(vista);
     })
-    .catch((error) => console.error("Error:", error)); */
+    .catch((error) => console.error("Error:", error));
 }
 function recuperaPartides() {
   if ((carrega = 2)) {
@@ -214,17 +160,16 @@ function recuperaPartides() {
 }
 
 function loadPagina(vista) {
-  console.log(!!trobada&& vista === undefined)
+  console.log(!!trobada && vista === undefined);
   clearInterval(interval);
   if (carrega == 2) {
-    
     if (!!trobada && vista === undefined) {
-      console.log("yeah")
+      console.log("yeah");
       loadContent(parameterVista ? vistaPredet : ["trobades"]);
       updateHistory(parameterVista ? vistaPredet : ["trobades"]);
     } else {
-      loadContent(parameterVista ? vistaPredet : ["classificacio"]);
-      updateHistory(parameterVista ? vistaPredet : ["classificacio"]);
+      loadContent(parameterVista ? vistaPredet : ["rondes"]);
+      updateHistory(parameterVista ? vistaPredet : ["rondes"]);
     }
   }
 }
