@@ -72,7 +72,9 @@ function carregant(){
         return intervalo;
         
       }
-      
+      setTimeout(() => {
+        clearInterval(interval);
+      }, 3000);
       // Llamamos a la función para iniciar el proceso
       interval = escribirCadaSegundo();
 }
