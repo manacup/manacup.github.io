@@ -93,8 +93,8 @@ function iniciJSON(vista) {
   cache: "default",
 };
   Promise.all([    
-    //fetch(macroURL + "?page=JSON&idJSON="+idJSON),
-   fetch(manacupX.json)   
+    fetch(macroURL + "?page=JSON&idJSON="+idJSON),
+   //fetch(manacupX.json)   
   ])
   .then(responses => Promise.all(responses.map(response => response.json())))
   .then(([data]) => {
