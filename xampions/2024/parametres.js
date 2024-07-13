@@ -16,7 +16,7 @@ let parameterVista = urlParams.vista;
 let parameterOptions = urlParams.options;
 let vistaPredet = { page: parameterVista, options: parameterOptions };
 let idfull = urlParams.idfull || "1_5aBdjsPWf5bcMc8TIhBAfixZle_aQbkqPtZVXDKtqQ";
-let idJSON = "1tWcv5BRRDQogGkN1BFXpgDWknLGYUQeT";
+let idJSON = urlParams.idJSON || "1tWcv5BRRDQogGkN1BFXpgDWknLGYUQeT";
 let mostrapestanyes = urlParams.mostrapestanyes || "no";
 console.log(mostrapestanyes);
 if (mostrapestanyes === "si") {
@@ -101,8 +101,8 @@ function iniciJSON(vista) {
     cache: "default",
   };
   Promise.all([
-    //fetch(macroURL + "?page=JSON&idJSON=" + idJSON),
-    fetch("xampions24.json"),
+    fetch(macroURL + "?page=JSON&idJSON=" + idJSON),
+    //fetch("xampions24.json"),
     
   ])
     .then((responses) =>
