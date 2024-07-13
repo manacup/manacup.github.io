@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
  
-  <title>ManaCup</title>
+  <title>Xàmpions🏖️</title>
   <link rel="stylesheet" href="css.css">
   <link rel="stylesheet"
     href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
@@ -23,28 +23,46 @@
   <div id="loaded" class="d-none">
   </div>
 
-  <nav class="navbar pb-0 bg-light">
+  <nav class="navbar pb-0 bg-body">
     <div class="container-fluid">
-      <a class="navbar-brand text-dark h4" href="#classificacio">
+      <div class="navbar-brand text-dark h4" onclick="iniciJSON()">
         <img src="/icons/favicon-96x96.png" alt="Logo" width="30" height="auto"
           class="d-inline-block align-text-center">
-        X ManaCup
-      
-      <span class="float-end badge text-secondary">2023-24</span></a>
-       <div class="navbar-toggler me-2 dropdown" data-bs-toggle="dropdown" data-bs-target="#menu" aria-expanded="false"
+        Xàmpions d'estiu🏖️
+      </div>
+      <span class="float-end badge text-secondary">2024</span>
+    </div>
+  </nav>
+  <nav class=" navbar  bg-body sticky-top">
+    <div class="container-fluid">
+      <div class="navbar-brand flex-grow-1 ">
+        <div class="d-flex align-items-center" id="goBack" style="cursor: pointer;">
+          <i class="bi bi-arrow-left me-2 d-none" id="botoEnrera"></i>
+          <div class="nav-link ">
+            <span id="navbar-title"></span>
+          </div>
+        </div>
+      </div>
+
+      <div class="navbar-toggler me-2" data-bs-toggle="collapse" data-bs-target="#collapseCerca">
+        <i class="bi bi-search"></i>
+      </div>
+
+      <div class="navbar-toggler me-2 dropdown" data-bs-toggle="dropdown" data-bs-target="#menu" aria-expanded="false"
         aria-controls="menu">
         <i class="bi bi-three-dots-vertical"></i>
       </div>
 
       <ul class="dropdown-menu dropdown-menu-end" id="menu">
         <li>
-          <h6 class="dropdown-header text-danger">Classificacions</h6>
+          <h6 class="dropdown-header text-danger">Classificacions<i class="bi bi-arrow-repeat float-end" onclick="actualitzaJSON()"></i></h6>
         </li>
-        <li><a class="dropdown-item" href="#classificacio">Classificació general</a></li>
+        <li><a class="dropdown-item" href="#rondes">Fases</a></li>
         <li><a class="dropdown-item" href="#scrabbles">Scrabbles</a></li>
         <li><a class="dropdown-item" href="#jugada">Millor jugada</a></li>
         <li><a class="dropdown-item" href="#partida">Millor partida individual</a></li>
         <li><a class="dropdown-item" href="#conjunta">Millor partida conjunta</a></li>
+        <li><a class="dropdown-item" href="#classificacio">Victòries</a></li>
         <li><a class="dropdown-item" href="#social">Participació social</a></li>
         <li><a class="dropdown-item" href="#immediatesa">Menys procrastinador</a></li>
         <li>
@@ -78,25 +96,6 @@
           class="circle userImg" referrerpolicy="no-referrer">
       </div>
 
-      
-    </div>
-  </nav>
-  <nav class=" navbar  bg-body sticky-top">
-    <div class="container-fluid">
-      <div class="navbar-brand flex-grow-1 ">
-        <div class="d-flex align-items-center" id="goBack" style="cursor: pointer;">
-          <i class="bi bi-arrow-left me-2 d-none" id="botoEnrera"></i>
-          <div class="nav-link ">
-            <span id="navbar-title"></span>
-          </div>
-        </div>
-      </div>
-
-      <div class="navbar-toggler me-2" data-bs-toggle="collapse" data-bs-target="#collapseCerca">
-        <i class="bi bi-search"></i>
-      </div>
-
-     
       <div class="collapse  navbar-collapse search mt-2" role="search" id="collapseCerca">
         <div class="input-group">
           <span class="input-group-text" id="comptador"></span>
@@ -117,11 +116,12 @@
     <!-- </nav> -->
 
     <ul class="collapse navbar-collapse nav nav-underline flex-nowrap text-nowrap overflow-x-scroll" id="collapsetabs">
-      <li class="nav-item ms-2"><a class="nav-link" href="#classificacio">Classificació general</a></li>
+      <li class="nav-item ms-2"><a class="nav-link" href="#rondes">Classificació x fases</a></li>
       <li class="nav-item"><a class="nav-link" href="#scrabbles">Scrabbles</a></li>
       <li class="nav-item"><a class="nav-link" href="#jugada">Millor jugada</a></li>
       <li class="nav-item"><a class="nav-link" href="#partida">Millor partida individual</a></li>
       <li class="nav-item"><a class="nav-link" href="#conjunta">Millor partida conjunta</a></li>
+      <li class="nav-item "><a class="nav-link" href="#classificacio">Classificació x victòries</a></li>
       <li class="nav-item"><a class="nav-link" href="#social">Participació social</a></li>
       <li class="nav-item"><a class="nav-link" href="#immediatesa">Menys procrastinador</a></li>
       <li class="nav-item"><a class="nav-link" href="#rondes">Rondes</a></li>
