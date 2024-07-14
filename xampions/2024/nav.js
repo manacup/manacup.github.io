@@ -182,8 +182,17 @@ function loadContent(vista) {
           return posicioordre;
         }
         function ordreGrup(a, b) {
-          var posiciogrup = a.Grup - b.Grup;
-          return posiciogrup;
+        const groupA = a.Grup.toUpperCase();
+        const groupB = b.Grup.toUpperCase();
+
+        if (groupA < groupB) {
+          return -1;
+        }
+        if (groupA > groupB) {
+          return 1;
+        }
+
+        return 0;
         }
         
         partidesfiltagrupades.sort(ordreDifJug).sort(ordrePuntsJug).sort(ordreGrup);
