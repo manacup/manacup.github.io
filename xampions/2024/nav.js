@@ -414,7 +414,7 @@ console.log(partides)
   partida.Tauler = partides[1].Full
   partida.ma = "1 + 2"
   partida.Comentaris = partides[0].Comentaris + "<br>"+partides[1].Comentaris
-  
+  partida.Punts_velocitat = "x"
 console.log(partida)
         
         renderDetallPartida(partida);
