@@ -346,7 +346,7 @@ function loadContent(vista) {
       break;
 
       case "detallfase":
-        navbarTitle.innerHTML = "Detall conjunt de les partides";
+        navbarTitle.innerHTML = "Detall conjunt";
         var partides = aparellaments.filter((j) => j.IDma == options);
         var partida = {}
 console.log(partides)
