@@ -101,7 +101,7 @@ function iniciJSON(vista) {
     cache: "default",
   };
   Promise.all([
-    fetch("https://drive.google.com/uc?export=download&id=1tWcv5BRRDQogGkN1BFXpgDWknLGYUQeT"),
+    fetch("xampions24.json"),
    
   ])
     .then((responses) =>
