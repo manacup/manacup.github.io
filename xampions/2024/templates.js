@@ -556,7 +556,7 @@ function renderDetallPartida(partida) {
     
       <div class="p-1">
         <div class="d-flex align-items-center p-2">
-          <h1 class="flex-grow-1">Ronda ${partida.Ronda}</h1>
+          <h3 class="flex-grow-1">${fases[partida.Ronda-1] + "<br> Partida "+partida.ma}</h3>
           <div class=" position-relative me-4" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Jugada a trobada oficial">
             <span class="h1 material-symbols-outlined">diversity_3</span>
             <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-success ${

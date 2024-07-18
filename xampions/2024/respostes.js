@@ -9,7 +9,7 @@ function renderFormulari(partida) {
         <input type="hidden" name="ronda" value="${
           partida.Ronda
         }" id="ronda" readonly >      
-  
+  <h4>${fases[partida.Ronda-1] + ". Partida "+partida.ma}</h4>
         <div id="resultats" class="d-flex flex-column  mb-4">
           <div id="resultatsJug1" class="card">
             <div class="card-body">
