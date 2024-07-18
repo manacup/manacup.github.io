@@ -19,19 +19,16 @@
   <link rel="icon" type="image/png" sizes="32x32" href="icons/favicon-32x32.png">
   <link rel="icon" type="image/png" sizes="96x96" href="icons/favicon-96x96.png">
   <link rel="icon" type="image/png" sizes="16x16" href="icons/favicon-16x16.png">
-  <link rel="manifest" href="manifest.webmanifest">
-  <meta name="msapplication-TileColor" content="#80cbc4">
+  <link rel="manifest" href="/manifestciutatmanacor.webmanifest">
+  <meta name="msapplication-TileColor" content="#aed581">
   <meta name="msapplication-TileImage" content="icons/ms-icon-144x144.png">
-  <meta name="theme-color" content="#80cbc4">
+  <meta name="theme-color" content="#aed581">
   <meta name="description"
-    content="Classificacions, resultats, estadístiques...">
-  <meta name="author" content="ManaCup">
-  <meta property="og:image" content="icons/favicon-96x96">
-  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
-<meta http-equiv="Pragma" content="no-cache">
-<meta http-equiv="Expires" content="0">
-  <link rel="stylesheet" href="style.css">
-  <script src="app.js" defer></script>
+    content="App per a la gestió del VII Campionat Ciutat de Manacor">
+  <meta name="author" content="Antoni Llull">
+  <meta property="og:image" content="/icons/favicon-96x96">
+  <link rel="stylesheet" href="/style.css">
+  <script src="/app.js" defer></script>
   <style>
   nav .brand-logo {
     position: absolute;
@@ -46,20 +43,21 @@
 <body>
 
   <nav>
-    <div class="nav-wrapper teal lighten-3">
-      <a href="https://script.google.com/macros/s/AKfycbwlJJxIpUg8mbjnMLzPnTQ2a-UdvOquVWnZf7g9xrQ7fZtL5TomCNNcefEWgK2DM9nr/exec?page=index&plantilla=template"
-         class="brand-logo" target='iframeView'>Manacup <small>23-24</small></a>
+    <div class="nav-wrapper   light-green lighten-2">
+      <a href="https://script.google.com/macros/s/AKfycbz-JYP3BP2Hk8Y2-eC5A1wDF4LAG9V8-8R7mbY0HfVhLXz6suGOcxeNtGBrxoOobJaU4g/exec?page=index&plantilla=template&admin=toni"
+         class="brand-logo" target='iframeView'>VIII Ciutat de Manacor</a>
       <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
       <ul class="right hide-on-med-and-down">
         <li><a
-            href="/index.html"  target='_self'><i class="material-icons">home</i></a></li>
+            href="https://script.google.com/macros/s/AKfycbz-JYP3BP2Hk8Y2-eC5A1wDF4LAG9V8-8R7mbY0HfVhLXz6suGOcxeNtGBrxoOobJaU4g/exec?page=index&plantilla=template&admin=toni"
+            target='iframeView'><i class="material-icons">home</i></a></li>
         <li><a href="https://scrabblemanacor.wordpress.com/" target='iframeView'>Club Scrabble Manacor</a></li>
         <li><a href="https://scrabblemanacor.wordpress.com/normativa-del-joc/" target='iframeView'>Normativa</a></li>
         <li><a href="https://icon.cat/wordertorn/" target='_blank'>WORdERtorn</a></li>
-        <li><a href="/rellotgeScrabble/index2.html" target='_blank'>Rellotge<span class="yellow badge">v1.0</span></a></li>
-        <li><a href="https://script.google.com/macros/s/AKfycbxqvpIqzO375Z0KSYwDDlbCKq0of2EKR8D9wzO9FL2jb24HCYnFpiISh5PnxnqyBxc/exec" target='iframeView'><i
+        <li><a href="/rellotgeScrabble/index.html" target='_blank'>Rellotge<span class="yellow badge">Beta</span></a></li>
+        <li><a href="https://script.google.com/macros/s/AKfycbza8Qfb9DNrbgFJKLOgVK-131YodJJUXdLhBhlDmghGqm7aCog2TUx9pzUO4zoYvD0vtg/exec" target='iframeView'><i
           class="material-icons">history</i>h</a></li>
-        <li onclick="toggleFullScreen(document.body);"><a href="https://script.google.com/macros/s/AKfycbwlJJxIpUg8mbjnMLzPnTQ2a-UdvOquVWnZf7g9xrQ7fZtL5TomCNNcefEWgK2DM9nr/exec?page=index&plantilla=plantillapantalla"
+        <li onclick="toggleFullScreen(document.body);"><a href="https://script.google.com/macros/s/AKfycbz-JYP3BP2Hk8Y2-eC5A1wDF4LAG9V8-8R7mbY0HfVhLXz6suGOcxeNtGBrxoOobJaU4g/exec?page=index&plantilla=plantillapantalla&admin=toni"
             target='iframeView'><i
           class="material-icons">fullscreen</i>f</a></li>
         <li><a id="rec"  target='iframeView'><i class="material-icons">autorenew</i>a</a></li>
@@ -73,33 +71,33 @@
     <li>
       <div class="user-view">
         <div class="background">
-          <img src="https://drive.google.com/uc?export=download&amp;id=18DAlwsNt5gSfyZOPaSLbI0TK95ln-6hw" width="300" height="auto">
+          
+          
+            <img src="/imatges/VIII_ciutat_manacor_logo.jpg" width="300" height="auto">
         </div>
         <br><br><br>
-        <div><span class=" name" id="versio">ManaCup 23-24</span></div>
-        <div><span class=" email">20 rondes aleatòries en 2 grups + 4 rondes suïsses</span></div>
+     
+        <div><span class=" email">Sistema suís a 6 rondes</span></div>
       </div>
     </li>
 
     <li><a class="sidenav-close"
-        href="/index.html"  target='_self'><i class="material-icons">home</i>Inici</a></li>
+        href="https://script.google.com/macros/s/AKfycbz-JYP3BP2Hk8Y2-eC5A1wDF4LAG9V8-8R7mbY0HfVhLXz6suGOcxeNtGBrxoOobJaU4g/exec?page=index&plantilla=template&admin=toni"
+        target='iframeView'><i class="material-icons">home</i>Inici</a></li>
     <li><a class="sidenav-close" href="https://icon.cat/wordertorn/" target='_blank'><i
           class="material-icons">check</i>WORdERtorn</a></li>
     <li><a class="sidenav-close" href="https://scrabblemanacor.wordpress.com/normativa-del-joc/" target='iframeView'><i
           class="material-icons">view_list</i>Normativa</a></li>
-    <!-- li><a class="sidenav-close" href="https://drive.google.com/uc?export=download&id=11buoBA5n8IlYjo112N6I7Poeyfe9CQNl" target='_blank' id="linkApp"><i class="material-icons">phone_android</i>Aplicació Android</a></li -->
-    <li><a class="sidenav-close" href="/rellotgeScrabble/index2.html" target='_blank'><i class="material-icons">access_time</i>Rellotge<span
-          class="yellow badge">v1.0</span></a></li>
+  
+    <li><a class="sidenav-close" href="/rellotgeScrabble/index.html" target='_blank'><i class="material-icons">access_time</i>Rellotge<span
+          class="yellow badge">1.3.5</span></a></li>
     <li onclick="toggleFullScreen(document.body)"><a class="sidenav-close"><i
           class="material-icons">fullscreen</i>Pantalla completa</a></li>
         <li><div class="divider"></div></li>
-        <li><a class="sidenav-close" href="https://script.google.com/macros/s/AKfycbxqvpIqzO375Z0KSYwDDlbCKq0of2EKR8D9wzO9FL2jb24HCYnFpiISh5PnxnqyBxc/exec" target='iframeView'><i
+        <li><a class="sidenav-close" href="https://script.google.com/macros/s/AKfycbza8Qfb9DNrbgFJKLOgVK-131YodJJUXdLhBhlDmghGqm7aCog2TUx9pzUO4zoYvD0vtg/exec" target='iframeView'><i
           class="material-icons">history</i>Historial</a></li>
        <li><div class="divider"></div></li>
-    <li><a class="sidenav-close" href="https://docs.google.com/spreadsheets/d/1HDQ6YdsA5FnzHaHFeOlYXPEIDCLRpq34rm078oFqRMU/edit?usp=sharing" target='_blank'><i
-          class="material-icons">grid_on</i>Consulta el full de càlcul</a></li>
-    
-    
+    <li><a class="subheader"><img src='https://chart.googleapis.com/chart?cht=qr&chl=https%3A%2F%2Fmanacup.github.io%2Fciutatdemanacor%2F8.html&chs=180x180&choe=UTF-8&chld=L|2' alt=''></a></li>
   </ul>
   <div id="spinner" class="spinner">
     <div class="preloader-wrapper small active">
@@ -116,34 +114,17 @@
       </div>
     </div>
   </div>
-  <div id="modal1" class="modal open" style="display: block;z-index: 100;">
-    <div class="modal-content">
-      <h4>Hi ha una nova versió de l'app!</h4>
-      <p>A causa dels canvis de les restriccions de galetes en les noves versions dels navegadors, l'aplicació dóna problemes a alguns dels usuaris.</p>
-      <p>Ja s'estava treballant en una versió millorada, sobretot en la navegació, i s'ha avançat el seu llançament. Podria ser que en la nova versió hi hagi coses que encara no funcionin del tot.</p>
-    </div>
-    <div class="modal-footer">
-      <a href="#!" class="modal-close waves-effect waves-green btn-flat" id="btntanca">Tanca</a>
-      <a href="/manacup2324/index.html" class="modal-close waves-effect waves-green btn-flat">Ves a la nova versió</a>
-    </div>
-  </div>
 
   <div class="iframecontainer">
 
-      
+   
+  
       <iframe name='iframeView' id="divisio" class="responsive-iframe" 
-      src='https://script.google.com/macros/s/AKfycbwlJJxIpUg8mbjnMLzPnTQ2a-UdvOquVWnZf7g9xrQ7fZtL5TomCNNcefEWgK2DM9nr/exec?page=index&plantilla=template'></iframe>
+      src='https://script.google.com/macros/s/AKfycbz-JYP3BP2Hk8Y2-eC5A1wDF4LAG9V8-8R7mbY0HfVhLXz6suGOcxeNtGBrxoOobJaU4g/exec?page=index&plantilla=template&admin=toni'></iframe>
   </div>
- <script>
+  <iframe name='estadistica' id="estadistica" src="" style="display:none"></iframe>
 
-  var instance = document.getElementById("modal1")
-  instance.addEventListener("click",()=>{
-    instance.remove()
-  })
-     
-  </script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
- 
 </body>
 
 </html>

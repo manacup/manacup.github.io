@@ -1,0 +1,50 @@
+<div class="p-1 entrada" ng-repeat="jugador in jugadors | orderBy: 'Pos_velocitat-0' |  filter : {Nom:cerca} && jugador.Pos_velocitat!=''">
+    <div class="card
+    " data-bs-toggle="collapse" data-bs-target="#collapse{{jugador.ID}}">
+        <div class="card-body desplega">
+            <div class="row ">
+                <div class="col-2">
+                    <div class="circle">{{jugador.Pos_velocitat}}</div>
+                </div>
+                <div class="col-10">
+                    <div class="d-flex align-items-center">
+                        <div class="h5 nom">{{jugador.Nom}}</div>
+                        <div class="flex-grow-1"></div>
+                       <!--  <span class="badge text-bg-primary ">{{jugador.movimentPartida}}</span> -->
+                    </div>
+                   
+                    <div class="row">
+                        <div class="col">
+                            <div class="d-flex align-items-start flex-column">
+                                <small>Total punts:</small>
+                                <div>{{jugador.Punts_velocitat}}</div>
+                            </div>
+                        </div>
+                      <!--   <div class="col">
+                            <div class="d-flex align-items-start flex-column">
+                                <small>Adversari:</small>
+                                <div><span class="nom pe-2" ng-repeat="adv in jugador.Adversari_jugada.split('-')">{{adv}}</span></div>
+                            </div>
+                        </div> -->
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="collapse" id="collapse{{jugador.ID}}">
+            <table class="table">
+                <tr>
+                    <td></td>
+                    <td><small>Total Punts</small></td>
+                    <td><small>Adversari</small></td>
+                    <td></td>
+                </tr>
+                <tr ng-repeat="p in jugador.partides | orderBy: '-Punts_social-0' ">
+                    <td></td>
+                    <td>{{p.Punts_velocitat}}</td>
+                    <td>{{p.Jugador2}}</td>
+                    <td></td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>
