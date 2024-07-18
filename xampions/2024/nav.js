@@ -347,9 +347,9 @@ function loadContent(vista) {
 
       case "detallfase":
         navbarTitle.innerHTML = "Suma partides";
-        var partides = aparellaments.filter((j) => j.IDma == options);
+        var partidesfase = aparellaments.filter((j) => j.IDma == options);
         var partida = {}
-console.log(partides)
+console.log(partidesfase)
   /* {
     "Ronda": 1,
     "idJug1": 1,
@@ -387,33 +387,33 @@ console.log(partides)
     "IDma": 12011
 } */
   partida.Estat= "Ronda tancada"
-  partida.Jugador1=partides[0].Jugador1
-  partida.Jugador2=partides[0].Jugador2
-  partida.Ronda = partides[0].Ronda
-  partida.Puntuacio_1 = partides[0].Puntuacio_1 + partides[1].Puntuacio_1
-  partida.Puntuacio_2 = partides[0].Puntuacio_2 + partides[1].Puntuacio_2
-  partida.Scrabbles_1 = partides[0].Scrabbles_1 + partides[1].Scrabbles_1
-  partida.Scrabbles_2 = partides[0].Scrabbles_2 + partides[1].Scrabbles_2
-  if(partides[0].Puntsmot_1>=partides[1].Puntsmot_1){
-    partida.Puntsmot_1 = partides[0].Puntsmot_1 
-    partida.Mot_1 = partides[0].Mot_1
+  partida.Jugador1=partidesfase[0].Jugador1
+  partida.Jugador2=partidesfase[0].Jugador2
+  partida.Ronda = partidesfase[0].Ronda
+  partida.Puntuacio_1 = partidesfase[0].Puntuacio_1 + partidesfase[1].Puntuacio_1
+  partida.Puntuacio_2 = partidesfase[0].Puntuacio_2 + partidesfase[1].Puntuacio_2
+  partida.Scrabbles_1 = partidesfase[0].Scrabbles_1 + partidesfase[1].Scrabbles_1
+  partida.Scrabbles_2 = partidesfase[0].Scrabbles_2 + partidesfase[1].Scrabbles_2
+  if(partides[0].Puntsmot_1>=partidesfase[1].Puntsmot_1){
+    partida.Puntsmot_1 = partidesfase[0].Puntsmot_1 
+    partida.Mot_1 = partidesfase[0].Mot_1
   }else{
-    partida.Puntsmot_1 = partides[1].Puntsmot_1
-    partida.Mot_1 = partides[1].Mot_1
+    partida.Puntsmot_1 = partidesfase[1].Puntsmot_1
+    partida.Mot_1 = partidesfase[1].Mot_1
   }
-  if(partides[0].Puntsmot_2>=partides[1].Puntsmot_2){
-    partida.Puntsmot_2 = partides[0].Puntsmot_2 
-    partida.Mot_2 = partides[0].Mot_2
+  if(partides[0].Puntsmot_2>=partidesfase[1].Puntsmot_2){
+    partida.Puntsmot_2 = partidesfase[0].Puntsmot_2 
+    partida.Mot_2 = partidesfase[0].Mot_2
   }else{
-    partida.Puntsmot_2 = partides[1].Puntsmot_2
-    partida.Mot_2 = partides[1].Mot_2
+    partida.Puntsmot_2 = partidesfase[1].Puntsmot_2
+    partida.Mot_2 = partidesfase[1].Mot_2
   }
   partida.Suma_punts = partida.Puntuacio_1 + partida.Puntuacio_2
-  partida.Punts_social = partides[0].Punts_social + partides[1].Punts_social
-  partida.Full = partides[0].Full
-  partida.Tauler = partides[1].Full
+  partida.Punts_social = partidesfase[0].Punts_social + partidesfase[1].Punts_social
+  partida.Full = partidesfase[0].Full
+  partida.Tauler = partidesfase[1].Full
   partida.ma = "1 + 2"
-  partida.Comentaris = partides[0].Comentaris + "<br>"+partides[1].Comentaris
+  partida.Comentaris = partidesfase[0].Comentaris + "<br>"+partidesfase[1].Comentaris
   partida.Punts_velocitat = "x"
 console.log(partida)
         
