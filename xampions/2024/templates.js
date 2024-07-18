@@ -1797,7 +1797,9 @@ function renderAparellaments(partida) {
                           
                           
                          </div> 
-                         <div class="row col  ${sajugada?"":"d-none"}">
+                         <div class="row col  ${sajugada?"":"d-none"} detallfase"  data-id="${
+                            partida.resultats[1].IDma
+                          }">
                           <span class="text-primary  text-end ${
                             partida.resultats[0].Puntuacio_1 +
                                 partida.resultats[1].Puntuacio_1 >
