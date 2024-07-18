@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <!DOCTYPE html>
 <html lang="ca">
 
@@ -97,3 +98,104 @@
 </body>
 
 </html>
+=======
+<!DOCTYPE html>
+<html lang="ca">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Historial jugador</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css">
+  <style>
+    .blackout {
+        position: fixed; /* Sit on top of the page content */
+ 
+  width: 100%; /* Full width (cover the whole page) */
+  height: 100%; /* Full height (cover the whole page) */
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0,0,0,0.5); /* Black background with opacity */
+  z-index: 200000; /* Specify a stack order in case you're using a different order for other elements */
+  cursor: pointer; /* Add a pointer on hover */
+    }
+    </style>
+</head>
+
+<body>
+  <div class="container">
+    <h3 class="mt-4">Informació històrica del jugador</h3>
+    <p>Només surten dades de les competicions recopilades.</p>
+    <div class="">
+      <div class="">
+        <h4 class="mt-4">Jugador</h4>
+        <select id="jugador" class="form-select seljugadors">
+          <option disabled selected>Tria el jugador</option>
+        
+        </select>
+      </div>
+      
+  <ul id="estadistica"  class="list-group mt-4"></ul>
+ 
+      <div id="adv" class="d-none">
+        <h4 class="mt-4">Adversari</h4>
+       
+          <select id="adversari" class="form-select seljugadors">
+          <option selected></option>
+         
+        </select>
+     
+      </div>
+
+      <div id="camp" class="d-none">
+        <h4 class="mt-4">Campionat</h4>
+       
+          <select id="campionats" class="form-select">
+          <option selected></option>
+         
+        </select>
+     
+      </div>
+
+
+    </div>
+  
+  
+  <!-- <button onclick="canvia()" class="btn btn-primary mt-4">Cerca</button> -->
+  
+  <ul id="resposta"  class="list-group mt-4 mb-4"></ul>
+  
+  </div>
+</div>
+    <div class="blackout" id="spinner">
+    <div class="d-flex justify-content-center pt-5">
+      <div class="spinner-border" role="status">
+        <span class="visually-hidden">Loading...</span>
+      </div>
+    </div>
+  </div>
+  <div class="modal fade" id="partidaModal" tabindex="-1" aria-labelledby="partidaModal" aria-hidden="true">
+  <div class="modal-dialog modal-fullscreen-sm-down">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="partidaModalTitol">Resum partida</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body" id="partidaModalBody">
+        ...
+      </div>
+    
+    </div>
+  </div>
+</div>
+  <script src="script.js">  
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous">
+  </script>
+</body>
+
+</html>
+>>>>>>> fb121be910205e5f6ca7bef6a2a2d60db7ef3306

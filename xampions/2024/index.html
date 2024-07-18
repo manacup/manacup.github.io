@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html lang="ca" data-bs-theme="light">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ 
+  <title>Xàmpions🏖️</title>
+  <link rel="stylesheet" href="css.css">
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+  <!-- Incluir los estilos de Bootstrap 5 -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
+  <script
+    src="https://cdn.jsdelivr.net/gh/tanaikech/HtmlFormObjectParserForGoogleAppsScript_js@master/htmlFormObjectParserForGoogleAppsScript_js.min.js">
+    </script>
+  <script src="tema.js"></script>
+
+</head>
+
+<body id="body">
+  <div id="loaded" class="d-none">
+  </div>
+
+  <nav class="navbar pb-0 bg-body">
+    <div class="container-fluid">
+      <div class="navbar-brand text-dark h4" onclick="iniciJSON()">
+        <img src="/icons/favicon-96x96.png" alt="Logo" width="30" height="auto"
+          class="d-inline-block align-text-center">
+        Xàmpions d'estiu🏖️
+      </div>
+      <span class="float-end badge text-secondary">2024</span>
+    </div>
+  </nav>
+  <nav class=" navbar  bg-body sticky-top">
+    <div class="container-fluid">
+      <div class="navbar-brand flex-grow-1 ">
+        <div class="d-flex align-items-center" id="goBack" style="cursor: pointer;">
+          <i class="bi bi-arrow-left me-2 d-none" id="botoEnrera"></i>
+          <div class="nav-link ">
+            <span id="navbar-title"></span>
+          </div>
+        </div>
+      </div>
+
+      <div class="navbar-toggler me-2" data-bs-toggle="collapse" data-bs-target="#collapseCerca">
+        <i class="bi bi-search"></i>
+      </div>
+
+      <div class="navbar-toggler me-2 dropdown" data-bs-toggle="dropdown" data-bs-target="#menu" aria-expanded="false"
+        aria-controls="menu">
+        <i class="bi bi-three-dots-vertical"></i>
+      </div>
+
+      <ul class="dropdown-menu dropdown-menu-end" id="menu">
+        <li>
+          <h6 class="dropdown-header text-danger">Classificacions<i class="bi bi-arrow-repeat float-end" onclick="actualitzaJSON()"></i></h6>
+        </li>
+        <li><a class="dropdown-item" href="#rondes">Fases</a></li>
+        <li><a class="dropdown-item" href="#scrabbles">Scrabbles</a></li>
+        <li><a class="dropdown-item" href="#jugada">Millor jugada</a></li>
+        <li><a class="dropdown-item" href="#partida">Millor partida individual</a></li>
+        <li><a class="dropdown-item" href="#conjunta">Millor partida conjunta</a></li>
+        <li><a class="dropdown-item" href="#classificacio">Victòries</a></li>
+        <li><a class="dropdown-item" href="#social">Participació social</a></li>
+        <li><a class="dropdown-item" href="#immediatesa">Menys procrastinador</a></li>
+        <li>
+          <hr class="dropdown-divider">
+        </li>
+        <li>
+          <h6 class="dropdown-header text-success">Calendari</h6>
+        </li>
+        <li><a class="dropdown-item" href="#rondes">Rondes</a></li>
+        <li><a class="dropdown-item" href="#trobades">Trobades</a></li>
+        <li>
+          <hr class="dropdown-divider">
+        </li>
+        <li>
+          <h6 class="dropdown-header text-warning">Enllaços</h6>
+        </li>
+        <li><a class="dropdown-item" href="#blog">Blog del club</a></li>
+        <li><a class="dropdown-item" href="#rellotge">Rellotge</a></li>
+        <li><a class="dropdown-item" href="#validador">Validador</a></li>
+        <li>
+          <hr class="dropdown-divider">
+        </li>
+        <li>
+          <h6 class="dropdown-header text-primary click" data-bs-toggle="modal" data-bs-target="#ajuda">Ajuda</h6>
+        </li>
+      </ul>
+
+      <div class="dropdown" data-bs-toggle="dropdown" data-bs-target="#menuJugador" aria-expanded="false"
+        aria-controls="menuJugador" data-bs-auto-close="outside">
+        <img src="data:image/png;base64,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" alt="usuari"
+          class="circle userImg" referrerpolicy="no-referrer">
+      </div>
+
+      <div class="collapse  navbar-collapse search mt-2" role="search" id="collapseCerca">
+        <div class="input-group">
+          <span class="input-group-text" id="comptador"></span>
+          <input class="form-control" type="search" placeholder="Cerca">
+        </div>
+      </div>
+
+      <div class="dropdown-menu dropdown-menu-end p-3" id="menuJugador">
+        <div class="card-body text-center">
+          <div id="userCard" class=" position-relative"></div>
+          <p class="text-muted form-label btn" data-bs-toggle="modal" data-bs-target="#preferencies"
+            aria-expanded="false" aria-controls="desajug">Gestiona les preferències</p>
+          <p class="text-muted form-label btn" data-bs-toggle="modal" data-bs-target="#desajug" aria-expanded="false"
+            aria-controls="desajug">Canvia l'usuari</p>
+        </div>
+      </div>
+    </div>
+    <!-- </nav> -->
+
+    <ul class="collapse navbar-collapse nav nav-underline flex-nowrap text-nowrap overflow-x-scroll" id="collapsetabs">
+      <li class="nav-item ms-2"><a class="nav-link" href="#rondes">Classificació x fases</a></li>
+      <li class="nav-item"><a class="nav-link" href="#scrabbles">Scrabbles</a></li>
+      <li class="nav-item"><a class="nav-link" href="#jugada">Millor jugada</a></li>
+      <li class="nav-item"><a class="nav-link" href="#partida">Millor partida individual</a></li>
+      <li class="nav-item"><a class="nav-link" href="#conjunta">Millor partida conjunta</a></li>
+      <li class="nav-item "><a class="nav-link" href="#classificacio">Classificació x victòries</a></li>
+      <li class="nav-item"><a class="nav-link" href="#social">Participació social</a></li>
+      <li class="nav-item"><a class="nav-link" href="#immediatesa">Menys procrastinador</a></li>
+      <li class="nav-item"><a class="nav-link" href="#rondes">Rondes</a></li>
+      <li class="nav-item me-2"><a class="nav-link" href="#trobades">Trobades</a></li>
+    </ul>
+  </nav>
+
+  <div class="modal" tabindex="-1" id="desajug">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="modalTitol">Selecciona l'usuari</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body" id="modalBody">
+          <div class="row mb-3 g-3">
+            <div class="col">
+              <label for="inpdesajug">Comença a escriure el teu nom i tria de la llista
+                <input id="inpdesajug" type="search" class="form-control llistajugadors mb-3" data-datalist="jugadors"
+                  placeholder="Escriu" />
+            </div>
+            <datalist id="jugadors"></datalist>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal" tabindex="-1" id="preferencies">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="modalTitol">Gestiona les preferències</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body" id="modalBody">
+          <div class="row mb-3 g-3">
+            <div id="tema">
+              <div class="row">
+                <div class="col-8 mb-3"><i class="bi bi-sun-fill me-2"></i>
+                  <span class="ms-2">Tria l'esquema de colors</span>
+                </div>
+                <div class="col-4 text-end">
+                  <select class="form-select" id="temaselector">
+                    <option value="light">Clar</option>
+                    <option value="dark">Fosc</option>
+                    <option value="auto" selected>Auto</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row mb-3 g-3"></div>
+          <div>
+            <div class="row">
+              <div class="col-10 mb-3"><i class="bi bi-segmented-nav me-2"></i>
+                <span class="ms-2">Mostra les pestanyes</span>
+              </div>
+              <div class="col-2 text-end">
+                <div class="form-check form-switch">
+                  <input class="form-check-input" type="checkbox" id="pestanyes" value="pestanyes" name="pestanyes"
+                    data-bs-toggle="collapse" data-bs-target="#collapsetabs">
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+  
+
+  <div aria-live="polite" aria-atomic="true" class="position-relative">
+    <div class="toast-container top-0 end-0 p-3">
+      <div id="toast" class="toast align-items-center fade" role="alert">
+        <div class="d-flex">
+          <div class="toast-body">
+
+          </div>
+          <button type="button" class="btn-close me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <main class="container p-3 bg-body col-md-8 justify-content-center">
+    <div id="number"></div>
+    <div id="swiper">
+      <div id="content" class="row">
+      </div>
+    </div>
+  </main>
+
+  <div class="modal" tabindex="-1" id="desaimatge">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="modalTitol">Foto de perfil</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body" id="modalBody">
+          <p>Una foto ajuda als altres jugadors a reconèixer-te.</p>
+          <div class="d-flex justify-content-center imatge-container">
+            <div class="imgedit">
+              <div class="mt-3 mb-4 imatge-cercle imatge-container">
+                <img src="" class="userImg " id="resjugImatgeConf" />
+                <input name='imatge' id="ImatgeamagatConf" type="hidden">
+
+              </div>
+            </div>
+          </div>
+          <span class="image-upload d-flex justify-content-center">
+            <label class="btn btn-primary mb-4 me-3" for="imagefileConf" id="canviaimatgeConf">
+              <i class="bi bi-pencil"></i>
+              Canvia
+            </label>
+            <input type="file" class="visually-hidden" id="imagefileConf" onchange="carregaImatgeConf(event)"
+              accept="image/*">
+            <div>
+              <button type="submit" class="btn btn-primary mb-4" id="submitbtn" onclick="desaImatgeConf(this)">
+                <span class="spinner-border spinner-border-sm d-none" role="status" aria-hidden="true"
+                  id="spnbtn"></span>
+                <i class="bi bi-save"></i>
+                Desa
+              </button>
+            </div>
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal fade" id="ajuda" tabindex="-1" aria-labelledby="titolajuda" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-scrollable">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="titolajuda">Ajuda</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="accordion" id="accordioAjuda">
+
+                    <div class="accordion-item">
+                        <h4 class="accordion-header">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#navegacio" aria-expanded="false" aria-controls="navegacio">
+                                Navegació
+                            </button>
+                        </h4>
+                        <div id="navegacio" class="accordion-collapse collapse" data-bs-parent="#accordioAjuda">
+                            <div class="accordion-body">
+                                <p>Pots navegar per les distintes pantalles <strong>fent lliscar el dit</strong> a dreta o esquerra ja sigui
+                                    entre
+                                    classificacions, resum de jugador, rondes o partides.</p>
+                                <p>Sempre pots <strong>tornar a la vista anterior</strong> ja sigui amb la fletxa superior esquerra o bé amb
+                                    els botons
+                                    del navegador o dispositiu mòbil.</p>
+                                <p>Si pitges sobre el nom d'un jugador, sigui a la pantalla que sigui, et mostrarà el resum
+                                    d'aquest.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="accordion-item">
+                        <h4 class="accordion-header">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#Classificacions" aria-expanded="false"
+                                aria-controls="Classificacions">
+                                Classificacions
+                            </button>
+                        </h4>
+                        <div id="Classificacions" class="accordion-collapse collapse" data-bs-parent="#accordioAjuda">
+                            <div class="accordion-body">
+                                <p>A les vistes de les distintes classificacions pots fer <strong>cerques</strong> per a
+                                    qualsevol
+                                    dada que vulguis filtrar: pitja el botó de la lupa i es desplegarà el camp de cerca.
+                                    A mesura que escriguis quedaran visibles les targetes que continguin el terme de cerca.
+                                    <ul>Per exemple: <li>a la vista de classificació general pots filtrar els jugadors
+                                            d'un grup cercant
+                                            "grupA" o "grupB".</li>
+                                        <li>També podries filtrar els jugadors que duen 5 partides jugades cercant
+                                            "5/20".</li>
+                                        <li>A la vista Scrabbles podries cercar "+5" per saber qui ha fet 5 bingos a la
+                                            darrera partida
+                                            jugada.</li>
+                                        <li>A les vistes de millor partida individual i millor jugada es pot filtrar per
+                                            "millora" per
+                                            llistar els jugadors que han millorat la seva classificació a la darrera partida
+                                            jugada.</li>
+                                    </ul>
+                                </p>
+
+                                <p>A les <strong>targetes</strong> de cada jugador pitjant fletxeta negra (o a qualsevol
+                                    punt de la
+                                    targeta que no sigui el nom, adversari o mot de millor jugada) es despleguen els
+                                    resultats
+                                    corresponents de les partides jugades.</p>
+                                <p>A la <strong>classificació general</strong> hi ha una icona de percentatge adalt de tot
+                                    a la dreta
+                                    per a ordenar la llista per percentatge de victòries.</p>
+                                <p>A la vista de <strong>partides conjuntes</strong> hi ha una icona d'un calendari per a
+                                    ordenar la
+                                    llista cronològicament, de la més recent a la més antiga.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="accordion-item">
+                        <h4 class="accordion-header">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#Rondes" aria-expanded="false" aria-controls="Rondes">
+                                Rondes
+                            </button>
+                        </h4>
+                        <div id="Rondes" class="accordion-collapse collapse" data-bs-parent="#accordioAjuda">
+                            <div class="accordion-body">
+                                <p>Pitjant sobre les targetes de cada ronda podràs veure tots els aparellaments i els
+                                    resultats.</p>
+                                <p>Pitjant a cada partida s'obre el formulari d'entrada de resultats o un resum si la
+                                    partida ja s'ha
+                                    jugat.</p>
+                                <p>Al resum de la partida jugada trobareu la icona <i class="bi bi-share-fill"></i> que
+                                    conté l'enllaç
+                                    directe a la vista per a poder compartir o desar.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="accordion-item">
+                        <h4 class="accordion-header">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#resumjugador" aria-expanded="false" aria-controls="resumjugador">
+                                Resum del jugador
+                            </button>
+                        </h4>
+                        <div id="resumjugador" class="accordion-collapse collapse" data-bs-parent="#accordioAjuda">
+                            <div class="accordion-body">
+                                <p>En aquesta vista trobaràs informació històrica del jugador i tota la informació de la
+                                    present
+                                    competició per saber de quin peu calça.</p>
+                                <p>Aquesta vista és molt útil per a visualitzar les partides pendents i disputades de
+                                    cadascú i
+                                    evitar haver de fer cerques per les rondes. Apareixen primer les partides disputades per
+                                    ordre
+                                    cronològic i la resta de rondes sense disputar. D'aquesta manera podreu veure a un cop
+                                    d'ull la
+                                    ratxa!!. Si vols veure les partides ordenades per ronda, basta pitjar sobre la icona
+                                    del
+                                    calendari a la dreta del títol de la secció.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="accordion-item">
+                        <h4 class="accordion-header">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#resultats" aria-expanded="false" aria-controls="resultats">
+                                Enviament de resultats
+                            </button>
+                        </h4>
+                        <div id="resultats" class="accordion-collapse collapse" data-bs-parent="#accordioAjuda">
+                            <div class="accordion-body">
+                                <p>Ja sigui des de la vista de resum personal com de la ronda corresponent, pitjant la
+                                    fletxa
+                                    s'obrirà el formulari d'enviament de resultats.</p>
+                                <h4>Modificació d'un resultat enviat</h4>
+                                <p>Un cop s'ha enviat el resultat, aquest es pot editar sempre que la ronda estigui oberta.
+                                    Trobaràs
+                                    el botó "Edita" a la vista resum de la partida.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="accordion-item">
+                        <h4 class="accordion-header">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#Trobades" aria-expanded="false" aria-controls="Trobades">
+                                Trobades
+                            </button>
+                        </h4>
+                        <div id="Trobades" class="accordion-collapse collapse" data-bs-parent="#accordioAjuda">
+                            <div class="accordion-body">
+                                <p>Sempre que hi hagi una trobada programada, la primera pantalla que s'obrirà en carregar
+                                    l'app
+                                    serà la de trobades, amb la informació relativa al dia, lloc i hora.</p>
+                                <p>Per confirmar l'assistència o la no assistència, hauràs d'obrir el formulari pitjant el
+                                    botó amb
+                                    la mà vermella.
+                                <ol>
+                                    <li>Identifica't, si no ho has fet ja a l'app, començant a escriure el nom i es
+                                        desplegarà una
+                                        llista filtrada amb tots els jugadors, pitja sobre el teu nom.</li>
+                                    <li>Si no has d'assistir, no has de tocar res més que el botó "Envia la resposta"</li>
+                                    <li>Si hi assistiràs, es desplegaran les opcions pitjant <i
+                                            class="bi bi-toggle-on"></i></li>
+                                    <li>Tria si jugaràs amb el que et correspon per ronda, si és un altre jugador triant de
+                                        la llista o
+                                        bé que estàs disponible.</li>
+                                    <li>Digues si duràs un joc o si quedaràs a sopar (si hi ha l'opció)</li>
+                                    <li>Confirma les respostes amb el botó "Envia la resposta"</li>
+                                </ol>
+                                </p>
+                                <p>Per a modificar l'assistència, repeteix el procés amb les noves opcions.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="accordion-item">
+                        <h4 class="accordion-header">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#configuracions" aria-expanded="false"
+                                aria-controls="configuracions">
+                                Gestiona les preferències
+                            </button>
+                        </h4>
+                        <div id="configuracions" class="accordion-collapse collapse" data-bs-parent="#accordioAjuda">
+                            <div class="accordion-body">
+                                <p>Al botó d'usuari pots identificar-te pitjant sobre <strong>Canvia l'usuari</strong> per
+                                    tal de
+                                    tenir un accés directe a la teva informació.
+                                <p>També pots gestionar les preferències de visualització de l'app pitjant sobre
+                                    <strong>Gestiona les
+                                        preferències</strong>. Aquí hi trobaràs l'opció de visualitzar la navegació per
+                                    <strong>pestanyes</strong> i l'<strong>esquema de colors</strong>.</p>
+                                <p>L'esquema de colors, per defecte, canviarà al tema del teu sistema operatiu, ja sigui fosc
+                                    o clar.
+                                </p>
+                                <p>Si el teu navegador <strong>accepta galetes</strong>, totes aquestes preferències es
+                                    desaran al
+                                    sistema i no caldrà que repeteixis l'operació cada vegada que entris a l'app.</p>
+                                <p>Si el teu navegador <strong>no accepta galetes</strong> però vols que entri sempre amb el
+                                    teu
+                                    usuari i preferències, identifica't, fes els canvis per posar-ho al teu gust i desa
+                                    l'enllaç de
+                                    la icona <i class="bi bi-share-fill"></i> que trobaràs al menú d'usuari de la barra
+                                    principal.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="accordion-item">
+                        <h4 class="accordion-header">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#telegram" aria-expanded="false" aria-controls="telegram">
+                                Canal de Telegram
+                            </button>
+                        </h4>
+                        <div id="telegram" class="accordion-collapse collapse" data-bs-parent="#accordioAjuda">
+                            <div class="accordion-body">
+                                <p>Si et fas seguidor del canal de <a href="https://t.me/+83OoYpZNGC0zZTM8">Telegram</a>
+                                    rebràs els
+                                    resultats amb un enllaç a la partida, per no perdre pistonada. De tant en tant també
+                                    s'envien
+                                    estadístiques d'interès.</p>
+                            </div>
+                        </div>
+                    </div>
+            <div class="accordion-item">
+              <h4 class="accordion-header">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                  data-bs-target="#contacte" aria-expanded="false" aria-controls="contacte">
+                  Contacte i suggeriments
+                </button>
+              </h4>
+              <div id="contacte" class="accordion-collapse collapse" data-bs-parent="#accordioAjuda">
+                <div class="accordion-body">
+                  <p>Si tens dubtes, trobes errades, vols proposar millores o fer algun comentari no dubtis a
+                    contactar amb mi, som en Toni Llull.</p>
+                  <div class="d-flex justify-content-center">
+                    <a href="https://wa.me/34652876059" class="btn btn-success m-3"><i
+                        class="bi bi-whatsapp me-2"></i>Whatsapp</a>
+                    <a href="mailto:tonillull@gmail.com" class="btn btn-primary m-3"><i
+                        class="bi bi-envelope me-2"></i>Email</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>      
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary" data-bs-dismiss="modal">D'acord</button>            
+        </div>
+      </div>
+    </div>
+  </div>
+      <script src="carregant.js"></script>
+      <script type="module" src="moduls.js"></script>
+      <script src="parametres.js"></script>
+      <script async defer src="templates.js"></script>
+      <script async defer src="respostes.js"></script>
+      <script async defer src="trobades.js"></script>
+      <script async defer src="swipe.js"></script>
+      <script async defer src="nav.js"></script>
+      <script async defer src="imatgeconf.js"></script>
+
+
+
+      <!-- Incluir Bootstrap 5 JavaScript (jQuery y Popper.js son requeridos por Bootstrap) -->
+      <!-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> -->
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+        crossorigin="anonymous">
+
+        </script>
+</body>
+
+</html>

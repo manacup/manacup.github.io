@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <div class="p-1 entrada" ng-repeat="jugador in jugadors | orderBy : ['-Scrabbles'] | filter : {Nom:cerca}">
     <div class="card
     {{
@@ -53,4 +54,61 @@
             </table>
         </div>
     </div>
+=======
+<div class="p-1 entrada" ng-repeat="jugador in jugadors | orderBy : ['-Scrabbles'] | filter : {Nom:cerca}">
+    <div class="card
+    {{
+        jugador.mitjanaScrabbles >= 3
+          ? 'border-danger'
+          : jugador.mitjanaScrabbles >= 2
+          ? 'border-primary'
+          : ''
+      }}    
+    " data-bs-toggle="collapse" data-bs-target="#collapse{{jugador.ID}}">
+        <div class="card-body desplega">
+            <div class="row ">
+                <div class="col-2">
+                    <div class="circle">{{jugador.posScrabbles}}</div>
+                </div>
+                <div class="col-10">
+                    <div class="d-flex align-items-center">
+                        <div class="h5 nom">{{jugador.Nom}}</div>
+                        <div  class="flex-grow-1"></div>
+                        <span class="badge text-bg-primary ">+{{jugador.movimentScrabbles}}</span>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <div class="d-flex align-items-start flex-column">
+                                <small>Total Scrabbles:</small>
+                                <div>{{jugador.Scrabbles}}</div>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="d-flex align-items-start flex-column">
+                                <small>Mitjana:</small>
+                                <div>{{jugador.mitjanaScrabbles}}</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="collapse" id="collapse{{jugador.ID}}">
+            <table class="table">
+                <tr>
+                    <td></td>
+                    <td><small>Total Scrabbles</small></td>
+                    <td><small>Adversari</small></td>
+                    <td></td>
+                </tr>
+                <tr ng-repeat="p in jugador.partides |orderBy:'-Scrabbles_1-0'">
+                    <td></td>
+                    <td>{{p.Scrabbles_1-0}}</td>
+                    <td>{{p.Jugador2}}</td>
+                    <td></td>
+                </tr>
+            </table>
+        </div>
+    </div>
+>>>>>>> fb121be910205e5f6ca7bef6a2a2d60db7ef3306
 </div>
