@@ -727,9 +727,8 @@ function renderClassificacio(jugador) {
                         }" data-grup="${
                           jugador.grup}">
                         <span class="visually-hidden-focusable">grup${
-                         "grup "+ jugador.grup
-                        }</span>
-                          ${jugador.grup}
+                         jugador.grup
+                        }</span>grup ${jugador.grup}
                         </span>                        
                         <span class="badge text-bg-${
                           jugador.Semafor
