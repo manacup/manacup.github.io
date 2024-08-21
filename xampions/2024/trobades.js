@@ -337,12 +337,13 @@ function renderFormTrobada(trobada) {
   
       <div class="row">
         <div class="col-12">
-          <div class="mb-3">
+          <div class="input-group mb-3">
             
-            <input type="search" class="form-control llistajugadorsform" name="Nom" id="jugAssistencia" required data-datalist="jugadors" value="${
+            <input type="search" class="form-control llistajugadorsform" name="Nom" id="jugAssistencia" required disabled data-datalist="jugadors" value="${
               jugadorDesat.Nom || ""
             }" placeholder="Comença a escriure el nom i tria de la llista">
-            
+             <button class="btn btn-primary" type="button" id="button-addon2" data-bs-toggle="modal" data-bs-target="#desajug" aria-expanded="false"
+              aria-controls="desajug">Canvia</button>
           </div>
         </div>
       </div>
