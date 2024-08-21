@@ -343,7 +343,7 @@ function renderFormTrobada(trobada) {
               jugadorDesat.Nom || ""
             }" placeholder="Comença a escriure el nom i tria de la llista">
              <button class="btn btn-primary" type="button" id="button-addon2" data-bs-toggle="modal" data-bs-target="#desajug" aria-expanded="false"
-              aria-controls="desajug">Canvia</button>
+              aria-controls="desajug" onclick="loadContent(['trobades'])">Canvia</button>
           </div>
         </div>
       </div>
