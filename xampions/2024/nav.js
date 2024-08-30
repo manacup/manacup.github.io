@@ -194,9 +194,9 @@ function loadContent(vista) {
         return posicioordre;
       }
       function ordreGrup(a, b) {
-        const groupA = a.Grup.toUpperCase();
-        const groupB = b.Grup.toUpperCase();
-
+        /* const groupA = a.Grup.split("-")[0];
+        const groupB = b.Grup.split("-")[0];
+console.log(groupA,groupB)
         if (groupA < groupB) {
           return -1;
         }
@@ -204,7 +204,9 @@ function loadContent(vista) {
           return 1;
         }
 
-        return 0;
+        return 0; */
+        var posiciogrup = a.Grup.split("-")[0] - b.Grup.split("-")[0];
+        return posiciogrup;
       }
 
       partidesfiltagrupades
