@@ -194,9 +194,9 @@ function loadContent(vista) {
         return posicioordre;
       }
       function ordreGrup(a, b) {
-        /* const groupA = a.Grup.split("-")[0];
-        const groupB = b.Grup.split("-")[0];
-console.log(groupA,groupB)
+/*         const groupA = a.Grup.toUpperCase();
+        const groupB = b.Grup.toUpperCase();
+
         if (groupA < groupB) {
           return -1;
         }
@@ -342,10 +342,86 @@ console.log(groupA,groupB)
     case "detallpartida":
       navbarTitle.innerHTML = "Detall de la partida";
       var partida = aparellaments.filter((j) => j.ID == options)[0];
-      console.log(aparellaments);
+      //console.log(aparellaments);
       renderDetallPartida(partida);
 
       break;
+
+      case "detallfase":
+        navbarTitle.innerHTML = "Suma partides";
+        var partidesfase = aparellaments.filter((j) => j.IDma == options);
+        var partida = {}
+console.log(partidesfase)
+  /* {
+    "Ronda": 1,
+    "idJug1": 1,
+    "idJug2": 11,
+    "Jugador1": "Lina Maria Riera",
+    "Jugador2": "Antoni Nicolau",
+    "ID": 120110,
+    "Puntuacio_1": 477,
+    "Puntuacio_2": 215,
+    "Mot_1": "ESTRANYIN",
+    "Puntsmot_1": 118,
+    "Scrabbles_1": 3,
+    "Mot_2": "QUIC",
+    "Puntsmot_2": 29,
+    "Scrabbles_2": 0,
+    "Lletra_1": "",
+    "Punts_lletra_1": "",
+    "Lletra_2": "",
+    "Punts_lletra_2": "",
+    "Comentaris": "",
+    "Full": "https://drive.google.com/thumbnail?id=1YBSXlyuEFsztCnlvlTvuVkX0wDE69wRa&sz=w1000",
+    "Tauler": "",
+    "Suma_punts": 692,
+    "Data": 45476.81840304398,
+    "Punts_social": 0,
+    "Punts_1": 1,
+    "Punts_2": 0,
+    "Estat": "Ronda tancada",
+    "Nova": "",
+    "Pos_Conjunta": 30,
+    "Taula": 1,
+    "Punts_velocitat": 26,
+    "GrupPosició": "1-32",
+    "ma": 1,
+    "IDma": 12011
+} */
+  partida.Estat= "Ronda tancada"
+  partida.Jugador1=partidesfase[0].Jugador1
+  partida.Jugador2=partidesfase[0].Jugador2
+  partida.Ronda = partidesfase[0].Ronda
+  partida.Puntuacio_1 = partidesfase[0].Puntuacio_1 + partidesfase[1].Puntuacio_1
+  partida.Puntuacio_2 = partidesfase[0].Puntuacio_2 + partidesfase[1].Puntuacio_2
+  partida.Scrabbles_1 = partidesfase[0].Scrabbles_1 + partidesfase[1].Scrabbles_1
+  partida.Scrabbles_2 = partidesfase[0].Scrabbles_2 + partidesfase[1].Scrabbles_2
+  if(partides[0].Puntsmot_1>=partidesfase[1].Puntsmot_1){
+    partida.Puntsmot_1 = partidesfase[0].Puntsmot_1 
+    partida.Mot_1 = partidesfase[0].Mot_1
+  }else{
+    partida.Puntsmot_1 = partidesfase[1].Puntsmot_1
+    partida.Mot_1 = partidesfase[1].Mot_1
+  }
+  if(partides[0].Puntsmot_2>=partidesfase[1].Puntsmot_2){
+    partida.Puntsmot_2 = partidesfase[0].Puntsmot_2 
+    partida.Mot_2 = partidesfase[0].Mot_2
+  }else{
+    partida.Puntsmot_2 = partidesfase[1].Puntsmot_2
+    partida.Mot_2 = partidesfase[1].Mot_2
+  }
+  partida.Suma_punts = partida.Puntuacio_1 + partida.Puntuacio_2
+  partida.Punts_social = partidesfase[0].Punts_social + partidesfase[1].Punts_social
+  partida.Full = partidesfase[0].Full
+  partida.Tauler = partidesfase[1].Full
+  partida.ma = "1 + 2"
+  partida.Comentaris = partidesfase[0].Comentaris + "<br>"+partidesfase[1].Comentaris
+  partida.Punts_velocitat = "x"
+console.log(partida)
+        
+        renderDetallPartida(partida);
+  
+        break;
 
     case "formulari":
       navbarTitle.innerHTML = "Envia el resultat";
