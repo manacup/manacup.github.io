@@ -1549,7 +1549,7 @@ function ompleTaulaRonda(partidesRonda) {
   const datesAsObjects = partidesRonda.map((date) => {
     const parts = date.Data.split("/");
     return new Date(parts[2], parts[1] - 1, parts[0]);
-  }).filter(partida=>partida.Ronda!="none");
+  });
   function compareDates(a, b) {
     const parts1 = a.Data.split("/");
     var data1 = new Date(parts1[2], parts1[1] - 1, parts1[0]);
