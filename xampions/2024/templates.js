@@ -160,8 +160,8 @@ function renderJugador(jugador) {
 
     
                      <!-- <li class="list-group-item d-flex justify-content-between align-items-center" data-bs-toggle="collapse" data-bs-target="#collapseResum${
-                        jugador.ID
-                      }">
+                       jugador.ID
+                     }">
                         <div class="dropdown-toggle flex-grow-1">Posició</div>
                         <div class="">${jugador.Posició}</div>             
                       </li>
@@ -556,7 +556,9 @@ function renderDetallPartida(partida) {
     
       <div class="p-1">
         <div class="d-flex align-items-center p-2">
-          <h3 class="flex-grow-1">${fases[partida.Ronda-1] + "<br> Partida "+partida.ma}</h3>
+          <h3 class="flex-grow-1">${
+            fases[partida.Ronda - 1] + "<br> Partida " + partida.ma
+          }</h3>
           <div class=" position-relative me-4" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Jugada a trobada oficial">
             <span class="h1 material-symbols-outlined">diversity_3</span>
             <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-success ${
@@ -634,7 +636,23 @@ function renderDetallPartida(partida) {
             </div>
           </div>
         </div>
-        <div id="carouselExampleControls" class="carousel slide mb-4" data-bs-ride="carousel">
+        <div class="text-center">
+          <div class="d-flex justify-content-center mb-4">
+              <a href="${
+                    partida.Full || "/icons/IconaFull.png"
+                  }" target="_blank" class="col align-items-start"><img src="${
+              partida.Full || "/icons/IconaFull.png"
+            }" class="rounded m-2 p-2" width="90%" height="auto">
+              <a href="${
+            partida.Tauler || "/icons/IconaTauler.png"
+          }" target="_blank" class="col align-items-end"><img src="${
+              partida.Tauler ||"/icons/IconaTauler.png"
+            }" class="rounded m-2 p-2" width="90%" height="auto"></a>
+          </div>
+        </div>
+
+      <!---  
+      <div id="carouselExampleControls" class="carousel slide mb-4" data-bs-ride="carousel">
           <div class="carousel-inner" >
             <div class="carousel-item active quadrat">
               <img src="${
@@ -655,7 +673,10 @@ function renderDetallPartida(partida) {
               <span class="visually-hidden">Next</span>
             </button>
           </div>
-        </div>
+        </div> 
+        --!>
+
+
     <p>Resultats enviats el ${ExcelDateToJSDate(partida.Data)}</p>
         <blockquote class="blockquote bg-danger bg-opacity-25 mb-4" style="border-left: 2px solid red;">
           <div class="mb-0 p-3 ${!partida.Comentaris ? "d-none" : ""}">${
@@ -724,10 +745,9 @@ function renderClassificacio(jugador) {
                         </div>
                         <span class="badge text-bg-secondary me-1 grup ${
                           jugador.grup != "" ? "" : "d-none"
-                        }" data-grup="${
-                          jugador.grup}">
+                        }" data-grup="${jugador.grup}">
                         <span class="visually-hidden-focusable">grup${
-                         jugador.grup
+                          jugador.grup
                         }</span>grup ${jugador.grup}
                         </span>                        
                         <span class="badge text-bg-${
@@ -802,18 +822,18 @@ function ordenarLlistaGrup() {
   const filas = Array.from(llista.querySelectorAll(".entrada"));
 
   filas
-  .sort((a, b) => {
-    const textA = a.querySelector(".Posició").dataset.grup;
-    const textB = b.querySelector(".Posició").dataset.grup;
-    //console.log(textA,textB)
-    return textA - textB;
-  })
-  .sort((a, b) => {
-    const textA = a.querySelector(".grup").dataset.grup;
-    const textB = b.querySelector(".grup").dataset.grup;
-    //console.log(textA,textB)
-    return textA - textB;
-  });
+    .sort((a, b) => {
+      const textA = a.querySelector(".Posició").dataset.grup;
+      const textB = b.querySelector(".Posició").dataset.grup;
+      //console.log(textA,textB)
+      return textA - textB;
+    })
+    .sort((a, b) => {
+      const textA = a.querySelector(".grup").dataset.grup;
+      const textB = b.querySelector(".grup").dataset.grup;
+      //console.log(textA,textB)
+      return textA - textB;
+    });
 
   while (llista.firstChild) {
     llista.removeChild(llista.firstChild);
@@ -1429,9 +1449,11 @@ function renderRondes(ronda) {
                   <div class="row" >                    
                       <div class="d-flex align-items-center">
                           <div class="h5  flex-grow-1" >${
-                            fases[ronda.Ronda-1]
+                            fases[ronda.Ronda - 1]
                           }</div>
-                          <span class="badge text-bg-secondary ${ronda.Estat != "none" ? "" : "d-none"} me-1">
+                          <span class="badge text-bg-secondary ${
+                            ronda.Estat != "none" ? "" : "d-none"
+                          } me-1">
                           ${ronda.Jugades}
                           /
                           ${ronda.Programades}
@@ -1441,12 +1463,10 @@ function renderRondes(ronda) {
                               ? "danger"
                               : "primary"
                           } ${ronda.Estat != "none" ? "" : "d-none"}">${
-                              ronda.Estat
-                            }</span>
+    ronda.Estat
+  }</span>
                       </div>
-                      <small><i>Data límit: ${
-                        ronda.Data_fi
-                      }</i></small>
+                      <small><i>Data límit: ${ronda.Data_fi}</i></small>
                                   
                   </div>
                   <div class="row pt-2">
@@ -1508,8 +1528,12 @@ function renderRondes(ronda) {
             </div>   
             <div class="card-footer text-body-secondary">
             <div class="d-flex justify-content-around">
-             <button type="button" class="btn btn-primary detallronda" data-id="${ronda.Ronda}">Aparellaments</button>
-              <button type="button" class="btn btn-primary detalleliminatoria" data-id="${ronda.Ronda}">Classificació</button>
+             <button type="button" class="btn btn-primary detallronda" data-id="${
+               ronda.Ronda
+             }">Aparellaments</button>
+              <button type="button" class="btn btn-primary detalleliminatoria" data-id="${
+                ronda.Ronda
+              }">Classificació</button>
               </div> 
               </div> 
           </div>
@@ -1560,7 +1584,7 @@ function ompleTaulaRonda(partidesRonda) {
                 <div class="${
                   partida.Estat == "Ronda tancada" ? "text-danger" : ""
                 }">
-                  <small> ${fases[partida.Ronda-1]}</small>                
+                  <small> ${fases[partida.Ronda - 1]}</small>                
                 </div>
               </td>              
               <td>
@@ -1690,12 +1714,12 @@ function renderAparellaments(partida) {
                           <div class="d-flex align-items-center">
                               <div class="h6  flex-grow-1"><span  class="nom ${
                                 partida.resultats[0].Punts_2 +
-                                    partida.resultats[1].Punts_2 ==
-                                    2 ||
+                                  partida.resultats[1].Punts_2 ==
+                                  2 ||
                                 partida.resultats[0].Puntuacio_1 +
                                   partida.resultats[1].Puntuacio_1 <
-                                partida.resultats[0].Puntuacio_2 +
-                                  partida.resultats[1].Puntuacio_2
+                                  partida.resultats[0].Puntuacio_2 +
+                                    partida.resultats[1].Puntuacio_2
                                   ? "fw-bold"
                                   : "fw-normal"
                               }">${partida.Jugador2}</span></div>
@@ -1773,7 +1797,9 @@ function renderAparellaments(partida) {
                           }">${partida.resultats[0].Puntuacio_2}</span>
                           </div>
                           <div class="row col-2 d-flex align-items-center">
-                          <span class="text-primary text-center fs-1  ${sajugada?"":"d-none"}">|</span>
+                          <span class="text-primary text-center fs-1  ${
+                            sajugada ? "" : "d-none"
+                          }">|</span>
                           
                           </div>
                           <div class="row col detallpartida" data-id="${
@@ -1796,27 +1822,29 @@ function renderAparellaments(partida) {
                           
                           
                          </div> 
-                         <div class="row col  ${sajugada?"":"d-none"} detallfase"  data-id="${
-                            partida.resultats[1].IDma
-                          }">
+                         <div class="row col  ${
+                           sajugada ? "" : "d-none"
+                         } detallfase"  data-id="${partida.resultats[1].IDma}">
                           <span class="text-primary  text-end ${
                             partida.resultats[0].Puntuacio_1 +
-                                partida.resultats[1].Puntuacio_1 >
-                              partida.resultats[0].Puntuacio_2 +
-                                partida.resultats[1].Puntuacio_2
+                              partida.resultats[1].Puntuacio_1 >
+                            partida.resultats[0].Puntuacio_2 +
+                              partida.resultats[1].Puntuacio_2
                               ? "fw-bold"
                               : ""
-                          }">(${partida.resultats[0].Puntuacio_1 +
-                            partida.resultats[1].Puntuacio_1})</span>
+                          }">(${
+    partida.resultats[0].Puntuacio_1 + partida.resultats[1].Puntuacio_1
+  })</span>
                           <span class="text-primary  text-end ${
                             partida.resultats[0].Puntuacio_1 +
-                                partida.resultats[1].Puntuacio_1 <
-                              partida.resultats[0].Puntuacio_2 +
-                                partida.resultats[1].Puntuacio_2
+                              partida.resultats[1].Puntuacio_1 <
+                            partida.resultats[0].Puntuacio_2 +
+                              partida.resultats[1].Puntuacio_2
                               ? "fw-bold"
                               : ""
-                          }">(${partida.resultats[0].Puntuacio_2 +
-                            partida.resultats[1].Puntuacio_2})</span>
+                          }">(${
+    partida.resultats[0].Puntuacio_2 + partida.resultats[1].Puntuacio_2
+  })</span>
                       
                       
                           
@@ -1829,16 +1857,14 @@ function renderAparellaments(partida) {
       
   </div>
 `;
-  
+
   let template = "";
   if (partida.resultats) {
     template = aparellamentsTemplateXampions;
-
   } else {
     template = aparellamentsTemplate;
   }
-  
-  
+
   document.getElementById("content").innerHTML += template;
 }
 
@@ -1846,13 +1872,18 @@ function renderLlistaEliminatoria(jugador) {
   const llistafasestemplate = `
     <div class="p-1 entrada">
       <div class="card click ${
-                jugador.Posició <= 3
-                  ? " border-danger" : jugador.Posició <=8 ? "border-primary" : "" }" data-id="${jugador.ID}">
+        jugador.Posició <= 3
+          ? " border-danger"
+          : jugador.Posició <= 8
+          ? "border-primary"
+          : ""
+      }" data-id="${jugador.ID}">
         <div class="card-body">
           <div class="row ">
             <div class="col-2">
               <div class="circle ${
-                            jugador.Baixa == " TRUE" ? "bg-danger" : "" }">${jugador.Posició}
+                jugador.Baixa == " TRUE" ? "bg-danger" : ""
+              }">${jugador.Posició}
               </div>
             </div>
             <div class="col-10">
@@ -1863,54 +1894,63 @@ function renderLlistaEliminatoria(jugador) {
                 <div class="flex-grow-1">
                 </div>
                 <span class="badge nom text-bg-${
-                                jugador.totalPunts1 <
-                                jugador.totalPunts2
-                                  ? "success" : "danger" }">
+                  jugador.totalPunts1 < jugador.totalPunts2
+                    ? "success"
+                    : "danger"
+                }">
                   ${jugador.Jugador2}
                 </span>
               </div>
               <div class="row">
                 <div class="col">
                   <div class="d-flex align-items-start flex-column detallpartida"  data-id="${
-                                        jugador.resultats[0].ID
-                                        }" data-estat="${jugador.resultats[0].Estat}">
+                    jugador.resultats[0].ID
+                  }" data-estat="${jugador.resultats[0].Estat}">
                     <small>Partida 1:</small>
                     <div>
                     <small>Pts:</small>
                     
                       <span class=" ${
-                                          jugador.resultats[0].Puntuacio_1 >
-                                          jugador.resultats[0].Puntuacio_2
-                                            ? " fw-bold" : "" }">${jugador.resultats[0].Puntuacio_1}
+                        jugador.resultats[0].Puntuacio_1 >
+                        jugador.resultats[0].Puntuacio_2
+                          ? " fw-bold"
+                          : ""
+                      }">${jugador.resultats[0].Puntuacio_1}
                       </span>
                       </div>
                       <div>
                        <small>Dif:</small>
                     
-                      <small class=" ">${jugador.resultats[0].Puntuacio_1 -
-                                              jugador.resultats[0].Puntuacio_2}
+                      <small class=" ">${
+                        jugador.resultats[0].Puntuacio_1 -
+                        jugador.resultats[0].Puntuacio_2
+                      }
                       </small>
                     </div>
                   </div>
                 </div>
                 <div class="col">
                   <div class="d-flex align-items-start flex-column detallpartida" data-id="${
-                                        jugador.resultats[1].ID
-                                      }" data-estat="${jugador.resultats[1].Estat}">
+                    jugador.resultats[1].ID
+                  }" data-estat="${jugador.resultats[1].Estat}">
                     <small>Partida 2:</small>
                     <div>
                     <small>Pts:</small>
                       <span class=" ${
-                                          jugador.resultats[1].Puntuacio_1 >
-                                          jugador.resultats[1].Puntuacio_2
-                                            ? " fw-bold" : "" }">${jugador.resultats[1].Puntuacio_1}
+                        jugador.resultats[1].Puntuacio_1 >
+                        jugador.resultats[1].Puntuacio_2
+                          ? " fw-bold"
+                          : ""
+                      }">${jugador.resultats[1].Puntuacio_1}
                       </span>
                     </div>
                     <div>
                        <small>Dif:</small>
                     
-                      <small class=" ">${jugador.resultats[1].Puntuacio_1 -
-                                              jugador.resultats[1].Puntuacio_2}
+                      <small class=" ">${
+                        jugador.resultats[1].Puntuacio_1 -
+                        jugador.resultats[1].Puntuacio_2
+                      }
                       </small>
                     </div>
                   </div>
@@ -1921,8 +1961,10 @@ function renderLlistaEliminatoria(jugador) {
                     <div>
                     <small>Pts:</small>
                     <span class=" text-end ${
-                                      jugador.totalPunts1>jugador.totalPunts2
-                                        ? " fw-bold" : "" }">${jugador.totalPunts1}
+                      jugador.totalPunts1 > jugador.totalPunts2
+                        ? " fw-bold"
+                        : ""
+                    }">${jugador.totalPunts1}
                     </span>
                     </div>
                     <div>
@@ -1938,7 +1980,7 @@ function renderLlistaEliminatoria(jugador) {
         </div>
       </div>
     </div>       
-    `
+    `;
 
   document.getElementById("content").innerHTML += llistafasestemplate;
 }
@@ -1971,7 +2013,7 @@ function zoom(e) {
   zoomState = (zoomState + 1) % zoomLevels.length; // Alterna entre els nivells de zoom
   zoomer.style.backgroundSize = zoomLevels[zoomState] * 100 + "%";
 }
-function ExcelDateToJSDate(serial,utc) {
+function ExcelDateToJSDate(serial, utc) {
   var utc_days = Math.floor(serial - 25569);
   var utc_value = utc_days * 86400;
   var date_info = new Date(utc_value * 1000);
@@ -1994,13 +2036,11 @@ function ExcelDateToJSDate(serial,utc) {
     minutes,
     seconds
   );
-  console.log(jsdate)
-  if(utc){
-    return jsdate.toISOString()
-  }else{
-    return jsdate.toLocaleDateString()
+  console.log(jsdate);
+  if (utc) {
+    return jsdate.toISOString();
+  } else {
+    return jsdate.toLocaleDateString();
   }
-  ;
   //;
 }
-
