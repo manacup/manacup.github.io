@@ -65,7 +65,8 @@ function renderJugador(jugador) {
                     urlApp + "&vista=detall&options=" + jugador.ID
                   }" target="_blank" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Enllaç a la vista actual">
                     <i class="bi bi-share-fill"></i>
-                  </a>                  
+                  </a>
+                  
                   
                   <div class="d-flex justify-content-center imatge-container">
                     <div class="mt-3 mb-4 imatge-cercle img">
