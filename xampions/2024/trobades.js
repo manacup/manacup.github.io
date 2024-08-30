@@ -341,7 +341,7 @@ function renderFormTrobada(trobada) {
             
             <input type="search" class="form-control llistajugadorsform" name="Nom" id="jugAssistencia" required disabled  value="${
               jugadorDesat.Nom || ""
-            }" placeholder="Comença a escriure el nom i tria de la llista">
+            }" placeholder="Comença a escriure el nom i tria de la llista" readonly>
              <button class="btn btn-primary" type="button" id="button-addon2" data-bs-toggle="modal" data-bs-target="#desajug" aria-expanded="false"
               aria-controls="desajug" onclick="loadContent(['trobades'])">Canvia</button>
           </div>
