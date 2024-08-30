@@ -636,6 +636,7 @@ function renderDetallPartida(partida) {
             </div>
           </div>
         </div>
+        
         <div class="text-center">
           <div class="d-flex justify-content-center mb-4">
               <a href="${
