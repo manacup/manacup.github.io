@@ -126,11 +126,12 @@ function iniciJSON(vista) {
       dades = data.dades;
       // Process 'jugadors' data...
       dades.forEach((jug) => {
+        jug.partides = data.partides.filter(function (item) { return item.Jugador1 === jug.Nom && item.Estat != "none";; })
         var jugadorsOpt = document.getElementById("jugadors");
         jugadorsOpt.innerHTML += `<option value="${jug.ID}">${jug.Nom}</option>`;
       });
       document.getElementById("loaded").innerHTML = "<span>loaded2</span>";
-
+console.log(dades)
       // Example: Accessing data from the 'aparellaments' response
       aparellaments = data.aparellaments.filter((p) => p.ID > 0);
       // Process 'aparellaments' data...
