@@ -214,6 +214,7 @@ function loadContent(vista) {
         .sort(ordrePuntsJug)
         .sort(ordreGrup);
       //console.log(dades)
+
       var ordrejug = 1;
       partidesfiltagrupades.forEach((partida) => {
         partida.Posició = ordrejug;
@@ -223,6 +224,7 @@ function loadContent(vista) {
           document.getElementById("content").innerHTML +=
             "<h6>Grup " + grup + "</h6>";
         }
+        partida.Baixa = dades.filter(d=>d.Nom==partida.Jugador1)[0].Baixa
 
         renderLlistaEliminatoria(partida);
       });

@@ -1883,7 +1883,7 @@ function renderLlistaEliminatoria(jugador) {
           <div class="row ">
             <div class="col-2">
               <div class="circle ${
-                jugador.Baixa == " TRUE" ? "bg-danger" : ""
+                jugador.Baixa == "TRUE" ? "bg-danger" : ""
               }">${jugador.Posició}
               </div>
             </div>
