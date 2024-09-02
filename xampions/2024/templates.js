@@ -153,6 +153,9 @@ function renderJugador(jugador) {
                 <!-- <span class="badge rounded-pill bg-secondary">Posició: ${
                   jugador.Posició
                 }</span> -->
+                <span class="badge rounded-pill bg-secondary">Posició: ${
+                  jugador.grup
+                }</span>
                 </div>
                   <div class="card-body ">
                     <ul class="list-group list-group-flush rounded-4">
