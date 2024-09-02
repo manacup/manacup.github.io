@@ -138,16 +138,22 @@ function loadContent(vista) {
       //console.log(partidesfiltagrupades);
       var grup = "";
       partidesfiltagrupades.forEach((partida) => {
-        if (partida.Grup != grup) {
-          grup = partida.Grup;
-          document.getElementById("content").innerHTML +=
-            "<h6>Grup " + grup + "</h6>";
+        if (
+          dades.filter(
+            (j) => j.Nom == partida.Jugador1 || j.Nom == partida.Jugador2
+          )[0].Baixa != "TRUE"
+        ) {
+          if (partida.Grup != grup) {
+            grup = partida.Grup;
+            document.getElementById("content").innerHTML +=
+              "<h6>Grup " + grup + "</h6>";
+          }
+          partida.totalPunts_1 =
+            partida.resultats[0].Puntuacio_1 + partida.resultats[1].Puntuacio_1;
+          partida.totalPunts_2 =
+            partida.resultats[0].Puntuacio_2 + partida.resultats[1].Puntuacio_2;
+          renderAparellaments(partida);
         }
-        partida.totalPunts_1 =
-          partida.resultats[0].Puntuacio_1 + partida.resultats[1].Puntuacio_1;
-        partida.totalPunts_2 =
-          partida.resultats[0].Puntuacio_2 + partida.resultats[1].Puntuacio_2;
-        renderAparellaments(partida);
       });
       vistesPartides = partidesfilt.map((ap) => ap.ID.toString());
 
@@ -194,7 +200,7 @@ function loadContent(vista) {
         return posicioordre;
       }
       function ordreGrup(a, b) {
-/*         const groupA = a.Grup.toUpperCase();
+        /*         const groupA = a.Grup.toUpperCase();
         const groupB = b.Grup.toUpperCase();
 
         if (groupA < groupB) {
@@ -224,7 +230,7 @@ function loadContent(vista) {
           document.getElementById("content").innerHTML +=
             "<h6>Grup " + grup + "</h6>";
         }
-        partida.Baixa = dades.filter(d=>d.Nom==partida.Jugador1)[0].Baixa
+        partida.Baixa = dades.filter((d) => d.Nom == partida.Jugador1)[0].Baixa;
 
         renderLlistaEliminatoria(partida);
       });
@@ -349,12 +355,12 @@ function loadContent(vista) {
 
       break;
 
-      case "detallfase":
-        navbarTitle.innerHTML = "Suma partides";
-        var partidesfase = aparellaments.filter((j) => j.IDma == options);
-        var partida = {}
-console.log(partidesfase)
-  /* {
+    case "detallfase":
+      navbarTitle.innerHTML = "Suma partides";
+      var partidesfase = aparellaments.filter((j) => j.IDma == options);
+      var partida = {};
+      console.log(partidesfase);
+      /* {
     "Ronda": 1,
     "idJug1": 1,
     "idJug2": 11,
@@ -390,40 +396,46 @@ console.log(partidesfase)
     "ma": 1,
     "IDma": 12011
 } */
-  partida.Estat= "Ronda tancada"
-  partida.Jugador1=partidesfase[0].Jugador1
-  partida.Jugador2=partidesfase[0].Jugador2
-  partida.Ronda = partidesfase[0].Ronda
-  partida.Puntuacio_1 = partidesfase[0].Puntuacio_1 + partidesfase[1].Puntuacio_1
-  partida.Puntuacio_2 = partidesfase[0].Puntuacio_2 + partidesfase[1].Puntuacio_2
-  partida.Scrabbles_1 = partidesfase[0].Scrabbles_1 + partidesfase[1].Scrabbles_1
-  partida.Scrabbles_2 = partidesfase[0].Scrabbles_2 + partidesfase[1].Scrabbles_2
-  if(partides[0].Puntsmot_1>=partidesfase[1].Puntsmot_1){
-    partida.Puntsmot_1 = partidesfase[0].Puntsmot_1 
-    partida.Mot_1 = partidesfase[0].Mot_1
-  }else{
-    partida.Puntsmot_1 = partidesfase[1].Puntsmot_1
-    partida.Mot_1 = partidesfase[1].Mot_1
-  }
-  if(partides[0].Puntsmot_2>=partidesfase[1].Puntsmot_2){
-    partida.Puntsmot_2 = partidesfase[0].Puntsmot_2 
-    partida.Mot_2 = partidesfase[0].Mot_2
-  }else{
-    partida.Puntsmot_2 = partidesfase[1].Puntsmot_2
-    partida.Mot_2 = partidesfase[1].Mot_2
-  }
-  partida.Suma_punts = partida.Puntuacio_1 + partida.Puntuacio_2
-  partida.Punts_social = partidesfase[0].Punts_social + partidesfase[1].Punts_social
-  partida.Full = partidesfase[0].Full
-  partida.Tauler = partidesfase[1].Full
-  partida.ma = "1 + 2"
-  partida.Comentaris = partidesfase[0].Comentaris + "<br>"+partidesfase[1].Comentaris
-  partida.Punts_velocitat = "x"
-console.log(partida)
-        
-        renderDetallPartida(partida);
-  
-        break;
+      partida.Estat = "Ronda tancada";
+      partida.Jugador1 = partidesfase[0].Jugador1;
+      partida.Jugador2 = partidesfase[0].Jugador2;
+      partida.Ronda = partidesfase[0].Ronda;
+      partida.Puntuacio_1 =
+        partidesfase[0].Puntuacio_1 + partidesfase[1].Puntuacio_1;
+      partida.Puntuacio_2 =
+        partidesfase[0].Puntuacio_2 + partidesfase[1].Puntuacio_2;
+      partida.Scrabbles_1 =
+        partidesfase[0].Scrabbles_1 + partidesfase[1].Scrabbles_1;
+      partida.Scrabbles_2 =
+        partidesfase[0].Scrabbles_2 + partidesfase[1].Scrabbles_2;
+      if (partides[0].Puntsmot_1 >= partidesfase[1].Puntsmot_1) {
+        partida.Puntsmot_1 = partidesfase[0].Puntsmot_1;
+        partida.Mot_1 = partidesfase[0].Mot_1;
+      } else {
+        partida.Puntsmot_1 = partidesfase[1].Puntsmot_1;
+        partida.Mot_1 = partidesfase[1].Mot_1;
+      }
+      if (partides[0].Puntsmot_2 >= partidesfase[1].Puntsmot_2) {
+        partida.Puntsmot_2 = partidesfase[0].Puntsmot_2;
+        partida.Mot_2 = partidesfase[0].Mot_2;
+      } else {
+        partida.Puntsmot_2 = partidesfase[1].Puntsmot_2;
+        partida.Mot_2 = partidesfase[1].Mot_2;
+      }
+      partida.Suma_punts = partida.Puntuacio_1 + partida.Puntuacio_2;
+      partida.Punts_social =
+        partidesfase[0].Punts_social + partidesfase[1].Punts_social;
+      partida.Full = partidesfase[0].Full;
+      partida.Tauler = partidesfase[1].Full;
+      partida.ma = "1 + 2";
+      partida.Comentaris =
+        partidesfase[0].Comentaris + "<br>" + partidesfase[1].Comentaris;
+      partida.Punts_velocitat = "x";
+      console.log(partida);
+
+      renderDetallPartida(partida);
+
+      break;
 
     case "formulari":
       navbarTitle.innerHTML = "Envia el resultat";
@@ -557,15 +569,13 @@ function afegeixEsdeveniments() {
   });
   contentDiv.querySelectorAll(".detallfase").forEach((partida) => {
     var id = partida.dataset.id;
-   
-    
+
     partida.addEventListener("click", () => {
       console.log(partida.dataset.id);
-      
-        loadContent(["detallfase", id]);
-        updateHistory(["detallfase", id]);
-        updatePartidaHistory(["detallfase", id]);
-      
+
+      loadContent(["detallfase", id]);
+      updateHistory(["detallfase", id]);
+      updatePartidaHistory(["detallfase", id]);
     });
   });
   contentDiv.querySelectorAll(".detallronda").forEach((ronda) => {
