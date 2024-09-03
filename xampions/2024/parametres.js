@@ -126,7 +126,10 @@ function iniciJSON(vista) {
       dades = data.dades;
       // Process 'jugadors' data...
       dades.forEach((jug) => {
-        jug.partides = data.partides.filter(function (item) { return item.Jugador1 === jug.Nom && item.Estat != "none";; })
+        jug.partides = data.partides.filter((item)=>{ 
+          item.Jugador1 === jug.Nom 
+          && item.Estat != "none"           
+        })
         var jugadorsOpt = document.getElementById("jugadors");
         jugadorsOpt.innerHTML += `<option value="${jug.ID}">${jug.Nom}</option>`;
       });
