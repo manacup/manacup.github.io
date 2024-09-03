@@ -1,4 +1,4 @@
-app.controller("conjuntaCtrl", function($scope, $rootScope) {
+/* app.controller("conjuntaCtrl", function($scope, $rootScope) {
     $rootScope.pagina = "Partida conjunta";
     $scope.ordre = "-Suma_punts"
     $scope.ordreConjunta = function(){
@@ -58,7 +58,7 @@ $scope.ordre == "-Suma_punts"
             default:
                 return { d: days, h: hours, m: minutes, s: seconds };
         }
-    }
+    } */
 app.controller("conjuntaCtrl", function($scope, $rootScope) {
     $rootScope.pagina = "Partida conjunta";
     $scope.ordre = "-Suma_punts"
