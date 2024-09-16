@@ -205,3 +205,25 @@ a:hover {
         font-size: 16px;
     }
 }
+
+/* General styles */
+.MenuTable {
+	border: 1px solid #ddd;
+	padding: 10px;
+  }
+  
+  .MenuRow {
+	margin-bottom: 10px;
+  }
+  
+  .MenuGroupName {
+	cursor: pointer;
+  }
+  
+  .MenuGroupName ul {
+	display: none;
+  }
+  
+  .MenuGroupName:hover ul {
+	display: block;
+  }
