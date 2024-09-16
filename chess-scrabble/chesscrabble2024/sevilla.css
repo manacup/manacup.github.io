@@ -218,12 +218,26 @@ a:hover {
   
   .MenuGroupName {
 	cursor: pointer;
+	position: relative;
+  }
+  
+  .MenuGroupName span:first-child::after {
+	content: '\25BC'; /* Downward-pointing triangle */
+	display: inline-block;
+	margin-left: 5px;
+	transition: transform 0.2s ease-in-out;
   }
   
   .MenuGroupName ul {
-	display: none;
+	overflow: hidden; /* Ensure content is clipped */
+	height: 0; /* Initially hide the content */
+	transition: height 0.8s ease-in-out;
+  }
+  
+  .MenuGroupName:hover span:first-child::after {
+	transform: rotate(180deg);
   }
   
   .MenuGroupName:hover ul {
-	display: block;
+	height: auto; /* Expand the content to its natural height */
   }
