@@ -5,7 +5,7 @@
     <AppVsn>20.2.2</AppVsn>
     <Version>7.2.0</Version>
     <FileType>Competition file</FileType>
-    <Created>16/9/2024 18:37:05</Created>
+    <Created>16/9/2024 18:49:48</Created>
   </Contents>
   <Comp>
     <Name>ChessScrabble 2024</Name>
@@ -457,7 +457,7 @@
     <FTPUseTLS>0</FTPUseTLS>
     <FTPOptions>0000</FTPOptions>
     <UseSFTP>0</UseSFTP>
-    <WebValues>~index.html~mobile.css~1~1~0~0~1~0~1~1~1~0~5~0~0~0~0~0~2~~0~~0~~0~~0~30~30~120~120~0~0~1~0~0~0~0~0~0~0~C:\\Program Files\\JBF Software\\Sevilla\\CSS~~1~1~1~1~0~0~1~1~1~1~1~1~1~1~0~0~32~21~0~0~0~0~0~1~0~1~0~0~0~0~0~1~0~1~0~1~1~1~1~0~1~1~0~0~0~1</WebValues>
+    <WebValues>~index.html~mobile.css~1~1~0~0~1~0~0~1~0~0~5~0~0~0~0~0~2~~0~~0~~0~~0~30~30~120~120~0~0~1~0~0~0~0~0~0~0~C:\\Program Files\\JBF Software\\Sevilla\\CSS~~1~0~0~0~0~0~1~1~1~1~1~1~1~1~0~0~32~21~0~0~0~0~0~1~0~1~0~0~0~0~0~1~0~1~0~1~1~1~1~0~1~1~0~0~0~1</WebValues>
     <ExcelExchValues></ExcelExchValues>
     <MRepSelection></MRepSelection>
     <SimType>2</SimType>
