@@ -205,7 +205,6 @@ a:hover {
         font-size: 16px;
     }
 }
-
 /* General styles */
 .MenuTable {
 	border: 1px solid #ddd;
@@ -229,9 +228,12 @@ a:hover {
   }
   
   .MenuGroupName ul {
-	overflow: hidden; /* Ensure content is clipped */
-	height: 0; /* Initially hide the content */
-	transition: height 0.8s ease-in-out;
+	list-style: none; /* Remove default bullet points */
+	padding: 0;
+	margin: 0;	
+	overflow: hidden;
+	height: 0;
+	transition: height 0.3s ease-in-out;
   }
   
   .MenuGroupName:hover span:first-child::after {
@@ -239,5 +241,45 @@ a:hover {
   }
   
   .MenuGroupName:hover ul {
-	height: auto; /* Expand the content to its natural height */
+	height: auto;
   }
+  
+  .MenuGroupName ul li {
+	padding: 10px;
+  }
+  
+  .MenuGroupName ul li:hover {
+	background-color: #e0e0e0;
+  }
+
+
+
+/* Ocultem el contingut per defecte */
+#GroupInfoTable {
+	display: none;
+  }
+  
+  /* Mostrem el contingut quan fem hover sobre el títol */
+  #HeaderTable:hover #GroupInfoTable {
+	display: table;
+  }
+  
+  /* Afegim un triangle després del títol per indicar que es pot desplegar */
+  .MainTitleRow:first-of-type td::after {
+	content: '\25BC'; /* Downward-pointing triangle */
+	display: inline-block;
+	margin-left: 5px;
+	transition: transform 0.2s ease-in-out;
+  }
+  
+  /* Quan el ratolí estigui sobre el títol, canviem la direcció del triangle */
+  #HeaderTable:hover .MainTitleRow:first-of-type td::after {
+	transform: rotate(180deg);
+  }
+  
+  /* Estil per al títol */
+  .MainTitleRow:first-of-type {
+	cursor: pointer;
+	font-weight: bold;
+  }
+  
