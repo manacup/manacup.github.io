@@ -125,7 +125,7 @@ a:hover {
 
   td,
   th {
-    font-size: 12px;
+    font-size: 14px;
   }
 }
 
@@ -211,7 +211,7 @@ a:hover {
 
 @media (max-width: 480px) {
   .PlayerListTable {
-    font-size: 12px;
+    font-size: 14px;
   }
 
   .PlayerListHeader td,
@@ -319,3 +319,10 @@ body {
 width: 100%;
 overflow-x: auto;
 }
+
+td {
+    overflow: hidden; /* Amaga el contingut que sobrepassa la mida de la cel·la */
+    text-overflow: ellipsis; /* Afegeix punts suspensius si el text és massa llarg */
+    white-space: nowrap; /* Evita que el text es trenqui en múltiples línies */
+    max-width: 80px; /* Amplada fixa per la cel·la */
+  }
