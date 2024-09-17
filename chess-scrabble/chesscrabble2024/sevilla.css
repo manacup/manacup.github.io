@@ -1,0 +1,285 @@
+/* Disseny base */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
+
+td {
+    padding: 10px;
+    text-align: left;
+}
+
+th {
+    padding: 10px;
+    text-align: left;
+    background-color: #333;
+    color: #fff;
+}
+
+a {
+    color: #2196F3;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+/* Estils per a les taules generals */
+.MainTitleRow td {
+    font-size: 24px;
+    font-weight: bold;
+    text-align: center;
+    color: #333;
+}
+
+.CompInfoTable td, .GameListTable td, .RankingTable td, .XTable td {
+    border: 1px solid #ccc;
+    padding: 8px;
+}
+
+.GameListHeader, .RankingHeader, .XTableHeader {
+    background-color: #7c917d;
+    color: white;
+}
+
+.GameListOddLine, .XTableEvenLine {
+    background-color: #f9f9f9;
+}
+
+.GameListEvenLine, .XTableOddLine {
+    background-color: #fff;
+}
+
+#GameFileTable {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.XTableCell {
+    padding: 8px;
+    border: 1px solid #ccc;
+    text-align: center;
+}
+
+.XTableCell:hover {
+    background-color: #eef;
+}
+
+.Unit {
+    padding: 10px;
+}
+
+/* Disseny flexible */
+.HFlex {
+    display: flex;
+    justify-content: space-between;
+}
+
+.VFlex {
+    display: flex;
+    flex-direction: column;
+}
+
+/* Disseny responsive */
+@media (max-width: 768px) {
+    .HFlex, .VFlex {
+        flex-direction: column;
+    }
+
+    table {
+        font-size: 14px;
+    }
+
+    td {
+        padding: 5px;
+    }
+
+    .MainTitleRow td {
+        font-size: 20px;
+    }
+
+    .GameListTable td, .RankingTable td {
+        padding: 8px;
+    }
+}
+
+@media (max-width: 480px) {
+    .MainTitleRow td {
+        font-size: 18px;
+    }
+
+    td, th {
+        font-size: 12px;
+    }
+}
+
+/* Estils per a la taula de la llista de jugadors */
+.MainTable {
+    width: 100%;
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+.PlayerListTable {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.PlayerListTitle {
+    font-size: 20px;
+    font-weight: bold;
+    text-align: center;
+    background-color: #3a443b;
+    color: white;
+    padding: 10px;
+}
+
+.PlayerListHeader {
+    background-color: #7c917d;
+    color: white;
+    font-weight: bold;
+}
+
+.PLC_Idx, .PLC_Name, .PLC_ID, .PLC_Gender, .PLC_Ctry, .PLC_Title, .PLC_SRtg, .PLC_Stat {
+    padding: 10px;
+    border: 1px solid #ddd;
+}
+
+.PlayerListOddLine {
+    background-color: #f9f9f9;
+}
+
+.PlayerListEvenLine {
+    background-color: #fff;
+}
+
+.PlayerListOddLine td, .PlayerListEvenLine td {
+    padding: 10px;
+    border: 1px solid #ccc;
+    text-align: left;
+}
+
+.PlayerListTable td a {
+    color: #2196F3;
+}
+
+.PlayerListTable td a:hover {
+    text-decoration: underline;
+}
+
+/* Estils responsive per a la taula de la llista de jugadors */
+@media (max-width: 768px) {
+    .PlayerListTable {
+        font-size: 14px;
+    }
+
+    .PlayerListHeader td, .PlayerListOddLine td, .PlayerListEvenLine td {
+        padding: 6px;
+    }
+
+    .PlayerListTitle {
+        font-size: 18px;
+    }
+}
+
+@media (max-width: 480px) {
+    .PlayerListTable {
+        font-size: 12px;
+    }
+
+    .PlayerListHeader td, .PlayerListOddLine td, .PlayerListEvenLine td {
+        padding: 4px;
+    }
+
+    .PlayerListTitle {
+        font-size: 16px;
+    }
+}
+/* General styles */
+.MenuTable {
+	border: 1px solid #ddd;
+	padding: 10px;
+  }
+  
+  .MenuRow {
+	margin-bottom: 10px;
+  }
+  
+  .MenuGroupName {
+	cursor: pointer;
+	position: relative;
+  }
+  
+  .MenuGroupName span:first-child::after {
+	content: '\25BC'; /* Downward-pointing triangle */
+	display: inline-block;
+	margin-left: 5px;
+	transition: transform 0.2s ease-in-out;
+  }
+  
+  .MenuGroupName ul {
+	list-style: none; /* Remove default bullet points */
+	padding: 0;
+	margin: 0;	
+	overflow: hidden;
+	height: 0;
+	transition: height 0.3s ease-in-out;
+  }
+  
+  .MenuGroupName:hover span:first-child::after {
+	transform: rotate(180deg);
+  }
+  
+  .MenuGroupName:hover ul {
+	height: auto;
+  }
+  
+  .MenuGroupName ul li {
+	padding: 10px;
+  }
+  
+  .MenuGroupName ul li:hover {
+	background-color: #e0e0e0;
+  }
+
+
+
+/* Ocultem el contingut per defecte */
+#GroupInfoTable {
+	display: none;
+  }
+  
+  /* Mostrem el contingut quan fem hover sobre el títol */
+  #HeaderTable:hover #GroupInfoTable {
+	display: table;
+  }
+  
+  /* Afegim un triangle després del títol per indicar que es pot desplegar */
+  .MainTitleRow:first-of-type td::after {
+	content: '\25BC'; /* Downward-pointing triangle */
+	display: inline-block;
+	margin-left: 5px;
+	transition: transform 0.2s ease-in-out;
+  }
+  
+  /* Quan el ratolí estigui sobre el títol, canviem la direcció del triangle */
+  #HeaderTable:hover .MainTitleRow:first-of-type td::after {
+	transform: rotate(180deg);
+  }
+  
+  /* Estil per al títol */
+  .MainTitleRow:first-of-type {
+	cursor: pointer;
+	font-weight: bold;
+  }
+  
