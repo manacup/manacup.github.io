@@ -3,14 +3,15 @@
 body {
   font-family: Arial, sans-serif;
   margin: 0;
-  padding: 0;
+  padding: 20px;
   background-color: #f4f4f4;
 }
 
 table {
   width: 100%;
   border-collapse: collapse;
-  margin-bottom: 20px;
+  margin: 0px;
+  padding: 10px;
 }
 
 td {
@@ -95,6 +96,7 @@ a:hover {
 
 /* Disseny responsive */
 @media (max-width: 768px) {
+  
   .HFlex,
   .VFlex {
     flex-direction: column;
@@ -119,8 +121,14 @@ a:hover {
 }
 
 @media (max-width: 480px) {
+  body {
+    padding: 0px;
+  }
   .MainTitleRow td {
     font-size: 18px;
+  }
+  table {
+    padding: 0px;
   }
 
   td,
@@ -300,7 +308,8 @@ a:hover {
   font-weight: bold;
 }
 
-.HFlex {
+.HFlex, 
+.VFlex {
   width: 100%; /* Fa que el contenidor de la taula ocupi el 100% de l'ample disponible */
   overflow-x: auto; /* Habilita el desplaçament horitzontal si el contingut sobrepassa l'ample */
 }
