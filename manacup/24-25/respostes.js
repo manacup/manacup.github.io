@@ -329,9 +329,10 @@ async function handleFormSubmit(formObject) {
       'Content-Type': 'application/json',
     },
     body: JSON.stringify({
-      envia: 'partida', // o 'formula2' segons la fórmula que vulguis aplicar
-      obj: obj, // ajusta els valors segons les necessitats de la teva fórmula
+      envia: 'partida', 
+      obj: obj, 
       idfull: idfull,
+      idJSON: idJSON,
     }),
   })
   .then(response => response.text())

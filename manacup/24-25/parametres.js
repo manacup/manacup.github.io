@@ -7,8 +7,8 @@ let parameterId = urlParams.id || "no";
 let parameterVista = urlParams.vista;
 let parameterOptions = urlParams.options;
 let vistaPredet = { page: parameterVista, options: parameterOptions };
-let idfull = urlParams.idfull ||  "1HDQ6YdsA5FnzHaHFeOlYXPEIDCLRpq34rm078oFqRMU";//s'ha de canviar
-let idJSON = urlParams.idJSON ||  "1JxO5a-iFwM3pvVRFWW71-vV1whC3fNIS";//s'ha de canviar
+let idfull = urlParams.idfull ||  "1pj6G5pgDUAypPB7O9gkFduYAItopiQBYVR37eXalIvU";
+let idJSON = urlParams.idJSON ||  "1TGhMbc-P_Kn-7JGgeUT4S6V7EhOZzj4Z";
 let mostrapestanyes = urlParams.mostrapestanyes || "no";
 console.log(mostrapestanyes);
 if (mostrapestanyes === "si") {
@@ -93,8 +93,8 @@ function iniciJSON(vista) {
   cache: "default",
 };
   Promise.all([    
-    //fetch(macroURL + "?page=JSON&idJSON="+idJSON),
-   fetch("manacupXI.json")   
+    fetch(macroURL + "?page=JSON&idJSON="+idJSON),
+   //fetch("manacupXI.json")   
   ])
   .then(responses => Promise.all(responses.map(response => response.json())))
   .then(([data]) => {
@@ -139,7 +139,7 @@ function iniciJSON(vista) {
        // Process 'partides' data...
    
        // Continue with your logic here..
-      recuperaPartides();
+      //recuperaPartides();
       carregaUsuari();
       renderUserCard(jugadorDesat);
       swipe();

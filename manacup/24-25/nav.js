@@ -8,10 +8,10 @@ let currentPage = "home";
 
 // Función para cargar contenido en la página
 function loadContent(vista) {
-  var tootltip = document.querySelector(".tooltip")
-    if(tootltip){
-      tootltip.remove()
-    }
+  var tootltip = document.querySelector(".tooltip");
+  if (tootltip) {
+    tootltip.remove();
+  }
   if (pageHistory.length != 0) {
     document.getElementById("botoEnrera").classList.remove("d-none");
   } else {
@@ -44,23 +44,24 @@ function loadContent(vista) {
       dades.sort(ordreClassificacio);
       //console.log(dades)
       dades.forEach((jugador) => {
-        jugador.percentatgeVictories = parseInt(jugador.Punts)/parseInt(jugador.PartidesJugades)
+        jugador.percentatgeVictories =
+          parseInt(jugador.Punts) / parseInt(jugador.PartidesJugades);
         renderClassificacio(jugador);
       });
       var ordenada = false;
-      var icona =  document.getElementById("icona")
+      var icona = document.getElementById("icona");
       document.getElementById("ordenarBoto").addEventListener("click", () => {
         // Llama a la función de ordenar la tabla por la segunda columna (Edad)
         if (!ordenada) {
           ordenarLlistaPercentatge();
           ordenada = true;
-          icona.classList.add("bi-list-ol")
-          icona.classList.remove("bi-percent")
+          icona.classList.add("bi-list-ol");
+          icona.classList.remove("bi-percent");
         } else {
           ordenarLlistaPunts();
           ordenada = false;
-          icona.classList.remove("bi-list-ol")
-          icona.classList.add("bi-percent")
+          icona.classList.remove("bi-list-ol");
+          icona.classList.add("bi-percent");
         }
       });
       contentDiv.querySelectorAll(".card").forEach((nom) => {
@@ -91,17 +92,17 @@ function loadContent(vista) {
         renderConjunta(jugador);
       });
       var ordenada = false;
-      var icona =  document.getElementById("icona")
+      var icona = document.getElementById("icona");
       document.getElementById("ordenarBoto").addEventListener("click", () => {
         // Llama a la función de ordenar la tabla por la segunda columna (Edad)
         if (!ordenada) {
           ordenarLlistaData();
           ordenada = true;
-          icona.classList.add("bi-list-ol")
+          icona.classList.add("bi-list-ol");
         } else {
           ordenarLlistaPunts();
           ordenada = false;
-          icona.classList.remove("bi-list-ol")
+          icona.classList.remove("bi-list-ol");
         }
       });
       vistesPartides = aparellamentsordenats.map((ap) => ap.ID.toString());
@@ -138,7 +139,7 @@ function loadContent(vista) {
       vistesPartides = [];
 
       navbarTitle.innerHTML = "Scrabbles";
-       contentDiv.innerHTML += `<div class="p-1" id="ordenarBoto"><i id="icona" class="float-end bi bi-percent" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Ordena per mitjana de Scrabbles o per total."></i></div>`;
+      contentDiv.innerHTML += `<div class="p-1" id="ordenarBoto"><i id="icona" class="float-end bi bi-percent" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Ordena per mitjana de Scrabbles o per total."></i></div>`;
       var div = document.createElement("div");
       div.id = "subcontent";
       /* div.classList.add("row-md-8");
@@ -146,7 +147,6 @@ function loadContent(vista) {
       div.classList.add("p-0");
       contentDiv.appendChild(div);
 
-     
       function ordreScrabbles(a, b) {
         return a.posScrabbles - b.posScrabbles;
       }
@@ -158,20 +158,20 @@ function loadContent(vista) {
         }
       });
       //console.log(vistesPartides)
-     var ordenada = false;
-      var icona =  document.getElementById("icona")
+      var ordenada = false;
+      var icona = document.getElementById("icona");
       document.getElementById("ordenarBoto").addEventListener("click", () => {
         // Llama a la función de ordenar la tabla por la segunda columna (Edad)
         if (!ordenada) {
           ordenarLlistaPercentatge();
           ordenada = true;
-          icona.classList.add("bi-list-ol")
-          icona.classList.remove("bi-percent")
+          icona.classList.add("bi-list-ol");
+          icona.classList.remove("bi-percent");
         } else {
           ordenarLlistaPunts();
           ordenada = false;
-          icona.classList.remove("bi-list-ol")
-          icona.classList.add("bi-percent")
+          icona.classList.remove("bi-list-ol");
+          icona.classList.add("bi-percent");
         }
       });
 
@@ -319,7 +319,6 @@ function loadContent(vista) {
   cerca();
   afegeixEsdeveniments();
   tooltips();
- 
 }
 
 function afegeixEsdeveniments() {

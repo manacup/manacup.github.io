@@ -37,7 +37,7 @@ function renderUserCard(jugadorDesat) {
             `;
 
   document.querySelectorAll(".userImg").forEach((im) => {
-    im.src = ""+jugadorDesat.Imatge;
+    im.src = "" + jugadorDesat.Imatge;
   });
   document.getElementById("userCard").innerHTML = "";
   document.getElementById("userCard").innerHTML += menuTemplate;
@@ -45,7 +45,7 @@ function renderUserCard(jugadorDesat) {
     document.getElementById("menuJugador").classList.remove("show");
     loadContent(["detall", jugadorDesat.ID]);
     updateHistory(["detall", jugadorDesat.ID]);
-  }); 
+  });
 }
 
 function renderJugador(jugador) {
@@ -147,7 +147,9 @@ function renderJugador(jugador) {
             <div class=" p-1 ">
               <div class="card">
                 <div class="card-header d-flex align-items-center">
-                <span class="flex-fill">Classificació general ${jugador.Baixa=="TRUE"? "(Baixa)" : ""}</span>
+                <span class="flex-fill">Classificació general ${
+                  jugador.Baixa == "TRUE" ? "(Baixa)" : ""
+                }</span>
                 <span class="badge rounded-pill bg-secondary">Posició: ${
                   jugador.Posició
                 }</span>
@@ -632,7 +634,21 @@ function renderDetallPartida(partida) {
             </div>
           </div>
         </div>
-        <div id="carouselExampleControls" class="carousel slide mb-4" data-bs-ride="carousel">
+         <div class="text-center">
+          <div class="d-flex justify-content-center mb-4">
+              <a href="${
+                partida.Full || "/icons/IconaFull.png"
+              }" target="_blank" class="col align-items-start"><img src="${
+    partida.Full || "/icons/IconaFull.png"
+  }" class="rounded m-2 p-2" width="90%" height="auto">
+              <a href="${
+                partida.Tauler || "/icons/IconaTauler.png"
+              }" target="_blank" class="col align-items-end"><img src="${
+    partida.Tauler || "/icons/IconaTauler.png"
+  }" class="rounded m-2 p-2" width="90%" height="auto"></a>
+          </div>
+        </div>
+        <!---  <div id="carouselExampleControls" class="carousel slide mb-4" data-bs-ride="carousel">
           <div class="carousel-inner" >
             <div class="carousel-item active quadrat">
               <img src="${
@@ -653,7 +669,7 @@ function renderDetallPartida(partida) {
               <span class="visually-hidden">Next</span>
             </button>
           </div>
-        </div>
+        </div> --!>
     <p>Resultats enviats el ${ExcelDateToJSDate(partida.Data)}</p>
         <blockquote class="blockquote bg-danger bg-opacity-25 mb-4" style="border-left: 2px solid red;">
           <div class="mb-0 p-3 ${!partida.Comentaris ? "d-none" : ""}">${
@@ -687,7 +703,9 @@ function renderClassificacio(jugador) {
            <div class="card-body">
               <div class="row ">
                   <div class="col-2">
-                      <div class="circle ${jugador.Baixa=="TRUE"? "bg-danger" : ""}">${jugador.Posició}</div>
+                      <div class="circle ${
+                        jugador.Baixa == "TRUE" ? "bg-danger" : ""
+                      }">${jugador.Posició}</div>
                   </div>
                   <div class="col-10">
                       <div class="d-flex align-items-center">
@@ -718,7 +736,9 @@ function renderClassificacio(jugador) {
                         </div>
                         <div  class="flex-grow-1">
                         </div>
-                        <span class="badge text-bg-secondary me-1 ${jugador.grup!=''?'':'d-none'}">
+                        <span class="badge text-bg-secondary me-1 ${
+                          jugador.grup != "" ? "" : "d-none"
+                        }">
                         <span class="visually-hidden-focusable">grup${
                           jugador.grup
                         }</span>
@@ -730,7 +750,7 @@ function renderClassificacio(jugador) {
     jugador.percentatgeVictories
   }">
                           ${jugador.Rondes_pendents}/${
-    jugador.partides.filter(p=>p.Estat!="none").length
+    jugador.partides.filter((p) => p.Estat != "none").length
   }
                         </span>  
                       </div>
@@ -813,9 +833,9 @@ function renderScrabbles(jugador) {
                               <div  class="flex-grow-1"></div>
                               <span class="badge text-bg-primary ${
                                 jugador.movimentScrabbles > 0 ? "" : "d-none"
-                              } percent" data-percent="${
-    parseFloat(jugador.mitjanaScrabbles.replace(',', '.'))
-  }">+${jugador.movimentScrabbles}</span>
+                              } percent" data-percent="${parseFloat(
+    jugador.mitjanaScrabbles.replace(",", ".")
+  )}">+${jugador.movimentScrabbles}</span>
                           </div>
                           <div class="row">
                               <div class="col">
@@ -851,7 +871,7 @@ function renderScrabbles(jugador) {
       </div>
           `;
   var cardjug = document.createElement("div");
-  cardjug.classList.add("p-0")
+  cardjug.classList.add("p-0");
   cardjug.innerHTML = jugadorTemplate;
   document.getElementById("subcontent").appendChild(cardjug);
   //document.getElementById("content").innerHTML += jugadorTemplate;
@@ -862,7 +882,7 @@ function renderScrabbles(jugador) {
 }
 function ompleTaulaScrabbles(partides) {
   var taula = "";
-  partides.sort((a,b)=>b.Scrabbles_1-a.Scrabbles_1)
+  partides.sort((a, b) => b.Scrabbles_1 - a.Scrabbles_1);
   partides.forEach((partida) => {
     const llistaTemplate = ` 
             <tr>              
@@ -936,7 +956,7 @@ function renderPartida(jugador) {
       </div>
           `;
   var cardjug = document.createElement("div");
-  cardjug.classList.add("p-0")
+  cardjug.classList.add("p-0");
   cardjug.innerHTML = jugadorTemplate;
   document.getElementById("content").appendChild(cardjug);
   //document.getElementById("content").innerHTML += jugadorTemplate;
@@ -948,7 +968,7 @@ function renderPartida(jugador) {
 function ompleTaulaPartida(partides) {
   //console.log(partides)
   var taula = "";
-  partides.sort((a,b)=>b.Puntuacio_1-a.Puntuacio_1)
+  partides.sort((a, b) => b.Puntuacio_1 - a.Puntuacio_1);
   partides.forEach((partida) => {
     const llistaTemplate = ` 
             <tr>              
@@ -968,7 +988,7 @@ function ompleTaulaPartida(partides) {
 function ompleTaulaConjunta(partides) {
   //console.log(partides)
   var taula = "";
-  partides.sort((a,b)=>b.Suma_punts-a.Suma_punts)
+  partides.sort((a, b) => b.Suma_punts - a.Suma_punts);
   partides.forEach((partida) => {
     const llistaTemplate = ` 
             <tr>              
@@ -1050,7 +1070,7 @@ function renderJugada(jugador) {
       </div>
           `;
   var cardjug = document.createElement("div");
-  cardjug.classList.add("p-0")
+  cardjug.classList.add("p-0");
   cardjug.innerHTML = jugadorTemplate;
   document.getElementById("content").appendChild(cardjug);
   //document.getElementById("content").innerHTML += jugadorTemplate;
@@ -1062,7 +1082,7 @@ function renderJugada(jugador) {
 function ompleTaulaJugada(partides) {
   //console.log(partides)
   var taula = "";
-  partides.sort((a,b)=>b.Puntsmot_1-a.Puntsmot_1)
+  partides.sort((a, b) => b.Puntsmot_1 - a.Puntsmot_1);
   partides.forEach((partida) => {
     const llistaTemplate = ` 
             <tr>              
@@ -1126,7 +1146,7 @@ function renderSocial(jugador) {
       </div>
           `;
   var cardsocial = document.createElement("div");
-  cardsocial.classList.add("p-0")
+  cardsocial.classList.add("p-0");
   cardsocial.innerHTML = jugadorTemplate;
   document.getElementById("content").appendChild(cardsocial);
   vistesPartides.push(
@@ -1137,7 +1157,7 @@ function renderSocial(jugador) {
 function ompleTaulaSocial(partides) {
   //console.log(partides)
   var taula = "";
-  partides.sort((a,b)=>b.Punts_social-a.Punts_social)
+  partides.sort((a, b) => b.Punts_social - a.Punts_social);
   partides.forEach((partida) => {
     const llistaTemplate = ` 
             <tr>              
@@ -1199,7 +1219,7 @@ function renderVelocitat(jugador) {
       </div>
           `;
   var cardvel = document.createElement("div");
-  cardvel.classList.add("p-0")
+  cardvel.classList.add("p-0");
   cardvel.innerHTML = jugadorTemplate;
   document.getElementById("content").appendChild(cardvel);
   vistesPartides.push(
@@ -1210,7 +1230,7 @@ function renderVelocitat(jugador) {
 function ompleTaulaVelocitat(partides) {
   //console.log(partides)
   var taula = "";
-  partides.sort((a,b)=>b.Punts_velocitat-a.Punts_velocitat)
+  partides.sort((a, b) => b.Punts_velocitat - a.Punts_velocitat);
   partides.forEach((partida) => {
     const llistaTemplate = `
             <tr>              
@@ -1482,15 +1502,15 @@ function renderRondes(ronda) {
 function ompleTaulaRonda(partidesRonda) {
   // console.log(partidesRonda)
   const datesAsObjects = partidesRonda.map((date) => {
-  const parts = date.Data.split("/");
-  return new Date(parts[2], parts[1] - 1, parts[0]);
-});
-  function compareDates(a,b){
+    const parts = date.Data.split("/");
+    return new Date(parts[2], parts[1] - 1, parts[0]);
+  });
+  function compareDates(a, b) {
     const parts1 = a.Data.split("/");
-    var data1  = new Date(parts1[2], parts1[1] - 1, parts1[0])
+    var data1 = new Date(parts1[2], parts1[1] - 1, parts1[0]);
     const parts2 = b.Data.split("/");
-    var data2  = new Date(parts2[2], parts2[1] - 1, parts2[0])
-    
+    var data2 = new Date(parts2[2], parts2[1] - 1, parts2[0]);
+
     return data1.getTime() - data2.getTime();
   }
   partidesRonda.sort(compareDates);
@@ -1512,7 +1532,7 @@ function ompleTaulaRonda(partidesRonda) {
             <tr class="${
               parseInt(partida.Puntuacio_1) > parseInt(partida.Puntuacio_2)
                 ? "table-success"
-                : parseInt(partida.Puntuacio_2) >parseInt(partida.Puntuacio_1)
+                : parseInt(partida.Puntuacio_2) > parseInt(partida.Puntuacio_1)
                 ? "table-danger"
                 : ""
             }">              
@@ -1527,7 +1547,8 @@ function ompleTaulaRonda(partidesRonda) {
                 <div>
                   
                   <span class="text-primary ${
-                    parseInt(partida.Puntuacio_1) > parseInt(partida.Puntuacio_2)
+                    parseInt(partida.Puntuacio_1) >
+                    parseInt(partida.Puntuacio_2)
                       ? "fw-bold"
                       : partida.Suma_punts > 0
                       ? ""
@@ -1535,7 +1556,8 @@ function ompleTaulaRonda(partidesRonda) {
                   }">${partida.Puntuacio_1}</span>
   <span class="vr"></span>
                   <span class="text-primary ${
-                    parseInt(partida.Puntuacio_2) > parseInt(partida.Puntuacio_1)
+                    parseInt(partida.Puntuacio_2) >
+                    parseInt(partida.Puntuacio_1)
                       ? "fw-bold"
                       : partida.Suma_punts > 0
                       ? ""
@@ -1676,20 +1698,27 @@ function zoom(e) {
   zoomer.style.backgroundSize = zoomLevels[zoomState] * 100 + "%";
 }
 function ExcelDateToJSDate(serial) {
-   var utc_days  = Math.floor(serial - 25569);
-   var utc_value = utc_days * 86400;                                        
-   var date_info = new Date(utc_value * 1000);
+  var utc_days = Math.floor(serial - 25569);
+  var utc_value = utc_days * 86400;
+  var date_info = new Date(utc_value * 1000);
 
-   var fractional_day = serial - Math.floor(serial) + 0.0000001;
+  var fractional_day = serial - Math.floor(serial) + 0.0000001;
 
-   var total_seconds = Math.floor(86400 * fractional_day);
+  var total_seconds = Math.floor(86400 * fractional_day);
 
-   var seconds = total_seconds % 60;
+  var seconds = total_seconds % 60;
 
-   total_seconds -= seconds;
+  total_seconds -= seconds;
 
-   var hours = Math.floor(total_seconds / (60 * 60));
-   var minutes = Math.floor(total_seconds / 60) % 60;
-var jsdate = new Date(date_info.getFullYear(), date_info.getMonth(), date_info.getDate(), hours, minutes, seconds)
-   return jsdate.toLocaleDateString();
+  var hours = Math.floor(total_seconds / (60 * 60));
+  var minutes = Math.floor(total_seconds / 60) % 60;
+  var jsdate = new Date(
+    date_info.getFullYear(),
+    date_info.getMonth(),
+    date_info.getDate(),
+    hours,
+    minutes,
+    seconds
+  );
+  return jsdate.toLocaleDateString();
 }

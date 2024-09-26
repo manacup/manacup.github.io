@@ -643,15 +643,15 @@ function renderDetallPartida(partida) {
         <div class="text-center">
           <div class="d-flex justify-content-center mb-4">
               <a href="${
-                    partida.Full || "/icons/IconaFull.png"
-                  }" target="_blank" class="col align-items-start"><img src="${
-              partida.Full || "/icons/IconaFull.png"
-            }" class="rounded m-2 p-2" width="90%" height="auto">
+                partida.Full || "/icons/IconaFull.png"
+              }" target="_blank" class="col align-items-start"><img src="${
+    partida.Full || "/icons/IconaFull.png"
+  }" class="rounded m-2 p-2" width="90%" height="auto">
               <a href="${
-            partida.Tauler || "/icons/IconaTauler.png"
-          }" target="_blank" class="col align-items-end"><img src="${
-              partida.Tauler ||"/icons/IconaTauler.png"
-            }" class="rounded m-2 p-2" width="90%" height="auto"></a>
+                partida.Tauler || "/icons/IconaTauler.png"
+              }" target="_blank" class="col align-items-end"><img src="${
+    partida.Tauler || "/icons/IconaTauler.png"
+  }" class="rounded m-2 p-2" width="90%" height="auto"></a>
           </div>
         </div>
 
