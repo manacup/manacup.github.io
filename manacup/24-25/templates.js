@@ -12,7 +12,7 @@ function renderUserCard(jugadorDesat) {
                 : ""
             }  aria-controls="desaimatge">
               <div class="mt-3 mb-4 imatge-cercle ">
-                <img src="${jugadorDesat.Imatge}" class="userImg">              
+                <img src="${jugadorDesat.Imatge || '/icons/Imatge-default.jpg'}" class="userImg">              
               </div>
                 <div class="edit ${
                   !jugadorDesat.Nom ? "d-none" : ""
@@ -37,7 +37,7 @@ function renderUserCard(jugadorDesat) {
             `;
 
   document.querySelectorAll(".userImg").forEach((im) => {
-    im.src = "" + jugadorDesat.Imatge;
+    im.src = "" + jugadorDesat.Imatge || '/icons/Imatge-default.jpg';
   });
   document.getElementById("userCard").innerHTML = "";
   document.getElementById("userCard").innerHTML += menuTemplate;
@@ -72,8 +72,8 @@ function renderJugador(jugador) {
                     <div class="mt-3 mb-4 imatge-cercle img">
                       <img src="${
                         jugador.ID == jugadorDesat.ID
-                          ? userImg || jugador.Imatge
-                          : jugador.Imatge
+                          ? userImg || jugador.Imatge || "/icons/Imatge-default.jpg"
+                          : jugador.Imatge || "/icons/Imatge-default.jpg"
                       }"
                          >
                     </div>
