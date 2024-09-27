@@ -821,10 +821,10 @@ function renderScrabbles(jugador) {
               : parseFloat(jugador.mitjanaScrabbles) >= 2
               ? "border-primary"
               : ""
-          }" data-bs-toggle="collapse" data-bs-target="#collapse${jugador.ID}">
-              <div class="card-body desplega">
+          }" >
+               <div class="card-body desplega">
                   <div class="row ">
-                      <div class="col-2">
+                      <div class="col-2 btndesplega" data-bs-toggle="collapse" data-bs-target="#collapse${jugador.ID}">
                           <div class="circle">${jugador.posScrabbles}</div>
                       </div>
                       <div class="col-10">

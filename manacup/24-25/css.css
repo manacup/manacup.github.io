@@ -161,8 +161,10 @@ body {
     background: var(--scroller-thumb-hover);
   }
 
-
-.desplega::after {
+.btndesplega {
+  cursor: pointer;
+}
+.btndesplega::after {
     content: "";
   position: absolute;
   top: 4.5rem;

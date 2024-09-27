@@ -148,7 +148,7 @@ console.log(dades)
       // Process 'partides' data...
 
       // Continue with your logic here..
-      //recuperaPartides();
+      recuperaPartides();
       carregaUsuari();
       renderUserCard(jugadorDesat);
       swipe();
