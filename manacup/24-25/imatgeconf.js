@@ -4,26 +4,25 @@ function desaImatgeConf(e) {
 
   var file = document.getElementById("ImatgeamagatConf").value;
   var nom = jugadorDesat.Nom;
-
+  var payload = {
+      envia: "imatge",
+      nom: nom,
+      file: file,
+      idfull: idfull,
+      idJSON: idJSON,
+    }
+console.log(payload)
   fetch(macroURL, {
     method: "POST",
     mode: "no-cors",
     headers: {
       "Content-Type": "application/json",
     },
-    body: JSON.stringify({
-      envia: "imatge",
-      nom: nom,
-      file: file,
-      idfull: idfull,
-      idJSON: idJSON,
-    }),
+    body: JSON.stringify(payload),
   })
     .then((response) => response.text())
     .then((data) => {
-      console.log("Resposta del servidor:", data);
-
-      console.log(data);
+      console.log("Resposta del servidor:", data,response.text());
       e.disabled = false;
       document.getElementById("spnbtn").classList.add("d-none");
       var modal = document.getElementById("desaimatge");
