@@ -25,11 +25,11 @@
 
   <nav class="navbar pb-0 bg-light">
     <div class="container-fluid">
-      <a class="navbar-brand text-dark h4" href="#classificacio">
+      <div class="navbar-brand text-dark h4" onclick="iniciJSON()">
         <img src="/icons/favicon-96x96.png" alt="Logo" width="30" height="auto"
           class="d-inline-block align-text-center">
         XI ManaCup
-      </a>
+      </div>
       <span class="float-end badge text-secondary">2024-25</span>
     </div>
   </nav>
@@ -135,14 +135,17 @@
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body" id="modalBody">
-          <div class="row mb-3 g-3">
+          <div class="row g-3">
             <div class="col">
               <label for="inpdesajug">Comença a escriure el teu nom i tria de la llista
-                <input id="inpdesajug" type="search" class="form-control llistajugadors mb-3" data-datalist="jugadors"
+                <input id="inpdesajug" type="search" class="form-control llistajugadors" data-datalist="jugadors"
                   placeholder="Escriu" />
             </div>
             <datalist id="jugadors"></datalist>
           </div>
+        </div>
+        <div class="modal-footer">          
+          <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Desa</button>
         </div>
       </div>
     </div>
@@ -501,8 +504,7 @@
           </div>
         </div>      
         <div class="modal-footer">
-        <!--   <button type="button" class="btn btn-primary" data-bs-dismiss="modal" onclick="actualitzaJSON()"><i
-            class="bi bi-arrow-repeat"></i></button> -->
+
           <button type="button" class="btn btn-primary" data-bs-dismiss="modal">D'acord</button>            
         </div>
       </div>
@@ -510,7 +512,7 @@
   </div>
       <script src="carregant.js"></script>
       <script type="module" src="moduls.js"></script>
-      <script src="parametres2.js"></script>
+      <script src="parametres.js"></script>
       <script async defer src="templates.js"></script>
       <script async defer src="respostes.js"></script>
       <script async defer src="trobades.js"></script>
