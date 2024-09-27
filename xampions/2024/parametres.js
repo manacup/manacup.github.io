@@ -157,17 +157,17 @@ console.log(dades)
     .catch((error) => console.error("Error:", error));
 }
 function recuperaPartides() {
-  if ((carrega = 2)) {
+  //if ((carrega = 2)) {
     dades.forEach((jug) => {
       jug.partides = partides.filter((partida) => partida.Jugador1 == jug.Nom);
     });
-  }
+  //}
 }
 
 function loadPagina(vista) {
   console.log(!!trobada && vista === undefined);
   clearInterval(interval);
-  if (carrega == 2) {
+ // if (carrega == 2) {
     if (!!trobada && vista === undefined) {
       console.log("yeah");
       loadContent(parameterVista ? vistaPredet : ["trobades"]);
@@ -176,7 +176,7 @@ function loadPagina(vista) {
       loadContent(parameterVista ? vistaPredet : ["rondes"]);
       updateHistory(parameterVista ? vistaPredet : ["rondes"]);
     }
-  }
+ // }
 }
 
 function preventFormSubmit() {
