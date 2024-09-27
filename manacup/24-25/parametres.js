@@ -180,25 +180,3 @@ function preventFormSubmit() {
     });
   }
 }
-function actualitzaJSON(){
-   carregant();
-  carrega = 0;
-  fetch(macroURL, {
-    method: 'POST',
-    mode: 'no-cors',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify({
-      envia: 'actualitza', 
-      
-    }),
-  })
-  .then(response => response.text())
-  .then(data => {
-    console.log('Resposta del servidor: JSON actualitzat!', data);
-    clearInterval(interval)
-    iniciJSON("classificacions")
-  })
-  .catch(error => console.error('Error:', error));
-}

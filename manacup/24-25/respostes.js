@@ -322,6 +322,15 @@ async function handleFormSubmit(formObject) {
   document.getElementById("submitbtn2").disabled = true;
   document.getElementById("spnbtn2").classList.remove("d-none");
 
+
+  console.log(JSON.stringify({
+    envia: 'partida', 
+    obj: obj, 
+    idfull: idfull,
+    idJSON: idJSON,
+  }))
+  
+
   fetch(macroURL, {
     method: 'POST',
     mode: 'no-cors',
@@ -404,4 +413,26 @@ const parseValues = async (e) =>
       )
     ))
   );
-
+  function actualitzaJSON(){
+    carregant();   
+   fetch(macroURL, {
+     method: 'POST',
+     mode: 'no-cors',
+     headers: {
+       'Content-Type': 'application/json',
+     },
+     body: JSON.stringify({
+       envia: 'actualitza', 
+       idfull: idfull,
+        idJSON: idJSON,
+       
+     }),
+   })
+   .then(response => response.text())
+   .then(data => {
+     console.log('Resposta del servidor: JSON actualitzat!', data);
+     clearInterval(interval)
+     setTimeout(iniciJSON("classificacions"), 2000)
+   })
+   .catch(error => console.error('Error:', error));
+ }
