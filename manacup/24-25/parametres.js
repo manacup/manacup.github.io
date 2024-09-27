@@ -8,7 +8,7 @@ let parameterVista = urlParams.vista;
 let parameterOptions = urlParams.options;
 let vistaPredet = { page: parameterVista, options: parameterOptions };
 let idfull = urlParams.idfull ||  "1pj6G5pgDUAypPB7O9gkFduYAItopiQBYVR37eXalIvU";
-let idJSON = urlParams.idJSON ||  "1TGhMbc-P_Kn-7JGgeUT4S6V7EhOZzj4Z";
+let idJSON = urlParams.idJSON ||  "1dq1L8JCfGurr08rNQ59QaALG10ocSjXg";//https://drive.google.com/file/d/1dq1L8JCfGurr08rNQ59QaALG10ocSjXg/view?usp=drive_link
 let mostrapestanyes = urlParams.mostrapestanyes || "no";
 console.log(mostrapestanyes);
 if (mostrapestanyes === "si") {
