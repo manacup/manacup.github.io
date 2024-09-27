@@ -908,10 +908,10 @@ function renderPartida(jugador) {
               : jugador.Punts_Partida >= 500
               ? "border-primary"
               : ""
-          }" data-bs-toggle="collapse" data-bs-target="#collapse${jugador.ID}">
+          }">
               <div class="card-body desplega">
                   <div class="row ">
-                      <div class="col-2">
+                      <div class="col-2 btndesplega" data-bs-toggle="collapse" data-bs-target="#collapse${jugador.ID}">
                           <div class="circle">${jugador.posPartida}</div>
                       </div>
                       <div class="col-10">
@@ -1010,11 +1010,10 @@ function renderJugada(jugador) {
       <div class="p-1 entrada">
           <div class="card ${
             jugador.Punts_mot_jugada >= 100 ? "border-danger" : ""
-          }" data-bs-toggle="collapse"
-              data-bs-target="#collapse${jugador.ID}">
+          }">
               <div class="card-body desplega">
                   <div class="row ">
-                      <div class="col-2">
+                      <div class="col-2 btndesplega" data-bs-toggle="collapse" data-bs-target="#collapse${jugador.ID}">
                           <div class="circle">${jugador.posJugada}</div>
                       </div>
                       <div class="col-10">
@@ -1103,11 +1102,10 @@ function ompleTaulaJugada(partides) {
 function renderSocial(jugador) {
   const jugadorTemplate = `
       <div class="p-1 entrada">
-          <div class="card  desplega" data-bs-toggle="collapse"
-              data-bs-target="#collapse${jugador.ID}">
+          <div class="card  desplega">
               <div class="card-body">
                   <div class="row ">
-                      <div class="col-2">
+                      <div class="col-2 btndesplega" data-bs-toggle="collapse" data-bs-target="#collapse${jugador.ID}">
                           <div class="circle">${jugador.Pos_social}</div>
                       </div>
                       <div class="col-10">
@@ -1176,11 +1174,10 @@ function ompleTaulaSocial(partides) {
 function renderVelocitat(jugador) {
   const jugadorTemplate = `
       <div class="p-1 entrada">
-          <div class="card  desplega" data-bs-toggle="collapse"
-              data-bs-target="#collapse${jugador.ID}">
+          <div class="card  desplega">
               <div class="card-body">
                   <div class="row ">
-                      <div class="col-2">
+                      <div class="col-2 btndesplega" data-bs-toggle="collapse" data-bs-target="#collapse${jugador.ID}">
                           <div class="circle">${jugador.Pos_velocitat}</div>
                       </div>
                       <div class="col-10">
