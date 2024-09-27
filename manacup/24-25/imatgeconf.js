@@ -11,7 +11,7 @@ function desaImatgeConf(e) {
       idfull: idfull,
       idJSON: idJSON,
     }
-console.log(payload)
+//console.log(payload)
   fetch(macroURL, {
     method: "POST",
     mode: "no-cors",
@@ -22,7 +22,7 @@ console.log(payload)
   })
     .then((response) => response.text())
     .then((data) => {
-      console.log("Resposta del servidor:", data,response.text());
+      console.log("Resposta del servidor:", data);
       e.disabled = false;
       document.getElementById("spnbtn").classList.add("d-none");
       var modal = document.getElementById("desaimatge");
