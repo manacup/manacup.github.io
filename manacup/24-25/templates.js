@@ -12,7 +12,7 @@ function renderUserCard(jugadorDesat) {
                 : ""
             }  aria-controls="desaimatge">
               <div class="mt-3 mb-4 imatge-cercle ">
-                <img src="${jugadorDesat.Imatge || '/icons/Imatge-default.jpg'}" class="userImg">              
+                <img src="${jugadorDesat.Imatge }" class="userImg" onerror="this.src='/icons/Imatge-default.jpg'">              
               </div>
                 <div class="edit ${
                   !jugadorDesat.Nom ? "d-none" : ""
@@ -72,10 +72,10 @@ function renderJugador(jugador) {
                     <div class="mt-3 mb-4 imatge-cercle img">
                       <img src="${
                         jugador.ID == jugadorDesat.ID
-                          ? userImg || jugador.Imatge || "/icons/Imatge-default.jpg"
-                          : jugador.Imatge || "/icons/Imatge-default.jpg"
+                          ? userImg || jugador.Imatge
+                          : jugador.Imatge
                       }"
-                         >
+                         onerror="this.src='/icons/Imatge-default.jpg'>
                     </div>
                     </div>
                     <h4 class="mb-2">${jugador.Nom}</h4>
