@@ -75,7 +75,7 @@ function renderJugador(jugador) {
                           ? userImg || jugador.Imatge
                           : jugador.Imatge
                       }"
-                         onerror="this.src='/icons/Imatge-default.jpg'>
+                         onerror="this.src='/icons/Imatge-default.jpg'">
                     </div>
                     </div>
                     <h4 class="mb-2">${jugador.Nom}</h4>
