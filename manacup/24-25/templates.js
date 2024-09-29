@@ -755,9 +755,9 @@ function renderClassificacio(jugador) {
                         </span>  
                       </div>
                       
-                      <div class="row">
-                          <div class="col">
-                              <div class="d-flex align-items-start flex-column">
+                      <div class="col-10">
+                          <div class="row">
+                              <div class="d-flex align-items-start justify-content-between">
                                   <small>Punts:</small>
                                   <div>${
                                     jugador.Punts
@@ -766,14 +766,14 @@ function renderClassificacio(jugador) {
   ).toFixed(1)}%</small></div>
                               </div>
                           </div>
-                           <div class="col">
-                              <div class="d-flex align-items-start flex-column">
+                           <div class="row">
+                              <div class="d-flex align-items-start justify-content-between">
                                   <small>Diferencial:</small>
                                   <div>${jugador.Dif_P}</div>
                               </div>
                           </div>
-                          <div class="col">
-                              <div class="d-flex align-items-start flex-column">
+                          <div class="row">
+                              <div class="d-flex align-items-start justify-content-between">
                                   <small>Mitjana favor:</small>
                                   <div>${jugador.MitjanaPFavor}</div>
                               </div>
@@ -837,15 +837,15 @@ function renderScrabbles(jugador) {
     jugador.mitjanaScrabbles.replace(",", ".")
   )}">+${jugador.movimentScrabbles}</span>
                           </div>
-                          <div class="row">
-                              <div class="col">
-                                  <div class="d-flex align-items-start flex-column">
+                          <div class="col-10">
+                              <div class="row">
+                                  <div class="d-flex align-items-start justify-content-between">
                                       <small>Total Scrabbles:</small>
                                       <div>${jugador.Scrabbles}</div>
                                   </div>
                               </div>
-                              <div class="col">
-                                  <div class="d-flex align-items-start flex-column">
+                              <div class="row">
+                                  <div class="d-flex align-items-start justify-content-between">
                                       <small>Mitjana:</small>
                                       <div>${jugador.mitjanaScrabbles}</div>
                                   </div>
@@ -922,15 +922,15 @@ function renderPartida(jugador) {
                                 jugador.movimentPartida != "" ? "" : "d-none"
                               }">${jugador.movimentPartida}</span>
                           </div>
-                          <div class="row">
-                              <div class="col">
-                                  <div class="d-flex align-items-start flex-column">
+                          <div class="col-10">
+                              <div class="row">
+                                  <div class="d-flex align-items-start justify-content-between">
                                       <small>Total Punts:</small>
                                       <div>${jugador.Punts_Partida}</div>
                                   </div>
                               </div>
-                              <div class="col">
-                                  <div class="d-flex align-items-start flex-column">
+                              <div class="row">
+                                  <div class="d-flex align-items-start justify-content-between">
                                       <small>Adversari:</small>
                                       <div>${jugador.Adversari_partida}</div>
                                   </div>
@@ -1029,15 +1029,15 @@ function renderJugada(jugador) {
                           <div>${jugador.Mot_jugada.split("-")
                             .map((mot) => '<div class="mot">' + mot + "</div>")
                             .join("")}</div>                        
-                          <div class="row">                        
-                              <div class="col">
-                                  <div class="d-flex align-items-start flex-column">
+                          <div class="col-10">                        
+                              <div class="row">
+                                  <div class="d-flex align-items-start justify-content-between">
                                       <small>Total Punts:</small>
                                       <div>${jugador.Punts_mot_jugada}</div>
                                   </div>
                               </div>
-                              <div class="col">
-                                  <div class="d-flex align-items-start flex-column">
+                              <div class="row">
+                                  <div class="d-flex align-items-start justify-content-between">
                                       <small>Adversari:</small>
                                       <div>${jugador.Adversari_jugada.split("-")
                                         .map(
@@ -1113,10 +1113,10 @@ function renderSocial(jugador) {
                               <div class="h5 nom">${jugador.Nom}</div>
                               <div  class="flex-grow-1"></div>                           
                           </div>                        
-                          <div class="row">
+                          <div class="col-10">
                           
-                              <div class="col">
-                                  <div class="d-flex align-items-start flex-column">
+                              <div class="row">
+                                  <div class="d-flex align-items-start justify-content-between">
                                       <small>Total Punts:</small>
                                       <div>${jugador.Punts_social}</div>
                                   </div>
@@ -1185,10 +1185,10 @@ function renderVelocitat(jugador) {
                               <div class="h5 nom">${jugador.Nom}</div>
                               <div  class="flex-grow-1"></div>                           
                           </div>                        
-                          <div class="row">
+                          <div class="col-10">
                           
-                              <div class="col">
-                                  <div class="d-flex align-items-start flex-column">
+                              <div class="row">
+                                  <div class="d-flex align-items-start justify-content-between">
                                       <small>Total Punts:</small>
                                       <div>${jugador.Punts_velocitat}</div>
                                   </div>
