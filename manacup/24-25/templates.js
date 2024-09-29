@@ -12,7 +12,9 @@ function renderUserCard(jugadorDesat) {
                 : ""
             }  aria-controls="desaimatge">
               <div class="mt-3 mb-4 imatge-cercle ">
-                <img src="${jugadorDesat.Imatge }" class="userImg" onerror="this.src='/icons/Imatge-default.jpg'">              
+                <img src="${
+                  jugadorDesat.Imatge
+                }" class="userImg" onerror="this.src='/icons/Imatge-default.jpg'">              
               </div>
                 <div class="edit ${
                   !jugadorDesat.Nom ? "d-none" : ""
@@ -37,7 +39,7 @@ function renderUserCard(jugadorDesat) {
             `;
 
   document.querySelectorAll(".userImg").forEach((im) => {
-    im.src = "" + jugadorDesat.Imatge || '/icons/Imatge-default.jpg';
+    im.src = "" + jugadorDesat.Imatge || "/icons/Imatge-default.jpg";
   });
   document.getElementById("userCard").innerHTML = "";
   document.getElementById("userCard").innerHTML += menuTemplate;
@@ -759,11 +761,15 @@ function renderClassificacio(jugador) {
                           <div class="row">
                               <div class="d-flex align-items-start justify-content-between">
                                   <small>Punts:</small>
-                                  <div>${
-                                    jugador.Punts
-                                  } <small class="badge text-primary">${parseFloat(
-    jugador.percentatgeVictories * 100
-  ).toFixed(1)}%</small></div>
+                                  <div>${jugador.Punts} </div>
+                              </div>
+                          </div>
+                          <div class="row">
+                              <div class="d-flex align-items-start justify-content-between">
+                                  <small>Percentatge victòries:</small>
+                                  <div>${parseFloat(
+                                    jugador.percentatgeVictories * 100
+                                  ).toFixed(1)}%</div>
                               </div>
                           </div>
                            <div class="row">
@@ -824,7 +830,9 @@ function renderScrabbles(jugador) {
           }" >
                <div class="card-body desplega">
                   <div class="row ">
-                      <div class="col-2 btndesplega" data-bs-toggle="collapse" data-bs-target="#collapse${jugador.ID}">
+                      <div class="col-2 btndesplega" data-bs-toggle="collapse" data-bs-target="#collapse${
+                        jugador.ID
+                      }">
                           <div class="circle">${jugador.posScrabbles}</div>
                       </div>
                       <div class="col-10">
@@ -911,7 +919,9 @@ function renderPartida(jugador) {
           }">
               <div class="card-body desplega">
                   <div class="row ">
-                      <div class="col-2 btndesplega" data-bs-toggle="collapse" data-bs-target="#collapse${jugador.ID}">
+                      <div class="col-2 btndesplega" data-bs-toggle="collapse" data-bs-target="#collapse${
+                        jugador.ID
+                      }">
                           <div class="circle">${jugador.posPartida}</div>
                       </div>
                       <div class="col-10">
@@ -1013,7 +1023,9 @@ function renderJugada(jugador) {
           }">
               <div class="card-body desplega">
                   <div class="row ">
-                      <div class="col-2 btndesplega" data-bs-toggle="collapse" data-bs-target="#collapse${jugador.ID}">
+                      <div class="col-2 btndesplega" data-bs-toggle="collapse" data-bs-target="#collapse${
+                        jugador.ID
+                      }">
                           <div class="circle">${jugador.posJugada}</div>
                       </div>
                       <div class="col-10">
@@ -1105,7 +1117,9 @@ function renderSocial(jugador) {
           <div class="card  desplega">
               <div class="card-body">
                   <div class="row ">
-                      <div class="col-2 btndesplega" data-bs-toggle="collapse" data-bs-target="#collapse${jugador.ID}">
+                      <div class="col-2 btndesplega" data-bs-toggle="collapse" data-bs-target="#collapse${
+                        jugador.ID
+                      }">
                           <div class="circle">${jugador.Pos_social}</div>
                       </div>
                       <div class="col-10">
@@ -1177,7 +1191,9 @@ function renderVelocitat(jugador) {
           <div class="card  desplega">
               <div class="card-body">
                   <div class="row ">
-                      <div class="col-2 btndesplega" data-bs-toggle="collapse" data-bs-target="#collapse${jugador.ID}">
+                      <div class="col-2 btndesplega" data-bs-toggle="collapse" data-bs-target="#collapse${
+                        jugador.ID
+                      }">
                           <div class="circle">${jugador.Pos_velocitat}</div>
                       </div>
                       <div class="col-10">
