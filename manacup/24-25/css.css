@@ -306,4 +306,11 @@ body {
   z-index:3000;
     }
 
-  
+@media (max-width: 325px){
+  #collapseCerca {
+    display: block;
+  }
+  #botocerca {
+    display: none;;
+  }
+}  
