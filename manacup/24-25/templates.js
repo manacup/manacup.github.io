@@ -764,7 +764,7 @@ function renderClassificacio(jugador) {
                                   <div>${jugador.Punts} </div>
                               </div>
                           </div>
-                          <div class="row">
+                          <div class="row text-light-emphasis">
                               <div class="d-flex align-items-start justify-content-between">
                                   <small>Percentatge victòries:</small>
                                   <div>${parseFloat(
