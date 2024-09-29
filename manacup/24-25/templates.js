@@ -763,15 +763,7 @@ function renderClassificacio(jugador) {
                                   <small>Punts:</small>
                                   <div>${jugador.Punts} </div>
                               </div>
-                          </div>
-                          <div class="row text-light-emphasis">
-                              <div class="d-flex align-items-start justify-content-between">
-                                  <small>Percentatge victòries:</small>
-                                  <div>${parseFloat(
-                                    jugador.percentatgeVictories * 100
-                                  ).toFixed(1)}%</div>
-                              </div>
-                          </div>
+                          </div>                          
                            <div class="row">
                               <div class="d-flex align-items-start justify-content-between">
                                   <small>Diferencial:</small>
@@ -784,7 +776,14 @@ function renderClassificacio(jugador) {
                                   <div>${jugador.MitjanaPFavor}</div>
                               </div>
                           </div>
-                         
+                         <div class="row text-light-emphasis">
+                              <div class="d-flex align-items-start justify-content-between">
+                                  <small>Percentatge victòries:</small>
+                                  <small>${parseFloat(
+                                    jugador.percentatgeVictories * 100
+                                  ).toFixed(1)}%</small>
+                              </div>
+                          </div>
                       </div>
                   </div>
               </div>   
