@@ -3,6 +3,7 @@ const partidesHistory = ["home"];
 const validador = "https://diccionari.totescrable.cat/validador/";
 const blog = "https://scrabblemanacor.wordpress.com/";
 const rellotge = "https://manacup.github.io/rellotgeScrabble/index.html";
+const apps = "https://manacup.github.io"
 
 let currentPage = "home";
 
@@ -208,7 +209,7 @@ function loadContent(vista) {
       break;
     case "social":
       vistesPartides = [];
-      navbarTitle.innerHTML = "Participació social";
+      navbarTitle.innerHTML = "Participació";
       function ordreParticipacio(a, b) {
         return a.Pos_social - b.Pos_social;
       }
@@ -309,6 +310,10 @@ function loadContent(vista) {
       navbarTitle.innerHTML = "Blog";
       window.open(blog);
       break;
+      case "apps":
+        
+        window.location.assign(apps);
+        break;
 
     default:
       contentDiv.innerHTML =

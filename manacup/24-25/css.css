@@ -306,11 +306,17 @@ body {
   z-index:3000;
     }
 
-@media (max-width: 325px){
+@media (max-width: 350px){
   #collapseCerca {
     display: block;
   }
   #botocerca {
     display: none;;
+  }
+  #usermenu {
+    display: block !important;
+  }
+  #botojugador {
+    display: none;
   }
 }  
