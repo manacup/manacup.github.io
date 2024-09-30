@@ -3,7 +3,7 @@ const partidesHistory = ["home"];
 const validador = "https://diccionari.totescrable.cat/validador/";
 const blog = "https://scrabblemanacor.wordpress.com/";
 const rellotge = "https://manacup.github.io/rellotgeScrabble/index.html";
-const apps = "https://manacup.github.io"
+const apps = "https://manacup.github.io";
 
 let currentPage = "home";
 
@@ -239,12 +239,15 @@ function loadContent(vista) {
       break;
     case "detall":
       //console.log(data,options)
-      var jugador = dades.filter((j) => j.ID === options)[0];
-      //console.log(jugador)
-      navbarTitle.innerHTML = jugador.Nom;
-      renderJugador(jugador);
-      vistesPartides = jugador.partides.map((ap) => ap.ID.toString());
-
+      if (options == 0) {
+        new bootstrap.Modal(document.getElementById("desajug")).show();
+      } else {
+        var jugador = dades.filter((j) => j.ID === options)[0];
+        //console.log(jugador)
+        navbarTitle.innerHTML = jugador.Nom;
+        renderJugador(jugador);
+        vistesPartides = jugador.partides.map((ap) => ap.ID.toString());
+      }
       break;
 
     case "detallpartida":
@@ -310,10 +313,9 @@ function loadContent(vista) {
       navbarTitle.innerHTML = "Blog";
       window.open(blog);
       break;
-      case "apps":
-        
-        window.location.assign(apps);
-        break;
+    case "apps":
+      window.location.assign(apps);
+      break;
 
     default:
       contentDiv.innerHTML =

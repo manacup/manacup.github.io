@@ -25,12 +25,12 @@ function renderUserCard(jugadorDesat) {
             <p class="text-muted p-4">${jugadorDesat.Malnom2}</p>
             <div class="mb-4 pb-2">
               <button type="button" class="btn btn-primary btn-rounded btn-lg btnInfo ${
-                jugadorDesat.ID!=0 ? "d-none" : ""
+                jugadorDesat.ID == 0 ? "d-none" : ""
               }" id="btnInfo">
                 <i class="bi bi-bar-chart-line me-2"></i>Informació
               </button>
               <button type="button" class="btn btn-primary btn-rounded btn-lg ${
-                jugadorDesat.ID==0 ? "d-none" : ""
+                jugadorDesat.ID != 0 ? "d-none" : ""
               }" data-bs-toggle="modal" data-bs-target="#desajug" aria-expanded="false"
             aria-controls="desajug">
                 <i class="bi bi-person-check me-2"></i>Identifica't
@@ -39,21 +39,16 @@ function renderUserCard(jugadorDesat) {
             `;
   document.getElementById("usernom").innerText = jugadorDesat.Nom;
   document.querySelectorAll(".userImg").forEach((im) => {
-    im.src =  jugadorDesat.Imatge;
+    im.src = jugadorDesat.Imatge;
   });
   document.getElementById("userCard").innerHTML = "";
   document.getElementById("userCard").innerHTML += menuTemplate;
-  document.querySelectorAll(".btnInfo").forEach(element => {
+  document.querySelectorAll(".btnInfo").forEach((element) => {
     element.addEventListener("click", () => {
-    document.getElementById("menuJugador").classList.remove("show");
-    if(jugadorDesat.ID!=0){
+      document.getElementById("menuJugador").classList.remove("show");
       loadContent(["detall", jugadorDesat.ID]);
-    updateHistory(["detall", jugadorDesat.ID]);
-    }else{
-      new bootstrap.Modal(document.getElementById("desajug")).show()
-    }
-    
-  });
+      updateHistory(["detall", jugadorDesat.ID]);
+    });
   });
 }
 
