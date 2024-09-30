@@ -48,10 +48,10 @@ function renderTrobada(trobada) {
                           Confirma l'assistència
                       </button>
                     </div>
-                      <p><i class="bi bi-geo-alt me-2"></i><span class="fs-4">${trobada.Lloc}</span></p>
-                      <p><i class="bi bi-calendar-event me-2"></i>${trobada.Data}</p>
-                      <p><i class="bi bi-clock me-2"></i>${trobada.Hora}</p>                      
-                      <p><i class="bi bi-compass me-2"></i><a href="${trobada.maps}">${trobada.adreça}</a>
+                      <p><i class="bi bi-geo-alt me-3"></i><span class="fs-4">${trobada.Lloc}</span></p>
+                      <p><i class="bi bi-calendar-event me-3"></i>${trobada.Data}</p>
+                      <p><i class="bi bi-clock me-3"></i>${trobada.Hora}</p>                      
+                      <p><i class="bi bi-compass me-3"></i><a href="${trobada.maps}">${trobada.adreça}</a>
                   </div>
                   </div>
                   </div>
