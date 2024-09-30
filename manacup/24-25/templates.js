@@ -26,7 +26,7 @@ function renderUserCard(jugadorDesat) {
             <div class="mb-4 pb-2">
               <button type="button" class="btn btn-primary btn-rounded btn-lg btnInfo ${
                 jugadorDesat.ID == 0 ? "d-none" : ""
-              }" id="btnInfo" onclick="carregaJugDesat()">
+              }" id="btnInfo" onclick="carregaJugDesat()" data-bs-dismiss="modal">
                 <i class="bi bi-bar-chart-line me-2"></i>Informació
               </button>
               <button type="button" class="btn btn-primary btn-rounded btn-lg ${
