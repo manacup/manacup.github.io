@@ -320,3 +320,8 @@ body {
     display: none;
   }
 }  
+.dropdown-menu {
+  max-height: 450px;
+  overflow-y: scroll;
+ 
+}
