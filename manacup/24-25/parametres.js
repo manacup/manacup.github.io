@@ -116,15 +116,15 @@ function iniciJSON(vista) {
        dades = data.dades;
        // Process 'jugadors' data...
        dades.forEach((jug) => {
-        jug.partides = data.partides.filter((item)=>{ 
+       /*  jug.partides = data.partides.filter((item)=>{ 
           item.Jugador1 === jug.Nom 
           && item.Estat != "none"           
-        })
+        }) */
         var jugadorsOpt = document.getElementById("jugadors");
         jugadorsOpt.innerHTML += `<option value="${jug.ID}">${jug.Nom}</option>`;
       });
       document.getElementById("loaded").innerHTML = "<span>loaded2</span>";
-   
+   console.log(dades)
        // Example: Accessing data from the 'aparellaments' response
        aparellaments = data.aparellaments.filter((p) => p.ID > 0);
        // Process 'aparellaments' data...
@@ -150,10 +150,11 @@ function iniciJSON(vista) {
 function recuperaPartides() {
  // if ((carrega == 2)) {
     dades.forEach((jug) => {
-      jug.partides = partides.filter((partida) => partida.Jugador1 == jug.Nom);
+      jug.partides = partides.filter((partida) => partida.Jugador1 == jug.Nom).sort((a, b) => a.Ronda - b.Ronda);
     });
  // }
 }
+
 
 function loadPagina(vista) {
   console.log(!!trobada&& vista === undefined)
