@@ -543,7 +543,7 @@ function renderJugador(jugador) {
   });
   // Agregar evento al botón de ordenar
 
-  var ordenada = false;
+  var ordenada = true;
   document.getElementById("ordenarBoton").addEventListener("click", () => {
     // Llama a la función de ordenar la tabla por la segunda columna (Edad)
     if (!ordenada) {
