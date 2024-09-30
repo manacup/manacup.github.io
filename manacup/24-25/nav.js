@@ -241,6 +241,8 @@ function loadContent(vista) {
       //console.log(data,options)
       if (options == 0) {
         new bootstrap.Modal(document.getElementById("desajug")).show();
+        loadContent(["classificacio"]);
+      
       } else {
         var jugador = dades.filter((j) => j.ID === options)[0];
         //console.log(jugador)
