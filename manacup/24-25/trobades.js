@@ -25,7 +25,7 @@ function renderTrobada(trobada) {
     }
 
     const trobadaListTemplate = `
-      <div >
+      <div>
           <div class="card mb-3"> 
               <div class="card-body">
                   <div class="row">
@@ -47,15 +47,14 @@ function renderTrobada(trobada) {
                           <i class="bi bi-hand-index"></i>
                           Confirma l'assistència
                       </button>
-              </div>
-                      <p class="mb-2">${trobada.Data} a les ${trobada.Hora}</p>
-                      <p><span class="fs-4">${trobada.Lloc}</span></p>
-                      <p><i class="bi bi-geo-alt"></i><a href="${trobada.maps}">${trobada.adreça}</a>
+                    </div>
+                      <p><i class="bi bi-geo-alt me-2"></i><span class="fs-4">${trobada.Lloc}</span></p>
+                      <p><i class="bi bi-calendar-event me-2"></i>${trobada.Data}</p>
+                      <p><i class="bi bi-clock me-2"></i>${trobada.Hora}</p>                      
+                      <p><i class="bi bi-compass me-2"></i><a href="${trobada.maps}">${trobada.adreça}</a>
                   </div>
-
-                  </div></div>
-
-
+                  </div>
+                  </div>
                   <div class="card mb-3"> 
               <div class="card-body">
                   <p>Assistiran ${
