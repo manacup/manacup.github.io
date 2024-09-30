@@ -59,7 +59,7 @@
             <div class=" d-flex ">
               <div class="d-flex flex-grow-1 click" data-bs-toggle="modal" data-bs-target="#desajug" aria-expanded="false"
                 aria-controls="desajug">
-                <img src="/icons/Imatge-default.jpg" alt="usuari" class="circle userImg" referrerpolicy="no-referrer">
+                <img src="/icons/Imatge-default.jpg" alt="usuari" class="circle userImg" referrerpolicy="no-referrer" onerror="this.src='/icons/Imatge-default.jpg'">
                 <span id="usernom" class="d-inline-block text-truncate ms-2" style="max-width: 100px;">Usuari</span>
               </div>
 
@@ -109,7 +109,7 @@
 
       <div id="botojugador" class="dropdown ms-2" data-bs-toggle="dropdown" data-bs-target="#menuJugador"
         aria-expanded="false" aria-controls="menuJugador" data-bs-auto-close="outside">
-        <img src="/icons/Imatge-default.jpg" alt="usuari" class="circle userImg" referrerpolicy="no-referrer">
+        <img src="/icons/Imatge-default.jpg" alt="usuari" class="circle userImg" referrerpolicy="no-referrer" onerror="this.src='/icons/Imatge-default.jpg'">
       </div>
 
       <div class="collapse  navbar-collapse search mt-2" role="search" id="collapseCerca">
@@ -247,7 +247,7 @@
           <div class="d-flex justify-content-center imatge-container">
             <div class="imgedit">
               <div class="mt-3 mb-4 imatge-cercle imatge-container">
-                <img src="" class="userImg " id="resjugImatgeConf" />
+                <img src="" class="userImg " id="resjugImatgeConf"  onerror="this.src='/icons/Imatge-default.jpg'"/>
                 <input name='imatge' id="ImatgeamagatConf" type="hidden">
 
               </div>
