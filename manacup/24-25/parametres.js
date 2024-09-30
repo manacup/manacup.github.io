@@ -17,8 +17,7 @@ if (mostrapestanyes === "si") {
   document.getElementById("pestanyes").checked = true;
   setStoredPestanyes("true");
 }
-const imatgeFixa =
-  "https://www.infobae.com/new-resizer/izGq0GB3EIUlIN4fdPOhc_rT54c=/arc-anglerfish-arc2-prod-infobae/public/IPZBXHKPUJAOVHO662LV25OEOM.jpg";
+
 let dades = [];
 let aparellaments = [];
 let rondes = [];
@@ -30,11 +29,11 @@ var userImg;
 
 const urlApp = window.location.href.split("?")[0] + "?";
 let jugadorDefault = {
-  Nom: "",
+  Nom: "Jugador anònim",
   Malnom2: "",
   Imatge:
-    "https://drive.google.com/thumbnail?id=1smxezxXK12OGMJ-1uBu68aVAwBGaYSnE",
-  ID: "1",
+    "/icons/Imatge-default.jpg",
+  ID: "0",
 };
 let jugadorDesat = {};
 

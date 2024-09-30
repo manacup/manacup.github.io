@@ -57,14 +57,14 @@
         <li id="usermenu" class="d-none">
           <div class="dropdown-header">
             <div class=" d-flex ">
-              <div class="d-flex flex-grow-1 click" data-bs-toggle="modal" data-bs-target="#desajug" aria-expanded="false"
-                aria-controls="desajug">
-                <img src="/icons/Imatge-default.jpg" alt="usuari" class="circle userImg" referrerpolicy="no-referrer" onerror="this.src='/icons/Imatge-default.jpg'">
+              <div class="d-flex flex-grow-1 click btnInfo">
+                <img src="/icons/Imatge-default.jpg" alt="usuari" class="circle userImg" referrerpolicy="no-referrer"
+                  onerror="this.src='/icons/Imatge-default.jpg'">
                 <span id="usernom" class="d-inline-block text-truncate ms-2" style="max-width: 100px;">Usuari</span>
               </div>
 
-              <div class="click" data-bs-toggle="modal" data-bs-target="#preferencies" aria-expanded="false"
-                aria-controls="desajug"><i class="bi bi-gear"></i></div>
+              <div class="click" data-bs-toggle="modal" data-bs-target="#menuJugador" aria-expanded="false"
+                aria-controls="menuJugador" data-bs-auto-close="outside"><i class="bi bi-gear"></i></div>
 
             </div>
           </div>
@@ -107,9 +107,10 @@
         </li>
       </ul>
 
-      <div id="botojugador" class="dropdown ms-2" data-bs-toggle="dropdown" data-bs-target="#menuJugador"
-        aria-expanded="false" aria-controls="menuJugador" data-bs-auto-close="outside">
-        <img src="/icons/Imatge-default.jpg" alt="usuari" class="circle userImg" referrerpolicy="no-referrer" onerror="this.src='/icons/Imatge-default.jpg'">
+      <div id="botojugador" class=" ms-2" data-bs-toggle="modal" data-bs-target="#menuJugador" aria-expanded="false"
+        aria-controls="menuJugador" data-bs-auto-close="outside">
+        <img src="/icons/Imatge-default.jpg" alt="usuari" class="circle userImg" referrerpolicy="no-referrer"
+          onerror="this.src='/icons/Imatge-default.jpg'">
       </div>
 
       <div class="collapse  navbar-collapse search mt-2" role="search" id="collapseCerca">
@@ -119,15 +120,7 @@
         </div>
       </div>
 
-      <div class="dropdown-menu dropdown-menu-end p-3" id="menuJugador">
-        <div class="card-body text-center">
-          <div id="userCard" class=" position-relative"></div>
-          <p class="text-muted form-label btn" data-bs-toggle="modal" data-bs-target="#preferencies"
-            aria-expanded="false" aria-controls="desajug">Gestiona les preferències</p>
-          <p class="text-muted form-label btn" data-bs-toggle="modal" data-bs-target="#desajug" aria-expanded="false"
-            aria-controls="desajug">Canvia l'usuari</p>
-        </div>
-      </div>
+     
     </div>
     <!-- </nav> -->
 
@@ -234,6 +227,17 @@
       </div>
     </div>
   </main>
+  <div class="modal"  tabindex="-1" id="menuJugador">
+    <div class="modal-dialog">
+      <div class="modal-content text-center">
+        <div id="userCard" class=" position-relative"></div>
+        <p class="text-muted form-label btn" data-bs-toggle="modal" data-bs-target="#preferencies"
+          aria-expanded="false" aria-controls="desajug">Gestiona les preferències</p>
+        <p class="text-muted form-label btn" data-bs-toggle="modal" data-bs-target="#desajug" aria-expanded="false"
+          aria-controls="desajug">Canvia l'usuari</p>
+      </div>
+    </div>
+  </div>
 
   <div class="modal" tabindex="-1" id="desaimatge">
     <div class="modal-dialog">
@@ -247,7 +251,7 @@
           <div class="d-flex justify-content-center imatge-container">
             <div class="imgedit">
               <div class="mt-3 mb-4 imatge-cercle imatge-container">
-                <img src="" class="userImg " id="resjugImatgeConf"  onerror="this.src='/icons/Imatge-default.jpg'"/>
+                <img src="" class="userImg " id="resjugImatgeConf" onerror="this.src='/icons/Imatge-default.jpg'" />
                 <input name='imatge' id="ImatgeamagatConf" type="hidden">
 
               </div>

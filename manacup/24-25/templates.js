@@ -1,6 +1,6 @@
 function renderUserCard(jugadorDesat) {
   const menuTemplate = `
-     <a id="linkuserpref" class=" position-absolute top-10 end-0 translate-middle  pt-2" href="${
+     <a id="linkuserpref" class=" position-absolute top-10 end-0 translate-middle  pt-5" href="${
        urlApp + "&id=" + jugadorDesat.ID + "&mostrapestanyes=no"
      }" target="_blank" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Enllaç a l'app amb el jugador actual per defecte.">
                     <i class="bi bi-share-fill"></i>
@@ -24,7 +24,7 @@ function renderUserCard(jugadorDesat) {
             <h4 class="mb-2">Uep! com va, ${jugadorDesat.Nom}?</h4>
             <p class="text-muted p-4">${jugadorDesat.Malnom2}</p>
             <div class="mb-4 pb-2">
-              <button type="button" class="btn btn-primary btn-rounded btn-lg ${
+              <button type="button" class="btn btn-primary btn-rounded btn-lg btnInfo ${
                 !jugadorDesat.Nom ? "d-none" : ""
               }" id="btnInfo">
                 <i class="bi bi-bar-chart-line me-2"></i>Informació
@@ -43,10 +43,17 @@ function renderUserCard(jugadorDesat) {
   });
   document.getElementById("userCard").innerHTML = "";
   document.getElementById("userCard").innerHTML += menuTemplate;
-  document.getElementById("btnInfo").addEventListener("click", () => {
+  document.querySelectorAll(".btnInfo").forEach(element => {
+    element.addEventListener("click", () => {
     document.getElementById("menuJugador").classList.remove("show");
-    loadContent(["detall", jugadorDesat.ID]);
+    if(jugadorDesat.ID!="0"){
+      loadContent(["detall", jugadorDesat.ID]);
     updateHistory(["detall", jugadorDesat.ID]);
+    }else{
+      document.getElementById("desajug").classList.add("show")
+    }
+    
+  });
   });
 }
 
@@ -650,28 +657,7 @@ function renderDetallPartida(partida) {
   }" class="rounded m-2 p-2" width="90%" height="auto"></a>
           </div>
         </div>
-        <!---  <div id="carouselExampleControls" class="carousel slide mb-4" data-bs-ride="carousel">
-          <div class="carousel-inner" >
-            <div class="carousel-item active quadrat">
-              <img src="${
-                partida.Full || imatgeFixa
-              }" class="d-block  rounded cover img-fluid" onclick="loadContent(['imatge',this])">
-            </div>
-            <div class="carousel-item quadrat">
-              <img src="${
-                partida.Tauler || imatgeFixa
-              }" class="d-block rounded cover img-fluid" onclick="loadContent(['imatge',this])">
-            </div>
-            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
-              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-              <span class="visually-hidden">Previous</span>
-            </button>
-            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
-              <span class="carousel-control-next-icon" aria-hidden="true"></span>
-              <span class="visually-hidden">Next</span>
-            </button>
-          </div>
-        </div> --!>
+
     <p>Resultats enviats el ${ExcelDateToJSDate(partida.Data)}</p>
         <blockquote class="blockquote bg-danger bg-opacity-25 mb-4" style="border-left: 2px solid red;">
           <div class="mb-0 p-3 ${!partida.Comentaris ? "d-none" : ""}">${
