@@ -25,12 +25,12 @@ function renderUserCard(jugadorDesat) {
             <p class="text-muted p-4">${jugadorDesat.Malnom2}</p>
             <div class="mb-4 pb-2">
               <button type="button" class="btn btn-primary btn-rounded btn-lg btnInfo ${
-                !jugadorDesat.Nom ? "d-none" : ""
+                jugadorDesat.Nom!="jugador" ? "d-none" : ""
               }" id="btnInfo">
                 <i class="bi bi-bar-chart-line me-2"></i>Informació
               </button>
               <button type="button" class="btn btn-primary btn-rounded btn-lg ${
-                jugadorDesat.Nom ? "d-none" : ""
+                jugadorDesat.Nom=="jugador" ? "d-none" : ""
               }" data-bs-toggle="modal" data-bs-target="#desajug" aria-expanded="false"
             aria-controls="desajug">
                 <i class="bi bi-person-check me-2"></i>Identifica't
@@ -46,11 +46,11 @@ function renderUserCard(jugadorDesat) {
   document.querySelectorAll(".btnInfo").forEach(element => {
     element.addEventListener("click", () => {
     document.getElementById("menuJugador").classList.remove("show");
-    if(jugadorDesat.ID!="0"){
+    if(jugadorDesat.ID!=0){
       loadContent(["detall", jugadorDesat.ID]);
     updateHistory(["detall", jugadorDesat.ID]);
     }else{
-      document.getElementById("desajug").classList.add("show")
+      document.getElementById("desajug").show
     }
     
   });

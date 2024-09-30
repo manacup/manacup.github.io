@@ -29,11 +29,11 @@ var userImg;
 
 const urlApp = window.location.href.split("?")[0] + "?";
 let jugadorDefault = {
-  Nom: "Jugador anònim",
+  Nom: "jugador anònim",
   Malnom2: "",
   Imatge:
     "/icons/Imatge-default.jpg",
-  ID: "0",
+  ID: 0,
 };
 let jugadorDesat = {};
 
