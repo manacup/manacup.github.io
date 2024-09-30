@@ -26,7 +26,7 @@ function renderUserCard(jugadorDesat) {
             <div class="mb-4 pb-2">
               <button type="button" class="btn btn-primary btn-rounded btn-lg btnInfo ${
                 jugadorDesat.ID == 0 ? "d-none" : ""
-              }" id="btnInfo">
+              }" id="btnInfo" onclick="carregaJugDesat()">
                 <i class="bi bi-bar-chart-line me-2"></i>Informació
               </button>
               <button type="button" class="btn btn-primary btn-rounded btn-lg ${
@@ -43,13 +43,18 @@ function renderUserCard(jugadorDesat) {
   });
   document.getElementById("userCard").innerHTML = "";
   document.getElementById("userCard").innerHTML += menuTemplate;
-  document.querySelectorAll(".btnInfo").forEach((element) => {
+ /*  document.querySelectorAll(".btnInfo").forEach((element) => {
     element.addEventListener("click", () => {
       document.getElementById("menuJugador").classList.remove("show");
       loadContent(["detall", jugadorDesat.ID]);
       updateHistory(["detall", jugadorDesat.ID]);
     });
-  });
+  }); */
+}
+
+function carregaJugDesat(){
+  loadContent(["detall", jugadorDesat.ID]);
+      updateHistory(["detall", jugadorDesat.ID]);
 }
 
 function renderJugador(jugador) {
