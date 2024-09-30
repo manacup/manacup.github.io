@@ -1,4 +1,5 @@
 function renderUserCard(jugadorDesat) {
+  document.getElementById("usernom").innerText = jugadorDesat.Nom
   const menuTemplate = `
      <a id="linkuserpref" class=" position-absolute top-10 end-0 translate-middle  pt-2" href="${
        urlApp + "&id=" + jugadorDesat.ID + "&mostrapestanyes=no"
