@@ -743,7 +743,7 @@ function renderClassificacio(jugador) {
                         </span>  
                       </div>
                       
-                      <div class="col-10 ${jugador.MitjanaPFavor==0?"d-none":""}">
+                      <div class="col-10 ${jugador.MitjanaPFavor=="0,00"?"d-none":""}">
                           <div class="row">
                               <div class="d-flex align-items-start justify-content-between">
                                   <small>Punts:</small>
