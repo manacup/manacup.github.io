@@ -91,7 +91,7 @@ function renderJugador(jugador) {
                     <p class="text-muted mb-4">${jugador.Malnom2}</p>
                     <div class="mb-4 pb-2">
                     <div class="d-flex justify-content-center text-center">
-                    <div data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Campionats: ${
+                    <div class = "${jugador.Campionats==""?"d-none":""}" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Campionats: ${
                       campionats.join(", ") ||
                       "Encara no ha guanyat cap campionat."
                     }">
@@ -100,7 +100,7 @@ function renderJugador(jugador) {
                       jugador.Campionats != "" ? campionats.length : "0"
                     }</p>
                     </div>
-                    <div data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Podis: ${
+                    <div class = "${jugador.Podis==""?"d-none":""}" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Podis: ${
                       podis.join(", ") || "Encara no ha fet cap podi."
                     }">
                     <span class="h1 material-symbols-outlined">leaderboard</span>
@@ -108,7 +108,7 @@ function renderJugador(jugador) {
                       jugador.Podis != "" ? podis.length : "0"
                     }</p>
                     </div>
-                    <div data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Diplomes olímpics: ${
+                    <div class = "${jugador.Diplomes==""?"d-none":""}" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Diplomes olímpics: ${
                       diplomes.join(", ") ||
                       "Encara no ha aconseguit cap diploma olímpic."
                     }">
@@ -123,7 +123,7 @@ function renderJugador(jugador) {
                     }');">
                       <i class="bi bi-whatsapp  me-2"></i>Missatge
                     </button>
-                    <div class="row align-items-end text-center mt-5 mb-2">
+                    <div class="row align-items-end text-center mt-5 mb-2  ${jugador.etiqueta=="debutant"?"d-none":""}">
                       <div class="col">
                         <p class="mb-2 h5">${jugador.BRF}
                         <br>Núm. ${jugador.PosBRF}
