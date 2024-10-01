@@ -9,6 +9,7 @@ let currentPage = "home";
 
 // Función para cargar contenido en la página
 function loadContent(vista) {
+  minimenu(false)
   var tootltip = document.querySelector(".tooltip");
   if (tootltip) {
     tootltip.remove();
@@ -239,10 +240,10 @@ function loadContent(vista) {
       break;
     case "detall":
       //console.log(data,options)
+      minimenu(true)
       if (options == 0) {
         new bootstrap.Modal(document.getElementById("desajug")).show();
         loadContent(["classificacio"]);
-      
       } else {
         var jugador = dades.filter((j) => j.ID === options)[0];
         //console.log(jugador)
@@ -261,6 +262,7 @@ function loadContent(vista) {
       break;
 
     case "formulari":
+      minimenu(true)
       navbarTitle.innerHTML = "Envia el resultat";
       var partida = aparellaments.filter((j) => j.ID == options)[0];
       //console.log(partida)
@@ -280,6 +282,7 @@ function loadContent(vista) {
       break;
 
     case "assistencia":
+      minimenu(true)
       navbarTitle.innerHTML = "Assistència";
 
       //var trobada = trobada.filter(j=>j.Mostra=="TRUE")[0]
@@ -291,6 +294,7 @@ function loadContent(vista) {
       break;
 
     case "imatge":
+      minimenu(true)
       navbarTitle.innerHTML = "Imatge";
 
       contentDiv.innerHTML = `
@@ -521,4 +525,23 @@ function tooltips() {
   const tooltipList = [...tooltipTriggerList].map(
     (tooltipTriggerEl) => new bootstrap.Tooltip(tooltipTriggerEl)
   );
+}
+function minimenu(estat) {
+  const elementsMinimitzats = ["botocerca",  "botojugador","collapseCerca"];
+  const elementsMostrats = ["usermenu",]
+  if (estat) {
+    elementsMinimitzats.forEach((elmin) => {
+      document.getElementById(elmin).classList.add("d-none");      
+    });
+    elementsMostrats.forEach((elmin) => {
+      document.getElementById(elmin).classList.remove("d-none");      
+    });
+  } else {
+    elementsMinimitzats.forEach((elmin) => {
+      document.getElementById(elmin).classList.remove("d-none");
+    });
+    elementsMostrats.forEach((elmin) => {
+      document.getElementById(elmin).classList.add("d-none");      
+    });
+  }
 }
