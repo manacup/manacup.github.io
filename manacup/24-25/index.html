@@ -57,7 +57,7 @@
         <li id="usermenu" class="d-none">
           <div class="dropdown-header">
             <div class=" d-flex ">
-              <div class="d-flex flex-grow-1 click btnInfo"  onclick="carregaJugDesat()">
+              <div class="d-flex flex-grow-1 click btnInfo" onclick="carregaJugDesat()">
                 <img src="/icons/Imatge-default.jpg" alt="usuari" class="circle userImg" referrerpolicy="no-referrer"
                   onerror="this.src='/icons/Imatge-default.jpg'">
                 <span id="usernom" class="d-inline-block text-truncate ms-2" style="max-width: 100px;">Usuari</span>
@@ -120,7 +120,7 @@
         </div>
       </div>
 
-     
+
     </div>
     <!-- </nav> -->
 
@@ -227,12 +227,12 @@
       </div>
     </div>
   </main>
-  <div class="modal"  tabindex="-1" id="menuJugador">
+  <div class="modal" tabindex="-1" id="menuJugador">
     <div class="modal-dialog">
       <div class="modal-content text-center">
         <div id="userCard" class=" position-relative"></div>
-        <p class="text-muted form-label btn" data-bs-toggle="modal" data-bs-target="#preferencies"
-          aria-expanded="false" aria-controls="desajug">Gestiona les preferències</p>
+        <p class="text-muted form-label btn" data-bs-toggle="modal" data-bs-target="#preferencies" aria-expanded="false"
+          aria-controls="desajug">Gestiona les preferències</p>
         <p class="text-muted form-label btn" data-bs-toggle="modal" data-bs-target="#desajug" aria-expanded="false"
           aria-controls="desajug">Canvia l'usuari</p>
       </div>
@@ -532,6 +532,27 @@
       </div>
     </div>
   </div>
+  <script>
+    const queryString = window.location.search;
+    const urlParams = Object.fromEntries(new URLSearchParams(queryString));
+console.log(urlParams)
+    const macroURL = "https://script.google.com/macros/s/AKfycbwDcFyPQFV3B0bzeRxGU9yaTWhbA3PyR3SQZOQ1KEE5cU08SJb5QaOOfuXxwfVnuASk/exec";
+    let parameterId = urlParams.id || "no";
+    let parameterVista = urlParams.vista;
+    let parameterOptions = urlParams.options;
+    let vistaPredet = { page: parameterVista, options: parameterOptions };
+    let idfull = urlParams.idfull || "1pj6G5pgDUAypPB7O9gkFduYAItopiQBYVR37eXalIvU";
+    let idJSON = urlParams.idJSON || "1dq1L8JCfGurr08rNQ59QaALG10ocSjXg";
+    let JSONfixe = "manacup_24-25.json"
+    let usaJSONfixe =  urlParams.JSON //true/false
+    let mostrapestanyes = urlParams.mostrapestanyes || "no";
+    if (mostrapestanyes === "si") {
+      document.getElementById("collapsetabs").classList.add("show");
+      document.getElementById("pestanyes").checked = true;
+      setStoredPestanyes("true");
+    }
+
+  </script>
   <script src="carregant.js"></script>
   <script type="module" src="moduls.js"></script>
   <script src="parametres.js"></script>
