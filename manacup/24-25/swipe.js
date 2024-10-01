@@ -45,10 +45,17 @@ function swipe() {
       //console.log(paginaActual)
 
       if (vistaActual == "detall") {
-        if (parseInt(paginaActual[1]) < dades.length - 1){
+        if (parseInt(paginaActual[1]) < dades.length) {
           paginaSeguent = parseInt(paginaActual[1]) + 1;
-          paginaAnterior = parseInt(paginaActual[1]) - 1
-        } 
+          if (parseInt(paginaActual[1]) == 1) {
+            paginaAnterior = dades.length;
+          } else {
+            paginaAnterior = parseInt(paginaActual[1]) - 1;
+          }
+        } else {
+          paginaSeguent = 1;
+          paginaAnterior = parseInt(paginaActual[1]) - 1;
+        }
         vistaSeguent = vistaActual;
         vistaAnterior = vistaActual;
       } else if (vistaActual == "detallpartida") {
@@ -63,9 +70,15 @@ function swipe() {
           vistaAnterior = vistaActual;
         }
       } else if (vistaActual == "ronda") {
-        if (paginaActual[1] < rondes.length - 1) {
+        if (paginaActual[1] < rondes.length) {
           paginaSeguent = parseInt(paginaActual[1]) + 1;
-        } else if (paginaActual[1] > 1) {
+          if (paginaActual[1] == 1) {
+            paginaAnterior = rondes.length;
+          } else {
+            paginaAnterior = parseInt(paginaActual[1]) - 1;
+          }
+        } else {
+          paginaSeguent = 1;
           paginaAnterior = parseInt(paginaActual[1]) - 1;
         }
         vistaSeguent = vistaActual;
