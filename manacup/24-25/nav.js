@@ -254,6 +254,7 @@ function loadContent(vista) {
       break;
 
     case "detallpartida":
+      minimenu(true)
       navbarTitle.innerHTML = "Detall de la partida";
       var partida = aparellaments.filter((j) => j.ID == options)[0];
       //console.log(partida)

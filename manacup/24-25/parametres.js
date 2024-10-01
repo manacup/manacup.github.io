@@ -17,7 +17,8 @@ if (mostrapestanyes === "si") {
   document.getElementById("pestanyes").checked = true;
   setStoredPestanyes("true");
 }
-
+let nomcampionat = ""
+let temporada = ""
 let dades = [];
 let aparellaments = [];
 let rondes = [];
@@ -136,6 +137,7 @@ function iniciJSON(vista) {
        // Example: Accessing data from the 'partides' response
        partides = data.partides;
        // Process 'partides' data...
+
    
        // Continue with your logic here..
       recuperaPartides();
@@ -143,6 +145,8 @@ function iniciJSON(vista) {
       renderUserCard(jugadorDesat);
       swipe();
       loadPagina(vista)
+      document.getElementById("nomcampionat").innerText=data.campionat
+      document.getElementById("temporada").innerText=data.temporada
   })
   .catch(error => console.error("Error:", error));
 
