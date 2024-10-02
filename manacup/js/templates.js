@@ -98,7 +98,7 @@ function renderJugador(jugador) {
   }">
                     <span class="h1 material-symbols-outlined">trophy</span>
                     <p class="text-muted ">${
-                      campionats?.length || "0"
+                      jugador.Campionats != "" ? campionats?.length : "0"
                     }</p>
                     </div>
                     <div class = "${
@@ -131,9 +131,9 @@ function renderJugador(jugador) {
                       jugador.etiqueta == "debutant" ? "d-none" : ""
                     }">
                       <div class="col">
-                        <p class="mb-2 h5">${jugador.BRF}
-                        <br>Núm. ${jugador.PosBRF}
-                        <br>${jugador.CatBRF}
+                        <p class="mb-2 h5">${jugador?.BRF}
+                        <br>Núm. ${jugador?.PosBRF}
+                        <br>${jugador?.CatBRF}
                         </p>
                         <p class="text-muted ">Barruf</p>
                       </div>
