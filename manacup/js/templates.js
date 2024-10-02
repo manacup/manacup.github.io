@@ -131,9 +131,9 @@ function renderJugador(jugador) {
                       jugador.etiqueta == "debutant" ? "d-none" : ""
                     }">
                       <div class="col">
-                        <p class="mb-2 h5">${jugador.BRF}
-                        <br>Núm. ${jugador.PosBRF}
-                        <br>${jugador.CatBRF}
+                        <p class="mb-2 h5">${jugador?.BRF||""}
+                        <br>Núm. ${jugador?.PosBRF||""}
+                        <br>${jugador?.CatBRF||""}
                         </p>
                         <p class="text-muted ">Barruf</p>
                       </div>
