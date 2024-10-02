@@ -35,13 +35,13 @@ function renderTrobada(trobada) {
                   </a>
                       <div class="h5 mb-3">${trobada.Trobada}</div>
                       <button id="botoAssisteix" class="btn btn-lg btn-danger ${
-                        jugadorDesat.Nom == "" ? "d-none" : ""
+                        jugadorDesat.ID == 0 ? "d-none" : ""
                       }" onclick="loadContent(['assistencia']);updateHistory(['assistencia']);">
                           <i class="bi bi-hand-index"></i>
                           Confirma l'assistència
                       </button>
                       <button id="botoAssisteix2" class="btn btn-lg btn-danger ${
-                        jugadorDesat.Nom != "" ? "d-none" : ""
+                        jugadorDesat.ID != 0 ? "d-none" : ""
                       }" data-bs-toggle="modal" data-bs-target="#desajug" aria-expanded="false"
               aria-controls="desajug">
                           <i class="bi bi-hand-index"></i>
