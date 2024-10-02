@@ -685,7 +685,7 @@ function renderDetallPartida(partida) {
 }
 
 function renderClassificacio(jugador) {
-  jugador.grup == undefined ? (jugador.grup = "") : jugador.grup;
+  
   const jugadorTemplate = `
            <div class="p-1 entrada">
            <div class="card click ${
@@ -732,7 +732,7 @@ function renderClassificacio(jugador) {
                         <div  class="flex-grow-1">
                         </div>
                         <span class="badge text-bg-secondary me-1 ${
-                          jugador.grup != "" ? "" : "d-none"
+                          jugador?.grup || "d-none"
                         }">
                         <span class="visually-hidden-focusable">grup${
                           jugador.grup
