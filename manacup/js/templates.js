@@ -43,7 +43,7 @@ function renderUserCard(jugadorDesat) {
   });
   document.getElementById("userCard").innerHTML = "";
   document.getElementById("userCard").innerHTML += menuTemplate;
- /*  document.querySelectorAll(".btnInfo").forEach((element) => {
+  /*  document.querySelectorAll(".btnInfo").forEach((element) => {
     element.addEventListener("click", () => {
       document.getElementById("menuJugador").classList.remove("show");
       loadContent(["detall", jugadorDesat.ID]);
@@ -52,9 +52,9 @@ function renderUserCard(jugadorDesat) {
   }); */
 }
 
-function carregaJugDesat(){
+function carregaJugDesat() {
   loadContent(["detall", jugadorDesat.ID]);
-      updateHistory(["detall", jugadorDesat.ID]);
+  updateHistory(["detall", jugadorDesat.ID]);
 }
 
 function renderJugador(jugador) {
@@ -91,27 +91,31 @@ function renderJugador(jugador) {
                     <p class="text-muted mb-4">${jugador.Malnom2}</p>
                     <div class="mb-4 pb-2">
                     <div class="d-flex justify-content-center text-center">
-                    <div class = "${jugador.Campionats==""?"d-none":""}" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Campionats: ${
-                      campionats.join(", ") ||
-                      "Encara no ha guanyat cap campionat."
-                    }">
+                    <div class = "${
+                      jugador.Campionats == "" ? "d-none" : ""
+                    }" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Campionats: ${
+    campionats.join(", ") || "Encara no ha guanyat cap campionat."
+  }">
                     <span class="h1 material-symbols-outlined">trophy</span>
                     <p class="text-muted ">${
-                      jugador.Campionats != "" ? campionats.length : "0"
+                      campionats?.length || "0"
                     }</p>
                     </div>
-                    <div class = "${jugador.Podis==""?"d-none":""}" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Podis: ${
-                      podis.join(", ") || "Encara no ha fet cap podi."
-                    }">
+                    <div class = "${
+                      jugador.Podis == "" ? "d-none" : ""
+                    }" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Podis: ${
+    podis.join(", ") || "Encara no ha fet cap podi."
+  }">
                     <span class="h1 material-symbols-outlined">leaderboard</span>
                     <p class="text-muted ">${
                       jugador.Podis != "" ? podis.length : "0"
                     }</p>
                     </div>
-                    <div class = "${jugador.Diplomes==""?"d-none":""}" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Diplomes olímpics: ${
-                      diplomes.join(", ") ||
-                      "Encara no ha aconseguit cap diploma olímpic."
-                    }">
+                    <div class = "${
+                      jugador.Diplomes == "" ? "d-none" : ""
+                    }" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Diplomes olímpics: ${
+    diplomes.join(", ") || "Encara no ha aconseguit cap diploma olímpic."
+  }">
                     <span class="h1 material-symbols-outlined">school</span>
                     <p class="text-muted ">${
                       jugador.Diplomes != "" ? diplomes.length : "0"
@@ -123,7 +127,9 @@ function renderJugador(jugador) {
                     }');">
                       <i class="bi bi-whatsapp  me-2"></i>Missatge
                     </button>
-                    <div class="row align-items-end text-center mt-5 mb-2  ${jugador.etiqueta=="debutant"?"d-none":""}">
+                    <div class="row align-items-end text-center mt-5 mb-2  ${
+                      jugador.etiqueta == "debutant" ? "d-none" : ""
+                    }">
                       <div class="col">
                         <p class="mb-2 h5">${jugador.BRF}
                         <br>Núm. ${jugador.PosBRF}
@@ -679,6 +685,7 @@ function renderDetallPartida(partida) {
 }
 
 function renderClassificacio(jugador) {
+  jugador.grup == undefined ? (jugador.grup = "") : jugador.grup;
   const jugadorTemplate = `
            <div class="p-1 entrada">
            <div class="card click ${
@@ -743,7 +750,9 @@ function renderClassificacio(jugador) {
                         </span>  
                       </div>
                       
-                      <div class="col-10 ${jugador.MitjanaPFavor=="0,00"?"d-none":""}">
+                      <div class="col-10 ${
+                        jugador.MitjanaPFavor == "0,00" ? "d-none" : ""
+                      }">
                           <div class="row">
                               <div class="d-flex align-items-start justify-content-between">
                                   <small>Punts:</small>
