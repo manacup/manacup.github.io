@@ -15,11 +15,12 @@ app  .config(['$firebaseProvider', function($firebaseProvider) {
 app .controller('recopiladades', ['$scope',  function($scope) {
     // Obtener una referencia a una colección en Firebase
     var ref = new Firebase('https://manacup-b195e-default-rtdb.europe-west1.firebasedatabase.app/');
-
+console.log(ref)
     // Sincronizar los datos de Firebase con un array en AngularJS
-    $scope.jugadors = transformArray(response.data.dades);
-    $scope.calendari = transformArray(response.data.calendari);
-    $scope.partides = transformArray(response.data.aparellaments);
+    $scope.datosFirebase = $firebaseArray(ref);
+    $scope.jugadors = transformArray(ref.dades);
+    $scope.calendari = transformArray(ref.calendari);
+    $scope.partides = transformArray(ref.aparellaments);
   }]);
 
 
