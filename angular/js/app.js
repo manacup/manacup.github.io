@@ -1,28 +1,38 @@
-var app = angular.module("myApp", ["ngRoute",'firebase']);
-app.config(['$firebaseProvider', function($firebaseProvider) {
-    // Configuración de Firebase
-    $firebaseProvider.init({
-      // Tus claves de configuración de Firebase
-      apiKey: "AIzaSyDn0v_QEsAdWAMN0cLe8teNkDiHe6hIXwc",
-          authDomain: "manacup-b195e.firebaseapp.com",
-          databaseURL: "https://manacup-b195e-default-rtdb.europe-west1.firebasedatabase.app",
-          projectId: "manacup-b195e",
-          storageBucket: "manacup-b195e.appspot.com",
-          messagingSenderId: "548487419691",
-          appId: "1:548487419691:web:fba0488c532503b132176e"
-    });
-  }])
-app.controller('recopiladades', ['$scope',  function($scope) {
+
+
+const firebaseConfig = {
+    // Tus claves de configuración de Firebase
+    apiKey: "AIzaSyDn0v_QEsAdWAMN0cLe8teNkDiHe6hIXwc",
+        authDomain: "manacup-b195e.firebaseapp.com",
+        databaseURL: "https://manacup-b195e-default-rtdb.europe-west1.firebasedatabase.app",
+        projectId: "manacup-b195e",
+        storageBucket: "manacup-b195e.appspot.com",
+        messagingSenderId: "548487419691",
+        appId: "1:548487419691:web:fba0488c532503b132176e"
+  }
+  firebase.initializeApp(config);
+  var app = angular.module("myApp", ["ngRoute","firebase"]);
+// app.module.js
+app.controller("recopiladades", function($scope, $firebaseObject) {
+    var ref = firebase.database().ref().child("data");
+    // download the data into a local object
+  var syncObject = $firebaseObject(ref);
+  // synchronize the object with a three-way data binding
+  // click on `index.html` above to see it used in the DOM!
+  $scope.jugadors = transformArray(firebase.database().ref().child("dades"));
+    $scope.calendari = transformArray(firebase.database().ref().child("calendari"));
+    $scope.partides = transformArray(firebase.database().ref().child("aparellaments"));
+  syncObject.$bindTo($scope, "data");
+  });
+  app.controller('MyController', ['$scope', '$firebaseArray', function($scope, $firebaseArray) {
     // Obtener una referencia a una colección en Firebase
     var ref = new Firebase('https://manacup-b195e-default-rtdb.europe-west1.firebasedatabase.app/');
-console.log(ref)
-    // Sincronizar los datos de Firebase con un array en AngularJS
-    $scope.datosFirebase = $firebaseArray(ref);
-    $scope.jugadors = transformArray(ref.dades);
-    $scope.calendari = transformArray(ref.calendari);
-    $scope.partides = transformArray(ref.aparellaments);
-  }]);
 
+    // Sincronizar los datos de Firebase con un array en AngularJS
+    $scope.jugadors = transformArray(response.data.dades);
+    $scope.calendari = transformArray(response.data.calendari);
+    $scope.partides = transformArray(response.data.aparellaments);
+  }]);
 
 app.config(function($routeProvider) {
     $routeProvider
