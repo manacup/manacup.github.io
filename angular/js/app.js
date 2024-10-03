@@ -21,7 +21,9 @@ fetchChat.on("child_added", function (snapshot) {
  
   jugador = snapshot.val();
 jugadors.push(jugador)
+    
 });
+console.log(jugadors)
   var app = angular.module("myApp", ["ngRoute"]);
 /* // app.module.js
 app.controller("recopiladades", function($scope, $firebaseObject) {
