@@ -11,6 +11,8 @@ const firebaseConfig = {
         appId: "1:548487419691:web:fba0488c532503b132176e"
   }
   firebase.initializeApp(firebaseConfig);
+const db = firebase.database();
+console.log(db)
   var app = angular.module("myApp", ["ngRoute"]);
 /* // app.module.js
 app.controller("recopiladades", function($scope, $firebaseObject) {
