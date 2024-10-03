@@ -1,4 +1,15 @@
-var app = angular.module("myApp", ["ngRoute"]);
+var app = angular.module("myApp", ["ngRoute",'firebase']);
+
+app .controller('MyController', ['$scope', '$firebaseArray', function($scope, $firebaseArray) {
+    // Obtener una referencia a una colección en Firebase
+    var ref = new Firebase('https://manacup-b195e-default-rtdb.europe-west1.firebasedatabase.app/');
+
+    // Sincronizar los datos de Firebase con un array en AngularJS
+    $scope.jugadors = transformArray(response.data.dades);
+    $scope.calendari = transformArray(response.data.calendari);
+    $scope.partides = transformArray(response.data.aparellaments);
+  }]);
+
 
 app.config(function($routeProvider) {
     $routeProvider
@@ -36,7 +47,7 @@ app.config(function($routeProvider) {
         });
 });
 
-app.controller("recopiladades", function($scope, $http, $rootScope) {
+/* app.controller("recopiladades", function($scope, $http, $rootScope) {
     const macroURL = "https://script.google.com/macros/s/AKfycbwDcFyPQFV3B0bzeRxGU9yaTWhbA3PyR3SQZOQ1KEE5cU08SJb5QaOOfuXxwfVnuASk/exec";
     const idfull = "1HDQ6YdsA5FnzHaHFeOlYXPEIDCLRpq34rm078oFqRMU";
     const idJSON = "1JxO5a-iFwM3pvVRFWW71-vV1whC3fNIS";
@@ -46,7 +57,7 @@ app.controller("recopiladades", function($scope, $http, $rootScope) {
         $scope.calendari = transformArray(response.data.calendari);
         $scope.partides = transformArray(response.data.aparellaments);
     });
-
+ */
     function transformArray(array) {
         return array.map(obj => {
             for (let key in obj) {
