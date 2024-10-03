@@ -23,16 +23,29 @@ app.controller("recopiladades", function($scope, $firebaseObject) {
     $scope.calendari = transformArray(firebase.database().ref().child("calendari"));
     $scope.partides = transformArray(firebase.database().ref().child("aparellaments"));
   syncObject.$bindTo($scope, "data");
-  });
-  app.controller('MyController', ['$scope', '$firebaseArray', function($scope, $firebaseArray) {
-    // Obtener una referencia a una colección en Firebase
-    var ref = new Firebase('https://manacup-b195e-default-rtdb.europe-west1.firebasedatabase.app/');
+  function transformArray(array) {
+    return array.map(obj => {
+        for (let key in obj) {
+            if (obj.hasOwnProperty(key)) {
+                obj[key] = isNaN(parseInt(obj[key], 10)) ? obj[key] : parseInt(obj[key], 10);
+                obj[key] = (obj[key] === "TRUE") ? true : (obj[key] === "FALSE") ? false : obj[key];
+            }
+        }
+        obj.Posicio = obj.Posició;
+        return obj;
+    });
+}
 
-    // Sincronizar los datos de Firebase con un array en AngularJS
-    $scope.jugadors = transformArray(response.data.dades);
-    $scope.calendari = transformArray(response.data.calendari);
-    $scope.partides = transformArray(response.data.aparellaments);
-  }]);
+// Watch for changes in $rootScope.pagina and update $scope.page
+$scope.$watch(function() {
+    return $rootScope.pagina;
+}, function(newVal, oldVal) {
+    if (newVal !== oldVal) {
+        $scope.page = newVal;
+    }
+});
+  });
+
 
 app.config(function($routeProvider) {
     $routeProvider
@@ -80,7 +93,7 @@ app.config(function($routeProvider) {
         $scope.calendari = transformArray(response.data.calendari);
         $scope.partides = transformArray(response.data.aparellaments);
     });
- */
+
     function transformArray(array) {
         return array.map(obj => {
             for (let key in obj) {
@@ -102,4 +115,4 @@ app.config(function($routeProvider) {
             $scope.page = newVal;
         }
     });
-});
+}); */
