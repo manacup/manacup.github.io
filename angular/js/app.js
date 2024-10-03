@@ -11,8 +11,8 @@ const firebaseConfig = {
         appId: "1:548487419691:web:fba0488c532503b132176e"
   }
   firebase.initializeApp(firebaseConfig);
-  var app = angular.module("myApp", ["ngRoute","firebase"]);
-// app.module.js
+  var app = angular.module("myApp", ["ngRoute"]);
+/* // app.module.js
 app.controller("recopiladades", function($scope, $firebaseObject) {
     var ref = firebase.database().ref().child("data");
     // download the data into a local object
@@ -44,7 +44,7 @@ $scope.$watch(function() {
         $scope.page = newVal;
     }
 });
-  });
+  }); */
 
 
 app.config(function($routeProvider) {
@@ -83,7 +83,7 @@ app.config(function($routeProvider) {
         });
 });
 
-/* app.controller("recopiladades", function($scope, $http, $rootScope) {
+app.controller("recopiladades", function($scope, $http, $rootScope) {
     const macroURL = "https://script.google.com/macros/s/AKfycbwDcFyPQFV3B0bzeRxGU9yaTWhbA3PyR3SQZOQ1KEE5cU08SJb5QaOOfuXxwfVnuASk/exec";
     const idfull = "1HDQ6YdsA5FnzHaHFeOlYXPEIDCLRpq34rm078oFqRMU";
     const idJSON = "1JxO5a-iFwM3pvVRFWW71-vV1whC3fNIS";
@@ -115,4 +115,4 @@ app.config(function($routeProvider) {
             $scope.page = newVal;
         }
     });
-}); */
+});
