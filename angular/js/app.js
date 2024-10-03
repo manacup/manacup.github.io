@@ -1,5 +1,5 @@
 var app = angular.module("myApp", ["ngRoute",'firebase']);
-app  .config(['$firebaseProvider', function($firebaseProvider) {
+app.config(['$firebaseProvider', function($firebaseProvider) {
     // Configuración de Firebase
     $firebaseProvider.init({
       // Tus claves de configuración de Firebase
@@ -12,7 +12,7 @@ app  .config(['$firebaseProvider', function($firebaseProvider) {
           appId: "1:548487419691:web:fba0488c532503b132176e"
     });
   }])
-app .controller('recopiladades', ['$scope',  function($scope) {
+app.controller('recopiladades', ['$scope',  function($scope) {
     // Obtener una referencia a una colección en Firebase
     var ref = new Firebase('https://manacup-b195e-default-rtdb.europe-west1.firebasedatabase.app/');
 console.log(ref)
