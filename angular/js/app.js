@@ -10,7 +10,7 @@ const firebaseConfig = {
         messagingSenderId: "548487419691",
         appId: "1:548487419691:web:fba0488c532503b132176e"
   }
-  firebase.initializeApp(config);
+  firebase.initializeApp(firebaseConfig);
   var app = angular.module("myApp", ["ngRoute","firebase"]);
 // app.module.js
 app.controller("recopiladades", function($scope, $firebaseObject) {
