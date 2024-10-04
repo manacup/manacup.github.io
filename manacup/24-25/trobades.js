@@ -361,6 +361,12 @@ async function main() {
 
   document.getElementById("enviaAssistencia").disabled = true;
   document.getElementById("spnbtn3").classList.remove("d-none");
+  console.log(JSON.stringify({
+      envia: 'trobada', 
+      values: values, 
+      idfull: idfull,
+      idJSON: idJSON,
+    }))
   fetch(macroURL, {
     method: 'POST',
     mode: 'no-cors',
