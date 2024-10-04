@@ -347,7 +347,7 @@ async function handleFormSubmit(formObject) {
   .then(response => response.text())
   .then(data => {
     console.log('Resposta del servidor:', data);
-    setTimeout(iniciJSON("classificacions"), 2000)
+    setTimeout(iniciJSON(false,"classificacions"), 2000)
   })
   .catch(error => console.error('Error:', error));
   /* google.script.run
@@ -432,7 +432,7 @@ const parseValues = async (e) =>
    .then(data => {
      console.log('Resposta del servidor: JSON actualitzat!', data);
      clearInterval(interval)
-     setTimeout(iniciJSON("classificacions"), 2000)
+     setTimeout(iniciJSON(false,"classificacions"), 2000)
    })
    .catch(error => console.error('Error:', error));
  }
