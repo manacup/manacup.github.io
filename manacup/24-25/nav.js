@@ -272,6 +272,7 @@ function loadContent(vista) {
       break;
 
     case "trobades":
+      minimenu(true)
       navbarTitle.innerHTML = "Trobades";
       //console.log(trobada)
       if (trobada) {
