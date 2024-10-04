@@ -47,12 +47,39 @@ function renderTrobada(trobada) {
                           <i class="bi bi-hand-index"></i>
                           Confirma l'assistència
                       </button>
-                    </div>
-                      
-                      <p><i class="bi bi-calendar-event me-3"></i>${trobada.Data}</p>
-                      <p><i class="bi bi-clock me-3"></i>${trobada.Hora}</p>
-                      <p><i class="bi bi-geo-alt me-3"></i><span class="fs-4">${trobada.Lloc}</span></p>                      
-                      <p><i class="bi bi-map me-3"></i><a href="${trobada.maps}">${trobada.adreça}</a>
+                    </div>                   
+                       <div class="d-flex">
+                        <div class="p-2 flex-shrink-1">
+                          <i class="bi bi-calendar-event"></i>
+                        </div>
+                        <div class="p-2 w-100">
+                          ${trobada.Data}
+                        </div>
+                      </div>
+                       <div class="d-flex">
+                        <div class="p-2 flex-shrink-1">
+                          <i class="bi bi-clock"></i>
+                        </div>
+                        <div class="p-2 w-100">
+                          ${trobada.Hora}
+                        </div>
+                      </div>
+                       <div class="d-flex">
+                        <div class="p-2 flex-shrink-1">
+                          <i class="bi bi-geo-alt"></i>
+                        </div>
+                        <div class="p-2 w-100">
+                          <span class="fs-4">${trobada.Lloc}</span>
+                        </div>
+                      </div>
+                      <div class="d-flex">
+                        <div class="p-2 flex-shrink-1">
+                          <i class="bi bi-map"></i>
+                        </div>
+                        <div class="p-2 w-100">
+                          <a href="${trobada.maps}">${trobada.adreça}</a>
+                        </div>
+                      </div>                     
                   </div>
                   </div>
                   </div>
