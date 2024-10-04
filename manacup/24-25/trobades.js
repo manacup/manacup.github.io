@@ -380,10 +380,12 @@ async function main() {
       idJSON: idJSON,
     }),
   })
-  .then(response => response.text())
+  .then(response => {
+    response.text()
+      console.log(response.text)})
   .then(data => {
     console.log('Resposta del servidor:', data);
-    setTimeout(iniciJSON(false,"trobades"), 2000)
+    setTimeout(iniciJSON(false,"trobades"), 500)
   })
   .catch(error => console.error('Error:', error));
 
