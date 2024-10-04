@@ -74,7 +74,7 @@ function renderTrobada(trobada) {
       </div>  
     `;
     document.getElementById("content").innerHTML += trobadaListTemplate;
-    assistents.sort(function (a, b) {
+/*     assistents.sort(function (a, b) {
       var nameA = a.Assistencia.toUpperCase(); // ignore upper and lowercase
       var nameB = b.Assistencia.toUpperCase(); // ignore upper and lowercase
       if (nameA > nameB) {
@@ -86,7 +86,7 @@ function renderTrobada(trobada) {
 
       // names must be equal
       return 0;
-    });
+    }); */
     assistents.forEach((assistent) => {
       const assistentsTemplate = `
     <li id="itemAssistents" class="list-group-item">
