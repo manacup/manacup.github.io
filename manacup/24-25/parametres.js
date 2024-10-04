@@ -55,9 +55,9 @@ function carregaUsuari() {
       dades.filter((j) => j.ID == parameterId)[0] || jugadorDefault;
   }
 }
-document.addEventListener("DOMContentLoaded", iniciJSON());
+document.addEventListener("DOMContentLoaded", iniciJSON(true));
 
-function iniciJSON(vista) {
+function iniciJSON(turbo,vista) {
   carregant();
   carrega = 0;
   // Crida a l'API del Google Apps Script
@@ -69,7 +69,7 @@ function iniciJSON(vista) {
     cache: "default",
   };
   Promise.all([
-    fetch(usaJSONfixe=="true" ? JSONfixe : macroURL + "?page=JSON&idJSON=" + idJSON),    
+    fetch(turbo ? JSONfixe : macroURL + "?page=JSON&idJSON=" + idJSON),    
   ])
     .then((responses) =>
       Promise.all(responses.map((response) => response.json()))
