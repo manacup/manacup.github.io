@@ -185,10 +185,10 @@
               </div>
             </div>
           </div>
-          <div class="row mb-3 g-3"></div>
-          <div>
+          
+          <div class=" mb-3">
             <div class="row">
-              <div class="col-10 mb-3"><i class="bi bi-segmented-nav me-2"></i>
+              <div class="col-10"><i class="bi bi-segmented-nav me-2"></i>
                 <span class="ms-2">Mostra les pestanyes</span>
               </div>
               <div class="col-2 text-end">
@@ -199,7 +199,20 @@
               </div>
             </div>
           </div>
-
+                    <div class=" mb-3">
+            <div class="row">
+              <div class="col-10"><i class="bi bi-rocket-takeoff"></i>
+                <span class="ms-2">Moode turbo</span>
+              </div>
+              <div class="col-2 text-end">
+                <div class="form-check form-switch">
+                  <input class="form-check-input" type="checkbox" id="turbo" value="true" name="turbo"
+                    >
+                </div>
+              </div>
+            </div>
+            <small>Carrega les dades emmagatzemades més ràpidament, però les actualitzacions de les noves dades poden tardar uns minuts.</small>
+          </div>
         </div>
       </div>
     </div>
@@ -544,13 +557,16 @@ console.log(urlParams)
     let idfull = urlParams.idfull || "1pj6G5pgDUAypPB7O9gkFduYAItopiQBYVR37eXalIvU";
     let idJSON = urlParams.idJSON || "1dq1L8JCfGurr08rNQ59QaALG10ocSjXg";
     let JSONfixe = "manacup_24-25.json"
-    let usaJSONfixe =  urlParams.JSON //true/false
+    let usaJSONfixe =  urlParams.turbo || localStorage.getItem("turbo") //true/false
     let mostrapestanyes = urlParams.mostrapestanyes || "no";
     if (mostrapestanyes === "si") {
       document.getElementById("collapsetabs").classList.add("show");
       document.getElementById("pestanyes").checked = true;
       setStoredPestanyes("true");
     }
+    document.getElementById("turbo").addEventListener("change",(e)=>{
+      localStorage.setItem("turbo",e.value)
+    })
 
   </script>
   <script src="carregant.js"></script>
