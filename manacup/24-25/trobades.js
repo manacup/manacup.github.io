@@ -382,7 +382,7 @@ async function main() {
   })
   .then(response => {
     response.text()
-      console.log(response.text)})
+      console.log(response.text())})
   .then(data => {
     console.log('Resposta del servidor:', data);
     setTimeout(iniciJSON(false,"trobades"), 500)
