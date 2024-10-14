@@ -58,7 +58,7 @@ function carregaUsuari() {
 document.addEventListener("DOMContentLoaded", iniciJSON(false));
 
 function iniciJSON(turbo,vista) {
-  usaJSONfixe?turbo=true:""
+  usaJSONfixe="true"?turbo=true:""
   carregant();
   carrega = 0;
   // Crida a l'API del Google Apps Script
