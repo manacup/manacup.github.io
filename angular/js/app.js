@@ -17,7 +17,7 @@ const fetchChat = db.ref("dades/");
 console.log(fetchChat)
 let jugadors = []
 // check for new messages using the onChildAdded event listener
-fetchChat.on("child_added", function (snapshot) {
+fetchChat.on("changes", function (snapshot) {
  
   jugador = snapshot.val();
 jugadors.push(jugador)
