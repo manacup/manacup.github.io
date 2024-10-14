@@ -564,10 +564,12 @@ console.log(urlParams)
       document.getElementById("pestanyes").checked = true;
       setStoredPestanyes("true");
     }
-   /*  document.getElementById("turbo").addEventListener("change",(e)=>{
+    document.getElementById("turbo").addEventListener("change",(e)=>{
       localStorage.setItem("turbo",e.checked?"true":"false")
-    }) */
-
+    }) 
+document.addEventListener("DOMContentLoaded",()=>{ 
+  document.getElementById("turbo").checked=localStorage.getItem("turbo")
+})
   </script>
   <script src="carregant.js"></script>
   <script type="module" src="moduls.js"></script>  
