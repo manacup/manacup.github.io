@@ -104,7 +104,7 @@ console.log(aparellaments)
   }); 
 
 $scope.$apply()*/
- app.controller("recopiladades", function($scope, $http, $rootScope,$location) {
+ app.controller("recopiladades", function($scope, $http, $rootScope) {
 
 
 const fetchDades = db.ref("dades");
@@ -163,11 +163,7 @@ fetchDades.on("value", function (snapshot) {
            
     });   */
       
-        var vm = this;
-    vm.id = $location.search().id;
-  $scope.resumJugador = $scope.jugadors[vm.id]
-       
-       $scope.$apply()  
+
   
 function transformarObjeto(objetoOriginal) {
   const nuevoObjeto = {};
