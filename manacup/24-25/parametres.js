@@ -55,10 +55,10 @@ function carregaUsuari() {
       dades.filter((j) => j.ID == parameterId)[0] || jugadorDefault;
   }
 }
-document.addEventListener("DOMContentLoaded", iniciJSON(false));
+document.addEventListener("DOMContentLoaded", iniciJSON(true));
 
 function iniciJSON(turbo,vista) {
-  usaJSONfixe=="true"?turbo=true:""
+  
   carregant();
   carrega = 0;
   // Crida a l'API del Google Apps Script
