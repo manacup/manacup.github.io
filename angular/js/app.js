@@ -78,7 +78,8 @@ app.controller("recopiladades", function ($scope, $rootScope) { // Use firebase 
 
   // Fetch aparellaments data
   const aparellamentsRef = db.ref("aparellaments");
-  aparellamentsRef.on("value", (snapshot) => {
+    console.log(aparellamentsRef)
+/*   aparellamentsRef.on("value", (snapshot) => {
     const aparellaments = transformArray(snapshot.val());
 console.log(aparellaments)
     aparellaments.forEach((ap) => {
@@ -97,7 +98,7 @@ console.log(aparellaments)
         console.warn(`Jugador with ID ${jugador2Id} not found in jugadors data.`);
       }
     });
-  });
+  }); */
 
 
 /* app.controller("recopiladades", function($scope, $http, $rootScope) {
