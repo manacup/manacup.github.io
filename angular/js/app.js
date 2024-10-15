@@ -139,7 +139,7 @@ fetchDades.on("value", function (snapshot) {
     const fetchaparellaments = db.ref("aparellaments");
     fetchaparellaments.on("value", function (snapshot) { 
         $scope.aparellaments = snapshot.val()
-     console.log(aparellaments)
+     
          $scope.$apply() 
     });
    /*     aparellaments.forEach((ap) => {
