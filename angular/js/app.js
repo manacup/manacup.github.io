@@ -67,11 +67,14 @@ $scope.jugadors = transformArray(snapshot.val());
     });
     const fetchaparellaments = db.ref("aparellaments");
     fetchaparellaments.on("value", function (snapshot) { 
-        $scope.aparellaments = transformArray(snapshot.val()).forEach(ap=>{
+        $scope.aparellaments = transformArray(snapshot.val()).map(ap=>{
             transformarObjeto(ap)
-            &scope.jugadors[ap.Jugador1.ID].partides.push(ap)
-            &scope.jugadors[ap.Jugador2.ID].partides.push(ap)
+     
         });
+        $scope.aparellaments.forEach(a=>{
+          &scope.jugadors[ap.Jugador1.ID].partides.push(ap)
+            &scope.jugadors[ap.Jugador2.ID].partides.push(ap)  
+        })
         $scope.$apply();
         
     });
