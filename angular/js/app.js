@@ -77,7 +77,6 @@ $scope.calendari = transformArray(snapshot.val());
                     obj[key] = (obj[key] === "TRUE") ? true : (obj[key] === "FALSE") ? false : obj[key];
                 }
             }
-            obj.Posicio = obj.Posició;
             return obj;
         });
     }
