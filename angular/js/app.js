@@ -15,12 +15,14 @@ const db = firebase.database();
 console.log(db)
 const fetchChat = db.ref("dades/");
 console.log(fetchChat)
+
+
 let jugadors = []
 // check for new messages using the onChildAdded event listener
-fetchChat.on("changes", function (snapshot) {
+fetchChat.on("value", function (snapshot) {
  
-  jugador = snapshot.val();
-jugadors.push(jugador)
+  jugadors = snapshot.val();
+
     
 });
 console.log(jugadors)
