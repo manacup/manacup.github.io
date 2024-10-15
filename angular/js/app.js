@@ -51,7 +51,7 @@ app.config(function($routeProvider) {
         });
 });
 
-app.controller("recopiladades", function ($scope, firebase) { // Use firebase instead of $http for Firebase communication
+app.controller("recopiladades", function ($scope, $rootScope) { // Use firebase instead of $http for Firebase communication
 
   // Assuming your Firebase database structure:
   // dades: { ... } (data for jugadors)
