@@ -105,19 +105,24 @@ $scope.$apply()*/
 
 
 const fetchDades = db.ref("dades");
-fetchDades.on("value", function (snapshot) { 
-$scope.jugadors = transformArray(snapshot.val());
-    Object.values($scope.jugadors).forEach(jugador => {
-      jugador.partides = [db.ref('aparellaments');
+fetchDades.on("value", function (snapshot) {
+  $scope.jugadors = transformArray(snapshot.val());
 
-itemsRef.orderByChild('ID').equalTo('jugador.ID')
-  .on('value', (snapshot) => {
-    snapshot
-  });];
-    });
-    $scope.$apply();
+  Object.values($scope.jugadors).forEach(jugador => {
+    jugador.partides = []; // Initialize empty array
 
-    });    
+    // Assuming 'partides' collection references player IDs
+    db.ref('aparellaments')
+      .orderByChild('ID')
+      .equalTo(jugador.ID) // Use actual player ID
+      .on('value', (snapshot) => {
+        const playerMatches = snapshot.val() || []; // Handle potential null value
+        jugador.partides = playerMatches; // Update partidas after data retrieval
+      });
+  });
+
+  $scope.$apply();
+}); 
     const fetchcalendari = db.ref("calendari");
     fetchcalendari.on("value", function (snapshot) { 
         $scope.calendari = transformArray(snapshot.val());
