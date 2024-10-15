@@ -11,44 +11,9 @@ const firebaseConfig = {
         appId: "1:548487419691:web:fba0488c532503b132176e"
   }
   firebase.initializeApp(firebaseConfig);
-const db = firebase.database();
-console.log(db)
+
 
   var app = angular.module("myApp", ["ngRoute"]);
-/* // app.module.js
-app.controller("recopiladades", function($scope, $firebaseObject) {
-    var ref = firebase.database().ref().child("data");
-    // download the data into a local object
-  var syncObject = $firebaseObject(ref);
-  // synchronize the object with a three-way data binding
-  // click on `index.html` above to see it used in the DOM!
-  $scope.jugadors = transformArray(firebase.database().ref().child("dades"));
-    $scope.calendari = transformArray(firebase.database().ref().child("calendari"));
-    $scope.partides = transformArray(firebase.database().ref().child("aparellaments"));
-  syncObject.$bindTo($scope, "data");
-  function transformArray(array) {
-    return array.map(obj => {
-        for (let key in obj) {
-            if (obj.hasOwnProperty(key)) {
-                obj[key] = isNaN(parseInt(obj[key], 10)) ? obj[key] : parseInt(obj[key], 10);
-                obj[key] = (obj[key] === "TRUE") ? true : (obj[key] === "FALSE") ? false : obj[key];
-            }
-        }
-        obj.Posicio = obj.Posició;
-        return obj;
-    });
-}
-
-// Watch for changes in $rootScope.pagina and update $scope.page
-$scope.$watch(function() {
-    return $rootScope.pagina;
-}, function(newVal, oldVal) {
-    if (newVal !== oldVal) {
-        $scope.page = newVal;
-    }
-});
-  }); */
-
 
 app.config(function($routeProvider) {
     $routeProvider
@@ -87,27 +52,23 @@ app.config(function($routeProvider) {
 });
 
 app.controller("recopiladades", function($scope, $http, $rootScope) {
-    const macroURL = "https://script.google.com/macros/s/AKfycbwDcFyPQFV3B0bzeRxGU9yaTWhbA3PyR3SQZOQ1KEE5cU08SJb5QaOOfuXxwfVnuASk/exec";
-    const idfull = "1HDQ6YdsA5FnzHaHFeOlYXPEIDCLRpq34rm078oFqRMU";
-    const idJSON = "1JxO5a-iFwM3pvVRFWW71-vV1whC3fNIS";
+const db = firebase.database();
+
 const fetchDades = db.ref("dades");
-console.log(fetchDades)
+
 fetchDades.on("value", function (snapshot) { 
 $scope.jugadors = snapshot.val();
-//console.log(jugadors)
+    $scope.$apply();
+
     });
     const fetchcalendari = db.ref("calendari");
-console.log(fetchcalendari)
-fetchcalendari.on("value", function (snapshot) { 
-$scope.calendari = snapshot.val();
-//console.log(calendari)
-    });
-   /*  $http.get(`${macroURL}?page=JSON&idfull=${idfull}&idJSON=${idJSON}`).then(function(response) {
-        
-        //$scope.calendari = transformArray(response.data.calendari);
-        $scope.partides = transformArray(response.data.aparellaments);
-    }); */
 
+fetchcalendari.on("value", function (snapshot) { 
+$scope.calendari = transformArray(snapshot.val());
+    $scope.$apply();
+
+    });
+  
     function transformArray(array) {
         return array.map(obj => {
             for (let key in obj) {
