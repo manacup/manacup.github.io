@@ -57,7 +57,7 @@ app.controller("recopiladades", function($scope, $http, $rootScope) {
 const fetchDades = db.ref("dades");
 
 fetchDades.on("value", function (snapshot) { 
-$scope.jugadors = snapshot.val();
+$scope.jugadors = transformArray(snapshot.val());
     $scope.$apply();
 
     });
