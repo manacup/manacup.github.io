@@ -54,45 +54,61 @@ app.config(function($routeProvider) {
 app.controller("recopiladades", function ($scope, firebase) { // Use firebase instead of $http for Firebase communication
 
   // Assuming your Firebase database structure:
-  // - dades (contains player data)
-  // - calendari (contains calendar data)
-  // - aparellaments (contains fixture/match data with Jugador1.ID and Jugador2.ID references)
+  // dades: { ... } (data for jugadors)
+  // calendari: { ... } (data for calendari)
+  // aparellaments: { ... } (data for aparellaments with Jugador1.ID and Jugador2.ID)
 
-  //const db = firebase.database(); // Get a Firebase database reference
+  //const db = firebase.database(); // Access Firebase database using firebase service
 
-  // Fetch player data
-  db.ref("dades").once("value").then((snapshot) => {
+  // Fetch jugadors data
+  const jugadorsRef = db.ref("dades");
+  jugadorsRef.on("value", (snapshot) => {
     $scope.jugadors = transformArray(snapshot.val());
-    // Add an empty `partides` array to each player object for matches
-    $scope.jugadors.forEach(jugador => jugador.partides = []);
-  }).catch((error) => {
-    console.error("Error fetching players:", error);
+    // Add initial empty 'partides' property for each jugador
+    Object.values($scope.jugadors).forEach(jugador => {
+      jugador.partides = [];
+    });
   });
 
-  // Fetch calendar data (optional, modify if needed)
-  db.ref("calendari").once("value").then((snapshot) => {
+  // Fetch calendari data
+  const calendariRef = db.ref("calendari");
+  calendariRef.on("value", (snapshot) => {
     $scope.calendari = transformArray(snapshot.val());
-  }).catch((error) => {
-    console.error("Error fetching calendar:", error);
   });
 
-  // Fetch fixture data and update players' `partides`
-  db.ref("aparellaments").once("value").then((snapshot) => {
+  // Fetch aparellaments data
+  const aparellamentsRef = db.ref("aparellaments");
+  aparellamentsRef.on("value", (snapshot) => {
     const aparellaments = transformArray(snapshot.val());
+
     aparellaments.forEach((ap) => {
-      if ($scope.jugadors[ap.Jugador1.ID]) {
-        $scope.jugadors[ap.Jugador1.ID].partides.push(ap);
+      const jugador1Id = ap.Jugador1.ID;
+      const jugador2Id = ap.Jugador2.ID;
+
+      if ($scope.jugadors[jugador1Id]) {
+        $scope.jugadors[jugador1Id].partides.push(ap);
+      } else {
+        console.warn(`Jugador with ID ${jugador1Id} not found in jugadors data.`);
       }
-      if ($scope.jugadors[ap.Jugador2.ID]) {
-        $scope.jugadors[ap.Jugador2.ID].partides.push(ap);
+
+      if ($scope.jugadors[jugador2Id]) {
+        $scope.jugadors[jugador2Id].partides.push(ap);
+      } else {
+        console.warn(`Jugador with ID ${jugador2Id} not found in jugadors data.`);
       }
     });
-  }).catch((error) => {
-    console.error("Error fetching fixtures:", error);
   });
 
-  // Implement your `transformArray` and `transformarObjeto` functions here,
-  // ensuring they handle your specific data structure and requirements
+  // Implement transformArray function (replace with your actual logic)
+  function transformArray(array) {
+    // Your transformation logic here, potentially converting to desired format
+    return array;
+  }
+
+  // Implement transformarObjeto function (replace with your actual logic)
+  function transformarObjeto(objetoOriginal) {
+    // Your transformation logic here
+  }
 });
 
 /* app.controller("recopiladades", function($scope, $http, $rootScope) {
