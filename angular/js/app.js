@@ -112,12 +112,19 @@ fetchDades.on("value", function (snapshot) {
     jugador.partides = []; // Initialize empty array
 
     // Assuming 'partides' collection references player IDs
-    db.ref('aparellaments')
-      .orderByChild('ID')
+    const aparellaments= db.ref('aparellaments')
+      aparellaments.orderByChild('Jugador1/ID')
       .equalTo(jugador.ID) // Use actual player ID
       .on('value', (snapshot) => {
-        const playerMatches = snapshot.val() || []; // Handle potential null value
-        jugador.partides = playerMatches; // Update partidas after data retrieval
+        const playerMatches1 = snapshot.val() || []; // Handle potential null value
+        jugador.partides = playerMatches1; // Update partidas after data retrieval
+          console.log(jugador)
+      });
+      aparellaments.orderByChild('Jugador2/ID')
+      .equalTo(jugador.ID) // Use actual player ID
+      .on('value', (snapshot) => {
+        const playerMatches2 = snapshot.val() || []; // Handle potential null value
+        jugador.partides =  jugador.partides.concat(playerMatches2); // Update partidas after data retrieval
           console.log(jugador)
       });
   });
