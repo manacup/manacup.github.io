@@ -199,7 +199,7 @@
               </div>
             </div>
           </div>
-          <div class=" mb-3">
+<!--           <div class=" mb-3">
             <div class="row">
               <div class="col-10"><i class="bi bi-rocket-takeoff me-2"></i>
                 <span class="ms-2">Mode turbo</span>
@@ -212,7 +212,7 @@
               </div>
             </div>
             <small>Carrega les dades emmagatzemades més ràpidament, però les actualitzacions de les noves dades poden tardar uns minuts.</small>
-          </div>
+          </div> -->
         </div>
       </div>
     </div>
@@ -557,19 +557,19 @@ console.log(urlParams)
     let idfull = urlParams.idfull || "1pj6G5pgDUAypPB7O9gkFduYAItopiQBYVR37eXalIvU";
     let idJSON = urlParams.idJSON || "1dq1L8JCfGurr08rNQ59QaALG10ocSjXg";
     let JSONfixe = "manacup_24-25.json"
-    let usaJSONfixe =  urlParams.turbo || localStorage.getItem("turbo") //true/false
+    //let usaJSONfixe =  urlParams.turbo || localStorage.getItem("turbo") //true/false
     let mostrapestanyes = urlParams.mostrapestanyes || "no";
     if (mostrapestanyes === "si") {
       document.getElementById("collapsetabs").classList.add("show");
       document.getElementById("pestanyes").checked = true;
       setStoredPestanyes("true");
     }
-    document.getElementById("turbo").addEventListener("change",(e)=>{
+/*     document.getElementById("turbo").addEventListener("change",(e)=>{
       localStorage.setItem("turbo",e.checked?"true":"false")
     }) 
 document.addEventListener("DOMContentLoaded",()=>{ 
   document.getElementById("turbo").checked=localStorage.getItem("turbo")=="true"? true: false 
-})
+}) */
   </script>
   <script src="carregant.js"></script>
   <script type="module" src="moduls.js"></script>  
