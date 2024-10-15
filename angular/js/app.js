@@ -50,7 +50,8 @@ app.config(function($routeProvider) {
             controller: "conjuntaCtrl"
         }).when("/detalljugador", {
             templateUrl: "views/detalljugador.html",
-            controller: "detallJugadorCtrl"
+            controller: "detallJugadorCtrl",
+            controllerAs: 'vm'
         });
 });
 
