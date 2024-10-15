@@ -94,13 +94,13 @@ const fetchDades = db.ref("dades");
 console.log(fetchDades)
 fetchDades.on("value", function (snapshot) { 
 $scope.jugadors = snapshot.val();
-console.log(jugadors)
+//console.log(jugadors)
     });
     const fetchcalendari = db.ref("calendari");
 console.log(fetchcalendari)
 fetchcalendari.on("value", function (snapshot) { 
 $scope.calendari = snapshot.val();
-console.log(calendari)
+//console.log(calendari)
     });
     $http.get(`${macroURL}?page=JSON&idfull=${idfull}&idJSON=${idJSON}`).then(function(response) {
         
