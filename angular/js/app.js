@@ -98,7 +98,7 @@ console.log(aparellaments)
       }
     });
   });
-});
+
 
 /* app.controller("recopiladades", function($scope, $http, $rootScope) {
 
