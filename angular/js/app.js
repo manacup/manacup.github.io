@@ -14,7 +14,7 @@ const firebaseConfig = {
 const db = firebase.database();
 console.log(db)
 const fetchDades = db.ref("dades");
-console.log(fetchChat)
+console.log(fetchDades)
 
 
 
