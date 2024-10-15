@@ -11,7 +11,7 @@ const firebaseConfig = {
         appId: "1:548487419691:web:fba0488c532503b132176e"
   }
   firebase.initializeApp(firebaseConfig);
-
+const db = firebase.database();
 
   var app = angular.module("myApp", ["ngRoute"]);
 
@@ -52,7 +52,7 @@ app.config(function($routeProvider) {
 });
 
 app.controller("recopiladades", function($scope, $http, $rootScope) {
-const db = firebase.database();
+
 
 const fetchDades = db.ref("dades");
 
