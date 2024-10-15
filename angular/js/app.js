@@ -120,7 +120,7 @@ $scope.jugadors = transformArray(snapshot.val());
     });
     const fetchaparellaments = db.ref("aparellaments");
     fetchaparellaments.on("value", function (snapshot) { 
-        const aparellaments = transformArray(snapshot.val()).map(ap=>{
+        const aparellaments = snapshot.val().map(ap=>{
             transformarObjeto(ap)
      console.log(aparellaments)
         });
