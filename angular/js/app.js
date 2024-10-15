@@ -118,6 +118,7 @@ fetchDades.on("value", function (snapshot) {
       .on('value', (snapshot) => {
         const playerMatches = snapshot.val() || []; // Handle potential null value
         jugador.partides = playerMatches; // Update partidas after data retrieval
+          console.log(jugador)
       });
   });
 
@@ -128,7 +129,7 @@ fetchDades.on("value", function (snapshot) {
         $scope.calendari = transformArray(snapshot.val());
         $scope.$apply();
     });
-    const fetchaparellaments = db.ref("aparellaments");
+    /* const fetchaparellaments = db.ref("aparellaments");
     fetchaparellaments.on("value", function (snapshot) { 
         const aparellaments = Object.values(snapshot.val())
      console.log(aparellaments)
@@ -150,9 +151,8 @@ fetchDades.on("value", function (snapshot) {
       }
             $scope.$apply()
     });
-   /* const partidasJugador1 = Object.values(datosPartidas)
-  .filter(partida => partida.Jugador1.ID === 1); */
-        });
+
+        }); */
       
       
        
