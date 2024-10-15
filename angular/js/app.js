@@ -13,19 +13,7 @@ const firebaseConfig = {
   firebase.initializeApp(firebaseConfig);
 const db = firebase.database();
 console.log(db)
-const fetchDades = db.ref("dades");
-console.log(fetchDades)
 
-
-
-// check for new messages using the onChildAdded event listener
-fetchDades.on("value", function (snapshot) {
- 
-let  jugadors = snapshot.val();
-
-    
-
-console.log(jugadors)
   var app = angular.module("myApp", ["ngRoute"]);
 /* // app.module.js
 app.controller("recopiladades", function($scope, $firebaseObject) {
@@ -102,10 +90,21 @@ app.controller("recopiladades", function($scope, $http, $rootScope) {
     const macroURL = "https://script.google.com/macros/s/AKfycbwDcFyPQFV3B0bzeRxGU9yaTWhbA3PyR3SQZOQ1KEE5cU08SJb5QaOOfuXxwfVnuASk/exec";
     const idfull = "1HDQ6YdsA5FnzHaHFeOlYXPEIDCLRpq34rm078oFqRMU";
     const idJSON = "1JxO5a-iFwM3pvVRFWW71-vV1whC3fNIS";
-
+const fetchDades = db.ref("dades");
+console.log(fetchDades)
+fetchDades.on("value", function (snapshot) { 
+$scope.jugadors = snapshot.val();
+console.log(jugadors)
+    });
+    const fetchcalendari = db.ref("calendari");
+console.log(fetchcalendari)
+fetchcalendari.on("value", function (snapshot) { 
+$scope.calendari = snapshot.val();
+console.log(calendari)
+    });
     $http.get(`${macroURL}?page=JSON&idfull=${idfull}&idJSON=${idJSON}`).then(function(response) {
-        $scope.jugadors = jugadors 
-        $scope.calendari = transformArray(response.data.calendari);
+        
+        //$scope.calendari = transformArray(response.data.calendari);
         $scope.partides = transformArray(response.data.aparellaments);
     });
 
@@ -131,4 +130,4 @@ app.controller("recopiladades", function($scope, $http, $rootScope) {
         }
     });
 });
-});
+
