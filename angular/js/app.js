@@ -80,7 +80,7 @@ app.controller("recopiladades", function ($scope, firebase) { // Use firebase in
   const aparellamentsRef = db.ref("aparellaments");
   aparellamentsRef.on("value", (snapshot) => {
     const aparellaments = transformArray(snapshot.val());
-
+console.log(aparellaments)
     aparellaments.forEach((ap) => {
       const jugador1Id = ap.Jugador1.ID;
       const jugador2Id = ap.Jugador2.ID;
@@ -98,17 +98,6 @@ app.controller("recopiladades", function ($scope, firebase) { // Use firebase in
       }
     });
   });
-
-  // Implement transformArray function (replace with your actual logic)
-  function transformArray(array) {
-    // Your transformation logic here, potentially converting to desired format
-    return array;
-  }
-
-  // Implement transformarObjeto function (replace with your actual logic)
-  function transformarObjeto(objetoOriginal) {
-    // Your transformation logic here
-  }
 });
 
 /* app.controller("recopiladades", function($scope, $http, $rootScope) {
