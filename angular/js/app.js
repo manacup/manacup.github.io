@@ -138,6 +138,7 @@ $scope.jugadors = transformArray(snapshot.val());
       } else {
         console.warn(`Jugador with ID ${jugador2Id} not found in jugadors data.`);
       }
+            $scope.$apply()
     });
    /* const partidasJugador1 = Object.values(datosPartidas)
   .filter(partida => partida.Jugador1.ID === 1); */
