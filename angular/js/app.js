@@ -55,20 +55,62 @@ app.controller("recopiladades", function($scope, $http, $rootScope) {
 
 
 const fetchDades = db.ref("dades");
-
 fetchDades.on("value", function (snapshot) { 
 $scope.jugadors = transformArray(snapshot.val());
     $scope.$apply();
 
-    });
+    });    
     const fetchcalendari = db.ref("calendari");
-
-fetchcalendari.on("value", function (snapshot) { 
-$scope.calendari = transformArray(snapshot.val());
-    $scope.$apply();
-
+    fetchcalendari.on("value", function (snapshot) { 
+        $scope.calendari = transformArray(snapshot.val());
+        $scope.$apply();
     });
-  
+    const fetchaparellaments = db.ref("aparellaments");
+    fetchaparellaments.on("value", function (snapshot) { 
+        $scope.aparellaments = transformArray(snapshot.val()).forEach(ap=>{
+            transformarObjeto(ap)
+            &scope.jugadors[ap.Jugador1.ID].partides.push(ap)
+            &scope.jugadors[ap.Jugador2.ID].partides.push(ap)
+        });
+        $scope.$apply();
+        
+    });
+function transformarObjeto(objetoOriginal) {
+  const nuevoObjeto = {};
+
+  // Copiar propiedades comunes
+  const propiedadesComunes = ['Ronda', 'ID', 'Data', 'Comentaris','Full','Tauler',Suma_punts','Punts_social','Estat','Nova','Pos_Conjunta','Taula','Punts_velocitat'];
+  propiedadesComunes.forEach(prop => {
+    nuevoObjeto[prop] = objetoOriginal[prop];
+  });
+
+  // Crear objetos para cada jugador
+  nuevoObjeto.Jugador1 = {
+      ID :objetoOriginal.idJug1,
+    Jugador: objetoOriginal.Jugador1,
+    Puntuaciones: {
+      Puntuacio: objetoOriginal.Puntuacio_1,
+      Puntsmot: objetoOriginal.Puntsmot_1,
+      Scrabbles: objetoOriginal.Scrabbles_1,
+        Punts:objetoOriginal.Punts_1
+      // ... otras puntuaciones
+    }
+  };
+
+  nuevoObjeto.Jugador2 = {
+      ID : objetoOriginal.idJug2,
+    Jugador: objetoOriginal.Jugador2,
+    Puntuaciones: {
+      Puntuacio: objetoOriginal.Puntuacio_2,
+      Puntsmot: objetoOriginal.Puntsmot_2,
+      Scrabbles: objetoOriginal.Scrabbles_2,
+        Punts:objetoOriginal.Punts_2
+      // ... otras puntuaciones
+    }
+  };
+
+  return nuevoObjeto;
+}
     function transformArray(array) {
         return array.map(obj => {
             for (let key in obj) {
