@@ -55,7 +55,7 @@ function carregaUsuari() {
       dades.filter((j) => j.ID == parameterId)[0] || jugadorDefault;
   }
 }
-document.addEventListener("DOMContentLoaded", iniciJSON(true));
+document.addEventListener("DOMContentLoaded", iniciJSON(false));
 
 function iniciJSON(turbo,vista) {
   
