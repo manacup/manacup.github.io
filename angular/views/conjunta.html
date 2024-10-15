@@ -1,6 +1,6 @@
 <button class="btn end" ng-click="ordreConjunta()">Ordena per data </button>
 <div class="p-1 entrada"
-    ng-repeat="partida in partides | orderBy : ordre | filter : combinedFilter">
+    ng-repeat="partida in aparellaments | orderBy : ordre | filter : combinedFilter">
 
     <div class="card {{
       partida.Suma_punts >= 1000
