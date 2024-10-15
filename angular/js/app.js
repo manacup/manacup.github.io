@@ -131,7 +131,7 @@ function transformarObjeto(objetoOriginal) {
   const nuevoObjeto = {};
 
   // Copiar propiedades comunes
-  const propiedadesComunes = ['Ronda', 'ID', 'Data', 'Comentaris','Full','Tauler',Suma_punts','Punts_social','Estat','Nova','Pos_Conjunta','Taula','Punts_velocitat'];
+  const propiedadesComunes = ['Ronda', 'ID', 'Data', 'Comentaris','Full','Tauler','Suma_punts','Punts_social','Estat','Nova','Pos_Conjunta','Taula','Punts_velocitat'];
   propiedadesComunes.forEach(prop => {
     nuevoObjeto[prop] = objetoOriginal[prop];
   });
