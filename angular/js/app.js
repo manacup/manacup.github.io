@@ -120,16 +120,27 @@ $scope.jugadors = transformArray(snapshot.val());
     });
     const fetchaparellaments = db.ref("aparellaments");
     fetchaparellaments.on("value", function (snapshot) { 
-        const aparellaments = snapshot.val().map(ap=>{
-            transformarObjeto(ap)
+        const aparellaments = snapshot.val()
      console.log(aparellaments)
+            aparellaments.forEach((ap) => {
+      const jugador1Id = ap.Jugador1.ID;
+      const jugador2Id = ap.Jugador2.ID;
+
+      if ($scope.jugadors[jugador1Id]) {
+        $scope.jugadors[jugador1Id].partides.push(ap);
+      } else {
+        console.warn(`Jugador with ID ${jugador1Id} not found in jugadors data.`);
+      }
+
+      if ($scope.jugadors[jugador2Id]) {
+        $scope.jugadors[jugador2Id].partides.push(ap);
+      } else {
+        console.warn(`Jugador with ID ${jugador2Id} not found in jugadors data.`);
+      }
+    });
         });
-      /*   $scope.aparellaments.forEach(a=>{
-          &scope.jugadors[ap.Jugador1.ID].partides.push(ap)
-            &scope.jugadors[ap.Jugador2.ID].partides.push(ap) 
-                 })  */        
-                 
-        })
+      
+      
        
         
   
