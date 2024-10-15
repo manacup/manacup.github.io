@@ -108,7 +108,12 @@ const fetchDades = db.ref("dades");
 fetchDades.on("value", function (snapshot) { 
 $scope.jugadors = transformArray(snapshot.val());
     Object.values($scope.jugadors).forEach(jugador => {
-      jugador.partides = [];
+      jugador.partides = [db.ref('aparellaments');
+
+itemsRef.orderByChild('ID').equalTo('jugador.ID')
+  .on('value', (snapshot) => {
+    snapshot
+  });];
     });
     $scope.$apply();
 
