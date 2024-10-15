@@ -120,9 +120,10 @@ $scope.jugadors = transformArray(snapshot.val());
     });
     const fetchaparellaments = db.ref("aparellaments");
     fetchaparellaments.on("value", function (snapshot) { 
-        const aparellaments = snapshot.val()
+        const aparellaments = Object.values(snapshot.val())
      console.log(aparellaments)
-            aparellaments.forEach((ap) => {
+        
+       aparellaments.forEach((ap) => {
       const jugador1Id = ap.Jugador1.ID;
       const jugador2Id = ap.Jugador2.ID;
 
@@ -138,6 +139,8 @@ $scope.jugadors = transformArray(snapshot.val());
         console.warn(`Jugador with ID ${jugador2Id} not found in jugadors data.`);
       }
     });
+   /* const partidasJugador1 = Object.values(datosPartidas)
+  .filter(partida => partida.Jugador1.ID === 1); */
         });
       
       
