@@ -102,11 +102,11 @@ fetchcalendari.on("value", function (snapshot) {
 $scope.calendari = snapshot.val();
 //console.log(calendari)
     });
-    $http.get(`${macroURL}?page=JSON&idfull=${idfull}&idJSON=${idJSON}`).then(function(response) {
+   /*  $http.get(`${macroURL}?page=JSON&idfull=${idfull}&idJSON=${idJSON}`).then(function(response) {
         
         //$scope.calendari = transformArray(response.data.calendari);
         $scope.partides = transformArray(response.data.aparellaments);
-    });
+    }); */
 
     function transformArray(array) {
         return array.map(obj => {
