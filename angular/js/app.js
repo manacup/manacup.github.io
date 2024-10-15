@@ -51,7 +51,7 @@ app.config(function($routeProvider) {
         });
 });
 
-app.controller("recopiladades", function ($scope, $rootScope) { // Use firebase instead of $http for Firebase communication
+/* app.controller("recopiladades", function ($scope, $rootScope) { // Use firebase instead of $http for Firebase communication
 
   // Assuming your Firebase database structure:
   // dades: { ... } (data for jugadors)
@@ -79,7 +79,7 @@ app.controller("recopiladades", function ($scope, $rootScope) { // Use firebase 
   // Fetch aparellaments data
   const aparellamentsRef = db.ref("aparellaments");
     console.log(aparellamentsRef)
-/*   aparellamentsRef.on("value", (snapshot) => {
+  aparellamentsRef.on("value", (snapshot) => {
     const aparellaments = transformArray(snapshot.val());
 console.log(aparellaments)
     aparellaments.forEach((ap) => {
@@ -98,15 +98,18 @@ console.log(aparellaments)
         console.warn(`Jugador with ID ${jugador2Id} not found in jugadors data.`);
       }
     });
-  }); */
+  }); 
 
-$scope.$apply()
-/* app.controller("recopiladades", function($scope, $http, $rootScope) {
+$scope.$apply()*/
+ app.controller("recopiladades", function($scope, $http, $rootScope) {
 
 
 const fetchDades = db.ref("dades");
 fetchDades.on("value", function (snapshot) { 
 $scope.jugadors = transformArray(snapshot.val());
+    Object.values($scope.jugadors).forEach(jugador => {
+      jugador.partides = [];
+    });
     $scope.$apply();
 
     });    
@@ -117,17 +120,19 @@ $scope.jugadors = transformArray(snapshot.val());
     });
     const fetchaparellaments = db.ref("aparellaments");
     fetchaparellaments.on("value", function (snapshot) { 
-        $scope.aparellaments = transformArray(snapshot.val()).map(ap=>{
+        const aparellaments = transformArray(snapshot.val()).map(ap=>{
             transformarObjeto(ap)
-     
+     console.log(aparellaments)
         });
-        $scope.aparellaments.forEach(a=>{
+      /*   $scope.aparellaments.forEach(a=>{
           &scope.jugadors[ap.Jugador1.ID].partides.push(ap)
-            &scope.jugadors[ap.Jugador2.ID].partides.push(ap)  
+            &scope.jugadors[ap.Jugador2.ID].partides.push(ap) 
+                 })  */        
+                 
         })
-        $scope.$apply();
+       
         
-    }); */
+  
 function transformarObjeto(objetoOriginal) {
   const nuevoObjeto = {};
 
