@@ -51,7 +51,51 @@ app.config(function($routeProvider) {
         });
 });
 
-app.controller("recopiladades", function($scope, $http, $rootScope) {
+app.controller("recopiladades", function ($scope, firebase) { // Use firebase instead of $http for Firebase communication
+
+  // Assuming your Firebase database structure:
+  // - dades (contains player data)
+  // - calendari (contains calendar data)
+  // - aparellaments (contains fixture/match data with Jugador1.ID and Jugador2.ID references)
+
+  //const db = firebase.database(); // Get a Firebase database reference
+
+  // Fetch player data
+  db.ref("dades").once("value").then((snapshot) => {
+    $scope.jugadors = transformArray(snapshot.val());
+    // Add an empty `partides` array to each player object for matches
+    $scope.jugadors.forEach(jugador => jugador.partides = []);
+  }).catch((error) => {
+    console.error("Error fetching players:", error);
+  });
+
+  // Fetch calendar data (optional, modify if needed)
+  db.ref("calendari").once("value").then((snapshot) => {
+    $scope.calendari = transformArray(snapshot.val());
+  }).catch((error) => {
+    console.error("Error fetching calendar:", error);
+  });
+
+  // Fetch fixture data and update players' `partides`
+  db.ref("aparellaments").once("value").then((snapshot) => {
+    const aparellaments = transformArray(snapshot.val());
+    aparellaments.forEach((ap) => {
+      if ($scope.jugadors[ap.Jugador1.ID]) {
+        $scope.jugadors[ap.Jugador1.ID].partides.push(ap);
+      }
+      if ($scope.jugadors[ap.Jugador2.ID]) {
+        $scope.jugadors[ap.Jugador2.ID].partides.push(ap);
+      }
+    });
+  }).catch((error) => {
+    console.error("Error fetching fixtures:", error);
+  });
+
+  // Implement your `transformArray` and `transformarObjeto` functions here,
+  // ensuring they handle your specific data structure and requirements
+});
+
+/* app.controller("recopiladades", function($scope, $http, $rootScope) {
 
 
 const fetchDades = db.ref("dades");
@@ -77,7 +121,7 @@ $scope.jugadors = transformArray(snapshot.val());
         })
         $scope.$apply();
         
-    });
+    }); */
 function transformarObjeto(objetoOriginal) {
   const nuevoObjeto = {};
 
