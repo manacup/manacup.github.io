@@ -100,7 +100,7 @@ console.log(aparellaments)
     });
   }); */
 
-
+$scope.$apply()
 /* app.controller("recopiladades", function($scope, $http, $rootScope) {
 
 
