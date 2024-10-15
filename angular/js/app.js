@@ -124,7 +124,7 @@ fetchDades.on("value", function (snapshot) {
       .equalTo(jugador.ID) // Use actual player ID
       .on('value', (snapshot) => {
         const playerMatches2 = snapshot.val() || []; // Handle potential null value
-        jugador.partides =  { ...jugador.partides, ...playerMatches2 }; // Update partidas after data retrieval
+        jugador.partides =  Object.values({ ...jugador.partides, ...playerMatches2 }); // Update partidas after data retrieval
           console.log(jugador)
       });
   });
