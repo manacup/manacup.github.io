@@ -108,7 +108,7 @@ const fetchDades = db.ref("dades");
 fetchDades.on("value", function (snapshot) {
   $scope.jugadors = transformArray(snapshot.val());
 
-  Object.values($scope.jugadors).forEach(jugador => {
+/*   Object.values($scope.jugadors).forEach(jugador => {
     jugador.partides = []; // Initialize empty array
 
     // Assuming 'partides' collection references player IDs
@@ -127,7 +127,7 @@ fetchDades.on("value", function (snapshot) {
         jugador.partides =  Object.values({ ...jugador.partides, ...playerMatches2 }); // Update partidas after data retrieval
           console.log(jugador)
       });
-  });
+  }); */
 
   $scope.$apply();
 }); 
@@ -136,12 +136,13 @@ fetchDades.on("value", function (snapshot) {
         $scope.calendari = transformArray(snapshot.val());
         $scope.$apply();
     });
-    /* const fetchaparellaments = db.ref("aparellaments");
+    const fetchaparellaments = db.ref("aparellaments");
     fetchaparellaments.on("value", function (snapshot) { 
-        const aparellaments = Object.values(snapshot.val())
+        $scope.aparellaments = snapshot.val()
      console.log(aparellaments)
-        
-       aparellaments.forEach((ap) => {
+         $scope.$apply() 
+    });
+   /*     aparellaments.forEach((ap) => {
       const jugador1Id = ap.Jugador1.ID;
       const jugador2Id = ap.Jugador2.ID;
 
@@ -156,10 +157,8 @@ fetchDades.on("value", function (snapshot) {
       } else {
         console.warn(`Jugador with ID ${jugador2Id} not found in jugadors data.`);
       }
-            $scope.$apply()
-    });
-
-        }); */
+           
+    });   */
       
       
        
