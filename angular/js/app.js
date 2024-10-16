@@ -50,6 +50,7 @@ app.config(function($routeProvider) {
             controller: "conjuntaCtrl"
         }).when("/detalljugador", {
             templateUrl: "views/detalljugador.html",
+            controller: "recopiladades",
             controller: "detallJugadorCtrl",
             controllerAs: 'vm'
         });
