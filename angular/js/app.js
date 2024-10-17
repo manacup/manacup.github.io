@@ -148,7 +148,7 @@ fetchDades.on("value", function (snapshot) {
     });
       $rootScope.$broadcast('dadesRecuperades');
       $rootScope.$on('dadesRecuperades',function(){
-          console.log("broadcasting...·
+          console.log("broadcasting...)
       })
    /*     aparellaments.forEach((ap) => {
       const jugador1Id = ap.Jugador1.ID;
