@@ -147,6 +147,7 @@ fetchDades.on("value", function (snapshot) {
      
          $scope.$apply() 
     });
+      $rootScope.$broadcast('dadesRecuperades');
    /*     aparellaments.forEach((ap) => {
       const jugador1Id = ap.Jugador1.ID;
       const jugador2Id = ap.Jugador2.ID;
@@ -223,6 +224,6 @@ function transformarObjeto(objetoOriginal) {
             $scope.page = newVal;
         }
     });
-     $rootScope.$broadcast('dadesRecuperades');
+    
 });
 
