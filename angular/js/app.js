@@ -223,5 +223,6 @@ function transformarObjeto(objetoOriginal) {
             $scope.page = newVal;
         }
     });
+     $rootScope.$broadcast('dadesRecuperades');
 });
 
