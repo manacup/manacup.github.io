@@ -50,7 +50,6 @@ app.config(function($routeProvider) {
             controller: "conjuntaCtrl"
         }).when("/detalljugador", {
             templateUrl: "views/detalljugador.html",
-            controller: "recopiladades",
             controller: "detallJugadorCtrl",
             controllerAs: 'vm'
         });
@@ -148,6 +147,9 @@ fetchDades.on("value", function (snapshot) {
          $scope.$apply() 
     });
       $rootScope.$broadcast('dadesRecuperades');
+      $rootScope.$on('dadesRecuperades',function(){
+          console.log("broadcasting...·
+      })
    /*     aparellaments.forEach((ap) => {
       const jugador1Id = ap.Jugador1.ID;
       const jugador2Id = ap.Jugador2.ID;
