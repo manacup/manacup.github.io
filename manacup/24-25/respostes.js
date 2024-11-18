@@ -307,7 +307,7 @@ function renderFormulari(partida) {
     }
   });
 }
-async function handleFormSubmit(formObject) {
+/*async function handleFormSubmit(formObject) {
   try {
     // Processar els valors del formulari
     var obj = await parseValues(formObject);
@@ -359,9 +359,9 @@ async function handleFormSubmit(formObject) {
     document.getElementById("submitbtn2").disabled = false;
     document.getElementById("spnbtn2").classList.add("d-none");
   }
-}
+}*/
 
-/* async function handleFormSubmit(formObject) {
+async function handleFormSubmit(formObject) {
   // Modified
   //console.log(formObject)
 
@@ -409,7 +409,7 @@ async function handleFormSubmit(formObject) {
   .catch(error => console.error('Error:', error));
 
 }
- */
+ 
 var carregaFull = function (event) {
   var reader = new FileReader();
   reader.onload = function () {
