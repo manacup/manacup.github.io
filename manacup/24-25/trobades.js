@@ -396,7 +396,7 @@ async function main() {
     }))
   fetch(macroURL, {
     method: 'POST',
-    mode: 'no-cors',
+    mode: 'cors',
     headers: {
       'Content-Type': 'application/json',
     },
