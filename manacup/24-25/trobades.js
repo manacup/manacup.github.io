@@ -353,7 +353,7 @@ function renderFormTrobada(trobada) {
   
       <div class="row mt-4">
         <div class="col-12 text-end">
-          <button id="enviaAssistencia" class="btn btn-primary" type="submit" onclick="main()" disabled>
+          <button id="enviaAssistencia" class="btn btn-primary" type="submit" onclick="enviaRespAssistencia()" disabled>
              <span class="spinner-border spinner-border-sm d-none" role="status" aria-hidden="true" id="spnbtn3"></span>
              Envia la resposta
           </button>
@@ -374,17 +374,71 @@ function renderFormTrobada(trobada) {
     :document.getElementById("enviaAssistencia").disabled=true
   });
 }
+async function enviaRespAssistencia() {
+  try {
+    preventFormSubmit(); // Evitar l'enviament del formulari per defecte
 
-async function main() {
+    // Obtenir el formulari i processar les dades
+    const form = document.getElementById("trobadaForm");
+    const dataform = new FormData(form);
+    const values = Object.fromEntries(dataform.entries());
+
+    // Desactivar el botó i mostrar un spinner
+    const submitButton = document.getElementById("enviaAssistencia");
+    const spinner = document.getElementById("spnbtn3");
+    submitButton.disabled = true;
+    spinner.classList.remove("d-none");
+
+    // Preparar la càrrega útil per a l'enviament
+    const payload = {
+      envia: "trobada",
+      values: values,
+      idfull: idfull,
+      idJSON: idJSON,
+    };
+
+    console.log("Payload enviat:", JSON.stringify(payload));
+
+    // Enviar la petició
+    const response = await fetch(macroURL, {
+      method: "POST",
+      mode: "cors", // Assegura la compatibilitat amb CORS
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(payload),
+    });
+
+    // Comprovar si la resposta és vàlida
+    if (!response.ok) {
+      throw new Error(`Error del servidor: ${response.status} ${response.statusText}`);
+    }
+
+/*     // Processar la resposta
+    const data = await response.text(); // Ajusta a response.json() si el servidor retorna JSON
+    console.log("Resposta del servidor:", data); */
+
+    // Opcional: Actualitzar informació després de la resposta
+    setTimeout(() => iniciJSON(false, "trobades"), 200); // Reduir el temps d'espera
+
+  } catch (error) {
+    // Gestionar errors
+    console.error("Error durant l'enviament:", error);
+    alert("Hi ha hagut un error en l'enviament. Si us plau, torna-ho a intentar.");
+  } finally {
+    // Tornar a habilitar el botó i amagar el spinner
+    document.getElementById("enviaAssistencia").disabled = false;
+    document.getElementById("spnbtn3").classList.add("d-none");
+  }
+}
+
+/* async function main() {
   preventFormSubmit();
   let form = document.getElementById("trobadaForm");
   //const obj = await ParseFormObjectForGAS(form); // Heare, this library is used.
   const dataform = new FormData(form);
   const values = Object.fromEntries(dataform.entries());
-  /*      values.Primera_partida=values.Primera_partida+values.Adv1
-            values.Segona_partida=values.Segona_partida+values.Adv2            
-      console.log(values)          
-      trobada.assistents.push(values)  */
+
 
   document.getElementById("enviaAssistencia").disabled = true;
   document.getElementById("spnbtn3").classList.remove("d-none");
@@ -416,7 +470,7 @@ async function main() {
   })
   .catch(error => console.error('Error:', error));
 
-}
+} */
 
 /**
 * Create and download a file on click
