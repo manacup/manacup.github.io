@@ -5,6 +5,50 @@ function desaImatgeConf(e) {
   var file = document.getElementById("ImatgeamagatConf").value;
   var nom = jugadorDesat.Nom;
   var payload = {
+    envia: "imatge",
+    nom: nom,
+    file: file,
+    idfull: idfull,
+    idJSON: idJSON,
+  };
+
+  fetch(macroURL, {
+    method: "POST",
+    mode: "cors", // Canviat a "cors" per poder accedir a la resposta
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(payload),
+  })
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error("Error a la resposta del servidor");
+      }
+      return response.text(); // O response.json() si el servidor retorna JSON
+    })
+    .then((data) => {
+      console.log("Resposta del servidor:", data);
+      e.disabled = false;
+      document.getElementById("spnbtn").classList.add("d-none");
+
+      // Amagar el modal
+      var modal = document.getElementById("desaimatge");
+      var myModal = new bootstrap.Modal(modal);
+      myModal.hide();
+    })
+    .catch((error) => {
+      console.error("Error:", error);
+      e.disabled = false;
+      document.getElementById("spnbtn").classList.add("d-none");
+    });
+}
+/* function desaImatgeConf(e) {
+  e.disabled = true;
+  document.getElementById("spnbtn").classList.remove("d-none");
+
+  var file = document.getElementById("ImatgeamagatConf").value;
+  var nom = jugadorDesat.Nom;
+  var payload = {
       envia: "imatge",
       nom: nom,
       file: file,
@@ -36,8 +80,7 @@ function desaImatgeConf(e) {
 var carregaImatgeConf = function (event) {
   var reader3 = new FileReader();
   reader3.onload = function () {
-    /* var output3 = document.getElementById("resjugImatgeConf");
-    output3.src = reader3.result; */
+
     userImg = reader3.result;
     document.querySelectorAll(".userImg").forEach((ui) => {
       ui.src = reader3.result;
@@ -92,3 +135,4 @@ imgInputImatgeConf.addEventListener("change", function (e) {
     reader.readAsDataURL(imageFile);
   }
 });
+ */
