@@ -76,7 +76,7 @@ function desaImatgeConf(e) {
     })
     .catch((error) => console.error("Error:", error));
 
-}
+} */
 var carregaImatgeConf = function (event) {
   var reader3 = new FileReader();
   reader3.onload = function () {
@@ -135,4 +135,4 @@ imgInputImatgeConf.addEventListener("change", function (e) {
     reader.readAsDataURL(imageFile);
   }
 });
- */
+
