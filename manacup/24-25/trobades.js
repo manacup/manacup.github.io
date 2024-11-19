@@ -402,7 +402,7 @@ async function enviaRespAssistencia() {
     // Enviar la petició
     const response = await fetch(macroURL, {
       method: "POST",
-      mode: "cors", // Assegura la compatibilitat amb CORS
+      mode: "no-cors", // Assegura la compatibilitat amb CORS
       headers: {
         "Content-Type": "application/json",
       },
