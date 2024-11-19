@@ -14,7 +14,7 @@ function desaImatgeConf(e) {
 
   fetch(macroURL, {
     method: "POST",
-    mode: "cors", // Canviat a "cors" per poder accedir a la resposta
+    mode: "no-cors", // Canviat a "cors" per poder accedir a la resposta
     headers: {
       "Content-Type": "application/json",
     },
