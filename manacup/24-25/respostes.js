@@ -332,7 +332,7 @@ async function handleFormSubmit(formObject) {
     // Enviar la petició al servidor
     const response = await fetch(macroURL, {
       method: "POST",
-      mode: "no-cors",
+      mode: "cors",
       headers: {
         "Content-Type": "application/json",
       },
