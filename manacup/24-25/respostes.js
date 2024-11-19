@@ -308,60 +308,6 @@ function renderFormulari(partida) {
   });
 }
 async function handleFormSubmit(formObject) {
-  try {
-    // Processar els valors del formulari
-    var obj = await parseValues(formObject);
-
-    // Determinar si "trobadaoficial" està marcada
-    obj.jugtrobadaoficial = document.getElementById("trobadaoficial").checked ? "1" : "0";
-
-    // Deshabilitar el botó de submissió i mostrar un spinner
-    document.getElementById("submitbtn2").disabled = true;
-    document.getElementById("spnbtn2").classList.remove("d-none");
-
-    // Preparar la petició
-    const payload = {
-      envia: "partida",
-      obj: obj,
-      idfull: idfull,
-      idJSON: idJSON,
-    };
-
-    console.log("Payload enviat:", JSON.stringify(payload));
-
-    // Enviar la petició al servidor
-    const response = await fetch(macroURL, {
-      method: "POST",
-      mode: "cors",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(payload),
-    });
-
-    // Comprovar si la resposta és vàlida
-    if (!response.ok) {
-      throw new Error(`Error del servidor: ${response.status} ${response.statusText}`);
-    }
-
-    // Processar la resposta
-    const data = await response.text(); // O response.json() si el servidor retorna JSON
-    console.log("Resposta del servidor:", data);
-
-    // Executar la funció iniciJSON després d'un temps d'espera
-    setTimeout(() => iniciJSON(false, "classificacions"), 500);
-
-  } catch (error) {
-    // Mostrar l'error al log
-    console.error("Error:", error);
-  } finally {
-    // Rehabilitar el botó i amagar el spinner
-    document.getElementById("submitbtn2").disabled = false;
-    document.getElementById("spnbtn2").classList.add("d-none");
-  }
-}
-
-/* async function handleFormSubmit(formObject) {
   // Modified
   //console.log(formObject)
 
@@ -387,7 +333,7 @@ async function handleFormSubmit(formObject) {
 
   fetch(macroURL, {
     method: 'POST',
-    mode: 'cors',
+    mode: 'no-cors',
     headers: {
       'Content-Type': 'application/json',
     },
@@ -398,18 +344,19 @@ async function handleFormSubmit(formObject) {
       idJSON: idJSON,
     }),
   })
-  .then(response => {
-    response.text()
-    console.log(response.text())
-  })
+  .then(response => response.text())
   .then(data => {
     console.log('Resposta del servidor:', data);
-    setTimeout(iniciJSON(false,"classificacions"), 500)
+    setTimeout(iniciJSON(false,"classificacions"), 2000)
   })
   .catch(error => console.error('Error:', error));
+  /* google.script.run
+    .withSuccessHandler(function () {
+      setTimeout(funcioInici("classificacions"), 2000);
+    })
+    .nouResultat(obj, idfull); */
+}
 
-} */
- 
 var carregaFull = function (event) {
   var reader = new FileReader();
   reader.onload = function () {
