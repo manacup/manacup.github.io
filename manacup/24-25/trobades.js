@@ -374,7 +374,7 @@ function renderFormTrobada(trobada) {
     :document.getElementById("enviaAssistencia").disabled=true
   });
 }
-async function enviaRespAssistencia() {
+/* async function enviaRespAssistencia() {
   try {
     preventFormSubmit(); // Evitar l'enviament del formulari per defecte
 
@@ -414,9 +414,7 @@ async function enviaRespAssistencia() {
       throw new Error(`Error del servidor: ${response.status} ${response.statusText}`);
     }
 
-/*     // Processar la resposta
-    const data = await response.text(); // Ajusta a response.json() si el servidor retorna JSON
-    console.log("Resposta del servidor:", data); */
+
 
     // Opcional: Actualitzar informació després de la resposta
     setTimeout(() => iniciJSON(false, "trobades"), 200); // Reduir el temps d'espera
@@ -430,9 +428,9 @@ async function enviaRespAssistencia() {
     document.getElementById("enviaAssistencia").disabled = false;
     document.getElementById("spnbtn3").classList.add("d-none");
   }
-}
+} */
 
-/* async function main() {
+ async function enviaRespAssistencia() {
   preventFormSubmit();
   let form = document.getElementById("trobadaForm");
   //const obj = await ParseFormObjectForGAS(form); // Heare, this library is used.
@@ -450,7 +448,7 @@ async function enviaRespAssistencia() {
     }))
   fetch(macroURL, {
     method: 'POST',
-    mode: 'cors',
+    mode: 'no-cors',
     headers: {
       'Content-Type': 'application/json',
     },
@@ -470,7 +468,7 @@ async function enviaRespAssistencia() {
   })
   .catch(error => console.error('Error:', error));
 
-} */
+} 
 
 /**
 * Create and download a file on click
