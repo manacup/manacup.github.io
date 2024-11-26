@@ -307,6 +307,15 @@ function renderFormulari(partida) {
     }
   });
 }
+function post() {
+  const obj = { key: "value" };
+  fetch(url, { method: "POST", body: JSON.stringify(obj) })
+    .then((res) => {
+      console.log(res.status);
+      return res.text();
+    })
+    .then((res) => console.log(res));
+}
 async function handleFormSubmit(formObject) {
   // Modified
   //console.log(formObject)
@@ -333,7 +342,7 @@ async function handleFormSubmit(formObject) {
 
   fetch(macroURL, {
     method: 'POST',
-    mode: 'no-cors',
+    //mode: 'no-cors',
     headers: {
       'Content-Type': 'application/json',
     },
@@ -344,7 +353,12 @@ async function handleFormSubmit(formObject) {
       idJSON: idJSON,
     }),
   })
-  .then(response => response.text())
+  .then((response) => {
+    
+    console.log(response.status)
+    return response.text()
+  })
+
   .then(data => {
     console.log('Resposta del servidor:', data);
     setTimeout(iniciJSON(false,"classificacions"), 2000)
