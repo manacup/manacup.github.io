@@ -308,9 +308,11 @@ function renderFormulari(partida) {
   });
 }
 function post() {
-  const obj = { key: "value" };
-  fetch("https://script.google.com/macros/s/AKfycbxFhc6reXG6f2yG1Nss3_vMlHV0V08MtJrjNUeD2zkAvITZaZdAA927H9btgIJDEsFGeA/exec",
-    { method: "POST", body: JSON.stringify(obj) })
+  
+  fetch(macroURL,
+    { method: "POST", body: JSON.stringify({
+      envia: 'respon'      
+    }) })
     .then((res) => {
       console.log(res.status);
       return res.text();
@@ -343,10 +345,10 @@ async function handleFormSubmit(formObject) {
 
   fetch(macroURL, {
     method: 'POST',
-    //mode: 'no-cors',
-    //headers: {
-    //  'Content-Type': 'application/json',
-    //},
+    mode: 'no-cors',
+    headers: {
+      'Content-Type': 'application/json',
+    },
     body: JSON.stringify({
       envia: 'partida', 
       obj: obj, 
@@ -365,11 +367,7 @@ async function handleFormSubmit(formObject) {
     setTimeout(iniciJSON(false,"classificacions"), 2000)
   })
   .catch(error => console.error('Error:', error));
-  /* google.script.run
-    .withSuccessHandler(function () {
-      setTimeout(funcioInici("classificacions"), 2000);
-    })
-    .nouResultat(obj, idfull); */
+
 }
 
 var carregaFull = function (event) {
