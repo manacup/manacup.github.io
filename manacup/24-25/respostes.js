@@ -307,45 +307,6 @@ function renderFormulari(partida) {
     }
   });
 }
-function post() {
-  fetch(macroURL, {
-    method: "POST",
-    body: JSON.stringify({
-      envia: "partida",
-      obj: {
-        idPartida: "1508600",
-        ronda: "19",
-        jugador1: "Antoni Llull",
-        ptsJugador1: "500",
-        scrabbles1: "3",
-        mot1: "PERFILAU",
-        ptsJugada1: "76",
-        jugador2: "Sebastià Quetglas",
-        ptsJugador2: "242",
-        scrabbles2: "0",
-        mot2: "JEIEN",
-        ptsJugada2: "60",
-        "": "",
-        full: "",
-        tauler: "",
-        trobadaoficial: "on",
-        comentaris: "",
-        fullAntic:
-          "/manacup/24-25/imatges/1508600-Full-Antoni_Llull-Sebastià_Quetglas.jpg",
-        taulerAntic:
-          "/manacup/24-25/imatges/1508600-Tauler-Antoni_Llull-Sebastià_Quetglas.jpg",
-        jugtrobadaoficial: "1",
-      },
-      idfull: "1pj6G5pgDUAypPB7O9gkFduYAItopiQBYVR37eXalIvU",
-      idJSON: "1dq1L8JCfGurr08rNQ59QaALG10ocSjXg",
-    }),
-  })
-    .then((res) => {
-      console.log(res.status);
-      return res.text();
-    })
-    .then((res) => console.log(res));
-}
 async function handleFormSubmit(formObject) {
   // Modified
   //console.log(formObject)
@@ -361,35 +322,39 @@ async function handleFormSubmit(formObject) {
   document.getElementById("submitbtn2").disabled = true;
   document.getElementById("spnbtn2").classList.remove("d-none");
 
-  console.log(
-    JSON.stringify({
-      envia: "partida",
-      obj: obj,
-      idfull: idfull,
-      idJSON: idJSON,
-    })
-  );
+
+  console.log(JSON.stringify({
+    envia: 'partida', 
+    obj: obj, 
+    idfull: idfull,
+    idJSON: idJSON,
+  }))
+  
 
   fetch(macroURL, {
-    method: "POST",
-    mode: "no-cors",
+    method: 'POST',
+    mode: 'no-cors',
     headers: {
-      "Content-Type": "application/json",
+      'Content-Type': 'application/json',
     },
     body: JSON.stringify({
-      envia: "partida",
-      obj: obj,
+      envia: 'partida', 
+      obj: obj, 
       idfull: idfull,
       idJSON: idJSON,
     }),
   })
-    .then(response => response.text())
-
-    .then((data) => {
-      console.log("Resposta del servidor:", data);
-      setTimeout(iniciJSON(false, "classificacions"), 2000);
+  .then(response => response.text())
+  .then(data => {
+    console.log('Resposta del servidor:', data);
+    setTimeout(iniciJSON(false,"classificacions"), 2000)
+  })
+  .catch(error => console.error('Error:', error));
+  /* google.script.run
+    .withSuccessHandler(function () {
+      setTimeout(funcioInici("classificacions"), 2000);
     })
-    .catch((error) => console.error("Error:", error));
+    .nouResultat(obj, idfull); */
 }
 
 var carregaFull = function (event) {
@@ -448,25 +413,26 @@ const parseValues = async (e) =>
       )
     ))
   );
-function actualitzaJSON() {
-  carregant();
-  fetch(macroURL, {
-    method: "POST",
-    mode: "no-cors",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({
-      envia: "actualitza",
-      idfull: idfull,
-      idJSON: idJSON,
-    }),
-  })
-    .then((response) => response.text())
-    .then((data) => {
-      console.log("Resposta del servidor: JSON actualitzat!", data);
-      clearInterval(interval);
-      setTimeout(iniciJSON(false, "classificacions"), 2000);
-    })
-    .catch((error) => console.error("Error:", error));
-}
+  function actualitzaJSON(){
+    carregant();   
+   fetch(macroURL, {
+     method: 'POST',
+     mode: 'no-cors',
+     headers: {
+       'Content-Type': 'application/json',
+     },
+     body: JSON.stringify({
+       envia: 'actualitza', 
+       idfull: idfull,
+        idJSON: idJSON,
+       
+     }),
+   })
+   .then(response => response.text())
+   .then(data => {
+     console.log('Resposta del servidor: JSON actualitzat!', data);
+     clearInterval(interval)
+     setTimeout(iniciJSON(false,"classificacions"), 2000)
+   })
+   .catch(error => console.error('Error:', error));
+ }
