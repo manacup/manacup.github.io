@@ -1718,5 +1718,5 @@ function ExcelDateToJSDate(serial) {
     minutes,
     seconds
   );
-  return jsdate;
+  return jsdate.toLocaleDateString();
 }
