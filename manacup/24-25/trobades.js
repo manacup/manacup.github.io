@@ -4,8 +4,8 @@ Date.prototype.addHours = function(h) {
   return this;
 }
 function renderTrobada(trobada) {
-  startTime = new Date(ExcelDateToJSDate(parseFloat(trobada.horautc.replace(/,/g, '.')),true)).addHours(-2)
-  endTime = new Date(ExcelDateToJSDate(parseFloat(trobada.horautc.replace(/,/g, '.')),true)).addHours(1)
+  startTime = new Date(ExcelDateToJSDateNormal(parseFloat(trobada.horautc.replace(/,/g, '.')),true)).addHours(-2)
+  endTime = new Date(ExcelDateToJSDateNormal(parseFloat(trobada.horautc.replace(/,/g, '.')),true)).addHours(1)
   title = trobada.Trobada + " ManaCup"
   address = trobada.adreça
   venueName = trobada.Lloc
@@ -542,7 +542,31 @@ const icsBody = 'BEGIN:VCALENDAR\n' +
 
 download(title + '.ics', icsBody);
 }
+function ExcelDateToJSDateNormal(serial) {
+  var utc_days = Math.floor(serial - 25569);
+  var utc_value = utc_days * 86400;
+  var date_info = new Date(utc_value * 1000);
 
+  var fractional_day = serial - Math.floor(serial) + 0.0000001;
+
+  var total_seconds = Math.floor(86400 * fractional_day);
+
+  var seconds = total_seconds % 60;
+
+  total_seconds -= seconds;
+
+  var hours = Math.floor(total_seconds / (60 * 60));
+  var minutes = Math.floor(total_seconds / 60) % 60;
+  var jsdate = new Date(
+    date_info.getFullYear(),
+    date_info.getMonth(),
+    date_info.getDate(),
+    hours,
+    minutes,
+    seconds
+  );
+  return jsdate;
+}
 
 /* document.getElementById('downloadICS').addEventListener('click', () => {
 createDownloadICSFile(
