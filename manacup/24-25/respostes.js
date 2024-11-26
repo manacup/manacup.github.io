@@ -383,10 +383,7 @@ async function handleFormSubmit(formObject) {
       idJSON: idJSON,
     }),
   })
-    .then((response) => {
-      console.log(response.status);
-      return response.text();
-    })
+    .then(response => response.text())
 
     .then((data) => {
       console.log("Resposta del servidor:", data);
