@@ -4,7 +4,7 @@ Date.prototype.addHours = function(h) {
   return this;
 }
 function renderTrobada(trobada) {
-  startTime = new Date(ExcelDateToJSDateNormal(parseFloat(trobada.horautc.replace(/,/g, '.')),true)).addHours(-2)
+  startTime = new Date(ExcelDateToJSDateNormal(parseFloat(trobada.horautc.replace(/,/g, '.')),true)).addHours(-1)
   endTime = new Date(ExcelDateToJSDateNormal(parseFloat(trobada.horautc.replace(/,/g, '.')),true)).addHours(1)
   title = trobada.Trobada + " ManaCup"
   address = trobada.adreça
