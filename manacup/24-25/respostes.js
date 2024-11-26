@@ -309,7 +309,8 @@ function renderFormulari(partida) {
 }
 function post() {
   const obj = { key: "value" };
-  fetch(url, { method: "POST", body: JSON.stringify(obj) })
+  fetch("https://script.google.com/macros/s/AKfycbxFhc6reXG6f2yG1Nss3_vMlHV0V08MtJrjNUeD2zkAvITZaZdAA927H9btgIJDEsFGeA/exec",
+    { method: "POST", body: JSON.stringify(obj) })
     .then((res) => {
       console.log(res.status);
       return res.text();
@@ -342,7 +343,7 @@ async function handleFormSubmit(formObject) {
 
   fetch(macroURL, {
     method: 'POST',
-    //mode: 'no-cors',
+    mode: 'no-cors',
     headers: {
       'Content-Type': 'application/json',
     },
