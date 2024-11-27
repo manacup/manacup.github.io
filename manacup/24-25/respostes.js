@@ -355,6 +355,7 @@ async function handleFormSubmit(formObject) {
       setTimeout(funcioInici("classificacions"), 2000);
     })
     .nouResultat(obj, idfull); */
+    setTimeout(iniciJSON(false,"classificacions"), 5000)
 }
 
 var carregaFull = function (event) {
