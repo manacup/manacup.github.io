@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Marcador de Dos Jugadors</title>
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-database.js"></script>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      margin-top: 50px;
+    }
+    .marcador {
+      font-size: 2.5rem;
+      margin: 20px;
+    }
+    .jugador {
+      margin-bottom: 30px;
+    }
+    button {
+      font-size: 1.2rem;
+      margin: 10px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Marcador en Temps Real</h1>
+
+  <!-- Marcador del jugador 1 -->
+  <div class="jugador">
+    <h2>Jugador 1</h2>
+    <div class="marcador" id="marcador1">0</div>
+    <button onclick="incrementar('jugador1')">Incrementar</button>
+    <button onclick="reset('jugador1')">Reiniciar</button>
+  </div>
+
+  <!-- Marcador del jugador 2 -->
+  <div class="jugador">
+    <h2>Jugador 2</h2>
+    <div class="marcador" id="marcador2">0</div>
+    <button onclick="incrementar('jugador2')">Incrementar</button>
+    <button onclick="reset('jugador2')">Reiniciar</button>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
