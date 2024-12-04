@@ -10,7 +10,7 @@ const firebaseConfig = {
     projectId: "provatempsreal",
     storageBucket: "provatempsreal.firebasestorage.app",
     messagingSenderId: "269372325034",
-    appId: "1:269372325034:web:619f20a3c0ebbee24864d3",
+    appId: "1:269372325034:web:619f20a3c0ebbee24864d3"
 };
 
 // Inicialitza Firebase
