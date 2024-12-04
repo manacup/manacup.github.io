@@ -1,12 +1,12 @@
 // Configuració del projecte Firebase
 const firebaseConfig = {
-    apiKey: "EL_TEVA_API_KEY",
-    authDomain: "EL_TEU_AUTH_DOMAIN",
-    databaseURL: "LA_TEVA_DATABASE_URL",
-    projectId: "EL_TEU_PROJECT_ID",
-    storageBucket: "EL_TEU_STORAGE_BUCKET",
-    messagingSenderId: "EL_TEU_MESSAGING_SENDER_ID",
-    appId: "EL_TEU_APP_ID"
+    apiKey: "AIzaSyBDeC21hIyFhCD_j3hWdpgvfbZ1zjZyFvc",
+    authDomain: "provatempsreal.firebaseapp.com",
+    databaseURL: "https://provatempsreal-default-rtdb.europe-west1.firebasedatabase.app",
+    projectId: "provatempsreal",
+    storageBucket: "provatempsreal.firebasestorage.app",
+    messagingSenderId: "269372325034",
+    appId: "1:269372325034:web:619f20a3c0ebbee24864d3"
   };
   
   // Inicialitza Firebase
