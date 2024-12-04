@@ -1,6 +1,3 @@
-// Configuració del projecte Firebase
-import { initializeApp } from "https://www.gstatic.com/firebasejs/9.23.0/firebase-app.js";
-import { getDatabase, ref, set, onValue } from "https://www.gstatic.com/firebasejs/9.23.0/firebase-database.js";
 
 // Configuració de Firebase (substitueix amb les dades del teu projecte)
 const firebaseConfig = {
@@ -12,18 +9,16 @@ const firebaseConfig = {
     messagingSenderId: "269372325034",
     appId: "1:269372325034:web:619f20a3c0ebbee24864d3"
 };
-
 // Inicialitza Firebase
-const app = initializeApp(firebaseConfig);
-const db = getDatabase(app);
+firebase.initializeApp(firebaseConfig);
+const db = firebase.database();
 
-// Funció per actualitzar el marcador en temps real
+// Funció per sincronitzar el marcador
 function sincronitzarMarcador(jugador, elementId) {
-  const marcadorRef = ref(db, `marcadors/${jugador}`);
+  const marcadorRef = db.ref(`marcadors/${jugador}`);
   const marcadorDiv = document.getElementById(elementId);
 
-  // Escolta els canvis en temps real
-  onValue(marcadorRef, (snapshot) => {
+  marcadorRef.on('value', (snapshot) => {
     marcadorDiv.textContent = snapshot.val() || 0;
   });
 }
@@ -34,14 +29,14 @@ sincronitzarMarcador('jugador2', 'marcador2');
 
 // Funció per incrementar el marcador d'un jugador
 function incrementar(jugador) {
-  const marcadorRef = ref(db, `marcadors/${jugador}`);
+  const marcadorRef = db.ref(`marcadors/${jugador}`);
   const marcadorDiv = document.getElementById(`marcador${jugador === 'jugador1' ? 1 : 2}`);
   const valorActual = parseInt(marcadorDiv.textContent);
-  set(marcadorRef, valorActual + 1);
+  marcadorRef.set(valorActual + 1);
 }
 
 // Funció per reiniciar el marcador d'un jugador
 function reset(jugador) {
-  const marcadorRef = ref(db, `marcadors/${jugador}`);
-  set(marcadorRef, 0);
+  const marcadorRef = db.ref(`marcadors/${jugador}`);
+  marcadorRef.set(0);
 }
