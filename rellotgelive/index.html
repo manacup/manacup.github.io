@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Marcador de Dos Jugadors</title>
+  <title>Marcador amb Input en Temps Real</title>
   <!-- Firebase Scripts Globals -->
   <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-database-compat.js"></script>
@@ -20,21 +20,23 @@
     .jugador {
       margin-bottom: 30px;
     }
-    button {
+    button, input {
       font-size: 1.2rem;
       margin: 10px;
     }
   </style>
 </head>
 <body>
-  <h1>Marcador en Temps Real</h1>
+  <h1>Marcador amb Input en Temps Real</h1>
 
   <!-- Marcador del jugador 1 -->
   <div class="jugador">
     <h2>Jugador 1</h2>
     <div class="marcador" id="marcador1">0</div>
     <button onclick="incrementar('jugador1')">Incrementar</button>
+    <button onclick="restar('jugador1')">Restar</button>
     <button onclick="reset('jugador1')">Reiniciar</button>
+    <input id="input1" type="text" placeholder="Nom jugador 1" oninput="actualitzarInput('jugador1', this.value)">
   </div>
 
   <!-- Marcador del jugador 2 -->
@@ -42,7 +44,9 @@
     <h2>Jugador 2</h2>
     <div class="marcador" id="marcador2">0</div>
     <button onclick="incrementar('jugador2')">Incrementar</button>
+    <button onclick="restar('jugador2')">Restar</button>
     <button onclick="reset('jugador2')">Reiniciar</button>
+    <input id="input2" type="text" placeholder="Nom jugador 2" oninput="actualitzarInput('jugador2', this.value)">
   </div>
 
   <script src="script.js"></script>
