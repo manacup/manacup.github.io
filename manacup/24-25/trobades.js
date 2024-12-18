@@ -4,8 +4,8 @@ Date.prototype.addHours = function(h) {
   return this;
 }
 function renderTrobada(trobada) {
-  startTime = convertirExcelATempsUTC(trobada.horautc)//new Date(ExcelDateToJSDateNormal(parseFloat(trobada.horautc.replace(/,/g, '.')),true)).addHours(-1)
-  endTime = convertirExcelATempsUTC(trobada.horautc + trobada.Rondes_a_jugar/24)//new Date(ExcelDateToJSDateNormal(parseFloat(trobada.horautc.replace(/,/g, '.')),true)).addHours(1)
+  startTime = new Date(ExcelDateToJSDateNormal(parseFloat(trobada.horautc.replace(/,/g, '.')),true)).addHours(-1)//convertirExcelATempsUTC(trobada.horautc)//
+  endTime = new Date(ExcelDateToJSDateNormal(parseFloat(trobada.horautc.replace(/,/g, '.')),true)).addHours(1)//convertirExcelATempsUTC(trobada.horautc + trobada.Rondes_a_jugar/24)//
   title = trobada.Trobada + " ManaCup"
   address = trobada.adreça
   venueName = trobada.Lloc
