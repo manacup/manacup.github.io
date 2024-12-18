@@ -4,8 +4,8 @@ Date.prototype.addHours = function(h) {
   return this;
 }
 function renderTrobada(trobada) {
-  startTime = new Date(ExcelDateToJSDateNormal(parseFloat(trobada.horautc.replace(/,/g, '.')),true)).addHours(-1)
-  endTime = new Date(ExcelDateToJSDateNormal(parseFloat(trobada.horautc.replace(/,/g, '.')),true)).addHours(1)
+  startTime = convertirExcelATempsUTC(trobada.horautc)//new Date(ExcelDateToJSDateNormal(parseFloat(trobada.horautc.replace(/,/g, '.')),true)).addHours(-1)
+  endTime = convertirExcelATempsUTC(trobada.horautc + trobada.Rondes_a_jugar/24)//new Date(ExcelDateToJSDateNormal(parseFloat(trobada.horautc.replace(/,/g, '.')),true)).addHours(1)
   title = trobada.Trobada + " ManaCup"
   address = trobada.adreça
   venueName = trobada.Lloc
@@ -504,9 +504,17 @@ function convertToICSDate(dateTime) {
   return year + month + day + "T" + hours + minutes + "00";
 }
 
+function convertirExcelATempsUTC(excelTime) {
+  // Data base per a Excel és el 1 de gener de 1900
+  const dataBase = new Date(Date.UTC(1899, 11, 30));
+  // Converteix els dies d'Excel a mil·lisegons
+  const tempsEnMilisegons = excelTime * 24 * 60 * 60 * 1000;
+  return new Date(dataBase.getTime() + tempsEnMilisegons).toISOString().replace(/[-:]/g, "").split(".")[0] + "Z"; // Format YYYYMMDDTHHMMSSZ;
+}
+
 
 /**
-* Creates and downloads an ICS file
+* Creates and downloads an ICS file trobada.horautc
 * @params {string} timeZone - In the format America/New_York
 * @params {object} startTime - Vaild JS Date object in the event timezone
 * @params {object} endTime - Vaild JS Date object in the event timezone
