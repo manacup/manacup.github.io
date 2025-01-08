@@ -1,8 +1,17 @@
 <h1>{{resumJugador.Nom}}</h1>
 <div>{{resumJugador}}</div>
 <h2>Partides</h2>
-<div ng-repeat="partida in partidesJugador">
+<ul class="list-group">
+<li ng-repeat="partida in partidesJugador" class="list-group-item d-flex justify-content-between align-items-center">
     <div>Ronda {{partida.Ronda}}</div>
     <div>{{partida.Jugador1.Jugador}} Punts:{{partida.Jugador1.Puntuacions.Puntuacio}}</div>
     <div>{{partida.Jugador2.Jugador}} Punts:{{partida.Jugador2.Puntuacions.Puntuacio}}</div>   
-</div>
+</li>
+</ul>
+<ul class="list-group">
+    <li class="list-group-item">An item</li>
+    <li class="list-group-item">A second item</li>
+    <li class="list-group-item">A third item</li>
+    <li class="list-group-item">A fourth item</li>
+    <li class="list-group-item">And a fifth one</li>
+  </ul>
