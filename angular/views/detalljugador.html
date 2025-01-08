@@ -1,4 +1,8 @@
 <h1>{{resumJugador.Nom}}</h1>
 <div>{{resumJugador}}</div>
 <h2>Partides</h2>
-<div ng-repeat = "partida in partidesJugador">{{partida}}</div>
+<div ng-repeat="partida in partidesJugador">
+    <div>Ronda {{partida.Ronda}}</div>
+    <div>{{partida.Jugador1.Jugador}} Punts:{{partida.Jugador1.Puntuacions.Puntuacio}}</div>
+    <div>{{partida.Jugador2.Jugador}} Punts:{{partida.Jugador2.Puntuacions.Puntuacio}}</div>   
+</div>
