@@ -19,27 +19,26 @@
         <p class="text-muted mb-4">{{resumJugador.Malnom2}}</p>
         <div class="mb-4 pb-2">
         <div class="d-flex justify-content-center text-center">
-        <div ng-show = "{{resumJugador.Campionats}}" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Campionats: {{campionats.join(', ') || 'Encara no ha guanyat cap campionat.'}}">
+        <div ng-show = "{{resumJugador.Campionats}}" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Campionats: {{campionats.join(', ')}}">
         <span class="h1 material-symbols-outlined">trophy</span>
         <p class="text-muted ">{{
           resumJugador.Campionats != "" ? campionats.length : "0"
         }}</p>
         </div>
-        <div ng-show="{{resumJugador.Podis}}"  data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Podis: {{podis.join(', ') || 'Encara no ha fet cap podi.'}}">
+        <div ng-show="{{resumJugador.Podis}}"  data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Podis: {{podis.join(', ')}}">
         <span class="h1 material-symbols-outlined">leaderboard</span>
         <p class="text-muted ">{{
           resumJugador.Podis != "" ? podis.length : "0"
         }}</p>
         </div>
-        <div ng-show = "{{resumJugador.Diplomes}}" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Diplomes olímpics: {{diplomes.join(', ') ||
-        'Encara no ha aconseguit cap diploma olímpic.'}}">
+        <div ng-show = "{{resumJugador.Diplomes}}" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Diplomes olímpics: {{diplomes.join(', ')}}">
         <span class="h1 material-symbols-outlined">school</span>
         <p class="text-muted ">{{
           resumJugador.Diplomes != "" ? diplomes.length : "0"
         }}</p>
         </div>
         </div>
-        <a type="button" class="btn btn-primary btn-rounded btn-lg " ng-href="window.open('https://wa.me/34{{resumJugador.Telefon}}');">
+        <a type="button" class="btn btn-primary btn-rounded btn-lg " ng-href="https://wa.me/34{{resumJugador.Telefon}}">
           <i class="bi bi-whatsapp  me-2"></i>Missatge
         </a>
         <div class="row align-items-end text-center mt-5 mb-2 " ng-hide="{{resumJugador.etiqueta=='debutant'}}">
@@ -393,7 +392,7 @@
                      <td></td>
                 </tr>
                 <tbody>
-                    <tr ng-repeat="partida in partidesJugador | orderBy : ['-Puntsmot'] | filter : majorZero('Puntsmot')" class="">              
+                    <tr ng-repeat="partida in partidesJugador | orderBy : ['-JugadorObj.Puntuacions.Puntsmot'] | filter : majorZero('JugadorObj.Puntuacions.Puntsmot')" class="">              
                         <td>
                           <div class="">
                             <small>R{{partida.Ronda}}</small>                
