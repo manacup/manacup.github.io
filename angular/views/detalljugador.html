@@ -290,7 +290,7 @@
     </div>
   </div>
 </div>
-<!--<div class=" p-1 ">
+<div class=" p-1 ">
   <div class="card">
     <div class="card-header d-flex align-items-center">
     <span class="flex-fill">Millor partida conjunta</span>
@@ -327,14 +327,31 @@
                      <td></td>
                 </tr>
                 <tbody>
-                    {{ompleTaulaConjunta(resumJugador.partides)}}
+                    <tr ng-repeat="partida in partidesJugador | orderBy : ['-Suma_punts'] | filter : majorZero('Suma_punts')" class="">              
+                        <td>
+                          <div class="">
+                            <small>R{{partida.Ronda}}</small>                
+                          </div>
+                        </td>              
+                        <td>
+                          <div>                            
+                            <span class="text-primary">{{partida.JugadorObj.Puntuacions.Puntuacio}}</span>            
+                          </div>
+                        </td>              
+                        <td>
+                          <div class="">
+                            <div class="nom">{{partida.JugadorAdv.Jugador}}</div>
+                          </div>
+                        </td>  
+                        <td class="detallpartida" data-id="{{partida.ID}}" data-estat="{{partida.Estat}}"><i class="bi bi-chevron-right"></i></td>     
+                      </tr>
                 </tbody>
             </table>
           </div>
     </div>
   </div>
 </div>
-<div class=" p-1 ">
+<!--<div class=" p-1 ">
   <div class="card">
     <div class="card-header d-flex align-items-center">
     <span class="flex-fill">Millor jugada</span>
