@@ -10,6 +10,17 @@ app.controller("detallJugadorCtrl", function ($scope, $rootScope, $routeParams) 
     partidaJug.JugadorObj = partidaJug.Jugador1.ID == vm.id? partidaJug.Jugador1 : partidaJug.Jugador2
     partidaJug.JugadorAdv = partidaJug.Jugador1.ID != vm.id? partidaJug.Jugador1 : partidaJug.Jugador2
 })
+$scope.majorZero = function(key) {
+  return function(partida) {
+    // Accedeix al valor dinàmicament utilitzant la key
+    var value = key.split('.').reduce(function(obj, k) {
+      return obj && obj[k];
+    }, partida);
+    
+    // Filtra només si el valor és més gran que 0
+    return value > 0;
+  };
+};
   $scope.campionats = $scope.resumJugador.Campionats.split(/\n/);
   $scope.podis = $scope.resumJugador.Podis.split(/\n/);
   $scope.diplomes = $scope.resumJugador.Diplomes.split(/\n/);

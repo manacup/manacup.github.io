@@ -1,4 +1,3 @@
-{{partidesJugador}}
 <div class=" p-1">
     <div class="card" >
       <div class="card-body text-center position-relative">
@@ -267,7 +266,7 @@
                      <td></td>
                 </tr>
                 <tbody>
-                    <tr ng-repeat="partida in partidesJugador " class="">              
+                    <tr ng-repeat="partida in partidesJugador | orderBy : ['-JugadorObj.Puntuacions.Puntuacio'] | filter : majorZero('JugadorObj.Puntuacions.Puntuacio')" class="">              
                         <td>
                           <div class="">
                             <small>R{{partida.Ronda}}</small>                
