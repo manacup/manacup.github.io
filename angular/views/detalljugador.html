@@ -207,18 +207,15 @@
                      <td></td>
                 </tr>
                 <tbody>
-                    <tr ng-repeat="partida in partidesJugador " class="table-success">              
+                    <tr ng-repeat="partida in partidesJugador " class="">              
                         <td>
                           <div class="">
-                            <small>{{partida.Ronda}}</small>                
+                            <small>R{{partida.Ronda}}</small>                
                           </div>
                         </td>              
                         <td>
-                          <div>
-                            
-                            <span class="text-primary">{{partida.JugadorObj.puntuacions.puntuacio}}</span>
-            <span class="vr"></span>
-                            <span class="text-primary ">{{partida.JugadorAdv.puntuacions.puntuacio}}</span>
+                          <div>                            
+                            <span class="text-primary">{{partida.JugadorObj.Puntuacions.Scrabbles}}</span>            
                           </div>
                         </td>              
                         <td>
@@ -462,7 +459,27 @@
             <table class="table" id="miTabla">
                 
                 <tbody id="tbodyordre">
-                    {{ompleTaulaRonda(resumJugador.partides)}}
+                    <tr ng-repeat="partida in partidesJugador " class="table-success">              
+                        <td>
+                          <div class="">
+                            <small>R{{partida.Ronda}}</small>                
+                          </div>
+                        </td>              
+                        <td>
+                          <div>
+                            
+                            <span class="text-primary">{{partida.JugadorObj.Puntuacions.Puntuacio}}</span>
+            <span class="vr"></span>
+                            <span class="text-primary ">{{partida.JugadorAdv.Puntuacions.Puntuacio}}</span>
+                          </div>
+                        </td>              
+                        <td>
+                          <div class="">
+                            <div class="nom">{{partida.JugadorAdv.Jugador}}</div>
+                          </div>
+                        </td>  
+                        <td class="detallpartida" data-id="{{partida.ID}}" data-estat="{{partida.Estat}}"><i class="bi bi-chevron-right"></i></td>     
+                      </tr>
                 </tbody>
             </table>
                            
