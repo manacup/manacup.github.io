@@ -534,7 +534,7 @@
     </div>
   </div>
 </div>
-<!--<div class=" p-1 ">
+<div class=" p-1 ">
   <div class="card">
     <div class="card-header d-flex"><span class="flex-fill">Partides pendents i disputades</span><i class="bi bi-calendar3" id="ordenarBoton" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Ordena per número de ronda o per ordre de les partides jugades per veure la ratxa."></i></div>
       <div>
@@ -544,7 +544,7 @@
             <table class="table" id="miTabla">
                 
                 <tbody id="tbodyordre">
-                    <tr ng-repeat="partida in partidesJugador " class="table-success">              
+                    <tr ng-repeat="partida in partidesJugador | orderBy : ['-Data','Ronda']" class="{{partida.JugadorObj.Puntuacio.Punts=0?'table-danger':'table-success'}}">              
                         <td>
                           <div>
                             <small>R{{partida.Ronda}}</small>                
@@ -560,7 +560,7 @@
                         </td>              
                         <td>
                           <div>
-                            <div class="nom">{{partida.JugadorAdv.Jugador}}</div>
+                            <a ng-href="#!detalljugador?id={{partida.JugadorAdv.ID}}" class="nom">{{partida.JugadorAdv.Jugador}}</a>
                           </div>
                         </td>  
                         <td class="detallpartida" data-id="{{partida.ID}}" data-estat="{{partida.Estat}}"><i class="bi bi-chevron-right"></i></td>     
@@ -573,4 +573,4 @@
     </div>
   </div>
 </div>
- -->
+ 
