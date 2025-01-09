@@ -33,15 +33,10 @@ $scope.majorZero = function(key) {
   $scope.posConjunta = $scope.minFromArray($scope.posConjuntaArray)
   $scope.imatgeGran =  function(element) {    
     element.classList.toggle("imatge-completa");}
-  $scope.advConjunta = $scope.resumJugador.Adversari_conjunta.split("-")
-  .map((nom) => '<div class="nom">' + nom + "</div>")
-  .join("")
-  $scope.mots = $scope.resumJugador.Mot_jugada.split("-")
-  .map((mot) => '<div class="mot">' + mot + "</div>")
-  .join("")
+  $scope.advConjunta = $scope.resumJugador.Adversari_conjunta.split("-")  
+  $scope.mots = $scope.resumJugador.Mot_jugada.split("-")  
   $scope.advJugada = $scope.resumJugador.Adversari_jugada.split("-")
-  .map((nom) => '<div class="nom">' + nom + "</div>")
-  .join("")
+  
   //  });
 });
 // ToolTipApp is the ng-app application in your web app
