@@ -32,19 +32,19 @@
         <div ng-show = "{{resumJugador.Campionats}}" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Campionats: {{campionats}}">
         <span class="h1 material-symbols-outlined">trophy</span>
         <p class="text-muted ">{{
-          resumJugador.Campionats != "" ? {{campionats}}.length : "0"
+          resumJugador.Campionats != "" ? campionats.length : "0"
         }}</p>
         </div>
         <div ng-show="{{resumJugador.Podis}}"  data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Podis: {{podis}}">
         <span class="h1 material-symbols-outlined">leaderboard</span>
         <p class="text-muted ">{{
-          resumJugador.Podis != "" ? {{podis}}.length : "0"
+          resumJugador.Podis != "" ? podis.length : "0"
         }}</p>
         </div>
         <div ng-show = "{{resumJugador.Diplomes}}" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Diplomes olímpics: {{diplomes}}">
         <span class="h1 material-symbols-outlined">school</span>
         <p class="text-muted ">{{
-          resumJugador.Diplomes != "" ? {{diplomes}}.length : "0"
+          resumJugador.Diplomes != "" ? diplomes.length : "0"
         }}</p>
         </div>
         </div>
