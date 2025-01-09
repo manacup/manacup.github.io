@@ -544,7 +544,7 @@
             <table class="table" id="miTabla">
                 
                 <tbody id="tbodyordre">
-                    <tr ng-repeat="partida in partidesJugador | orderBy : ['-Data','Ronda']" class="{{partida.Data?partida.JugadorObj.Puntuacions.Punts==0?'table-danger':'table-success':''}}">              
+                    <tr ng-repeat="partida in partidesJugador | orderBy : ['Data','Ronda']" class="{{partida.Data?partida.JugadorObj.Puntuacions.Punts==0?'table-danger':'table-success':''}}">              
                         <td>
                           <div>
                             <small>R{{partida.Ronda}}</small>                
