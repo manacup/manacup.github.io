@@ -88,6 +88,9 @@ fetchDades.on("value", function (snapshot) {
       $scope.goToPage = function(cami) {
         $location.path(cami);
       };
+      $scope.findID = function(nom){
+        return $jugadors.filter(ju=>ju.Nom==nom)[0].ID
+      }
   
 function transformarObjeto(objetoOriginal) {
   const nuevoObjeto = {};
