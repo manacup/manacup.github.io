@@ -85,8 +85,8 @@ fetchDades.on("value", function (snapshot) {
       $rootScope.$on('dadesRecuperades',function(){
           console.log("broadcasting...")
       })
-      $scope.goToPage = function(cami) {
-        $location.path(cami);
+      $scope.goToPage = function(idjug) {
+        $location.path('/detalljugador?id='+ idjug);
       };
       $scope.findID = function(nom){
         return $jugadors.filter(ju=>ju.Nom==nom)[0].ID
