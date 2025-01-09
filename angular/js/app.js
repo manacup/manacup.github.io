@@ -52,87 +52,24 @@ app.config(function($routeProvider) {
             templateUrl: "views/detalljugador.html",
             controller: "detallJugadorCtrl",
             controllerAs: 'vm'
+            resolve: {
+              // I will cause a 1 second delay
+              delay: function($q, $timeout) {
+                var delay = $q.defer();
+                $timeout(delay.resolve, 1000);
+                return delay.promise;
+              }
+            }
         });
 });
 
-/* app.controller("recopiladades", function ($scope, $rootScope) { // Use firebase instead of $http for Firebase communication
 
-  // Assuming your Firebase database structure:
-  // dades: { ... } (data for jugadors)
-  // calendari: { ... } (data for calendari)
-  // aparellaments: { ... } (data for aparellaments with Jugador1.ID and Jugador2.ID)
-
-  //const db = firebase.database(); // Access Firebase database using firebase service
-
-  // Fetch jugadors data
-  const jugadorsRef = db.ref("dades");
-  jugadorsRef.on("value", (snapshot) => {
-    $scope.jugadors = transformArray(snapshot.val());
-    // Add initial empty 'partides' property for each jugador
-    Object.values($scope.jugadors).forEach(jugador => {
-      jugador.partides = [];
-    });
-  });
-
-  // Fetch calendari data
-  const calendariRef = db.ref("calendari");
-  calendariRef.on("value", (snapshot) => {
-    $scope.calendari = transformArray(snapshot.val());
-  });
-
-  // Fetch aparellaments data
-  const aparellamentsRef = db.ref("aparellaments");
-    console.log(aparellamentsRef)
-  aparellamentsRef.on("value", (snapshot) => {
-    const aparellaments = transformArray(snapshot.val());
-console.log(aparellaments)
-    aparellaments.forEach((ap) => {
-      const jugador1Id = ap.Jugador1.ID;
-      const jugador2Id = ap.Jugador2.ID;
-
-      if ($scope.jugadors[jugador1Id]) {
-        $scope.jugadors[jugador1Id].partides.push(ap);
-      } else {
-        console.warn(`Jugador with ID ${jugador1Id} not found in jugadors data.`);
-      }
-
-      if ($scope.jugadors[jugador2Id]) {
-        $scope.jugadors[jugador2Id].partides.push(ap);
-      } else {
-        console.warn(`Jugador with ID ${jugador2Id} not found in jugadors data.`);
-      }
-    });
-  }); 
-
-$scope.$apply()*/
  app.controller("recopiladades", function($scope, $http, $rootScope) {
 
 
 const fetchDades = db.ref("dades");
 fetchDades.on("value", function (snapshot) {
   $scope.jugadors = transformArray(snapshot.val());
-
-/*   Object.values($scope.jugadors).forEach(jugador => {
-    jugador.partides = []; // Initialize empty array
-
-    // Assuming 'partides' collection references player IDs
-    const aparellaments= db.ref('aparellaments')
-      aparellaments.orderByChild('Jugador1/ID')
-      .equalTo(jugador.ID) // Use actual player ID
-      .on('value', (snapshot) => {
-        const playerMatches1 = snapshot.val() || []; // Handle potential null value
-        jugador.partides = playerMatches1; // Update partidas after data retrieval
-          console.log(jugador)
-      });
-      aparellaments.orderByChild('Jugador2/ID')
-      .equalTo(jugador.ID) // Use actual player ID
-      .on('value', (snapshot) => {
-        const playerMatches2 = snapshot.val() || []; // Handle potential null value
-        jugador.partides =  Object.values({ ...jugador.partides, ...playerMatches2 }); // Update partidas after data retrieval
-          console.log(jugador)
-      });
-  }); */
-
   $scope.$apply();
 }); 
     const fetchcalendari = db.ref("calendari");
@@ -150,24 +87,6 @@ fetchDades.on("value", function (snapshot) {
       $rootScope.$on('dadesRecuperades',function(){
           console.log("broadcasting...")
       })
-   /*     aparellaments.forEach((ap) => {
-      const jugador1Id = ap.Jugador1.ID;
-      const jugador2Id = ap.Jugador2.ID;
-
-      if ($scope.jugadors[jugador1Id]) {
-        $scope.jugadors[jugador1Id].partides.push(ap);
-      } else {
-        console.warn(`Jugador with ID ${jugador1Id} not found in jugadors data.`);
-      }
-
-      if ($scope.jugadors[jugador2Id]) {
-        $scope.jugadors[jugador2Id].partides.push(ap);
-      } else {
-        console.warn(`Jugador with ID ${jugador2Id} not found in jugadors data.`);
-      }
-           
-    });   */
-      
 
   
 function transformarObjeto(objetoOriginal) {
