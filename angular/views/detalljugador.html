@@ -8,4 +8,468 @@
     <div>{{partida.Jugador2.Jugador}} Punts:{{partida.Jugador2.Puntuacions.Puntuacio}}</div>   
 </li>
 </ul>
+////////////////////////////////////////////////////////////////////////////////////
+<div class=" p-1">
+    <div class="card" >
+      <div class="card-body text-center position-relative">
+      <a class=" position-absolute top-10 end-0 translate-middle pt-2 pe-1" href="{{
+        urlApp + "&vista=detall&options=" + jugador.ID
+      }}" target="_blank" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Enllaç a la vista actual">
+        <i class="bi bi-share-fill"></i>
+      </a>
+      
+      
+      <div class="d-flex justify-content-center imatge-container">
+        <div class="mt-3 mb-4 imatge-cercle img">
+          <img src="{{
+            jugador.ID == jugadorDesat.ID
+              ? userImg || jugador.Imatge
+              : jugador.Imatge
+          }}"
+             onerror="this.src='/icons/Imatge-default.jpg'">
+        </div>
+        </div>
+        <h4 class="mb-2">{{jugador.Nom}}</h4>
+        <p class="text-muted mb-4">{{jugador.Malnom2}}</p>
+        <div class="mb-4 pb-2">
+        <div class="d-flex justify-content-center text-center">
+        <div class = "{{jugador.Campionats==""?"d-none":""}}" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Campionats: {{
+          campionats.join(", ") ||
+          "Encara no ha guanyat cap campionat."
+        }}">
+        <span class="h1 material-symbols-outlined">trophy</span>
+        <p class="text-muted ">{{
+          jugador.Campionats != "" ? campionats.length : "0"
+        }}</p>
+        </div>
+        <div class = "{{jugador.Podis==""?"d-none":""}}" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Podis: {{
+          podis.join(", ") || "Encara no ha fet cap podi."
+        }}">
+        <span class="h1 material-symbols-outlined">leaderboard</span>
+        <p class="text-muted ">{{
+          jugador.Podis != "" ? podis.length : "0"
+        }}</p>
+        </div>
+        <div class = "{{jugador.Diplomes==""?"d-none":""}}" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Diplomes olímpics: {{
+          diplomes.join(", ") ||
+          "Encara no ha aconseguit cap diploma olímpic."
+        }}">
+        <span class="h1 material-symbols-outlined">school</span>
+        <p class="text-muted ">{{
+          jugador.Diplomes != "" ? diplomes.length : "0"
+        }}</p>
+        </div>
+        </div>
+        <button type="button" class="btn btn-primary btn-rounded btn-lg " onclick="window.open('https://wa.me/34{{
+          jugador.Telefon
+        }}');">
+          <i class="bi bi-whatsapp  me-2"></i>Missatge
+        </button>
+        <div class="row align-items-end text-center mt-5 mb-2  {{jugador.etiqueta=="debutant"?"d-none":""}}">
+          <div class="col">
+            <p class="mb-2 h5">{{jugador.BRF}}
+            <br>Núm. {{jugador.PosBRF}}
+            <br>{{jugador.CatBRF}}
+            </p>
+            <p class="text-muted ">Barruf</p>
+          </div>
+          <div class="col">
+            <p class="mb-2 h5">{{jugador.VD}}</p>
+            <p class="text-muted ">Victòries / Derrotes</p>
+          </div>
+          <div class="col">
+            <p class="mb-2 h5">{{jugador.ATP}}</p>
+            <p class="text-muted ">Posició ATP</p>
+          </div>
+        </div>
+        </div>
+      </div>
+    </div>
+  </div>
 
+<div class=" p-1">
+    <div class="card">
+    <div class="card-header">Un per un</div>
+      <div class="card-body">
+        <div class="card-text">{{jugador.Descripció}}</div>
+      </div>
+  </div>
+</div>
+<div class=" p-1 ">
+  <div class="card">
+    <div class="card-header d-flex align-items-center">
+    <span class="flex-fill">Classificació general {{
+      jugador.Baixa == "TRUE" ? "(Baixa)" : ""
+    }}</span>
+    <span class="badge rounded-pill bg-secondary">Posició: {{
+      jugador.Posició
+    }}</span>
+    </div>
+      <div class="card-body ">
+        <ul class="list-group list-group-flush rounded-4">
+       
+
+
+          <li class="list-group-item d-flex justify-content-between align-items-center" data-bs-toggle="collapse" data-bs-target="#collapseResum{{
+            jugador.ID
+          }}">
+            <div class="dropdown-toggle flex-grow-1">Posició</div>
+            <div class="">{{jugador.Posició}}</div>             
+          </li>
+            <div id="collapseResum{{
+              jugador.ID
+            }}" class="collapse bg-light">
+              <div class="ms-5">
+                <div>{{jugador.Millor_posició}}</div>
+                <div>{{jugador.Pitjor_posició}}</div>
+              </div>
+            </div>
+          
+          <li class="list-group-item d-flex justify-content-between align-items-center">
+            <div class="">Partides jugades:</div>
+            <div class="">{{jugador.PartidesJugades}}</div>
+          </li>
+          <li class="list-group-item d-flex justify-content-between align-items-center">
+            <div class="">Partides pendents:</div>
+            <div class="">{{jugador.Rondes_pendents}}</div>
+          </li>
+          <li class="list-group-item d-flex justify-content-between align-items-center">
+            <div class="">Punts:</div>
+            <div class="">{{jugador.Punts}}</div>
+          </li>
+          <li class="list-group-item d-flex justify-content-between align-items-center">
+            <div class="">Victòries:</div>
+            <div class="">{{jugador.Victòries}}</div>
+          </li>
+          <li class="list-group-item d-flex justify-content-between align-items-center">
+            <div class="">Suma de punts a favor:</div>
+            <div class="">{{jugador.PFavor}}</div>
+          </li>
+          <li class="list-group-item d-flex justify-content-between align-items-center">
+            <div class="">Mitjana de punts a favor:</div>
+            <div class="">{{jugador.MitjanaPFavor}}</div>
+          </li>
+          <li class="list-group-item d-flex justify-content-between align-items-center">
+            <div class="">Suma de punts en contra:</div>
+            <div class="">{{jugador.PContra}}</div>
+          </li>
+          <li class="list-group-item d-flex justify-content-between align-items-center">
+            <div class="">Diferencial:</div>
+            <div class="">{{jugador.Dif_P}}</div>
+          </li>
+          
+          <li class="list-group-item d-flex justify-content-between align-items-center">
+            <div class="">Mitjana del diferencial:</div>
+            <div class="">{{jugador.MitjanaDif}}</div>
+          </li>
+          <li class="list-group-item d-flex justify-content-between align-items-center">
+            <div class="">Insígnies:</div>
+            <div class="">
+              <span class="{{
+                jugador.Diamond_Mark == "FALSE" ? "d-none" : ""
+              }}" >
+            <span  data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Diamond Mark: top500, mitjana de 3 bingos per matx, una partida de 600, 2 jugades centenàries i 1 partida conjunta mil·lenària">
+              <i class="bi bi-gem text-primary h1"></i>
+            </span>
+          </span>  
+          <span class="{{
+            jugador.Golden_Mark == "FALSE" ? "d-none" : ""
+          }}">
+            <span  data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Golden Mark: top400, mitjana de 2 bingos per matx, una partida de 500, 1 jugada centenària i 1 partida conjunta nou-centenària">
+              <i class="bi bi-bookmark-star-fill text-warning h1"></i>                        
+            </span>
+          </span>
+            
+          <span class="{{
+            jugador.Iron_Mark == "FALSE" ? "d-none" : ""
+          }}">
+            <span  data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Iron Mark: top300, mitjana de 1 bingos per matx, una partida de 400, 1 jugada +70 punts i 1 partida conjunta vuit-centenària">
+              <i class="bi bi-gear-fill text-secondary h1"></i>                        
+            </span>
+          </span>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+<div class=" p-1 ">
+  <div class="card">
+    <div class="card-header d-flex align-items-center">
+    <span class="flex-fill">Scrabbles</span>
+    <span class="badge rounded-pill bg-secondary">Posició: {{
+      jugador.posScrabbles
+    }}</span>
+    </div>
+      <div class="card-body ">
+        <ul class="list-group list-group-flush rounded-4">
+
+          <li class="list-group-item d-flex justify-content-between align-items-center">
+            <div class="">Nombre total de Scrabbles:</div>
+            <div class="">{{jugador.Scrabbles}}</div>
+          </li>
+          <li class="list-group-item d-flex justify-content-between align-items-center">
+            <div class="">Mitjana de Scrabbles per partida	:</div>
+            <div class="">{{jugador.mitjanaScrabbles}}</div>
+          </li>
+          <li class="list-group-item d-flex justify-content-between align-items-center" data-bs-toggle="collapse" data-bs-target="#collapseScrabbles{{
+            jugador.ID
+          }}">
+            <div class="dropdown-toggle">Llista completa</div>                      
+          </li>                                     
+        </ul>
+      </div> 
+      <div class="collapse" id="collapseScrabbles{{jugador.ID}}">
+            <table class="table">
+                <tr>
+                    <td></td>
+                    <td><small>Total Scrabbles</small></td>
+                    <td><small>Adversari</small></td>
+                     <td></td>
+                </tr>
+                <tbody>
+                    {{ompleTaulaScrabbles(jugador.partides)}}
+                </tbody>
+            </table>
+          </div>
+    </div>
+  </div>
+</div>
+<div class=" p-1 ">
+  <div class="card">
+    <div class="card-header d-flex align-items-center">
+    <span class="flex-fill">Millor partida individual</span>
+    <span class="badge rounded-pill bg-secondary">Posició: {{
+      jugador.posPartida
+    }}</span>
+    </div>
+      <div class="card-body ">
+        <ul class="list-group list-group-flush rounded-4">
+
+          <li class="list-group-item d-flex justify-content-between align-items-center">
+            <div class="">Punts de la millor partida:</div>
+            <div class="">{{jugador.Punts_Partida}}</div>
+          </li>
+          <li class="list-group-item d-flex justify-content-between align-items-top">
+            <div class="">Adversari de la millor partida:</div>
+            <div>{{jugador.Adversari_partida.split("-")
+              .map((nom) => '<div class="nom">' + nom + "</div>")
+              .join("")}}</div>
+          </li>
+          <li class="list-group-item d-flex justify-content-between align-items-center" data-bs-toggle="collapse" data-bs-target="#collapsePindividual{{
+            jugador.ID
+          }}">
+            <div class="dropdown-toggle">Llista completa</div>                      
+          </li>                                     
+        </ul>
+      </div>
+      <div class="collapse" id="collapsePindividual{{jugador.ID}}">
+            <table class="table">
+                <tr>
+                    <td></td>
+                    <td><small>Punts</small></td>
+                    <td><small>Adversari</small></td>
+                     <td></td>
+                </tr>
+                <tbody>
+                    {{ompleTaulaPartida(jugador.partides)}}
+                </tbody>
+            </table>
+          </div> 
+    </div>
+  </div>
+</div>
+<div class=" p-1 ">
+  <div class="card">
+    <div class="card-header d-flex align-items-center">
+    <span class="flex-fill">Millor partida conjunta</span>
+    <span class="badge rounded-pill bg-secondary">Posició: {{Math.min(
+      ...posConjuntaArray
+    )}}</span>
+    </div>
+      <div class="card-body ">
+        <ul class="list-group list-group-flush rounded-4">
+
+          <li class="list-group-item d-flex justify-content-between align-items-center">
+            <div class="">Punts de la millor partida conjunta:</div>
+            <div class="">{{jugador.Punts_Conjunta}}</div>
+          </li>
+          <li class="list-group-item d-flex justify-content-between align-items-top">
+            <div class="">Adversari de la millor conjunta:</div>
+            <div>{{jugador.Adversari_conjunta.split("-")
+              .map((nom) => '<div class="nom">' + nom + "</div>")
+              .join("")}}</div>
+          </li>
+          <li class="list-group-item d-flex justify-content-between align-items-center" data-bs-toggle="collapse" data-bs-target="#collapsePconjunta{{
+            jugador.ID
+          }}">
+            <div class="dropdown-toggle">Llista completa</div>                      
+          </li>                                      
+        </ul>
+      </div>
+      <div class="collapse" id="collapsePconjunta{{jugador.ID}}">
+            <table class="table">
+                <tr>
+                    <td></td>
+                    <td><small>Punts</small></td>
+                    <td><small>Adversari</small></td>
+                     <td></td>
+                </tr>
+                <tbody>
+                    {{ompleTaulaConjunta(jugador.partides)}}
+                </tbody>
+            </table>
+          </div>
+    </div>
+  </div>
+</div>
+<div class=" p-1 ">
+  <div class="card">
+    <div class="card-header d-flex align-items-center">
+    <span class="flex-fill">Millor jugada</span>
+    <span class="badge rounded-pill bg-secondary">Posició: {{
+      jugador.posJugada
+    }}</span>
+    </div>
+      <div class="card-body ">
+        <ul class="list-group list-group-flush rounded-4">
+
+          <li class="list-group-item d-flex justify-content-between align-items-center">
+            <div class="">Punts de la millor jugada:</div>
+            <div class="">{{jugador.Punts_mot_jugada}}</div>
+          </li>
+          <li class="list-group-item d-flex justify-content-between align-items-top">
+            <div class="">Mot de la millor jugada:</div>
+            <div>{{jugador.Mot_jugada.split("-")
+              .map((mot) => '<div class="mot">' + mot + "</div>")
+              .join("")}}</div>
+          </li>
+          <li class="list-group-item d-flex justify-content-between align-items-top">
+            <div>Adversari de la millor jugada:</div>
+            <div>{{jugador.Adversari_jugada.split("-")
+              .map((nom) => '<div class="nom">' + nom + "</div>")
+              .join("")}}</div>
+          </li>
+          <li class="list-group-item d-flex justify-content-between align-items-center" data-bs-toggle="collapse" data-bs-target="#collapseJugada{{
+            jugador.ID
+          }}">
+            <div class="dropdown-toggle">Llista completa</div>                      
+          </li>                                   
+        </ul>
+      </div>
+       <div class="collapse" id="collapseJugada{{jugador.ID}}">
+            <table class="table">
+                <tr>
+                    <td></td>
+                    <td><small>Punts</small></td>
+                    <td><small>Jugada</small></td>
+                    <td><small>Adversari</small></td>
+                     <td></td>
+                </tr>
+                <tbody>
+                    {{ompleTaulaJugada(jugador.partides)}}
+                </tbody>
+            </table>
+          </div>  
+    </div>
+  </div>
+</div>
+<div class=" p-1 ">
+  <div class="card">
+    
+    <div class="card-header d-flex align-items-center">
+    <span class="flex-fill">Velocitat en l'enviament de la partida</span>
+    <span class="badge rounded-pill bg-secondary">Posició: {{
+      jugador.Pos_velocitat
+    }}</span>
+    </div>
+      <div class="card-body ">
+        <ul class="list-group list-group-flush rounded-4">
+          <li class="list-group-item d-flex justify-content-between align-items-center">
+            <div class="">Punts per immediatesa:</div>
+            <div class="">{{jugador.Punts_velocitat}}</div>
+          </li> 
+          <li class="list-group-item d-flex justify-content-between align-items-center" data-bs-toggle="collapse" data-bs-target="#collapseVelocitat{{
+            jugador.ID
+          }}">
+            <div class="dropdown-toggle">Llista completa</div>                      
+          </li>               
+        </ul>
+      </div>
+      <div class="collapse" id="collapseVelocitat{{jugador.ID}}">
+      <table class="table">
+          <tr>
+              <td></td>
+              <td><small>Punts immediatesa</small></td>
+              
+              <td><small>Adversari</small></td>
+              <td></td>
+          </tr>
+          <tbody>
+              {{ompleTaulaVelocitat(jugador.partides)}}
+          </tbody>
+      </table>
+  </div>
+    </div>
+  </div>
+</div>
+<div class=" p-1 ">
+  <div class="card">
+    <div class="card-header d-flex align-items-center">
+      <span class="flex-fill">Partides a trobades oficials</span>
+      <span class="badge rounded-pill bg-secondary">Posició: {{
+        jugador.Pos_social
+      }}</span>
+    </div>
+      <div class="card-body ">
+        <ul class="list-group list-group-flush rounded-4">
+          <li class="list-group-item d-flex justify-content-between align-items-center">
+            <div class="">Total partides:</div>
+            <div class="">{{jugador.Punts_social}}</div>
+          </li>
+          <li class="list-group-item d-flex justify-content-between align-items-center" data-bs-toggle="collapse" data-bs-target="#collapseSocial{{
+            jugador.ID
+          }}">
+            <div class="dropdown-toggle">Llista completa</div>                      
+          </li>               
+        </ul>
+      </div>
+      <div class="collapse" id="collapseSocial{{jugador.ID}}">
+      <table class="table">
+          <tr>
+              <td></td>
+              <td><small>Punts socials</small></td>
+              
+              <td><small>Adversari</small></td>
+              <td></td>
+          </tr>
+          <tbody>
+              {{ompleTaulaSocial(
+                jugador.partides.filter((p) => p.Punts_social > 0)
+              )}}
+          </tbody>
+      </table>
+  </div>
+    </div>
+  </div>
+</div>
+<div class=" p-1 ">
+  <div class="card">
+    <div class="card-header d-flex"><span class="flex-fill">Partides pendents i disputades</span><i class="bi bi-calendar3" id="ordenarBoton" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Ordena per número de ronda o per ordre de les partides jugades per veure la ratxa."></i></div>
+      <div class="">
+        <ul class="list-group list-group-flush rounded-4">
+
+
+            <table class="table" id="miTabla">
+                
+                <tbody id="tbodyordre">
+                    {{ompleTaulaRonda(jugador.partides)}}
+                </tbody>
+            </table>
+                           
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
