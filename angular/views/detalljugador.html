@@ -75,7 +75,7 @@
 <div class=" p-1 ">
   <div class="card">
     <div class="card-header d-flex align-items-center">
-    <span class="flex-fill">Classificacio general {{
+    <span class="flex-fill">Classificació general {{
       resumJugador.Baixa == "TRUE" ? "(Baixa)" : ""
     }}</span>
     <span class="badge rounded-pill bg-secondary">Posicio: {{
@@ -90,7 +90,7 @@
           <li class="list-group-item d-flex justify-content-between align-items-center" data-bs-toggle="collapse" data-bs-target="#collapseResum{{
             resumJugador.ID
           }}">
-            <div class="dropdown-toggle flex-grow-1">Posicio</div>
+            <div class="dropdown-toggle flex-grow-1">Posició</div>
             <div class="">{{resumJugador.Posicio}}</div>             
           </li>
             <div id="collapseResum{{
@@ -115,7 +115,7 @@
             <div class="">{{resumJugador.Punts}}</div>
           </li>
           <li class="list-group-item d-flex justify-content-between align-items-center">
-            <div class="">Victories:</div>
+            <div class="">Victòries:</div>
             <div class="">{{resumJugador.Victories}}</div>
           </li>
           <li class="list-group-item d-flex justify-content-between align-items-center">
@@ -176,7 +176,7 @@
   <div class="card">
     <div class="card-header d-flex align-items-center">
     <span class="flex-fill">Scrabbles</span>
-    <span class="badge rounded-pill bg-secondary">Posicio: {{
+    <span class="badge rounded-pill bg-secondary">Posició: {{
       resumJugador.posScrabbles
     }}</span>
     </div>
@@ -216,16 +216,14 @@
                         <td>
                           <div>
                             
-                            <span class="text-primary">{{partida.Jugador1.puntuacions.puntuacio}}</span>
+                            <span class="text-primary">{{partida.JugadorObj.puntuacions.puntuacio}}</span>
             <span class="vr"></span>
-                            <span class="text-primary ">{{partida.Jugador2.puntuacions.puntuacio}}</span>
+                            <span class="text-primary ">{{partida.JugadorAdv.puntuacions.puntuacio}}</span>
                           </div>
                         </td>              
                         <td>
                           <div class="">
-                            <div class="nom">{{partida.Jugador1.Jugador}}</div>
-                            <div class="nom">{{partida.Jugador2.Jugador}}</div>
-                            
+                            <div class="nom">{{partida.JugadorAdv.Jugador}}</div>
                           </div>
                         </td>  
                         <td class="detallpartida" data-id="{{partida.ID}}" data-estat="{{partida.Estat}}"><i class="bi bi-chevron-right"></i></td>     
@@ -240,7 +238,7 @@
   <div class="card">
     <div class="card-header d-flex align-items-center">
     <span class="flex-fill">Millor partida individual</span>
-    <span class="badge rounded-pill bg-secondary">Posicio: {{
+    <span class="badge rounded-pill bg-secondary">Posició: {{
       resumJugador.posPartida
     }}</span>
     </div>
