@@ -306,7 +306,7 @@
           <li class="list-group-item d-flex justify-content-between align-items-top">
             <div class="">Adversari de la millor conjunta:</div>
             <div>
-                <div class="nom" ng-repeat="adv in advConjunta"></div>
+                <div class="nom" ng-repeat="adv in advConjunta">{{adv}}</div>
             </div>
           </li>
           <li class="list-group-item d-flex justify-content-between align-items-center" data-bs-toggle="collapse" data-bs-target="#collapsePconjunta{{
@@ -367,13 +367,13 @@
           <li class="list-group-item d-flex justify-content-between align-items-top">
             <div class="">Mot de la millor jugada:</div>
             <div>
-                <div class="mot" ng-repeat="mot in mots"></div>
+                <div class="mot" ng-repeat="mot in mots">{{mot}}</div>
             </div>
           </li>
           <li class="list-group-item d-flex justify-content-between align-items-top">
             <div>Adversari de la millor jugada:</div>
             <div>
-                <div class="nom" ng-repeat="adv in advJugada"></div>
+                <div class="nom" ng-repeat="adv in advJugada">{{adv}}</div>
             </div>
           </li>
           <li class="list-group-item d-flex justify-content-between align-items-center" data-bs-toggle="collapse" data-bs-target="#collapseJugada{{
