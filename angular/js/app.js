@@ -51,7 +51,7 @@ app.config(function($routeProvider) {
         }).when("/detalljugador", {
             templateUrl: "views/detalljugador.html",
             controller: "detallJugadorCtrl",
-            controllerAs: 'vm'
+            controllerAs: 'vm',
             resolve: {
               // I will cause a 1 second delay
               delay: function($q, $timeout) {
