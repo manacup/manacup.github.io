@@ -62,7 +62,7 @@ app.config(function($routeProvider) {
 });
 
 
- app.controller("recopiladades", function($scope, $http, $rootScope) {
+ app.controller("recopiladades", function($scope, $location, $rootScope) {
 
 
 const fetchDades = db.ref("dades");
@@ -85,7 +85,9 @@ fetchDades.on("value", function (snapshot) {
       $rootScope.$on('dadesRecuperades',function(){
           console.log("broadcasting...")
       })
-
+      $scope.goToPage = function(cami) {
+        $location.path(cami);
+      };
   
 function transformarObjeto(objetoOriginal) {
   const nuevoObjeto = {};
