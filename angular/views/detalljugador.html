@@ -90,7 +90,7 @@
             resumJugador.ID
           }}">
             <div class="dropdown-toggle flex-grow-1">Posició</div>
-            <div class="">{{resumJugador.Posicio}}</div>             
+            <div>{{resumJugador.Posicio}}</div>             
           </li>
             <div id="collapseResum{{
               resumJugador.ID
@@ -102,45 +102,45 @@
             </div>
           
           <li class="list-group-item d-flex justify-content-between align-items-center">
-            <div class="">Partides jugades:</div>
-            <div class="">{{resumJugador.PartidesJugades}}</div>
+            <div>Partides jugades:</div>
+            <div>{{resumJugador.PartidesJugades}}</div>
           </li>
           <li class="list-group-item d-flex justify-content-between align-items-center">
-            <div class="">Partides pendents:</div>
-            <div class="">{{resumJugador.Rondes_pendents}}</div>
+            <div>Partides pendents:</div>
+            <div>{{resumJugador.Rondes_pendents}}</div>
           </li>
           <li class="list-group-item d-flex justify-content-between align-items-center">
-            <div class="">Punts:</div>
-            <div class="">{{resumJugador.Punts}}</div>
+            <div>Punts:</div>
+            <div>{{resumJugador.Punts}}</div>
           </li>
           <li class="list-group-item d-flex justify-content-between align-items-center">
-            <div class="">Victòries:</div>
-            <div class="">{{resumJugador.Victories}}</div>
+            <div>Victòries:</div>
+            <div>{{resumJugador.Victories}}</div>
           </li>
           <li class="list-group-item d-flex justify-content-between align-items-center">
-            <div class="">Suma de punts a favor:</div>
-            <div class="">{{resumJugador.PFavor}}</div>
+            <div>Suma de punts a favor:</div>
+            <div>{{resumJugador.PFavor}}</div>
           </li>
           <li class="list-group-item d-flex justify-content-between align-items-center">
-            <div class="">Mitjana de punts a favor:</div>
-            <div class="">{{resumJugador.MitjanaPFavor}}</div>
+            <div>Mitjana de punts a favor:</div>
+            <div>{{resumJugador.MitjanaPFavor}}</div>
           </li>
           <li class="list-group-item d-flex justify-content-between align-items-center">
-            <div class="">Suma de punts en contra:</div>
-            <div class="">{{resumJugador.PContra}}</div>
+            <div>Suma de punts en contra:</div>
+            <div>{{resumJugador.PContra}}</div>
           </li>
           <li class="list-group-item d-flex justify-content-between align-items-center">
-            <div class="">Diferencial:</div>
-            <div class="">{{resumJugador.Dif_P}}</div>
+            <div>Diferencial:</div>
+            <div>{{resumJugador.Dif_P}}</div>
           </li>
           
           <li class="list-group-item d-flex justify-content-between align-items-center">
-            <div class="">Mitjana del diferencial:</div>
-            <div class="">{{resumJugador.MitjanaDif}}</div>
+            <div>Mitjana del diferencial:</div>
+            <div>{{resumJugador.MitjanaDif}}</div>
           </li>
           <li class="list-group-item d-flex justify-content-between align-items-center">
-            <div class="">Insígnies:</div>
-            <div class="">
+            <div>Insígnies:</div>
+            <div>
               <span ng-show="{{
                 resumJugador.Diamond_Mark
               }}" >
@@ -183,12 +183,12 @@
         <ul class="list-group list-group-flush rounded-4">
 
           <li class="list-group-item d-flex justify-content-between align-items-center">
-            <div class="">Nombre total de Scrabbles:</div>
-            <div class="">{{resumJugador.Scrabbles}}</div>
+            <div>Nombre total de Scrabbles:</div>
+            <div>{{resumJugador.Scrabbles}}</div>
           </li>
           <li class="list-group-item d-flex justify-content-between align-items-center">
-            <div class="">Mitjana de Scrabbles per partida	:</div>
-            <div class="">{{resumJugador.mitjanaScrabbles}}</div>
+            <div>Mitjana de Scrabbles per partida	:</div>
+            <div>{{resumJugador.mitjanaScrabbles}}</div>
           </li>
           <li class="list-group-item d-flex justify-content-between align-items-center" data-bs-toggle="collapse" data-bs-target="#collapseScrabbles{{
             resumJugador.ID
@@ -206,9 +206,9 @@
                      <td></td>
                 </tr>
                 <tbody>
-                    <tr ng-repeat="partida in partidesJugador  | orderBy : ['-JugadorObj.Puntuacions.Scrabbles'] | filter : majorZero('JugadorObj.Puntuacions.Scrabbles')" class="">              
+                    <tr ng-repeat="partida in partidesJugador  | orderBy : ['-JugadorObj.Puntuacions.Scrabbles'] | filter : majorZero('JugadorObj.Puntuacions.Scrabbles')">              
                         <td>
-                          <div class="">
+                          <div>
                             <small>R{{partida.Ronda}}</small>                
                           </div>
                         </td>              
@@ -218,7 +218,7 @@
                           </div>
                         </td>              
                         <td>
-                          <div class="">
+                          <div>
                             <div class="nom">{{partida.JugadorAdv.Jugador}}</div>
                           </div>
                         </td>  
@@ -242,11 +242,11 @@
         <ul class="list-group list-group-flush rounded-4">
 
           <li class="list-group-item d-flex justify-content-between align-items-center">
-            <div class="">Punts de la millor partida:</div>
-            <div class="">{{resumJugador.Punts_Partida}}</div>
+            <div>Punts de la millor partida:</div>
+            <div>{{resumJugador.Punts_Partida}}</div>
           </li>
           <li class="list-group-item d-flex justify-content-between align-items-top">
-            <div class="">Adversari de la millor partida:</div>
+            <div>Adversari de la millor partida:</div>
             <div>{{resumJugador.Adversari_partida}}</div>
           </li>
           <li class="list-group-item d-flex justify-content-between align-items-center" data-bs-toggle="collapse" data-bs-target="#collapsePindividual{{
@@ -265,9 +265,9 @@
                      <td></td>
                 </tr>
                 <tbody>
-                    <tr ng-repeat="partida in partidesJugador | orderBy : ['-JugadorObj.Puntuacions.Puntuacio'] | filter : majorZero('JugadorObj.Puntuacions.Puntuacio')" class="">              
+                    <tr ng-repeat="partida in partidesJugador | orderBy : ['-JugadorObj.Puntuacions.Puntuacio'] | filter : majorZero('JugadorObj.Puntuacions.Puntuacio')">              
                         <td>
-                          <div class="">
+                          <div>
                             <small>R{{partida.Ronda}}</small>                
                           </div>
                         </td>              
@@ -277,7 +277,7 @@
                           </div>
                         </td>              
                         <td>
-                          <div class="">
+                          <div>
                             <a ng-href="#!detalljugador?id={{partida.JugadorAdv.ID}}" class="nom">{{partida.JugadorAdv.Jugador}}</a>
                           </div>
                         </td>  
@@ -299,11 +299,11 @@
         <ul class="list-group list-group-flush rounded-4">
 
           <li class="list-group-item d-flex justify-content-between align-items-center">
-            <div class="">Punts de la millor partida conjunta:</div>
-            <div class="">{{resumJugador.Punts_Conjunta}}</div>
+            <div>Punts de la millor partida conjunta:</div>
+            <div>{{resumJugador.Punts_Conjunta}}</div>
           </li>
           <li class="list-group-item d-flex justify-content-between align-items-top">
-            <div class="">Adversari de la millor conjunta:</div>
+            <div>Adversari de la millor conjunta:</div>
             <div>
                 <div class="nom" ng-repeat="adv in advConjunta">{{adv}}</div>
             </div>
@@ -324,9 +324,9 @@
                      <td></td>
                 </tr>
                 <tbody>
-                    <tr ng-repeat="partida in partidesJugador | orderBy : ['-Suma_punts'] | filter : majorZero('Suma_punts')" class="">              
+                    <tr ng-repeat="partida in partidesJugador | orderBy : ['-Suma_punts'] | filter : majorZero('Suma_punts')">              
                         <td>
-                          <div class="">
+                          <div>
                             <small>R{{partida.Ronda}}</small>                
                           </div>
                         </td>              
@@ -336,7 +336,7 @@
                           </div>
                         </td>              
                         <td>
-                          <div class="">
+                          <div>
                             <a ng-href="#!detalljugador?id={{partida.JugadorAdv.ID}}" class="nom">{{partida.JugadorAdv.Jugador}}</a>
                           </div>
                         </td>  
@@ -360,11 +360,11 @@
         <ul class="list-group list-group-flush rounded-4">
 
           <li class="list-group-item d-flex justify-content-between align-items-center">
-            <div class="">Punts de la millor jugada:</div>
-            <div class="">{{resumJugador.Punts_mot_jugada}}</div>
+            <div>Punts de la millor jugada:</div>
+            <div>{{resumJugador.Punts_mot_jugada}}</div>
           </li>
           <li class="list-group-item d-flex justify-content-between align-items-top">
-            <div class="">Mot de la millor jugada:</div>
+            <div>Mot de la millor jugada:</div>
             <div>
                 <div class="mot" ng-repeat="mot in mots">{{mot}}</div>
             </div>
@@ -392,9 +392,9 @@
                      <td></td>
                 </tr>
                 <tbody>
-                    <tr ng-repeat="partida in partidesJugador | orderBy : ['-JugadorObj.Puntuacions.Puntsmot'] | filter : majorZero('JugadorObj.Puntuacions.Puntsmot')" class="">              
+                    <tr ng-repeat="partida in partidesJugador | orderBy : ['-JugadorObj.Puntuacions.Puntsmot'] | filter : majorZero('JugadorObj.Puntuacions.Puntsmot')">              
                         <td>
-                          <div class="">
+                          <div>
                             <small>R{{partida.Ronda}}</small>                
                           </div>
                         </td>              
@@ -409,7 +409,7 @@
                             </div>
                           </td>             
                         <td>
-                          <div class="">
+                          <div>
                             <a ng-href="#!detalljugador?id={{partida.JugadorAdv.ID}}" class="nom">{{partida.JugadorAdv.Jugador}}</a>
                           </div>
                         </td>  
@@ -421,7 +421,7 @@
     </div>
   </div>
 </div>
-<!--<div class=" p-1 ">
+<div class=" p-1 ">
   <div class="card">
     
     <div class="card-header d-flex align-items-center">
@@ -433,8 +433,8 @@
       <div class="card-body ">
         <ul class="list-group list-group-flush rounded-4">
           <li class="list-group-item d-flex justify-content-between align-items-center">
-            <div class="">Punts per immediatesa:</div>
-            <div class="">{{resumJugador.Punts_velocitat}}</div>
+            <div>Punts per immediatesa:</div>
+            <div>{{resumJugador.Punts_velocitat}}</div>
           </li> 
           <li class="list-group-item d-flex justify-content-between align-items-center" data-bs-toggle="collapse" data-bs-target="#collapseVelocitat{{
             resumJugador.ID
@@ -453,7 +453,25 @@
               <td></td>
           </tr>
           <tbody>
-              {{ompleTaulaVelocitat(resumJugador.partides)}}
+            <tr ng-repeat="partida in partidesJugador | orderBy : ['-Punts_velocitat'] | filter : majorZero('Punts_velocitat')">              
+                <td>
+                  <div>
+                    <small>R{{partida.Ronda}}</small>                
+                  </div>
+                </td>              
+                <td>
+                  <div>                            
+                    <span class="text-primary">{{partida.Punts_velocitat}}</span>            
+                  </div>
+                </td> 
+                      
+                <td>
+                  <div>
+                    <a ng-href="#!detalljugador?id={{partida.JugadorAdv.ID}}" class="nom">{{partida.JugadorAdv.Jugador}}</a>
+                  </div>
+                </td>  
+                <td class="detallpartida" data-id="{{partida.ID}}" data-estat="{{partida.Estat}}"><i class="bi bi-chevron-right"></i></td>     
+              </tr>
           </tbody>
       </table>
   </div>
@@ -471,8 +489,8 @@
       <div class="card-body ">
         <ul class="list-group list-group-flush rounded-4">
           <li class="list-group-item d-flex justify-content-between align-items-center">
-            <div class="">Total partides:</div>
-            <div class="">{{resumJugador.Punts_social}}</div>
+            <div>Total partides:</div>
+            <div>{{resumJugador.Punts_social}}</div>
           </li>
           <li class="list-group-item d-flex justify-content-between align-items-center" data-bs-toggle="collapse" data-bs-target="#collapseSocial{{
             resumJugador.ID
@@ -491,19 +509,35 @@
               <td></td>
           </tr>
           <tbody>
-              {{ompleTaulaSocial(
-                resumJugador.partides.filter((p) => p.Punts_social > 0)
-              )}}
+            <tr ng-repeat="partida in partidesJugador | orderBy : ['-Punts_social'] | filter : majorZero('Punts_social')">              
+                <td>
+                  <div>
+                    <small>R{{partida.Ronda}}</small>                
+                  </div>
+                </td>              
+                <td>
+                  <div>                            
+                    <span class="text-primary">{{partida.Punts_social}}</span>            
+                  </div>
+                </td> 
+                      
+                <td>
+                  <div>
+                    <a ng-href="#!detalljugador?id={{partida.JugadorAdv.ID}}" class="nom">{{partida.JugadorAdv.Jugador}}</a>
+                  </div>
+                </td>  
+                <td class="detallpartida" data-id="{{partida.ID}}" data-estat="{{partida.Estat}}"><i class="bi bi-chevron-right"></i></td>     
+              </tr>
           </tbody>
       </table>
   </div>
     </div>
   </div>
 </div>
-<div class=" p-1 ">
+<!--<div class=" p-1 ">
   <div class="card">
     <div class="card-header d-flex"><span class="flex-fill">Partides pendents i disputades</span><i class="bi bi-calendar3" id="ordenarBoton" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Ordena per número de ronda o per ordre de les partides jugades per veure la ratxa."></i></div>
-      <div class="">
+      <div>
         <ul class="list-group list-group-flush rounded-4">
 
 
@@ -512,7 +546,7 @@
                 <tbody id="tbodyordre">
                     <tr ng-repeat="partida in partidesJugador " class="table-success">              
                         <td>
-                          <div class="">
+                          <div>
                             <small>R{{partida.Ronda}}</small>                
                           </div>
                         </td>              
@@ -525,7 +559,7 @@
                           </div>
                         </td>              
                         <td>
-                          <div class="">
+                          <div>
                             <div class="nom">{{partida.JugadorAdv.Jugador}}</div>
                           </div>
                         </td>  
