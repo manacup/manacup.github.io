@@ -305,9 +305,7 @@
           </li>
           <li class="list-group-item d-flex justify-content-between align-items-top">
             <div class="">Adversari de la millor conjunta:</div>
-            <div>{{resumJugador.Adversari_conjunta.split("-")
-              .map((nom) => '<div class="nom">' + nom + "</div>")
-              .join("")}}</div>
+            <div>{{advConjunta}}</div>
           </li>
           <li class="list-group-item d-flex justify-content-between align-items-center" data-bs-toggle="collapse" data-bs-target="#collapsePconjunta{{
             resumJugador.ID
@@ -366,15 +364,11 @@
           </li>
           <li class="list-group-item d-flex justify-content-between align-items-top">
             <div class="">Mot de la millor jugada:</div>
-            <div>{{resumJugador.Mot_jugada.split("-")
-              .map((mot) => '<div class="mot">' + mot + "</div>")
-              .join("")}}</div>
+            <div>{{mots}}</div>
           </li>
           <li class="list-group-item d-flex justify-content-between align-items-top">
             <div>Adversari de la millor jugada:</div>
-            <div>{{resumJugador.Adversari_jugada.split("-")
-              .map((nom) => '<div class="nom">' + nom + "</div>")
-              .join("")}}</div>
+            <div>{{advJugada}}</div>
           </li>
           <li class="list-group-item d-flex justify-content-between align-items-center" data-bs-toggle="collapse" data-bs-target="#collapseJugada{{
             resumJugador.ID
@@ -403,7 +397,12 @@
                           <div>                            
                             <span class="text-primary">{{partida.JugadorObj.Puntuacions.Puntsmot}}</span>            
                           </div>
-                        </td>              
+                        </td> 
+                        <td>
+                            <div>                            
+                              <span class="text-primary">{{partida.JugadorObj.Puntuacions.Mot}}</span>            
+                            </div>
+                          </td>             
                         <td>
                           <div class="">
                             <div class="nom">{{partida.JugadorAdv.Jugador}}</div>

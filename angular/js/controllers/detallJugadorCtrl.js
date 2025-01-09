@@ -27,10 +27,30 @@ $scope.majorZero = function(key) {
   $scope.posConjuntaArray = $scope.partidesJugador
     .map((p) => parseInt(p.Pos_Conjunta))
     .filter((pa) => !Number.isNaN(pa));
-    $scope.posConjunta = function() {
-      return Math.min(...$scope.posConjuntaArray);
+  $scope.minFromArray = function(array) {
+      return Math.min(...array);
     };
+  $scope.posConjunta = $scope.minFromArray($scope.posConjuntaArray)
   $scope.imatgeGran =  function(element) {    
     element.classList.toggle("imatge-completa");}
+  $scope.advConjunta = $scope.resumJugador.Adversari_conjunta.split("-")
+  .map((nom) => '<div class="nom">' + nom + "</div>")
+  .join("")
+  $scope.mots = $scope.resumJugador.Mot_jugada.split("-")
+  .map((mot) => '<div class="mot">' + mot + "</div>")
+  .join("")
+  $scope.advJugada = $scope.resumJugador.Adversari_jugada.split("-")
+  .map((nom) => '<div class="nom">' + nom + "</div>")
+  .join("")
   //  });
+});
+// ToolTipApp is the ng-app application in your web app
+app.directive('tooltip', function() {
+  return {
+    restrict: 'A',
+    link: function(scope, element, attrs) {
+
+      new bootstrap.Tooltip(element[0], {delay: {"show": 1000, "hide": 100 } });
+    }
+  };
 });
