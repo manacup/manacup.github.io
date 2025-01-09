@@ -6,8 +6,10 @@ app.controller("detallJugadorCtrl", function ($scope, $rootScope, $routeParams) 
   console.log('iniciant dades del jugador');
   $scope.resumJugador = $scope.jugadors[vm.id]
   $scope.partidesJugador = Object.values($scope.aparellaments).filter(ap => ap.Jugador1.ID == vm.id || ap.Jugador2.ID == vm.id)
-  $scope.partidesJugador.jugadorObj = $scope.partidesJugador.Jugador1.ID == vm.id? $scope.partidesJugador.Jugador1 : $scope.partidesJugador.Jugador2
-  $scope.partidesJugador.jugadorAdv = $scope.partidesJugador.Jugador1.ID != vm.id? $scope.partidesJugador.Jugador1 : $scope.partidesJugador.Jugador2
+  $scope.partidesJugador.forEach(partida=>{
+    partida.jugadorObj = partida.Jugador1.ID == vm.id? partida.Jugador1 : partida.Jugador2
+    partida.jugadorAdv = partida.Jugador1.ID != vm.id? partida.Jugador1 : partida.Jugador2
+})
   $scope.campionats = $scope.resumJugador.Campionats.split(/\n/);
   $scope.podis = $scope.resumJugador.Podis.split(/\n/);
   $scope.diplomes = $scope.resumJugador.Diplomes.split(/\n/);
