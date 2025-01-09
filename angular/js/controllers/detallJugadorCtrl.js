@@ -27,6 +27,9 @@ $scope.majorZero = function(key) {
   $scope.posConjuntaArray = $scope.partidesJugador
     .map((p) => parseInt(p.Pos_Conjunta))
     .filter((pa) => !Number.isNaN(pa));
+    $scope.posConjunta = function() {
+      return Math.min(...$scope.posConjuntaArray);
+    };
   $scope.imatgeGran =  function(element) {    
     element.classList.toggle("imatge-completa");}
   //  });

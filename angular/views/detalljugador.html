@@ -294,9 +294,7 @@
   <div class="card">
     <div class="card-header d-flex align-items-center">
     <span class="flex-fill">Millor partida conjunta</span>
-    <span class="badge rounded-pill bg-secondary">Posicio: {{Math.min(
-      ...posConjuntaArray
-    )}}</span>
+    <span class="badge rounded-pill bg-secondary">Posicio: {{posConjunta}}</span>
     </div>
       <div class="card-body ">
         <ul class="list-group list-group-flush rounded-4">
@@ -335,7 +333,7 @@
                         </td>              
                         <td>
                           <div>                            
-                            <span class="text-primary">{{partida.JugadorObj.Puntuacions.Puntuacio}}</span>            
+                            <span class="text-primary">{{partida.Suma_punts}}</span>            
                           </div>
                         </td>              
                         <td>
@@ -351,7 +349,7 @@
     </div>
   </div>
 </div>
-<!--<div class=" p-1 ">
+<div class=" p-1 ">
   <div class="card">
     <div class="card-header d-flex align-items-center">
     <span class="flex-fill">Millor jugada</span>
@@ -395,14 +393,31 @@
                      <td></td>
                 </tr>
                 <tbody>
-                    {{ompleTaulaJugada(resumJugador.partides)}}
+                    <tr ng-repeat="partida in partidesJugador | orderBy : ['-Puntsmot'] | filter : majorZero('Puntsmot')" class="">              
+                        <td>
+                          <div class="">
+                            <small>R{{partida.Ronda}}</small>                
+                          </div>
+                        </td>              
+                        <td>
+                          <div>                            
+                            <span class="text-primary">{{partida.JugadorObj.Puntuacions.Puntsmot}}</span>            
+                          </div>
+                        </td>              
+                        <td>
+                          <div class="">
+                            <div class="nom">{{partida.JugadorAdv.Jugador}}</div>
+                          </div>
+                        </td>  
+                        <td class="detallpartida" data-id="{{partida.ID}}" data-estat="{{partida.Estat}}"><i class="bi bi-chevron-right"></i></td>     
+                      </tr>
                 </tbody>
             </table>
           </div>  
     </div>
   </div>
 </div>
-<div class=" p-1 ">
+<!--<div class=" p-1 ">
   <div class="card">
     
     <div class="card-header d-flex align-items-center">
