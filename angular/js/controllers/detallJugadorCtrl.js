@@ -1,10 +1,10 @@
-app.controller("detallJugadorCtrl", function($scope, $rootScope,$routeParams) {    
-    $rootScope.pagina = "Detall";
+app.controller("detallJugadorCtrl", function ($scope, $rootScope, $routeParams) {
   var vm = this;
-    vm.id = $routeParams.id;
-//$rootScope.$on('dadesRecuperades', function() {
-    console.log('iniciant dades del jugador');
-     $scope.resumJugador = $scope.jugadors[vm.id]
-    $scope.partidesJugador = Object.values($scope.aparellaments).filter(ap=>ap.Jugador1.ID == vm.id || ap.Jugador2.ID == vm.id)
-//  });
+  vm.id = $routeParams.id;
+  $rootScope.pagina = $scope.jugadors[vm.id];
+  //$rootScope.$on('dadesRecuperades', function() {
+  console.log('iniciant dades del jugador');
+  $scope.resumJugador = $scope.jugadors[vm.id]
+  $scope.partidesJugador = Object.values($scope.aparellaments).filter(ap => ap.Jugador1.ID == vm.id || ap.Jugador2.ID == vm.id)
+  //  });
 });
