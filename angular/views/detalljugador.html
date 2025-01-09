@@ -171,7 +171,8 @@
     </div>
   
 </div>
-<!--<div class=" p-1 ">
+
+<div class=" p-1 ">
   <div class="card">
     <div class="card-header d-flex align-items-center">
     <span class="flex-fill">Scrabbles</span>
@@ -206,14 +207,36 @@
                      <td></td>
                 </tr>
                 <tbody>
-                    {{ompleTaulaScrabbles(resumJugador.partides)}}
+                    <tr ng-repeat="partida in partidesJugador " class="table-success">              
+                        <td>
+                          <div class="">
+                            <small>{{partida.Ronda}}</small>                
+                          </div>
+                        </td>              
+                        <td>
+                          <div>
+                            
+                            <span class="text-primary">{{partida.Jugador1.puntuacions.puntuacio}}</span>
+            <span class="vr"></span>
+                            <span class="text-primary ">{{partida.Jugador2.puntuacions.puntuacio}}</span>
+                          </div>
+                        </td>              
+                        <td>
+                          <div class="">
+                            <div class="nom">{{partida.Jugador1.Jugador}}</div>
+                            <div class="nom">{{partida.Jugador2.Jugador}}</div>
+                            
+                          </div>
+                        </td>  
+                        <td class="detallpartida" data-id="{{partida.ID}}" data-estat="{{partida.Estat}}"><i class="bi bi-chevron-right"></i></td>     
+                      </tr>
                 </tbody>
             </table>
           </div>
     </div>
   </div>
 </div>
-<div class=" p-1 ">
+<!--<div class=" p-1 ">
   <div class="card">
     <div class="card-header d-flex align-items-center">
     <span class="flex-fill">Millor partida individual</span>
