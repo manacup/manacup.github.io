@@ -56,7 +56,7 @@
           </div>
           <div class="col">
             <p class="mb-2 h5">{{resumJugador.ATP}}</p>
-            <p class="text-muted ">Posició ATP</p>
+            <p class="text-muted ">Posicio ATP</p>
           </div>
         </div>
         </div>
@@ -75,11 +75,11 @@
 <div class=" p-1 ">
   <div class="card">
     <div class="card-header d-flex align-items-center">
-    <span class="flex-fill">Classificació general {{
+    <span class="flex-fill">Classificacio general {{
       resumJugador.Baixa == "TRUE" ? "(Baixa)" : ""
     }}</span>
-    <span class="badge rounded-pill bg-secondary">Posició: {{
-      resumJugador.Posició
+    <span class="badge rounded-pill bg-secondary">Posicio: {{
+      resumJugador.Posicio
     }}</span>
     </div>
       <div class="card-body ">
@@ -90,15 +90,15 @@
           <li class="list-group-item d-flex justify-content-between align-items-center" data-bs-toggle="collapse" data-bs-target="#collapseResum{{
             resumJugador.ID
           }}">
-            <div class="dropdown-toggle flex-grow-1">Posició</div>
-            <div class="">{{resumJugador.Posició}}</div>             
+            <div class="dropdown-toggle flex-grow-1">Posicio</div>
+            <div class="">{{resumJugador.Posicio}}</div>             
           </li>
             <div id="collapseResum{{
               resumJugador.ID
             }}" class="collapse bg-light">
               <div class="ms-5">
-                <div>{{resumJugador.Millor_posició}}</div>
-                <div>{{resumJugador.Pitjor_posició}}</div>
+                <div>{{resumJugador.Millor_posicio}}</div>
+                <div>{{resumJugador.Pitjor_posicio}}</div>
               </div>
             </div>
           
@@ -176,7 +176,7 @@
   <div class="card">
     <div class="card-header d-flex align-items-center">
     <span class="flex-fill">Scrabbles</span>
-    <span class="badge rounded-pill bg-secondary">Posició: {{
+    <span class="badge rounded-pill bg-secondary">Posicio: {{
       resumJugador.posScrabbles
     }}</span>
     </div>
@@ -240,7 +240,7 @@
   <div class="card">
     <div class="card-header d-flex align-items-center">
     <span class="flex-fill">Millor partida individual</span>
-    <span class="badge rounded-pill bg-secondary">Posició: {{
+    <span class="badge rounded-pill bg-secondary">Posicio: {{
       resumJugador.posPartida
     }}</span>
     </div>
@@ -284,7 +284,7 @@
   <div class="card">
     <div class="card-header d-flex align-items-center">
     <span class="flex-fill">Millor partida conjunta</span>
-    <span class="badge rounded-pill bg-secondary">Posició: {{Math.min(
+    <span class="badge rounded-pill bg-secondary">Posicio: {{Math.min(
       ...posConjuntaArray
     )}}</span>
     </div>
@@ -328,7 +328,7 @@
   <div class="card">
     <div class="card-header d-flex align-items-center">
     <span class="flex-fill">Millor jugada</span>
-    <span class="badge rounded-pill bg-secondary">Posició: {{
+    <span class="badge rounded-pill bg-secondary">Posicio: {{
       resumJugador.posJugada
     }}</span>
     </div>
@@ -380,7 +380,7 @@
     
     <div class="card-header d-flex align-items-center">
     <span class="flex-fill">Velocitat en l'enviament de la partida</span>
-    <span class="badge rounded-pill bg-secondary">Posició: {{
+    <span class="badge rounded-pill bg-secondary">Posicio: {{
       resumJugador.Pos_velocitat
     }}</span>
     </div>
@@ -418,7 +418,7 @@
   <div class="card">
     <div class="card-header d-flex align-items-center">
       <span class="flex-fill">Partides a trobades oficials</span>
-      <span class="badge rounded-pill bg-secondary">Posició: {{
+      <span class="badge rounded-pill bg-secondary">Posicio: {{
         resumJugador.Pos_social
       }}</span>
     </div>
