@@ -207,7 +207,7 @@
                      <td></td>
                 </tr>
                 <tbody>
-                    <tr ng-repeat="partida in partidesJugador " class="">              
+                    <tr ng-repeat="partida in partidesJugador  | orderBy : ['-JugadorObj.Puntuacions.Scrabbles'] | filter : majorZero('JugadorObj.Puntuacions.Scrabbles')" class="">              
                         <td>
                           <div class="">
                             <small>R{{partida.Ronda}}</small>                
