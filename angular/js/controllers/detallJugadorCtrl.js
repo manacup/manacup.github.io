@@ -9,8 +9,8 @@ app.controller("detallJugadorCtrl", function ($scope, $rootScope, $routeParams) 
   $scope.campionats = $scope.resumJugador.Campionats.split(/\n/);
   $scope.podis = $scope.resumJugador.Podis.split(/\n/);
   $scope.diplomes = $scope.resumJugador.Diplomes.split(/\n/);
-  $scope.posConjuntaArray = $scope.partidesJugador
+ /*  $scope.posConjuntaArray = $scope.partidesJugador
     .map((p) => parseInt(p.Pos_Conjunta))
-    .filter((pa) => !Number.isNaN(pa));
+    .filter((pa) => !Number.isNaN(pa)); */
   //  });
 });

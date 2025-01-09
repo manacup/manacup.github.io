@@ -1,14 +1,3 @@
-<h1>{{resumJugador.Nom}}</h1>
-<div>{{resumJugador}}</div>
-<h2>Partides</h2>
-<ul class="list-group">
-<li ng-repeat="partida in partidesresumJugador" class="list-group-item d-flex justify-content-between align-items-center">
-    <div>Ronda {{partida.Ronda}}</div>
-    <div>{{partida.Jugador1.jugador}} Punts:{{partida.Jugador1.Puntuacions.Puntuacio}}</div>
-    <div>{{partida.Jugador2.jugador}} Punts:{{partida.Jugador2.Puntuacions.Puntuacio}}</div>   
-</li>
-</ul>
-////////////////////////////////////////////////////////////////////////////////////
  <div class=" p-1">
     <div class="card" >
       <div class="card-body text-center position-relative">
@@ -52,7 +41,7 @@
         <a type="button" class="btn btn-primary btn-rounded btn-lg " ng-href="window.open('https://wa.me/34{{resumJugador.Telefon}}');">
           <i class="bi bi-whatsapp  me-2"></i>Missatge
         </a>
-        <div class="row align-items-end text-center mt-5 mb-2 " ng-show="{{resumJugador.etiqueta=='debutant'}}">
+        <div class="row align-items-end text-center mt-5 mb-2 " ng-hide="{{resumJugador.etiqueta=='debutant'}}">
           <div class="col">
             <p class="mb-2 h5">{{resumJugador.BRF}}
             <br>Núm. {{resumJugador.PosBRF}}
