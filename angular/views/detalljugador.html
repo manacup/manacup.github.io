@@ -231,7 +231,7 @@
     </div>
   </div>
 </div>
-<!--<div class=" p-1 ">
+<div class=" p-1 ">
   <div class="card">
     <div class="card-header d-flex align-items-center">
     <span class="flex-fill">Millor partida individual</span>
@@ -248,9 +248,7 @@
           </li>
           <li class="list-group-item d-flex justify-content-between align-items-top">
             <div class="">Adversari de la millor partida:</div>
-            <div>{{resumJugador.Adversari_partida.split("-")
-              .map((nom) => '<div class="nom">' + nom + "</div>")
-              .join("")}}</div>
+            <div>{{resumJugador.Adversari_partida}}</div>
           </li>
           <li class="list-group-item d-flex justify-content-between align-items-center" data-bs-toggle="collapse" data-bs-target="#collapsePindividual{{
             resumJugador.ID
@@ -268,14 +266,31 @@
                      <td></td>
                 </tr>
                 <tbody>
-                    {{ompleTaulaPartida(resumJugador.partides)}}
+                    <tr ng-repeat="partida in partidesJugador " class="">              
+                        <td>
+                          <div class="">
+                            <small>R{{partida.Ronda}}</small>                
+                          </div>
+                        </td>              
+                        <td>
+                          <div>                            
+                            <span class="text-primary">{{partida.JugadorObj.Puntuacions.Puntuacio}}</span>            
+                          </div>
+                        </td>              
+                        <td>
+                          <div class="">
+                            <div class="nom">{{partida.JugadorAdv.Jugador}}</div>
+                          </div>
+                        </td>  
+                        <td class="detallpartida" data-id="{{partida.ID}}" data-estat="{{partida.Estat}}"><i class="bi bi-chevron-right"></i></td>     
+                      </tr>
                 </tbody>
             </table>
           </div> 
     </div>
   </div>
 </div>
-<div class=" p-1 ">
+<!--<div class=" p-1 ">
   <div class="card">
     <div class="card-header d-flex align-items-center">
     <span class="flex-fill">Millor partida conjunta</span>
