@@ -36,7 +36,7 @@ $scope.majorZero = function(key) {
   $scope.advConjunta = $scope.resumJugador.Adversari_conjunta.split("-")  
   $scope.mots = $scope.resumJugador.Mot_jugada.split("-")  
   $scope.advJugada = $scope.resumJugador.Adversari_jugada.split("-")
-  
+  $scope.$apply();
   //  });
 });
 // ToolTipApp is the ng-app application in your web app
