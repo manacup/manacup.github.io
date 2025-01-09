@@ -12,5 +12,8 @@ app.controller("detallJugadorCtrl", function ($scope, $rootScope, $routeParams) 
  /*  $scope.posConjuntaArray = $scope.partidesJugador
     .map((p) => parseInt(p.Pos_Conjunta))
     .filter((pa) => !Number.isNaN(pa)); */
+  $scope.imatgeGran =  (e) =>{
+    
+    e.classList.toggle("imatge-completa");}
   //  });
 });
