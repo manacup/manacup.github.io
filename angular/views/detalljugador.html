@@ -21,11 +21,7 @@
       
       <div class="d-flex justify-content-center imatge-container">
         <div class="mt-3 mb-4 imatge-cercle img">
-          <img src="{{
-            resumJugador.ID == resumJugadorDesat.ID
-              ? userImg || resumJugador.Imatge
-              : resumJugador.Imatge
-          }}"
+          <img src="{{resumJugador.Imatge}}"
              onerror="this.src='/icons/Imatge-default.jpg'">
         </div>
         </div>
