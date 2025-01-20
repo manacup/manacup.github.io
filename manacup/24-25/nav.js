@@ -282,7 +282,7 @@ function loadContent(vista) {
         renderTrobada(trobada);
       } else {
         contentDiv.innerHTML =
-          "<h1>La següent trobada oficial encara no està confirmada.</h1><p>Tanmateix pots contactar amb els teus adversaris per jugar en poder...</p>";
+          "<h1>La següent trobada oficial encara no està confirmada.</h1><p>Tanmateix pots contactar amb els teus adversaris per jugar en poder...</p><p onclick="actualitzaJSON()">X</p>";
       }
       break;
 
