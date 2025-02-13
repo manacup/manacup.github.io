@@ -29,6 +29,10 @@ function loadContent(vista) {
     case "actualitza":
       actualitzaJSON()
       break;
+      case "editatrobada":
+      navbarTitle.innerHTML = "Edita la trobada";
+      editaTrobadaForm(trobada)
+      break
     case "home":
       contentDiv.innerHTML =
         "<h1>Página d'inici</h1><p>Benvingut a la primera pàgina</p>";
