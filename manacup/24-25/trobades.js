@@ -608,6 +608,7 @@ function editaTrobadaForm(trobada) {
                 <input type="hidden" id="Sopar" name="Sopar" value="${trobada.Sopar}"> 
                 </div>
     </div>
+    <div class="mb-2"><label>Confirmat? es mostrarà a l'aplicació:</label>
     <div class="form-check form-switch">
         <input type="checkbox"  id="ConfirmatTRUE"  value="${trobada.Confirmat}" ${trobada.Confirmat==="TRUE"?"checked":""}
                 class="form-check-input" >
