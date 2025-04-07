@@ -1451,7 +1451,7 @@ function renderRondes(ronda) {
                   <ul class="list-group list-group-flush rounded-4">
                     <li class="list-group-item d-flex justify-content-between align-items-top">
                       <div>Partides mil·lenàries:</div>
-                      <div>${ronda.Mil·lenàries}</div>                    	
+                      <div>${ronda["Mil·lenàries"]}</div>                    	
                     </li>
                     <li class="list-group-item d-flex justify-content-between align-items-top">
                       <div>Jugades centenàries:</div>
