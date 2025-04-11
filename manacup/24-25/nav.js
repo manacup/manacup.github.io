@@ -319,19 +319,23 @@ function loadContent(vista) {
     case "rellotge":
       navbarTitle.innerHTML = "Rellotge";
       window.open(rellotge);
+      loadContent(["classificacio"])
       break;
 
     case "validador":
       navbarTitle.innerHTML = "Validador";
       window.open(validador);
+      loadContent(["classificacio"])
       break;
     case "blog":
       navbarTitle.innerHTML = "Blog";
       window.open(blog);
+      loadContent(["classificacio"])
       break;
       case "normativa":
       navbarTitle.innerHTML = "Normativa";
       window.open(normativa);
+      loadContent(["classificacio"])
       break;
     case "apps":
       window.location.assign(apps);
