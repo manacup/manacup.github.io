@@ -80,7 +80,8 @@ function iniciJSON(turbo,vista) {
       // ...
       // Example: Accessing data from the 'trobades' response
       trobada = data.trobades;
-      if (trobada) {
+      if (trobada.Confirmat=="TRUE") {
+        document.querySelectorAll(".trobades").forEach(t=>t.classList.remove("disabled"))
         var assistents = trobada.assistents;
         assistents.map((w) => {
           w.Primera_partida = w.Primera_partida + w.Adv1;
@@ -141,6 +142,7 @@ function loadPagina(vista) {
   // if (carrega == 2) {
 
   if (trobada.Confirmat=="TRUE" && vista === undefined) {
+    
     
     loadContent(parameterVista ? vistaPredet : ["trobades"]);
     updateHistory(parameterVista ? vistaPredet : ["trobades"]);
