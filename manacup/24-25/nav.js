@@ -4,6 +4,7 @@ const validador = "https://diccionari.totescrable.cat/validador/";
 const blog = "https://scrabblemanacor.wordpress.com/";
 const rellotge = "https://manacup.github.io/rellotgeScrabble/index.html";
 const apps = "https://manacup.github.io";
+const normativa ="https://scrabblemanacor.wordpress.com/normativa-del-joc/"
 
 let currentPage = "home";
 
@@ -327,6 +328,10 @@ function loadContent(vista) {
     case "blog":
       navbarTitle.innerHTML = "Blog";
       window.open(blog);
+      break;
+      case "normativa":
+      navbarTitle.innerHTML = "Normativa";
+      window.open(normativa);
       break;
     case "apps":
       window.location.assign(apps);
