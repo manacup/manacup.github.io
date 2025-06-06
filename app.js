@@ -54,7 +54,7 @@ document.getElementById('spinner').style.display='none';
  }
 }
 
-if ('serviceWorker' in navigator) {
+/* if ('serviceWorker' in navigator) {
     navigator.serviceWorker.register('sw.js');
   }
 if ('serviceWorker' in navigator) {
@@ -63,7 +63,7 @@ if ('serviceWorker' in navigator) {
       caches.delete(cacheName);
     });
   });
-}
+} */
  function canviaUrl(href){
     
    if(document.getElementById("rec")!= undefined){
