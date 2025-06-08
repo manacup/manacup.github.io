@@ -166,11 +166,11 @@ function recuperaPartides() {
 }
 
 function loadPagina(vista) {
-  console.log(!!trobada && vista === undefined);
+ 
   clearInterval(interval);
  // if (carrega == 2) {
-    if (!!trobada && vista === undefined) {
-      console.log("yeah");
+    if (trobada.Confirmat=="TRUE" && vista === undefined) {
+     
       loadContent(parameterVista ? vistaPredet : ["trobades"]);
       updateHistory(parameterVista ? vistaPredet : ["trobades"]);
     } else {
