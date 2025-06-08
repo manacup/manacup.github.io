@@ -572,6 +572,7 @@ async function main() {
 
 }
 
+
 /**
 * Create and download a file on click
 * @params {string} filename - The name of the file with the ending
@@ -606,9 +607,17 @@ function convertToICSDate(dateTime) {
   return year + month + day + "T" + hours + minutes + "00";
 }
 
+function convertirExcelATempsUTC(excelTime) {
+  // Data base per a Excel és el 1 de gener de 1900
+  const dataBase = new Date(Date.UTC(1899, 11, 30));
+  // Converteix els dies d'Excel a mil·lisegons
+  const tempsEnMilisegons = excelTime * 24 * 60 * 60 * 1000;
+  return new Date(dataBase.getTime() + tempsEnMilisegons).toISOString().replace(/[-:]/g, "").split(".")[0] + "Z"; // Format YYYYMMDDTHHMMSSZ;
+}
+
 
 /**
-* Creates and downloads an ICS file
+* Creates and downloads an ICS file trobada.horautc
 * @params {string} timeZone - In the format America/New_York
 * @params {object} startTime - Vaild JS Date object in the event timezone
 * @params {object} endTime - Vaild JS Date object in the event timezone
@@ -644,19 +653,137 @@ const icsBody = 'BEGIN:VCALENDAR\n' +
 
 download(title + '.ics', icsBody);
 }
+function ExcelDateToJSDateNormal(serial) {
+  var utc_days = Math.floor(serial - 25569);
+  var utc_value = utc_days * 86400;
+  var date_info = new Date(utc_value * 1000);
+
+  var fractional_day = serial - Math.floor(serial) + 0.0000001;
+
+  var total_seconds = Math.floor(86400 * fractional_day);
+
+  var seconds = total_seconds % 60;
+
+  total_seconds -= seconds;
+
+  var hours = Math.floor(total_seconds / (60 * 60));
+  var minutes = Math.floor(total_seconds / 60) % 60;
+  var jsdate = new Date(
+    date_info.getFullYear(),
+    date_info.getMonth(),
+    date_info.getDate(),
+    hours,
+    minutes,
+    seconds
+  );
+  return jsdate;
+}
+
+function editaTrobadaForm(trobada) {
+  console.log(trobada)
+  const formTemplate = `
+  <form id="formulari_Calendari_trobades" class="container-fluid needs-validation">
+    <div class="mb-2"><label class="col-form-label">Ronda (si es juguen més d'una ronda posar la més alta):</label>
+    <input type="number" class="form-control" value="${trobada.max_ronda||''}"
+            name="max_ronda" placeholder="max_ronda"></div>
+    <div class="mb-2"><input type="hidden" value="${trobada.ID_trobada||''}" name="ID_trobada"></div>
+    <div class="mb-2">
+    <label class="col-form-label">Títol de la trobada:</label>
+    <input type="text" class="form-control" name="Trobada" placeholder="Trobada" value="${trobada.Trobada||''}"></div>
+    <div class="mb-2">
+    <label class="col-form-label">Data:</label>
+    <input type="datetime-local" class="form-control" id="DataHora"
+            name="DataHora" placeholder="Data i hora" value="${trobada.DataHora||new Date().toISOString().split("T").join(" ").split(".")[0]}"></div> 
+            
+    <div class="mb-2"><label class="col-form-label">Lloc:</label>
+    <input type="text" class="form-control" name="Lloc"  value="${trobada.Lloc||''}"
+            placeholder="Lloc"></div>
+    <!-- <div class="mb-2"><label class="col-form-label">Adreça:</label>
+    <input type="text" class="form-control" name="adreça"  value="${trobada.adreça||''}"
+            placeholder="adreça" ></div>
+    <div class="mb-2"><label class="col-form-label">URL Maps:</label>
+    <input type="url" class="form-control" name="maps"  value="${trobada.maps||''}"
+            placeholder="maps"></div> -->
+    <div class="mb-2"><label>Sopar?</label>
+        <div class="form-check form-switch">
+        <input type="checkbox"  id="SoparTRUE"  value="${trobada.Sopar}" ${trobada.Sopar==="TRUE"?"checked":""}
+                class="form-check-input" >
+                <input type="hidden" id="Sopar" name="Sopar" value="${trobada.Sopar}"> 
+                </div>
+    </div>
+    <div class="mb-2"><label>Confirmat? es mostrarà a l'aplicació:</label>
+    <div class="form-check form-switch">
+        <input type="checkbox"  id="ConfirmatTRUE"  value="${trobada.Confirmat}" ${trobada.Confirmat==="TRUE"?"checked":""}
+                class="form-check-input" >
+                <input type="hidden" id="Confirmat" name="Confirmat" value="${trobada.Confirmat}"> 
+                </div>
+    </div>
+
+   
+    <div class="mb-2"><label class="col-form-label">Rondes a jugar:</label>
+    <input type="number" class="form-control"
+            name="Rondes_a_jugar" placeholder="Rondes_a_jugar" value="${trobada.Rondes_a_jugar||null}"></div>
+    
+    
+    <div class="modal-footer"> 
+    
+          <button id="botodesatrobada" class="btn btn-primary" type="submit" onclick="editaTrobada()">
+             <span class="spinner-border spinner-border-sm d-none" role="status" aria-hidden="true" id="spnbtn3"></span>
+             Modifica la trobada
+          </button>
+</form>
+`
+document.getElementById("content").innerHTML += formTemplate
+document.getElementById("SoparTRUE").addEventListener("change",function(){
+  let sopar =document.getElementById("Sopar")
+  sopar.value = this.checked? "TRUE" : "FALSE"
+})
+document.getElementById("ConfirmatTRUE").addEventListener("change",function(){
+  let sopar =document.getElementById("Confirmat")
+  sopar.value = this.checked? "TRUE" : "FALSE"
+})
+}
+
+async function editaTrobada() {
+  preventFormSubmit();
+  let form = document.getElementById("formulari_Calendari_trobades");
+  document.getElementById("botodesatrobada").disabled = true;
+  document.getElementById("spnbtn3").classList.remove("d-none");
+  const dataform = new FormData(form);
+  console.log(dataform)
+  const values = Object.fromEntries(dataform.entries());
 
 
-/* document.getElementById('downloadICS').addEventListener('click', () => {
-createDownloadICSFile(
-  'Europe/Madrid',
-  startTime,
-  startTime,
-  title,
-  '',
-  venueName,
-  address,
-  '',
-  ''
-);  
-});
- */
+  
+  console.log(JSON.stringify({
+    envia: 'novaTrobada',
+    values: values,
+    idfull: idfull,
+    idJSON: idJSON,
+    row: values.ID_trobada,
+  }))
+  fetch(macroURL, {
+    method: 'POST',
+    mode: 'no-cors',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      envia: 'novaTrobada',
+      values: values,
+      idfull: idfull,
+      idJSON: idJSON,
+      row: values.ID_trobada,
+    }),
+  })
+    .then(response => {
+      response.text()
+      console.log(response.text())
+    })
+    .then(data => {
+      console.log('Resposta del servidor:', data);
+      setTimeout(iniciJSON(false, "trobades"), 500)
+    })
+    .catch(error => console.error('Error:', error));
+
+}
