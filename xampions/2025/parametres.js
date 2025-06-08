@@ -112,8 +112,9 @@ function iniciJSON(vista) {
       // Process dataTrobades, dataJugadors, etc.
       // ...
       // Example: Accessing data from the 'trobades' response
-      trobada = data.trobades;
-      if (trobada) {
+    trobada = data.trobades;
+      if (trobada.Confirmat=="TRUE") {
+        document.querySelectorAll(".trobades").forEach(t=>t.classList.remove("disabled"))
         var assistents = trobada.assistents;
         assistents.map((w) => {
           w.Primera_partida = w.Primera_partida + w.Adv1;
