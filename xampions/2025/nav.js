@@ -24,6 +24,13 @@ function loadContent(vista) {
   let navbarTitle = document.getElementById("navbar-title");
   contentDiv.innerHTML = "";
   switch (page) {
+    case "actualitza":
+      actualitzaJSON()
+      break;
+      case "editatrobada":
+      navbarTitle.innerHTML = "Edita la trobada";
+      editaTrobadaForm(trobada)
+      break
     case "home":
       contentDiv.innerHTML =
         "<h1>Página d'inici</h1><p>Benvingut a la primera pàgina</p>";
