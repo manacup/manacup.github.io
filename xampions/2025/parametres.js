@@ -2,7 +2,7 @@ const queryString = window.location.search;
 const urlParams = Object.fromEntries(new URLSearchParams(queryString));
 
 let fases = [
-"Fase de classificació",
+"Fase prèvia",
   "Eliminatòria",
   "Vuitens de final",
   "Quarts de final",
