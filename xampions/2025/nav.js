@@ -227,9 +227,9 @@ function loadContent(vista) {
       }
 
       partidesfiltagrupades
-       
-        .sort(ordreVicJug) .sort(ordreDifJug)
-        .sort(ordrePuntsJug)
+        .sort(ordreDifJug)
+        
+        .sort(ordrePuntsJug).sort(ordreVicJug)
         .sort(ordreGrup);
       //console.log(dades)
 
