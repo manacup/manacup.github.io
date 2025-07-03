@@ -170,7 +170,7 @@ function loadContent(vista) {
       var partidesfilt = partides.filter((j) => j.Ronda == options);
       var partidesfiltagrupades = groupByJug(partidesfilt);
       console.log(partidesfiltagrupades);
-/*       partidesfiltagrupades.map((j) => {
+      partidesfiltagrupades.map((j) => {
         j.totalPunts1 =
           Number(j.resultats[0].Puntuacio_1) +
           Number(j.resultats[1].Puntuacio_1);
@@ -196,8 +196,8 @@ function loadContent(vista) {
         }
         j.difEliminatoria1 = j.totalPunts1 - j.totalPunts2;
         j.difEliminatoria2 = j.totalPunts2 - j.totalPunts1;
-      }); */
-      // ... (El teu codi existent fins a partidesfiltagrupades.map)
+      });
+/*       // ... (El teu codi existent fins a partidesfiltagrupades.map)
 
 partidesfiltagrupades.map((j) => {
   j.totalPunts1 =
@@ -239,7 +239,7 @@ partidesfiltagrupades.map((j) => {
   }
   j.difEliminatoria1 = j.totalPunts1 - j.totalPunts2;
   j.difEliminatoria2 = j.totalPunts2 - j.totalPunts1;
-});
+}); */
       var grup = "";
 
       /////////////////////////
@@ -312,14 +312,14 @@ partidesfiltagrupades.map((j) => {
   // Assumeixo que `a.difEliminatoria1` és el diferencial del jugador 'a' i 'b.difEliminatoria1' del jugador 'b'.
   return b.difEliminatoria1 - a.difEliminatoria1; // Major diferencial primer
 }
-
-  /*     partidesfiltagrupades
+console.log(partidesfiltagrupades);
+      partidesfiltagrupades
         .sort(ordreDifJug)
         
         .sort(ordrePuntsJug).sort(ordreVicJug)
         .sort(ordreGrup);
-      //console.log(dades) */
-      partidesfiltagrupades.sort(ordenarClassificacio);
+      //console.log(dades)
+    /*   partidesfiltagrupades.sort(ordenarClassificacio); */
 
 console.log(partidesfiltagrupades);
 
