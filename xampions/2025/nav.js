@@ -171,6 +171,20 @@ function loadContent(vista) {
       var partidesfiltagrupades = groupByJug(partidesfilt);
       console.log(partidesfiltagrupades);
       partidesfiltagrupades.map((j) => {
+        j.guanyades1 = 0
+          if( Number(j.resultats[0].Puntuacio_1)>Number(j.resultats[0].Puntuacio_2){
+          j.guanyades1 ++
+          }
+        if( Number(j.resultats[1].Puntuacio_1)>Number(j.resultats[1].Puntuacio_2){
+          j.guanyades1 ++
+          }
+         j.guanyades2 = 0
+          if( Number(j.resultats[0].Puntuacio_1)<Number(j.resultats[0].Puntuacio_2){
+          j.guanyades2 ++
+          }
+        if( Number(j.resultats[1].Puntuacio_1)<Number(j.resultats[1].Puntuacio_2){
+          j.guanyades2 ++
+          }
         j.totalPunts1 =
           Number(j.resultats[0].Puntuacio_1) +
           Number(j.resultats[1].Puntuacio_1);
@@ -267,7 +281,7 @@ partidesfiltagrupades.map((j) => {
         return posiciogrup;
       }
       function ordreVicJug(a, b) {
-        var posiciovictories = b.Punts - a.Punts;
+        var posiciovictories = b.guanyades1 - a.guanyades1;
         return posiciovictories;
       }
 
@@ -315,8 +329,8 @@ partidesfiltagrupades.map((j) => {
 console.log(partidesfiltagrupades);
       partidesfiltagrupades
         .sort(ordreDifJug)
-        
-        .sort(ordrePuntsJug).sort(ordreVicJug)
+        .sort(ordreVicJug)
+        .sort(ordrePuntsJug)
         .sort(ordreGrup);
       //console.log(dades)
     /*   partidesfiltagrupades.sort(ordenarClassificacio); */
