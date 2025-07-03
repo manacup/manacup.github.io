@@ -170,7 +170,7 @@ function loadContent(vista) {
       var partidesfilt = partides.filter((j) => j.Ronda == options);
       var partidesfiltagrupades = groupByJug(partidesfilt);
       console.log(partidesfiltagrupades);
-      partidesfiltagrupades.map((j) => {
+/*       partidesfiltagrupades.map((j) => {
         j.totalPunts1 =
           Number(j.resultats[0].Puntuacio_1) +
           Number(j.resultats[1].Puntuacio_1);
@@ -196,8 +196,53 @@ function loadContent(vista) {
         }
         j.difEliminatoria1 = j.totalPunts1 - j.totalPunts2;
         j.difEliminatoria2 = j.totalPunts2 - j.totalPunts1;
-      });
+      }); */
+      // ... (El teu codi existent fins a partidesfiltagrupades.map)
+
+partidesfiltagrupades.map((j) => {
+  j.totalPunts1 =
+    Number(j.resultats[0].Puntuacio_1) + Number(j.resultats[1].Puntuacio_1);
+  j.totalPunts2 =
+    Number(j.resultats[0].Puntuacio_2) + Number(j.resultats[1].Puntuacio_2);
+
+  // Calculem les victòries per a la primera parella de jugadors/equip
+  const guanyadaAnada1 = Number(j.resultats[0].Puntuacio_1) > Number(j.resultats[0].Puntuacio_2);
+  const guanyadaTornada1 = Number(j.resultats[1].Puntuacio_1) > Number(j.resultats[1].Puntuacio_2);
+
+  // Calculem les victòries per a la segona parella de jugadors/equip
+  const guanyadaAnada2 = Number(j.resultats[0].Puntuacio_2) > Number(j.resultats[0].Puntuacio_1);
+  const guanyadaTornada2 = Number(j.resultats[1].Puntuacio_2) > Number(j.resultats[1].Puntuacio_1);
+
+  j.victoriesAnadaTornada1 = (guanyadaAnada1 && guanyadaTornada1) ? 1 : 0;
+  j.victoriesAnadaTornada2 = (guanyadaAnada2 && guanyadaTornada2) ? 1 : 0;
+
+  j.victoriesUna1 = (!j.victoriesAnadaTornada1 && (guanyadaAnada1 || guanyadaTornada1)) ? 1 : 0;
+  j.victoriesUna2 = (!j.victoriesAnadaTornada2 && (guanyadaAnada2 || guanyadaTornada2)) ? 1 : 0;
+
+  // Calculant els punts i diferencials per a cada jugador/equip dins de la partida
+  if (j.totalPunts1 + j.totalPunts2 != 0) {
+    j.puntsEliminatoria1 =
+      j.totalPunts1 > j.totalPunts2
+        ? 1
+        : j.totalPunts1 == j.totalPunts2
+        ? 0.5
+        : 0;
+    j.puntsEliminatoria2 =
+      j.totalPunts2 > j.totalPunts1
+        ? 1
+        : j.totalPunts2 == j.totalPunts1
+        ? 0.5
+        : 0;
+  } else {
+    j.puntsEliminatoria1 = -1; // O el valor que consideris per a partides no jugades
+    j.puntsEliminatoria2 = -1; // O el valor que consideris per a partides no jugades
+  }
+  j.difEliminatoria1 = j.totalPunts1 - j.totalPunts2;
+  j.difEliminatoria2 = j.totalPunts2 - j.totalPunts1;
+});
       var grup = "";
+
+      /////////////////////////
       function ordrePuntsJug(a, b) {
         var posicioordre = b.puntsEliminatoria1 - a.puntsEliminatoria1;
         return posicioordre;
@@ -226,12 +271,57 @@ function loadContent(vista) {
         return posiciovictories;
       }
 
-      partidesfiltagrupades
+      ////////////////////////////////////
+
+      function ordenarClassificacio(a, b) {
+  // 1. Criteri: Grup
+  // Assumeix que 'a.Grup' i 'b.Grup' són strings com "Grup X-Y" o "X-Y"
+  const grupA = a.Grup.split("-")[0];
+  const grupB = b.Grup.split("-")[0];
+  if (grupA !== grupB) {
+    return Number(grupA) - Number(grupB); // Ordena numèricament pel número de grup
+  }
+
+  // Si els grups són iguals, passem al següent criteri
+  // NOTA: Caldrà determinar si 'a' i 'b' són els resultats del Jugador1 o Jugador2 en la teva estructura actual.
+  // Assumiré que 'a' i 'b' són ja objectes consolidats per cada jugador/equip.
+
+  // 2. Criteri: Els que han guanyat anada i tornada per diferencial de punts
+  // Aquí assumim que `a.victoriesAnadaTornada` i `b.victoriesAnadaTornada` són el nombre de vegades que han guanyat ambdós partits.
+  if (b.victoriesAnadaTornada !== a.victoriesAnadaTornada) {
+    return b.victoriesAnadaTornada - a.victoriesAnadaTornada; // Més victòries anada/tornada primer
+  }
+  // Si empaten en victòries anada/tornada, desempatar pel diferencial total
+  if (b.diferencialTotal !== a.diferencialTotal) { // Assuming `diferencialTotal` exists on the player object
+    return b.diferencialTotal - a.diferencialTotal;
+  }
+
+
+  // 3. Criteri: Després els que han guanyat una de les dues per diferencial
+  // Assumirem que `a.victoriesUna` i `b.victoriesUna` són el nombre de vegades que han guanyat només un dels dos partits.
+  if (b.victoriesUna !== a.victoriesUna) {
+    return b.victoriesUna - a.victoriesUna; // Més victòries una primer
+  }
+  // Si empaten en victòries una, desempatar pel diferencial total
+  if (b.diferencialTotal !== a.diferencialTotal) { // Assuming `diferencialTotal` exists on the player object
+    return b.diferencialTotal - a.diferencialTotal;
+  }
+
+  // 4. Criteri: La resta per diferencial (si no s'ha desempatat abans)
+  // Aquest seria el desempat final per diferencial de punts
+  // Assumeixo que `a.difEliminatoria1` és el diferencial del jugador 'a' i 'b.difEliminatoria1' del jugador 'b'.
+  return b.difEliminatoria1 - a.difEliminatoria1; // Major diferencial primer
+}
+
+  /*     partidesfiltagrupades
         .sort(ordreDifJug)
         
         .sort(ordrePuntsJug).sort(ordreVicJug)
         .sort(ordreGrup);
-      //console.log(dades)
+      //console.log(dades) */
+      partidesfiltagrupades.sort(ordenarClassificacio);
+
+console.log(partidesfiltagrupades);
 
       var ordrejug = 1;
       partidesfiltagrupades.forEach((partida) => {
