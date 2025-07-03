@@ -221,9 +221,14 @@ function loadContent(vista) {
         var posiciogrup = a.Grup.split("-")[0] - b.Grup.split("-")[0];
         return posiciogrup;
       }
+      function ordreVicJug(a, b) {
+        var posiciovictories = b.Punts - a.Punts;
+        return posiciovictories;
+      }
 
       partidesfiltagrupades
         .sort(ordreDifJug)
+        .sort(ordreVicJug)
         .sort(ordrePuntsJug)
         .sort(ordreGrup);
       //console.log(dades)
