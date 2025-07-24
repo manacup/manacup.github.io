@@ -309,8 +309,8 @@ body {
             width: 96px; /* Amplada de l'embolcall per a la icona i el número */
             height: 96px; /* Alçada de l'embolcall */
             border-radius: 50%; /* Per fer-lo rodó (Bootstrap té rounded-circle) */
-            background-color: #387D38; /* Color de fons verd */
-            color: white; /* Color del text */
+            background-color: white; /*#387D38;  Color de fons verd */
+            color:  #387D38; /* Color del text */
             font-family: "Inter", sans-serif; /* Font Inter */
             font-weight: bold;
             font-size: 1.25rem; /* Mida de la font per al número */
