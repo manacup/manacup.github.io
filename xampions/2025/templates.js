@@ -85,13 +85,13 @@ function renderJugador(jugador) {
                     </div>
                     </div> -->
                     
-                    <h4 class="mb-2">
+                    
                     <!-- El teu element dorsal amb l'ID centrat -->
         <div class="dorsal d-flex align-items-center justify-content-center position-relative mx-auto">
             <span class="material-symbols-outlined position-absolute top-50 start-50 translate-middle">apparel</span>
             <span class="id-number position-relative">${jugador.ID}</span>
         </div>
-                      ${jugador.Nom}
+          <h4 class="mb-2">            ${jugador.Nom}
                      </h4>
                     <p class="text-muted mb-4">${jugador.Malnom2}</p>
                     <div class="mb-4 pb-2">
