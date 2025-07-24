@@ -304,4 +304,27 @@ body {
   z-index:3000;
     }
 
-  
+  .dorsal {
+            /* Bootstrap classes: d-flex align-items-center justify-content-center position-relative */
+            width: 64px; /* Amplada de l'embolcall per a la icona i el número */
+            height: 64px; /* Alçada de l'embolcall */
+            border-radius: 50%; /* Per fer-lo rodó (Bootstrap té rounded-circle) */
+            background-color: #0d6efd; /* Color de fons blau de Bootstrap (primary) */
+            color: white; /* Color del text */
+            font-family: "Inter", sans-serif; /* Font Inter */
+            font-weight: bold;
+            font-size: 1.25rem; /* Mida de la font per al número */
+            overflow: hidden; /* Amaga qualsevol contingut que sobresurti */
+        }
+
+        .dorsal .material-symbols-outlined {
+            font-size: 3rem; /* Mida de la icona */
+            /* Bootstrap classes: position-absolute top-50 start-50 translate-middle */
+            z-index: 1; /* Assegura que la icona estigui al darrere del número */
+            opacity: 0.3; /* Fes la icona semitransparent */
+        }
+
+        .dorsal .id-number {
+            /* Bootstrap classes: position-relative */
+            z-index: 2; /* Assegura que el número estigui per sobre de la icona */
+        }
