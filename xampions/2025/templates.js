@@ -74,7 +74,7 @@ function renderJugador(jugador) {
                   </a>
                   
                   
-                  <div class="d-flex justify-content-center imatge-container">
+               <!--   <div class="d-flex justify-content-center imatge-container">
                     <div class="mt-3 mb-4 imatge-cercle img">
                       <img src="${
                         jugador.ID == jugadorDesat.ID
@@ -83,7 +83,7 @@ function renderJugador(jugador) {
                       }"
                          >
                     </div>
-                    </div>
+                    </div> -->
                     
                     <h4 class="mb-2">
                     <!-- El teu element dorsal amb l'ID centrat -->
