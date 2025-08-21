@@ -702,7 +702,7 @@ function renderDetallPartida(partida) {
   }</div>
         </blockquote>
         ${
-          partida.Estat == "Ronda tancada"
+          partida.Estat == "Ronda tancada" ||jugadorDesat.Nom=="Antoni Llull" || jugadorDesat.Nom=="Antoni Riera"
             ? ""
             : `<button type="button" class="btn btn-primary mb-4" onclick="loadContent(['formulari',${partida.ID}]);updateHistory(['formulari',${partida.ID}]);">Edita</button>`
         }      
@@ -2062,3 +2062,4 @@ function ExcelDateToJSDate(serial, utc) {
   }
   //;
 }
+
