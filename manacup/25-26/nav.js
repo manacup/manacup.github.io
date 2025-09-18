@@ -340,6 +340,32 @@ function loadContent(vista) {
     case "apps":
       window.location.assign(apps);
       break;
+    case "mapa":
+      navbarTitle.innerHTML = "Mapa";
+      contentDiv.innerHTML = `<div id="mapa" style="height: 500px;"></div>`
+        // 1. Inicialitzar el mapa i centrar-lo en una ubicació (ex: Illes Balears)
+        const mapa = L.map('mapa').setView([39.6953, 3.0176], 9);
+        
+        // 2. Afegir una capa de mapa (el "fons" del mapa de OpenStreetMap)
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+        }).addTo(mapa);
+        
+        // 3. Afegir els pins per a cada partida
+        // Suposem que tens les coordenades en un array
+        const partides = [
+            { lat: 39.5716, lng: 2.6502, nom: "Partida a Palma" },
+            { lat: 39.8885, lng: 3.123, nom: "Partida a Alcúdia" },
+            { lat: 38.9067, lng: 1.4206, nom: "Partida a Eivissa" }
+        ];
+        
+        // Recórrer l'array i afegir un marcador per cada partida
+        partides.forEach(partida => {
+            L.marker([partida.lat, partida.lng])
+             .addTo(mapa)
+             .bindPopup(partida.nom); // Afegeix un text que surt en fer clic
+        });
+      break;                  
 
     default:
       contentDiv.innerHTML =
