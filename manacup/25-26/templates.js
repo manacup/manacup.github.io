@@ -975,7 +975,7 @@ function ompleTaulaPartida(partides) {
   partides.forEach((partida) => {
     const llistaTemplate = ` 
             <tr>              
-              <td><small>Ronda ${partida.Ronda}</small></td>              
+              <td><small>R${partida.Ronda}</small></td>              
               <td>${partida.Puntuacio_1}</td>              
               <td><span class="nom">${partida.Jugador2}</span></td>
               <td  class="detallpartida" data-id="${partida.ID}"><i class="bi bi-chevron-right"></i></td>      
