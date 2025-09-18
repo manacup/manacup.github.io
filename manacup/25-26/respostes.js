@@ -181,6 +181,12 @@ function renderFormulari(partida) {
           }>
           <label class="form-check-label">No</label>
         </div>
+         <div class="mb-3">
+    <label for="comentaris" class="form-label">Lloc/població on heu jugat la partida</label>
+    <input class="form-control" name="lloc" id="lloc"  type="text" value="${
+      partida.Lloc_partida
+    }">${partida.Lloc_partida}</input>
+  </div>
   
   
         <div class="mb-3">
