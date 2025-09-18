@@ -70,8 +70,8 @@ function iniciJSON(turbo,vista) {
     cache: "default",
   };
   Promise.all([
-    //fetch(turbo ? JSONfixe : macroURL + "?page=JSON&idJSON=" + idJSON), 
-    fetch("manacup_24-25.json")
+    fetch(turbo ? JSONfixe : macroURL + "?page=JSON&idJSON=" + idJSON), 
+    //fetch("manacup_25-26.json")
   ])
     .then((responses) =>
       Promise.all(responses.map((response) => response.json()))
