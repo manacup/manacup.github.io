@@ -168,25 +168,30 @@ function renderFormulari(partida) {
             </div>
           </div>
         </div>
-   <label for="trobadaoficial" class="form-label">Partida jugada a una trobada oficial?</label>
-  <div class="form-check">
-          <input type="radio" name="trobadaoficial" id="trobadaoficial" required class="form-check-input" ${
-            partida.Punts_social > 0 ? "checked" : ""
-          }>
-          <label class="form-check-label" for="trobadaoficial">Sí</label>
+        <div class="mb-3">
+          <label for="trobadaoficial" class="form-label">Partida jugada a una trobada oficial?</label>
+          <div class="form-check">
+                  <input type="radio" name="trobadaoficial" id="trobadaoficial" required class="form-check-input" ${
+                    partida.Punts_social > 0 ? "checked" : ""
+                  }>
+            <label class="form-check-label" for="trobadaoficial">Sí</label>
+          </div>
+          <div class="form-check">
+            <input type="radio" name="trobadaoficial" class="form-check-input" ${
+              partida.Punts_social == 0 ? "checked" : ""
+            }>
+            <label class="form-check-label">No</label>
+          </div>
         </div>
-        <div class="form-check">
-          <input type="radio" name="trobadaoficial" class="form-check-input" ${
-            partida.Punts_social == 0 ? "checked" : ""
-          }>
-          <label class="form-check-label">No</label>
+        <div class="mb-3">
+          <label for="lloc" class="form-label"> <i class="bi bi-geo-alt me-2"></i>Lloc/població on heu jugat la partida</label>
+          <div class="input-group ">
+            <input class="form-control" name="lloc" id="lloc"  type="text" value="${
+              partida.Lloc_partida
+            }">${partida.Lloc_partida}</input>
+             
+          </div>
         </div>
-         <div class="mb-3">
-    <label for="lloc" class="form-label"> <i class="bi bi-geo-alt me-2"></i>Lloc/població on heu jugat la partida</label>
-    <input class="form-control" name="lloc" id="lloc"  type="text" value="${
-      partida.Lloc_partida
-    }">${partida.Lloc_partida}</input>
-  </div>
   
   
         <div class="mb-3">
