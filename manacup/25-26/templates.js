@@ -665,7 +665,8 @@ function renderDetallPartida(partida) {
           </div>
         </div>
 
-    <p>Resultats enviats el ${ExcelDateToJSDate(partida.Data)}</p>
+    <p><i class="bi bi-chat-calendar-event me-2"></i>Resultats enviats el ${ExcelDateToJSDate(partida.Data)}</p>
+    <p><i class="bi bi-geo-alt me-2"></i>La partida s'ha jugat a  ${partida.Lloc_partida}</p>
         <blockquote class="blockquote bg-danger bg-opacity-25 mb-4" style="border-left: 2px solid red;">
           <div class="mb-0 p-3 ${!partida.Comentaris ? "d-none" : ""}">${
     partida.Comentaris
