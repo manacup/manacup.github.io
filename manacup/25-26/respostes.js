@@ -182,7 +182,7 @@ function renderFormulari(partida) {
           <label class="form-check-label">No</label>
         </div>
          <div class="mb-3">
-    <label for="comentaris" class="form-label">Lloc/població on heu jugat la partida</label>
+    <label for="lloc" class="form-label"> <i class="bi bi-geo-alt me-2"></i>Lloc/població on heu jugat la partida</label>
     <input class="form-control" name="lloc" id="lloc"  type="text" value="${
       partida.Lloc_partida
     }">${partida.Lloc_partida}</input>
@@ -190,7 +190,7 @@ function renderFormulari(partida) {
   
   
         <div class="mb-3">
-    <label for="comentaris" class="form-label">Comentaris</label>
+    <label for="comentaris" class="form-label"><i class="bi bi-chat-right me-2"></i>Comentaris</label>
     <textarea class="form-control" name="comentaris" id="comentaris" rows="3" value="${
       partida.Comentaris
     }">${partida.Comentaris}</textarea>
