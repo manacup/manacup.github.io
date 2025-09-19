@@ -1,4 +1,4 @@
-
+import Autocomplete from "https://cdn.jsdelivr.net/gh/lekoala/bootstrap5-autocomplete@master/autocomplete.js";
 function renderFormulari(partida) {
   const formulariTemplate = `
     <div class="">
@@ -218,6 +218,7 @@ function renderFormulari(partida) {
   `;
   document.getElementById("content").innerHTML += formulariTemplate;
   preventFormSubmit();
+  Autocomplete.init();
 
   let swap = document.getElementById("swap");
   swap.addEventListener("click", function () {
