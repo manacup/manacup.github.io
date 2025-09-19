@@ -189,7 +189,7 @@ function renderFormulari(partida) {
           <div>
             <input class="form-control" name="lloc" id="lloc"  type="search" data-datalist="localitats" value="${
               partida.Lloc_partida
-            }">${partida.Lloc_partida}</input>
+            }"></input>
             <datalist id="localitats">
               ${localitats.map(loc => `<option value="${loc.localitat}">${loc.localitat}</option>`).join('')}
             </datalist>
