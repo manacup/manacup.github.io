@@ -191,7 +191,7 @@ function renderFormulari(partida) {
               partida.Lloc_partida
             }">${partida.Lloc_partida}</input>
             <datalist id="localitats">
-              ${localitats.map(loc => `<option value="${loc.localitat}"></option>`).join('')}
+              ${localitats.map(loc => `<option value="${loc.localitat}">${loc.localitat}</option>`).join('')}
             </datalist>
              
           </div>
