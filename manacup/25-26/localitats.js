@@ -4668,4 +4668,4 @@ const localitats = [
     "long": 3.4353222
   }
 ]
-export {localitats}
+
