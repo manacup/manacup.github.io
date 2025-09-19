@@ -1,4 +1,4 @@
-import Autocomplete from "https://cdn.jsdelivr.net/gh/lekoala/bootstrap5-autocomplete@master/autocomplete.js";
+
 function renderFormulari(partida) {
   const formulariTemplate = `
     <div class="">
