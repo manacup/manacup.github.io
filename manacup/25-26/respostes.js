@@ -1,4 +1,4 @@
-import {localitats} from './localitats.js';
+
 function renderFormulari(partida) {
   const formulariTemplate = `
     <div class="">
