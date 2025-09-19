@@ -218,7 +218,8 @@ function renderFormulari(partida) {
   `;
   document.getElementById("content").innerHTML += formulariTemplate;
   preventFormSubmit();
-  Autocomplete.init();
+  var locs = document.querySelector("#lloc")
+new Autocomplete(locs) 
 
   let swap = document.getElementById("swap");
   swap.addEventListener("click", function () {
