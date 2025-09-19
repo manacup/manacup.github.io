@@ -353,33 +353,35 @@ function loadContent(vista) {
         
         // 3. Afegir els pins per a cada partida
         // Suposem que tens les coordenades en un array
-     
-      
-      const llocsUnics = [...new Set(aparellaments.map(obj => obj.Lloc_partida))];
-      const llocsAmbCoordenades = llocsUnics.map(nomLocalitat => {
-  const dadesLocalitat = localitats.find(loc => loc.localitat === nomLocalitat);
+
+      // Pas 1: Contar les ocurrències de cada lloc
+const comptadorOcurrencies = aparellaments.reduce((comptador, obj) => {
+  const lloc = obj.Lloc_partida;
+  comptador[lloc] = (comptador[lloc] || 0) + 1;
   
-  if (dadesLocalitat) {
-    return {
-      lloc: nomLocalitat,
-      lat: dadesLocalitat.lat,
-      long: dadesLocalitat.long
-    };
-  } else {
-    // Retorna null o un objecte buit si no es troben les dades
-    return null; 
-  }
+  return comptador;
+}, {});
+
+// Pas 2: Obtenir els llocs amb les seves dades i el recompte
+const llocsPartides = Object.keys(comptadorOcurrencies).map(lloc => {
+  const dadesLocalitat = localitats.find(loc => loc.localitat === lloc);
+  return {
+    lloc: lloc,
+    lat: dadesLocalitat ? dadesLocalitat.lat : null,
+    long: dadesLocalitat ? dadesLocalitat.long : null,
+    total: comptadorOcurrencies[lloc],
+  };
 });
 
-// Filtrem per si algun valor fos null
-const llocsPartides = llocsAmbCoordenades.filter(obj => obj !== null);
+
  console.log(llocsPartides)      
         
         // Recórrer l'array i afegir un marcador per cada partida
         llocsPartides.forEach(partida => {
             L.marker([partida.lat, partida.long])
              .addTo(mapa)
-             .bindPopup(partida.lloc); // Afegeix un text que surt en fer clic
+             .bindPopup(`<h3>${partida.lloc}</h3>
+             <p>Total partides: ${partida.total}</p>`); // Afegeix un text que surt en fer clic
         });
       break;                  
 
