@@ -1,4 +1,4 @@
-import Autocomplete from "https://cdn.jsdelivr.net/gh/lekoala/bootstrap5-autocomplete@master/autocomplete.js";
+
 const opts = {
   onSelectItem: (e) => {
     var jugadorTriat = e.value;
