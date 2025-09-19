@@ -187,7 +187,7 @@ function renderFormulari(partida) {
         <div class="mb-3">
           <label for="lloc" class="form-label"> <i class="bi bi-geo-alt me-2"></i>Lloc/població on heu jugat la partida</label>
           <div>
-            <input class="form-control" name="lloc" id="lloc"  type="search" list="localitats" value="${
+            <input class="form-control" name="lloc" id="lloc"  type="search" data-datalist="localitats" value="${
               partida.Lloc_partida
             }">${partida.Lloc_partida}</input>
             <datalist id="localitats">
