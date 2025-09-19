@@ -342,7 +342,7 @@ function loadContent(vista) {
       break;
     case "mapa":
       navbarTitle.innerHTML = "Mapa";
-      contentDiv.innerHTML = `<div id="mapa" style="height: 500px;"></div>`
+      contentDiv.innerHTML = `<div id="mapa" style="height: 650px;"></div>`
         // 1. Inicialitzar el mapa i centrar-lo en una ubicació (ex: Illes Balears)
         const mapa = L.map('mapa').setView([39.6953, 3.0176], 9);
         
@@ -353,17 +353,33 @@ function loadContent(vista) {
         
         // 3. Afegir els pins per a cada partida
         // Suposem que tens les coordenades en un array
-        const partides = [
-            { lat: 39.5716, lng: 2.6502, nom: "Partida a Palma" },
-            { lat: 39.8885, lng: 3.123, nom: "Partida a Alcúdia" },
-            { lat: 38.9067, lng: 1.4206, nom: "Partida a Eivissa" }
-        ];
+     
+      
+      const llocsUnics = [...new Set(aparellaments.map(obj => obj.Lloc_partida))];
+      const llocsAmbCoordenades = llocsUnics.map(nomLocalitat => {
+  const dadesLocalitat = localitats.find(loc => loc.localitat === nomLocalitat);
+  
+  if (dadesLocalitat) {
+    return {
+      lloc: nomLocalitat,
+      lat: dadesLocalitat.lat,
+      long: dadesLocalitat.long
+    };
+  } else {
+    // Retorna null o un objecte buit si no es troben les dades
+    return null; 
+  }
+});
+
+// Filtrem per si algun valor fos null
+const partides = llocsAmbCoordenades.filter(obj => obj !== null);
+       
         
         // Recórrer l'array i afegir un marcador per cada partida
         partides.forEach(partida => {
-            L.marker([partida.lat, partida.lng])
+            L.marker([partida.lat, partida.long])
              .addTo(mapa)
-             .bindPopup(partida.nom); // Afegeix un text que surt en fer clic
+             .bindPopup(partida.lloc); // Afegeix un text que surt en fer clic
         });
       break;                  
 
