@@ -372,11 +372,11 @@ function loadContent(vista) {
 });
 
 // Filtrem per si algun valor fos null
-const partides = llocsAmbCoordenades.filter(obj => obj !== null);
-       
+const llocsPartides = llocsAmbCoordenades.filter(obj => obj !== null);
+ console.log(llocsPartides)      
         
         // Recórrer l'array i afegir un marcador per cada partida
-        partides.forEach(partida => {
+        llocsPartides.forEach(partida => {
             L.marker([partida.lat, partida.long])
              .addTo(mapa)
              .bindPopup(partida.lloc); // Afegeix un text que surt en fer clic
