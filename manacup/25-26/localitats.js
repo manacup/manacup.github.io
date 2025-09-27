@@ -1,5 +1,11 @@
 const localitats = [
   {
+    "localitat": "Escola Puig d'Alanar, Manacor",
+    "url": "https://www.google.com/maps/search/?api=1&query=39.472788,3.244598",
+    "lat": 39.472788,
+    "long": 3.244598
+  },
+  {
     "localitat": "Aeroport de Son Santjoan, Palma",
     "url": "https://www.google.com/maps/search/?api=1&query=39.55247079999999,2.7393803",
     "lat": 39.55247079999999,
