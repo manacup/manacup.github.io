@@ -6,6 +6,30 @@ const localitats = [
     "long": 3.244598
   },
   {
+    "localitat": "Can Lliro, Manacor",
+    "url": "https://www.google.com/maps/search/?api=1&query=39.5709609,3.2078117",
+    "lat": 39.5709609,
+    "long": 3.2078117
+  },
+  {
+    "localitat": "Mig i mig, Manacor",
+    "url": "https://www.google.com/maps/search/?api=1&query=39.5694885,3.209471",
+    "lat": 39.5694885,
+    "long": 3.209471
+  },
+  {
+    "localitat": "Es Celler, Manacor",
+    "url": "https://www.google.com/maps/search/?api=1&query=39.5724283,3.2172494",
+    "lat": 39.5724283,
+    "long": 3.2172494
+  },
+  {
+    "localitat": "Molí den Beió, Manacor",
+    "url": "https://www.google.com/maps/search/?api=1&query=39.5751843,3.2124691",
+    "lat": 39.5751843,
+    "long": 3.2124691
+  },
+  {
     "localitat": "Aeroport de Son Santjoan, Palma",
     "url": "https://www.google.com/maps/search/?api=1&query=39.55247079999999,2.7393803",
     "lat": 39.55247079999999,
