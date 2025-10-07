@@ -30,6 +30,12 @@ const localitats = [
     "long": 3.2124691
   },
   {
+    "localitat": "Bar Sa Torre, El Xiringuito, Manacor",
+    "url": "https://www.google.com/maps/search/?api=1&query=39.5568084,3.2186532",
+    "lat": 39.5568084,
+    "long": 3.2186532
+  },
+  {
     "localitat": "Aeroport de Son Santjoan, Palma",
     "url": "https://www.google.com/maps/search/?api=1&query=39.55247079999999,2.7393803",
     "lat": 39.55247079999999,
