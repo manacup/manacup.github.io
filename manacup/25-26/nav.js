@@ -374,7 +374,7 @@ const llocsPartides = Object.keys(comptadorOcurrencies).map(lloc => {
 });
 
 let llocsFiltrats = llocsPartides.filter(lloc => lloc.lat !== null && lloc.long !== null);
- console.log(llocsPartides)      
+ console.log(llocsFiltrats)      
         
         // Recórrer l'array i afegir un marcador per cada partida
         llocsFiltrats.forEach(partida => {
