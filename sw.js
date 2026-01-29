@@ -1,4 +1,4 @@
-const versio = "2023-24.0"
+const versio = "2026-1.0"
 /* self.addEventListener('install', (e) => {
     e.waitUntil(
       caches.open('manacup24').then((cache) => cache.addAll([
@@ -21,3 +21,4 @@ if ('serviceWorker' in navigator) {
     });
   });
 }
+
