@@ -433,42 +433,44 @@ function renderFormTrobada(trobada) {
  async function enviaRespAssistencia() {
   preventFormSubmit();
   let form = document.getElementById("trobadaForm");
-  //const obj = await ParseFormObjectForGAS(form); // Heare, this library is used.
   const dataform = new FormData(form);
   const values = Object.fromEntries(dataform.entries());
 
-
   document.getElementById("enviaAssistencia").disabled = true;
   document.getElementById("spnbtn3").classList.remove("d-none");
-  console.log(JSON.stringify({
-      envia: 'trobada', 
-      values: values, 
-      idfull: idfull,
-      idJSON: idJSON,
-    }))
-  fetch(macroURL, {
-    method: 'POST',
-    mode: 'no-cors',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify({
-      envia: 'trobada', 
-      values: values, 
-      idfull: idfull,
-      idJSON: idJSON,
-    }),
-  })
-  .then(response => {
-    response.text()
-      console.log(response.text())})
-  .then(data => {
-    console.log('Resposta del servidor:', data);
-    setTimeout(iniciJSON(false,"trobades"), 500)
-  })
-  .catch(error => console.error('Error:', error));
 
-} 
+  try {
+    const { error } = await supabase
+      .from("assistents_trobada")
+      .upsert(
+        {
+          id_trobada:      parseInt(values.ID_trobada),
+          nom:             values.Nom             || "",
+          assistencia:     values.Assistencia     || "",
+          primera_partida: values.Primera_partida || "",
+          adv1:            values.Adv1            || "",
+          segona_partida:  values.Segona_partida  || "",
+          adv2:            values.Adv2            || "",
+          joc:             values.Joc             || "",
+          sopar:           values.Sopar           || "",
+          data:            new Date().toLocaleString(),
+        },
+        { onConflict: "id_trobada,nom" }
+      );
+
+    if (error) throw error;
+
+    console.log("Assistència desada correctament.");
+    setTimeout(() => iniciJSON(false, "trobades"), 500);
+
+  } catch (err) {
+    console.error("Error en desar l'assistència:", err);
+    alert("Hi ha hagut un error. Torna-ho a intentar.");
+  } finally {
+    document.getElementById("enviaAssistencia").disabled = false;
+    document.getElementById("spnbtn3").classList.add("d-none");
+  }
+}
 
 /**
 * Create and download a file on click
@@ -647,41 +649,46 @@ async function editaTrobada() {
   document.getElementById("botodesatrobada").disabled = true;
   document.getElementById("spnbtn3").classList.remove("d-none");
   const dataform = new FormData(form);
-  console.log(dataform)
   const values = Object.fromEntries(dataform.entries());
 
+  try {
+    const payload = {
+      trobada:        values.Trobada        || "",
+      data_hora:      values.DataHora       || "",
+      lloc:           values.Lloc           || "",
+      sopar:          values.Sopar === "TRUE",
+      confirmat:      values.Confirmat === "TRUE",
+      rondes_a_jugar: parseInt(values.Rondes_a_jugar) || 1,
+      max_ronda:      parseInt(values.max_ronda)      || 0,
+    };
 
-  
-  console.log(JSON.stringify({
-    envia: 'novaTrobada',
-    values: values,
-    idfull: idfull,
-    idJSON: idJSON,
-    row: values.ID_trobada,
-  }))
-  fetch(macroURL, {
-    method: 'POST',
-    mode: 'no-cors',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify({
-      envia: 'novaTrobada',
-      values: values,
-      idfull: idfull,
-      idJSON: idJSON,
-      row: values.ID_trobada,
-    }),
-  })
-    .then(response => {
-      response.text()
-      console.log(response.text())
-    })
-    .then(data => {
-      console.log('Resposta del servidor:', data);
-      setTimeout(iniciJSON(false, "trobades"), 500)
-    })
-    .catch(error => console.error('Error:', error));
+    const idTrobada = parseInt(values.ID_trobada);
+    let dbError;
 
+    if (idTrobada > 0) {
+      // Actualitza una trobada existent
+      ({ error: dbError } = await supabase
+        .from("trobades")
+        .update(payload)
+        .eq("id", idTrobada));
+    } else {
+      // Insereix una nova trobada
+      ({ error: dbError } = await supabase
+        .from("trobades")
+        .insert(payload));
+    }
+
+    if (dbError) throw dbError;
+
+    console.log("Trobada desada correctament.");
+    setTimeout(() => iniciJSON(false, "trobades"), 500);
+
+  } catch (err) {
+    console.error("Error en desar la trobada:", err);
+    alert("Hi ha hagut un error. Torna-ho a intentar.");
+  } finally {
+    document.getElementById("botodesatrobada").disabled = false;
+    document.getElementById("spnbtn3").classList.add("d-none");
+  }
 }
 

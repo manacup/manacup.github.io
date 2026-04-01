@@ -325,53 +325,83 @@ new Autocomplete(locs)
   });
 }
 async function handleFormSubmit(formObject) {
-  // Modified
-  //console.log(formObject)
-
-  var obj = await parseValues(formObject); // Added
+  var obj = await parseValues(formObject);
 
   if (document.getElementById("trobadaoficial").checked) {
     obj.jugtrobadaoficial = "1";
   } else {
     obj.jugtrobadaoficial = "0";
   }
-  //console.log(obj)
+
   document.getElementById("submitbtn2").disabled = true;
   document.getElementById("spnbtn2").classList.remove("d-none");
 
+  try {
+    // --- Pujada d'imatges a Supabase Storage ---
+    let fullUrl   = obj.fullAntic   || "";
+    let taulerUrl = obj.taulerAntic || "";
 
-  console.log(JSON.stringify({
-    envia: 'partida', 
-    obj: obj, 
-    idfull: idfull,
-    idJSON: idJSON,
-  }))
-  
+    if (obj.full && obj.full.length > 0) {
+      const fullBlob = base64ToBlob(obj.full, "image/png");
+      const { data: fullData, error: fullErr } = await supabase.storage
+        .from("imatges-partides")
+        .upload(`partides/${obj.idPartida}-full.jpg`, fullBlob, { upsert: true, contentType: "image/jpeg" });
+      if (fullErr) throw fullErr;
+      fullUrl = supabase.storage.from("imatges-partides").getPublicUrl(fullData.path).data.publicUrl;
+    }
 
-  fetch(macroURL, {
-    method: 'POST',
-    mode: 'no-cors',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify({
-      envia: 'partida', 
-      obj: obj, 
-      idfull: idfull,
-      idJSON: idJSON,
-    }),
-  })
-  .then(response => response.text())
-  .then(data => {
-    console.log('Resposta del servidor:', data);
-    setTimeout(iniciJSON(false,"classificacions"), 2000)
-  })
-  .catch(error => console.error('Error:', error));
-  /* google.script.run
-    .withSuccessHandler(function () {
-      setTimeout(funcioInici("classificacions"), 2000);
-    })
-    .nouResultat(obj, idfull); */
+    if (obj.tauler && obj.tauler.length > 0) {
+      const taulerBlob = base64ToBlob(obj.tauler, "image/png");
+      const { data: taulerData, error: taulerErr } = await supabase.storage
+        .from("imatges-partides")
+        .upload(`partides/${obj.idPartida}-tauler.jpg`, taulerBlob, { upsert: true, contentType: "image/jpeg" });
+      if (taulerErr) throw taulerErr;
+      taulerUrl = supabase.storage.from("imatges-partides").getPublicUrl(taulerData.path).data.publicUrl;
+    }
+
+    // --- Actualitzar partida a Supabase ---
+    const { error } = await supabase
+      .from("partides")
+      .update({
+        puntuacio_1:    parseInt(obj.ptsJugador1)  || null,
+        puntuacio_2:    parseInt(obj.ptsJugador2)  || null,
+        scrabbles_1:    parseInt(obj.scrabbles1)   || 0,
+        scrabbles_2:    parseInt(obj.scrabbles2)   || 0,
+        mot_1:          obj.mot1       || "",
+        puntsmot_1:     parseInt(obj.ptsJugada1)   || 0,
+        mot_2:          obj.mot2       || "",
+        puntsmot_2:     parseInt(obj.ptsJugada2)   || 0,
+        full_img:       fullUrl,
+        tauler_img:     taulerUrl,
+        lloc_partida:   obj.lloc       || "",
+        comentaris:     obj.comentaris || "",
+        punts_social:   obj.jugtrobadaoficial === "1" ? 1 : 0,
+        estat:          "jugada",
+      })
+      .eq("id", parseInt(obj.idPartida));
+
+    if (error) throw error;
+
+    console.log("Partida desada correctament a Supabase.");
+    setTimeout(() => iniciJSON(false, "classificacio"), 2000);
+
+  } catch (error) {
+    console.error("Error en desar la partida:", error);
+    alert("Hi ha hagut un error en desar la partida. Comprova la connexió i torna-ho a intentar.");
+  } finally {
+    document.getElementById("submitbtn2").disabled = false;
+    document.getElementById("spnbtn2").classList.add("d-none");
+  }
+}
+
+// Converteix base64 a Blob per a la pujada a Storage
+function base64ToBlob(base64, mimeType) {
+  const byteChars   = atob(base64);
+  const byteNumbers = new Array(byteChars.length);
+  for (let i = 0; i < byteChars.length; i++) {
+    byteNumbers[i] = byteChars.charCodeAt(i);
+  }
+  return new Blob([new Uint8Array(byteNumbers)], { type: mimeType });
 }
 
 var carregaFull = function (event) {
@@ -430,26 +460,10 @@ const parseValues = async (e) =>
       )
     ))
   );
-  function actualitzaJSON(){
-    carregant();   
-   fetch(macroURL, {
-     method: 'POST',
-     mode: 'no-cors',
-     headers: {
-       'Content-Type': 'application/json',
-     },
-     body: JSON.stringify({
-       envia: 'actualitza', 
-       idfull: idfull,
-        idJSON: idJSON,
-       
-     }),
-   })
-   .then(response => response.text())
-   .then(data => {
-     console.log('Resposta del servidor: JSON actualitzat!', data);
-     clearInterval(interval)
-     setTimeout(iniciJSON(false,"classificacions"), 2000)
-   })
-   .catch(error => console.error('Error:', error));
- }
+  function actualitzaJSON() {
+    // Amb Supabase, l'Edge Function sempre retorna dades en temps real.
+    // No cal una ordre d'actualització separada com amb el GAS.
+    carregant();
+    clearInterval(interval);
+    setTimeout(() => iniciJSON(false, "classificacio"), 500);
+  }

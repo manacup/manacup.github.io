@@ -57,21 +57,16 @@ function carregaUsuari() {
 }
 document.addEventListener("DOMContentLoaded", iniciJSON(false));
 
-function iniciJSON(turbo,vista) {
-  
+function iniciJSON(turbo, vista) {
+
   carregant();
   carrega = 0;
-  // Crida a l'API del Google Apps Script
-  var myHeaders = new Headers();
-  var myInit = {
-    method: "GET",
-    headers: myHeaders,
-    mode: "no-cors",
-    cache: "default",
-  };
+  // Crida a l'Edge Function de Supabase (substitueix el Google Apps Script)
   Promise.all([
-    fetch(turbo ? JSONfixe : macroURL + "?page=JSON&idJSON=" + idJSON), 
-    //fetch("manacup_25-26.json")
+    fetch(turbo ? JSONfixe : DADES_FUNCTION_URL, {
+      method: "GET",
+      headers: { "Authorization": "Bearer " + SUPABASE_ANON_KEY },
+    }),
   ])
     .then((responses) =>
       Promise.all(responses.map((response) => response.json()))

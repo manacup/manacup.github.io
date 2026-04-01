@@ -565,31 +565,25 @@
       </div>
     </div>
   </div>
+  <!-- Supabase CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
+  <!-- Configuració Supabase (URL + anon key + client global `supabase`) -->
+  <script src="supabase-config.js"></script>
   <script>
     const queryString = window.location.search;
     const urlParams = Object.fromEntries(new URLSearchParams(queryString));
-console.log(urlParams)
-    const macroURL = "https://script.google.com/macros/s/AKfycbwDcFyPQFV3B0bzeRxGU9yaTWhbA3PyR3SQZOQ1KEE5cU08SJb5QaOOfuXxwfVnuASk/exec";
-    let parameterId = urlParams.id || "no";
-    let parameterVista = urlParams.vista;
+    console.log(urlParams);
+    let parameterId      = urlParams.id      || "no";
+    let parameterVista   = urlParams.vista;
     let parameterOptions = urlParams.options;
-    let vistaPredet = { page: parameterVista, options: parameterOptions };
-    let idfull = urlParams.idfull || "1rew2PMTgHI8YUYoS_B-qenV8hs8E6nGiW2gd6F7jnOY";
-    let idJSON = urlParams.idJSON || "1WRXHe7WlcZl9Npt1PyuJcYZ4irxV8wJG";
-    let JSONfixe = "manacup_25-26.json"
-    //let usaJSONfixe =  urlParams.turbo || localStorage.getItem("turbo") //true/false
-    let mostrapestanyes = urlParams.mostrapestanyes || "no";
+    let vistaPredet      = { page: parameterVista, options: parameterOptions };
+    let JSONfixe         = "ManaCup_25-26.json";
+    let mostrapestanyes  = urlParams.mostrapestanyes || "no";
     if (mostrapestanyes === "si") {
       document.getElementById("collapsetabs").classList.add("show");
       document.getElementById("pestanyes").checked = true;
       setStoredPestanyes("true");
     }
-/*     document.getElementById("turbo").addEventListener("change",(e)=>{
-      localStorage.setItem("turbo",e.checked?"true":"false")
-    }) 
-document.addEventListener("DOMContentLoaded",()=>{ 
-  document.getElementById("turbo").checked=localStorage.getItem("turbo")=="true"? true: false 
-}) */
   </script>
   <script src="carregant.js"></script>
   <script src="moduls.js"></script>  
