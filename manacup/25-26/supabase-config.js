@@ -13,6 +13,7 @@ const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBh
 // (equivalent a: macroURL + "?page=JSON&idJSON=" + idJSON)
 const DADES_FUNCTION_URL = `${SUPABASE_URL}/functions/v1/get-dades`;
 
-// Client de Supabase (carregat via CDN a index.html)
-// Disponible globalment com a `supabase` un cop inicialitzat.
-const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+// El CDN de Supabase exposa window.supabase com a namespace.
+// El sobreescrivim amb el client inicialitzat perquè la resta de
+// fitxers puguin usar supabase.from(...) / supabase.storage etc.
+window.supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
