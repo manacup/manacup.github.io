@@ -1,46 +1,44 @@
-function desaImatgeConf(e) {
+async function desaImatgeConf(e) {
   e.disabled = true;
   document.getElementById("spnbtn").classList.remove("d-none");
 
-  var file = document.getElementById("ImatgeamagatConf").value;
-  var nom = jugadorDesat.Nom;
-  var payload = {
-    envia: "imatge",
-    nom: nom,
-    file: file,
-    idfull: idfull,
-    idJSON: idJSON,
-  };
+  const file = document.getElementById("ImatgeamagatConf").value;
+  const nom  = jugadorDesat.Nom;
+  const path = `jugadors/Imatge-${nom.replace(/\s/g, "_")}.jpg`;
 
-  fetch(macroURL, {
-    method: "POST",
-    mode: "no-cors", // Canviat a "cors" per poder accedir a la resposta
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(payload),
-  })
-    .then((response) => {
-      if (!response.ok) {
-        throw new Error("Error a la resposta del servidor");
-      }
-      return response.text(); // O response.json() si el servidor retorna JSON
-    })
-    .then((data) => {
-      console.log("Resposta del servidor:", data);
-      e.disabled = false;
-      document.getElementById("spnbtn").classList.add("d-none");
+  try {
+    // Pujar la imatge a Supabase Storage
+    const blob = base64ToBlob(file, "image/jpeg");
+    const { data: storageData, error: storageErr } = await supabase.storage
+      .from("imatges-partides")
+      .upload(path, blob, { upsert: true, contentType: "image/jpeg" });
+    if (storageErr) throw storageErr;
 
-      // Amagar el modal
-      var modal = document.getElementById("desaimatge");
-      var myModal = new bootstrap.Modal(modal);
-      myModal.hide();
-    })
-    .catch((error) => {
-      console.error("Error:", error);
-      e.disabled = false;
-      document.getElementById("spnbtn").classList.add("d-none");
-    });
+    const publicUrl = supabase.storage
+      .from("imatges-partides")
+      .getPublicUrl(path).data.publicUrl;
+
+    // Actualitzar la URL de la imatge al registre del jugador
+    const { error: dbErr } = await supabase
+      .from("jugadors")
+      .update({ imatge: publicUrl })
+      .eq("id", parseInt(jugadorDesat.ID));
+    if (dbErr) throw dbErr;
+
+    // Actualitzar la imatge a la UI sense recarregar
+    document.querySelectorAll(".userImg").forEach((ui) => { ui.src = publicUrl; });
+
+    const myModal = bootstrap.Modal.getInstance(document.getElementById("desaimatge"))
+      || new bootstrap.Modal(document.getElementById("desaimatge"));
+    myModal.hide();
+
+  } catch (error) {
+    console.error("Error en desar la imatge:", error);
+    alert("Error en desar la imatge. Torna-ho a intentar.");
+  } finally {
+    e.disabled = false;
+    document.getElementById("spnbtn").classList.add("d-none");
+  }
 }
 /* function desaImatgeConf(e) {
   e.disabled = true;
