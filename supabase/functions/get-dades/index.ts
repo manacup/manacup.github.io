@@ -108,6 +108,9 @@ Deno.serve(async (req: Request) => {
       etiqueta: string;
       semafor: string;
       grup: string;
+      iron_mark: boolean;
+      golden_mark: boolean;
+      diamond_mark: boolean;
     }
 
     // Partides que existeixen (totes, incl. pendents amb puntuacio=0)
@@ -278,10 +281,10 @@ Deno.serve(async (req: Request) => {
         Moviment_lletra_especial: "",
         Posició_lletra_especial: "",
         Adversari_lletra_especial: "",
-        // Marks
-        Golden_Mark: "",
-        Diamond_Mark: "",
-        Iron_Mark: "",
+        // Marks (valors pre-calculats i emmagatzemats al DB)
+        Iron_Mark:    jug.iron_mark    ? "TRUE" : "FALSE",
+        Golden_Mark:  jug.golden_mark  ? "TRUE" : "FALSE",
+        Diamond_Mark: jug.diamond_mark ? "TRUE" : "FALSE",
         "Expectativa partides": "",
       };
     });
