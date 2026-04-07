@@ -38,7 +38,7 @@ Deno.serve(async (req: Request) => {
       { data: trobadaData },
     ] = await Promise.all([
       supabase.from("campionat").select("*").limit(1).single(),
-      supabase.from("jugadors").select("*").eq("baixa", false).order("id"),
+      supabase.from("jugadors").select("*").order("id"),
       supabase.from("rondes").select("*").order("ronda"),
       supabase.from("partides").select("*").order("ronda").order("id"),
       supabase
@@ -110,44 +110,57 @@ Deno.serve(async (req: Request) => {
       grup: string;
     }
 
+    // Partides que existeixen (totes, incl. pendents amb puntuacio=0)
     const partidesActives = (partides as Partida[]).filter(
       (p) => p.estat !== "none",
     );
 
+    // Una partida és "jugada" si ambdós jugadors tenen puntuació > 0
+    const esJugada = (p: Partida) =>
+      (p.puntuacio_1 ?? 0) > 0 && (p.puntuacio_2 ?? 0) > 0;
+
     const dades = (jugadors as Jugador[]).map((jug) => {
-      // Partides on el jugador és jugador1 o jugador2
-      const p1 = partidesActives.filter(
-        (p) => p.jugador1_id === jug.id && p.puntuacio_1 != null,
-      );
-      const p2 = partidesActives.filter(
-        (p) => p.jugador2_id === jug.id && p.puntuacio_2 != null,
-      );
+      // Totes les partides assignades al jugador (jugades + pendents)
+      const totes1 = partidesActives.filter((p) => p.jugador1_id === jug.id);
+      const totes2 = partidesActives.filter((p) => p.jugador2_id === jug.id);
+
+      // Només les jugades (puntuació > 0)
+      const p1 = totes1.filter(esJugada);
+      const p2 = totes2.filter(esJugada);
 
       let pFavor = 0,
         pContra = 0,
         victories = 0,
+        punts = 0,      // 1 per victòria, 0.5 per empat, 0 per derrota
         scrabbles = 0,
         puntsSocial = 0,
         puntsVelocitat = 0;
 
       p1.forEach((p) => {
-        pFavor += p.puntuacio_1 ?? 0;
-        pContra += p.puntuacio_2 ?? 0;
-        if ((p.puntuacio_1 ?? 0) > (p.puntuacio_2 ?? 0)) victories++;
+        const f = p.puntuacio_1 ?? 0;
+        const c = p.puntuacio_2 ?? 0;
+        pFavor += f;
+        pContra += c;
+        if (f > c) { victories++; punts += 1; }
+        else if (f === c) { punts += 0.5; }
         scrabbles += p.scrabbles_1 ?? 0;
         puntsSocial += p.punts_social ?? 0;
         puntsVelocitat += p.punts_velocitat ?? 0;
       });
       p2.forEach((p) => {
-        pFavor += p.puntuacio_2 ?? 0;
-        pContra += p.puntuacio_1 ?? 0;
-        if ((p.puntuacio_2 ?? 0) > (p.puntuacio_1 ?? 0)) victories++;
+        const f = p.puntuacio_2 ?? 0;
+        const c = p.puntuacio_1 ?? 0;
+        pFavor += f;
+        pContra += c;
+        if (f > c) { victories++; punts += 1; }
+        else if (f === c) { punts += 0.5; }
         scrabbles += p.scrabbles_2 ?? 0;
         puntsSocial += p.punts_social ?? 0;
         puntsVelocitat += p.punts_velocitat ?? 0;
       });
 
-      const n = p1.length + p2.length;
+      const n = p1.length + p2.length;                        // partides jugades
+      const rondesPendents = (totes1.length + totes2.length) - n; // assignades - jugades
       const difP = pFavor - pContra;
 
       // Millor mot jugat (màxim puntsmot)
@@ -192,13 +205,6 @@ Deno.serve(async (req: Request) => {
         { pts: 0, adv: "", conjunta: 0 },
       );
 
-      // Ronda pendent (última ronda on té partida sense resultat)
-      const rondesPendents = partidesActives.filter(
-        (p) =>
-          (p.jugador1_id === jug.id || p.jugador2_id === jug.id) &&
-          p.puntuacio_1 == null,
-      ).length;
-
       // Last_Ronda
       const rondesJugades = [...p1, ...p2].map((p) => p.ronda);
       const lastRonda = rondesJugades.length > 0
@@ -228,7 +234,7 @@ Deno.serve(async (req: Request) => {
         grup: jug.grup ?? "",
         PartidesJugades: String(n),
         Victòries: String(victories),
-        Punts: String(victories),
+        Punts: punts % 1 === 0 ? String(punts) : String(punts).replace(".", ","),
         PFavor: String(pFavor),
         PContra: String(pContra),
         Dif_P: String(difP),
@@ -283,10 +289,10 @@ Deno.serve(async (req: Request) => {
     // -------------------------------------------------------
     // Assignació de posicions (ranking)
     // -------------------------------------------------------
-    // Classificació: victòries DESC, després Dif_P DESC
+    // Classificació: Punts DESC (suporta decimals: 13.5), després Dif_P DESC
     dades.sort((a, b) => {
-      const ptsA = parseInt(a.Punts);
-      const ptsB = parseInt(b.Punts);
+      const ptsA = parseFloat(a.Punts.replace(",", "."));
+      const ptsB = parseFloat(b.Punts.replace(",", "."));
       if (ptsB !== ptsA) return ptsB - ptsA;
       return parseInt(b.Dif_P) - parseInt(a.Dif_P);
     });
