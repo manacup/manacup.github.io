@@ -63,3 +63,6 @@ policy = "oneshot"
 
 [functions.get-dades]
 verify_jwt = false
+
+[functions.admin-ops]
+verify_jwt = false

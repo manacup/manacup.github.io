@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="ca" data-bs-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ManaCup — Administració</title>
+  <link rel="stylesheet" href="css.css">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+  <style>
+    body { padding-top: 1rem; padding-bottom: 3rem; }
+    .section-title { font-size: 1.1rem; font-weight: 600; margin-bottom: 1rem; }
+    .table-sm td, .table-sm th { font-size: 0.85rem; vertical-align: middle; }
+    .badge-col { white-space: nowrap; }
+    #toast-container { position: fixed; bottom: 1rem; right: 1rem; z-index: 9999; }
+    .admin-key-bar { background: #f8f9fa; border-bottom: 1px solid #dee2e6; padding: 0.5rem 1rem; margin-bottom: 1.5rem; }
+  </style>
+</head>
+<body>
+
+<!-- Admin key bar -->
+<div class="admin-key-bar d-flex align-items-center gap-2 flex-wrap">
+  <strong class="me-2">ManaCup Admin</strong>
+  <div class="input-group input-group-sm" style="max-width:320px">
+    <span class="input-group-text"><i class="bi bi-key"></i></span>
+    <input type="password" id="adminKey" class="form-control" placeholder="Clau d'administrador" value="">
+    <button class="btn btn-outline-secondary" onclick="saveAdminKey()">Desa</button>
+  </div>
+  <a href="index.html" class="btn btn-sm btn-link ms-auto">← Tornar al lloc</a>
+</div>
+
+<div class="container-fluid">
+
+  <!-- Tabs -->
+  <ul class="nav nav-tabs mb-3" id="adminTabs">
+    <li class="nav-item"><a class="nav-link active" data-bs-toggle="tab" href="#tab-jugadors">Jugadors</a></li>
+    <li class="nav-item"><a class="nav-link" data-bs-toggle="tab" href="#tab-rondes">Rondes</a></li>
+    <li class="nav-item"><a class="nav-link" data-bs-toggle="tab" href="#tab-trobades">Trobades</a></li>
+    <li class="nav-item"><a class="nav-link" data-bs-toggle="tab" href="#tab-aparellaments">Aparellaments</a></li>
+  </ul>
+
+  <div class="tab-content">
+
+    <!-- ═══════════════════════ JUGADORS ═══════════════════════ -->
+    <div class="tab-pane fade show active" id="tab-jugadors">
+      <div class="d-flex justify-content-between align-items-center mb-2">
+        <span class="section-title">Jugadors</span>
+        <button class="btn btn-sm btn-success" onclick="openAddJugadorModal()">
+          <i class="bi bi-person-plus"></i> Nou jugador
+        </button>
+      </div>
+
+      <!-- Substitució ràpida -->
+      <div class="card mb-3">
+        <div class="card-header fw-semibold">Substituir jugador (partides pendents)</div>
+        <div class="card-body row g-2 align-items-end">
+          <div class="col-md-4">
+            <label class="form-label form-label-sm">Jugador sortint</label>
+            <select id="subOldPlayer" class="form-select form-select-sm"></select>
+          </div>
+          <div class="col-md-4">
+            <label class="form-label form-label-sm">Jugador entrant</label>
+            <select id="subNewPlayer" class="form-select form-select-sm"></select>
+          </div>
+          <div class="col-md-4">
+            <button class="btn btn-sm btn-warning w-100" onclick="substituirJugador()">
+              <i class="bi bi-arrow-left-right"></i> Substituir
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div class="table-responsive">
+        <table class="table table-sm table-hover" id="taulaJugadors">
+          <thead class="table-light">
+            <tr>
+              <th>ID</th><th>Nom</th><th>Email</th><th>Tel</th>
+              <th>Baixa</th><th class="badge-col">Insignies</th><th>Accions</th>
+            </tr>
+          </thead>
+          <tbody id="bodyJugadors"></tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- ═══════════════════════ RONDES ═══════════════════════ -->
+    <div class="tab-pane fade" id="tab-rondes">
+      <span class="section-title">Rondes</span>
+      <div class="table-responsive">
+        <table class="table table-sm table-hover" id="taulaRondes">
+          <thead class="table-light">
+            <tr><th>ID</th><th>Nom</th><th>Data inici</th><th>Data fi</th><th>Estat</th><th>Accions</th></tr>
+          </thead>
+          <tbody id="bodyRondes"></tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- ═══════════════════════ TROBADES ═══════════════════════ -->
+    <div class="tab-pane fade" id="tab-trobades">
+      <div class="d-flex justify-content-between align-items-center mb-2">
+        <span class="section-title">Trobades</span>
+        <button class="btn btn-sm btn-success" onclick="openAddTrobadaModal()">
+          <i class="bi bi-calendar-plus"></i> Nova trobada
+        </button>
+      </div>
+      <div class="table-responsive">
+        <table class="table table-sm table-hover" id="taulaTrobades">
+          <thead class="table-light">
+            <tr>
+              <th>ID</th><th>Trobada</th><th>Data/Hora</th><th>Lloc</th>
+              <th>Sopar</th><th>Confirmat</th><th>Rondes</th><th>Max ronda</th><th>Accions</th>
+            </tr>
+          </thead>
+          <tbody id="bodyTrobades"></tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- ═══════════════════════ APARELLAMENTS ═══════════════════════ -->
+    <div class="tab-pane fade" id="tab-aparellaments">
+      <div class="d-flex justify-content-between align-items-center mb-2">
+        <span class="section-title">Aparellaments</span>
+        <div class="d-flex gap-2">
+          <button class="btn btn-sm btn-success" onclick="openAddAparellamentModal()">
+            <i class="bi bi-plus-circle"></i> Nou aparellament
+          </button>
+          <button class="btn btn-sm btn-outline-secondary" onclick="openImportModal()">
+            <i class="bi bi-upload"></i> Importar CSV/JSON
+          </button>
+        </div>
+      </div>
+
+      <div class="row g-2 mb-2">
+        <div class="col-auto">
+          <label class="col-form-label col-form-label-sm">Filtra per ronda:</label>
+        </div>
+        <div class="col-auto">
+          <select id="filtreRondaAp" class="form-select form-select-sm" onchange="carregaAparellaments()">
+            <option value="">Totes</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="table-responsive">
+        <table class="table table-sm table-hover" id="taulaAparellaments">
+          <thead class="table-light">
+            <tr>
+              <th>ID</th><th>Ronda</th><th>Jugador 1</th><th>Punts 1</th>
+              <th>Jugador 2</th><th>Punts 2</th><th>Estat</th><th>Accions</th>
+            </tr>
+          </thead>
+          <tbody id="bodyAparellaments"></tbody>
+        </table>
+      </div>
+    </div>
+
+  </div><!-- tab-content -->
+</div><!-- container -->
+
+<!-- ═══════════════════ MODALS ═══════════════════ -->
+
+<!-- Modal jugador (add/edit) -->
+<div class="modal fade" id="modalJugador" tabindex="-1">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header"><h5 class="modal-title" id="modalJugadorTitle">Jugador</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button></div>
+      <div class="modal-body">
+        <input type="hidden" id="jugadorId">
+        <div class="mb-2"><label class="form-label">Nom</label>
+          <input type="text" id="jugadorNom" class="form-control"></div>
+        <div class="mb-2"><label class="form-label">Email</label>
+          <input type="email" id="jugadorEmail" class="form-control"></div>
+        <div class="mb-2"><label class="form-label">Tel</label>
+          <input type="text" id="jugadorTel" class="form-control"></div>
+        <div class="mb-2 d-flex gap-3">
+          <div class="form-check"><input type="checkbox" class="form-check-input" id="jugadorIron">
+            <label class="form-check-label" for="jugadorIron">Iron Mark</label></div>
+          <div class="form-check"><input type="checkbox" class="form-check-input" id="jugadorGolden">
+            <label class="form-check-label" for="jugadorGolden">Golden Mark</label></div>
+          <div class="form-check"><input type="checkbox" class="form-check-input" id="jugadorDiamond">
+            <label class="form-check-label" for="jugadorDiamond">Diamond Mark</label></div>
+        </div>
+        <div class="form-check">
+          <input type="checkbox" class="form-check-input" id="jugadorBaixa">
+          <label class="form-check-label" for="jugadorBaixa">Baixa</label>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-secondary" data-bs-dismiss="modal">Cancel·la</button>
+        <button class="btn btn-primary" onclick="saveJugador()">Desa</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal ronda (edit) -->
+<div class="modal fade" id="modalRonda" tabindex="-1">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header"><h5 class="modal-title">Editar ronda</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button></div>
+      <div class="modal-body">
+        <input type="hidden" id="rondaId">
+        <div class="mb-2"><label class="form-label">Nom</label>
+          <input type="text" id="rondaNom" class="form-control"></div>
+        <div class="mb-2"><label class="form-label">Data inici</label>
+          <input type="date" id="rondaDataInici" class="form-control"></div>
+        <div class="mb-2"><label class="form-label">Data fi</label>
+          <input type="date" id="rondaDataFi" class="form-control"></div>
+        <div class="mb-2"><label class="form-label">Estat</label>
+          <select id="rondaEstat" class="form-select">
+            <option value="pendent">Pendent</option>
+            <option value="En curs">En curs</option>
+            <option value="Finalitzada">Finalitzada</option>
+          </select>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-secondary" data-bs-dismiss="modal">Cancel·la</button>
+        <button class="btn btn-primary" onclick="saveRonda()">Desa</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal trobada (add/edit) -->
+<div class="modal fade" id="modalTrobada" tabindex="-1">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header"><h5 class="modal-title" id="modalTrobadaTitle">Trobada</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button></div>
+      <div class="modal-body">
+        <input type="hidden" id="trobadaId">
+        <div class="mb-2"><label class="form-label">Nom de la trobada</label>
+          <input type="text" id="trobadaNom" class="form-control"></div>
+        <div class="mb-2"><label class="form-label">Data i hora</label>
+          <input type="datetime-local" id="trobadaDataHora" class="form-control"></div>
+        <div class="mb-2"><label class="form-label">Lloc</label>
+          <input type="text" id="trobadaLloc" class="form-control"></div>
+        <div class="mb-2"><label class="form-label">Rondes a jugar</label>
+          <input type="number" id="trobadaRondes" class="form-control" min="1" value="1"></div>
+        <div class="mb-2"><label class="form-label">Ronda màxima</label>
+          <input type="number" id="trobadaMaxRonda" class="form-control" min="0" value="0"></div>
+        <div class="mb-2 d-flex gap-3">
+          <div class="form-check"><input type="checkbox" class="form-check-input" id="trobadaSopar">
+            <label class="form-check-label" for="trobadaSopar">Sopar</label></div>
+          <div class="form-check"><input type="checkbox" class="form-check-input" id="trobadaConf">
+            <label class="form-check-label" for="trobadaConf">Confirmat</label></div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-danger me-auto" id="btnEliminaTrobada" onclick="deleteTrobada()" style="display:none">Elimina</button>
+        <button class="btn btn-secondary" data-bs-dismiss="modal">Cancel·la</button>
+        <button class="btn btn-primary" onclick="saveTrobada()">Desa</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal aparellament (add/edit) -->
+<div class="modal fade" id="modalAparellament" tabindex="-1">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header"><h5 class="modal-title" id="modalApTitle">Aparellament</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button></div>
+      <div class="modal-body">
+        <input type="hidden" id="apId">
+        <div class="mb-2"><label class="form-label">Ronda</label>
+          <select id="apRonda" class="form-select"></select></div>
+        <div class="row g-2">
+          <div class="col-6">
+            <label class="form-label">Jugador 1</label>
+            <select id="apJug1" class="form-select" onchange="syncApNom(1)"></select>
+          </div>
+          <div class="col-6">
+            <label class="form-label">Jugador 2</label>
+            <select id="apJug2" class="form-select" onchange="syncApNom(2)"></select>
+          </div>
+          <div class="col-6">
+            <label class="form-label">Punts jug. 1</label>
+            <input type="number" id="apPunts1" class="form-control" step="0.5" value="0" min="0">
+          </div>
+          <div class="col-6">
+            <label class="form-label">Punts jug. 2</label>
+            <input type="number" id="apPunts2" class="form-control" step="0.5" value="0" min="0">
+          </div>
+        </div>
+        <div class="mb-2 mt-2"><label class="form-label">Estat</label>
+          <select id="apEstat" class="form-select">
+            <option value="pendent">Pendent</option>
+            <option value="En curs">En curs</option>
+            <option value="Jugada">Jugada</option>
+          </select>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-danger me-auto" id="btnEliminaAp" onclick="deleteAparellament()" style="display:none">Elimina</button>
+        <button class="btn btn-secondary" data-bs-dismiss="modal">Cancel·la</button>
+        <button class="btn btn-primary" onclick="saveAparellament()">Desa</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal importar aparellaments -->
+<div class="modal fade" id="modalImport" tabindex="-1">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header"><h5 class="modal-title">Importar aparellaments</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button></div>
+      <div class="modal-body">
+        <p class="text-muted small">Enganxa un JSON (array d'objectes) o un CSV amb capçaleres:
+          <code>id_ronda, id_jugador_1, jugador_1, id_jugador_2, jugador_2</code></p>
+        <textarea id="importData" class="form-control font-monospace" rows="12" placeholder='[{"id_ronda":1,"id_jugador_1":3,"jugador_1":"Nom","id_jugador_2":5,"jugador_2":"Altre"}]'></textarea>
+        <div class="form-text">Si el camp <code>id</code> existeix, es fa upsert; si no, s'insereix nou.</div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-secondary" data-bs-dismiss="modal">Cancel·la</button>
+        <button class="btn btn-primary" onclick="importAparellaments()">Importa</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Toast notifications -->
+<div id="toast-container"></div>
+
+<!-- Scripts -->
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
+<script src="supabase-config.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script src="admin.js"></script>
+</body>
+</html>
