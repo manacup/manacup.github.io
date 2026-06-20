@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="ca" data-bs-theme="light">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ 
+  <title>Xàmpions🍹</title>
+  <link rel="stylesheet" href="css.css">
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+  <!-- Incluir los estilos de Bootstrap 5 -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
+  <script
+    src="https://cdn.jsdelivr.net/gh/tanaikech/HtmlFormObjectParserForGoogleAppsScript_js@master/htmlFormObjectParserForGoogleAppsScript_js.min.js">
+    </script>
+  <script src="tema.js"></script>
+
+</head>
+
+<body id="body">
+  <div id="loaded" class="d-none">
+  </div>
+
+  <nav class="navbar pb-0 bg-body">
+    <div class="container-fluid">
+      <div class="navbar-brand text-dark h4" onclick="iniciJSON()">
+        <img src="/icons/favicon-96x96.png" alt="Logo" width="30" height="auto"
+          class="d-inline-block align-text-center">
+        Xàmpions d'estiu🍹
+      </div>
+      <span class="float-end badge text-secondary">2026</span>
+    </div>
+  </nav>
+  <nav class=" navbar  bg-body sticky-top">
+    <div class="container-fluid">
+      <div class="navbar-brand flex-grow-1 ">
+        <div class="d-flex align-items-center" id="goBack" style="cursor: pointer;">
+          <i class="bi bi-arrow-left me-2 d-none" id="botoEnrera"></i>
+          <div class="nav-link ">
+            <span id="navbar-title"></span>
+          </div>
+        </div>
+      </div>
+
+      <div class="navbar-toggler me-2" data-bs-toggle="collapse" data-bs-target="#collapseCerca">
+        <i class="bi bi-search"></i>
+      </div>
+
+      <div class="navbar-toggler me-2 dropdown" data-bs-toggle="dropdown" data-bs-target="#menu" aria-expanded="false"
+        aria-controls="menu">
+        <i class="bi bi-three-dots-vertical"></i>
+      </div>
+
+      <ul class="dropdown-menu dropdown-menu-end" id="menu">
+        <li>
+          <h6 class="dropdown-header text-danger">Classificacions<i class="bi bi-arrow-repeat float-end" onclick="actualitzaJSON()"></i></h6>
+        </li>
+        <li><a class="dropdown-item" href="#rondes">Fases</a></li>
+        <li><a class="dropdown-item" href="#scrabbles">Scrabbles</a></li>
+        <li><a class="dropdown-item" href="#jugada">Millor jugada</a></li>
+        <li><a class="dropdown-item" href="#partida">Millor partida individual</a></li>
+        <li><a class="dropdown-item" href="#conjunta">Millor partida conjunta</a></li>
+        <li><a class="dropdown-item" href="#classificacio">Victòries</a></li>
+        <li><a class="dropdown-item" href="#social">Participació social</a></li>
+        <li><a class="dropdown-item" href="#immediatesa">Menys procrastinador</a></li>
+        <li>
+          <hr class="dropdown-divider">
+        </li>
+        <li>
+          <h6 class="dropdown-header text-success">Calendari</h6>
+        </li>
+        <li><a class="dropdown-item" href="#rondes">Rondes</a></li>
+        <li><a class="dropdown-item disabled trobades" href="#trobades" disabled>Trobades</a></li>
+        <li id="btneditatrobada" class="d-none">
+          <a class="navApp dropdown-item" href="#editatrobada"> 
+            <i class="bi bi-pencil-square"></i>
+            Edita la següent trobada
+          </a>
+        </li>
+        <li>
+          <hr class="dropdown-divider">
+        </li>
+        <li>
+          <h6 class="dropdown-header text-warning">Enllaços</h6>
+        </li>
+        <li><a class="dropdown-item" href="#blog">Blog del club</a></li>
+        <li><a class="dropdown-item" href="#rellotge">Rellotge</a></li>
+        <li><a class="dropdown-item" href="#validador">Validador</a></li>
+        <li>
+          <hr class="dropdown-divider">
+        </li>
+        <li>
+          <h6 class="dropdown-header text-primary click" data-bs-toggle="modal" data-bs-target="#ajuda">Ajuda</h6>
+        </li>
+      </ul>
+
+      <div class="dropdown" data-bs-toggle="dropdown" data-bs-target="#menuJugador" aria-expanded="false"
+        aria-controls="menuJugador" data-bs-auto-close="outside">
+        <button class="btn pe-0" type="button" id="menuJugador">
+          <i class="bi bi-person-circle fs-4"></i>
+        </button>
+        <ul class="dropdown-menu dropdown-menu-end">
+          <li><a class="dropdown-item" href="#" onclick="loadContent(['imatge']);updateHistory(['imatge']);">Foto de perfil</a>
+          </li>
+          <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#desajug">Canvia de jugador</a></li>
+          <li>
+            <hr class="dropdown-divider">
+          </li>
+          <li>
+            <div class="dropdown-item">
+              <label for="temaselector" class="form-label">Tema</label>
+              <select class="form-select form-select-sm" id="temaselector">
+                <option value="light">Clar</option>
+                <option value="dark">Fosc</option>
+                <option value="auto">Automàtic</option>
+              </select>
+            </div>
+          </li>
+          <li>
+            <label for="pestanyes" class="dropdown-item">
+              <input class="form-check-input" type="checkbox" id="pestanyes" value="">
+              Mostra les pestanyes
+            </label>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <main class="container-fluid p-0 ">
+    <div id="navapp" class="row row-cols-auto sticky-top" style="overflow-x: auto;">
+
+    </div>
+    <div id="collapseCerca" class="collapse">
+      <input id="inputCerca" type="search" class="form-control rounded-0" placeholder="Cerca...">
+    </div>
+    <div class="d-grid gap-2 p-2">
+      <div id="content"></div>
+    </div>
+    <div id="number"></div>
+  </main>
+
+  <!-- Modal desajug -->
+  <div class="modal fade" id="desajug" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalLabel">Selecciona jugador/a</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <select id="jugadors" name="jugadors" class="form-select" onchange="loadJugador(event)">
+            <option selected>Tria un jugador/a</option>
+          </select>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tanca</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal desaimatge -->
+  <div class="modal fade" id="desaimatge" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5">Foto de perfil</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body text-center">
+          <form id="formImg">
+            <img id="resjugImatgeConf" src="https://drive.google.com/thumbnail?id=1smxezxXK12OGMJ-1uBu68aVAwBGaYSnE"
+              width="150" height="auto" class="rounded-circle mb-3">
+            <div>
+              <label for="imagefileConf" class="btn btn-primary">
+                <span>
+                  <i class="bi bi-camera"></i>
+                  Canvia la foto
+                </span>
+              </label>
+              <input id="imagefileConf" type="file" class="visually-hidden" accept="image/*">
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tanca</button>
+          <button type="button" class="btn btn-primary" id="botoSaveImatge" onclick="desaImatgeConf(this)">Desa la imatge</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal ajuda -->
+  <div class="modal fade" id="ajuda" tabindex="-1" aria-labelledby="ajudaLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="ajudaLabel">Ajuda</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <p><strong>ManaCup</strong> és l'aplicació per a gestionar els Xàmpions d'estiu 🍹</p>
+          <div class="accordion" id="accordionAjuda">
+            <div class="accordion-item">
+              <h2 class="accordion-header">
+                <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                  data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                  Fases
+                </button>
+              </h2>
+              <div id="collapseOne" class="accordion-collapse collapse show" data-bs-parent="#accordionAjuda">
+                <div class="accordion-body">
+                  <strong>Aquí es mostra com va la clasificació per fases.</strong> Cada fase té una ronda diferent on els jugadors fan matches contra altres jugadors.
+                </div>
+              </div>
+            </div>
+            <div class="accordion-item">
+              <h2 class="accordion-header">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                  data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                  Calendari
+                </button>
+              </h2>
+              <div id="collapseTwo" class="accordion-collapse collapse" data-bs-parent="#accordionAjuda">
+                <div class="accordion-body">
+                  <strong>El calendari mostra les rondes que es juguen.</strong> Pots entrar per veure els resultats de cada ronda.
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tanca</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script type="module" src="moduls.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="parametres.js"></script>
+  <script src="carregant.js"></script>
+  <script src="tema.js"></script>
+  <script src="swipe.js"></script>
+  <script src="templates.js"></script>
+  <script src="nav.js"></script>
+  <script src="trobades.js"></script>
+  <script src="respostes.js"></script>
+  <script src="imatgeconf.js"></script>
+
+</body>
+
+</html>
