@@ -73,8 +73,8 @@ function carregant(){
         
       }
    /*    setTimeout(() => {
-         clearInterval(interval);
-       }, 3000); */
-       // Llamamos a la función para iniciar el proceso
-       interval = escribirCadaSegundo();
+        clearInterval(interval);
+      }, 3000); */
+      // Llamamos a la función para iniciar el proceso
+      interval = escribirCadaSegundo();
 }
