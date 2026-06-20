@@ -59,7 +59,8 @@ body {
   height: 100px;
   border-radius: 50%; /* Això converteix el quadrat en un cercle mitjançant una mitjana del 50% */
   overflow: hidden; /* Assegura't que la imatge no surti del cercle */
- }
+ 
+}
 
 .imatge-cercle img {
   width: 100%; /* Assegura't que la imatge ompli tot l'espai del cercle */
