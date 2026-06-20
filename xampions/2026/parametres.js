@@ -16,8 +16,8 @@ let parameterId = urlParams.id || "no";
 let parameterVista = urlParams.vista;
 let parameterOptions = urlParams.options;
 let vistaPredet = { page: parameterVista, options: parameterOptions };
-let idfull = urlParams.idfull || "1b-Icl4KoOwiVY9rM1vxSUA7JLnqNAuM7AoTCwbotoCU";
-let idJSON = urlParams.idJSON || "15F2avAHG-mszR32M1oMD-owJ0yDV097W";
+let idfull = urlParams.idfull || "1-ebxdooo-hYzCJZu8n_h09hCKFVEW7xfrvreWdGAE38";
+let idJSON = urlParams.idJSON || "1s2pe7OB6bGxpyGPudPBCpSohu6GaVEtQ";
 let mostrapestanyes = urlParams.mostrapestanyes || "no";
 console.log(mostrapestanyes);
 if (mostrapestanyes === "si") {
@@ -61,7 +61,7 @@ const vistesGenerals = [
   "rondes",
 ];
 let vistesPartides = [];
-const vistesNoSwipe = ["imatge", "formulari", "assistencia"];
+const vistesNoSwipe = ["imatge", "formulari", "assistencia"]; 
 
 function isLocalStorageAvailable() {
   if (navigator.cookieEnabled) {
