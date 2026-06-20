@@ -17,7 +17,7 @@ let parameterVista = urlParams.vista;
 let parameterOptions = urlParams.options;
 let vistaPredet = { page: parameterVista, options: parameterOptions };
 let idfull = urlParams.idfull || "1-ebxdooo-hYzCJZu8n_h09hCKFVEW7xfrvreWdGAE38";
-let idJSON = urlParams.idJSON || "1s2pe7OB6bGxpyGPudPBCpSohu6GaVEtQ";
+let idJSON = urlParams.idJSON || "1JzRVlf9_V8IEyVXJDO_Cx_Mx7S3rk27S";
 let mostrapestanyes = urlParams.mostrapestanyes || "no";
 console.log(mostrapestanyes);
 if (mostrapestanyes === "si") {
@@ -61,7 +61,7 @@ const vistesGenerals = [
   "rondes",
 ];
 let vistesPartides = [];
-const vistesNoSwipe = ["imatge", "formulari", "assistencia"]; 
+const vistesNoSwipe = ["imatge", "formulari", "assistencia"];
 
 function isLocalStorageAvailable() {
   if (navigator.cookieEnabled) {
@@ -169,7 +169,7 @@ function recuperaPartides() {
 function loadPagina(vista) {
  
   clearInterval(interval);
- //  if (carrega == 2) {
+ // if (carrega == 2) {
     if (trobada.Confirmat=="TRUE" && vista === undefined) {
      
       loadContent(parameterVista ? vistaPredet : ["trobades"]);
@@ -178,7 +178,7 @@ function loadPagina(vista) {
       loadContent(parameterVista ? vistaPredet : ["rondes"]);
       updateHistory(parameterVista ? vistaPredet : ["rondes"]);
     }
- //  }
+ // }
 }
 
 function preventFormSubmit() {
