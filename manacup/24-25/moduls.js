@@ -6,7 +6,7 @@ const opts = {
     renderUserCard(jugadorDesat);
     if (isLocalStorageAvailable()) {
       // available
-      localStorage.setItem("jugador", e.value);
+      localStorage.setItem("jugador", jugadorDesat.Nom);
     }
     if (document.getElementById("botoAssisteix") != null) {
       document.getElementById("botoAssisteix").classList.remove("d-none");

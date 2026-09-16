@@ -49,13 +49,13 @@ function carregaUsuari() {
       jugadorDesat =
         dades.filter((j) => j.ID == parameterId)[0] || jugadorDefault;
     } else {
-      jugadorDesat =
+      var jugadorTrobat =
         dades.filter((j) => j.Nom == jugadorDesatNom)[0] ||
         // abans s'hi desava l'ID: si el que hi ha es un ID, el migram al nom
-        dades.filter((j) => j.ID == jugadorDesatNom)[0] ||
-        jugadorDefault;
-      if (jugadorDesat.Nom != jugadorDesatNom && jugadorDesat.ID != 0) {
-        localStorage.setItem("jugador", jugadorDesat.Nom);
+        dades.filter((j) => j.ID == jugadorDesatNom)[0];
+      jugadorDesat = jugadorTrobat || jugadorDefault;
+      if (jugadorTrobat && jugadorTrobat.Nom != jugadorDesatNom) {
+        localStorage.setItem("jugador", jugadorTrobat.Nom);
       }
     }
     //console.log(jugadorDesat)
