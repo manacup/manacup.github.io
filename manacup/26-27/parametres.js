@@ -44,10 +44,20 @@ function isLocalStorageAvailable() {
 function carregaUsuari() {
   if (isLocalStorageAvailable()) {
     // available
-    let jugadorDesatId = JSON.parse(localStorage.getItem("jugador"));
-    var jugid = parameterId != "no" ? parameterId : jugadorDesatId;
-    //console.log(jugid,parameterId,jugadorDesatId)
-    jugadorDesat = dades.filter((j) => j.ID == jugid)[0] || jugadorDefault;
+    let jugadorDesatNom = localStorage.getItem("jugador");
+    if (parameterId != "no") {
+      jugadorDesat =
+        dades.filter((j) => j.ID == parameterId)[0] || jugadorDefault;
+    } else {
+      jugadorDesat =
+        dades.filter((j) => j.Nom == jugadorDesatNom)[0] ||
+        // abans s'hi desava l'ID: si el que hi ha es un ID, el migram al nom
+        dades.filter((j) => j.ID == jugadorDesatNom)[0] ||
+        jugadorDefault;
+      if (jugadorDesat.Nom != jugadorDesatNom && jugadorDesat.ID != 0) {
+        localStorage.setItem("jugador", jugadorDesat.Nom);
+      }
+    }
     //console.log(jugadorDesat)
   } else {
     // unavailable
