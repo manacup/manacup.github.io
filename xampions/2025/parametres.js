@@ -134,11 +134,14 @@ function fontsDeDades(fitxerLocal) {
     // que no fer esperar l'usuari.
     fonts.push({ nom: "Firebase", url: fb, timeout: 6000 });
   }
-  fonts.push({
-    nom: "Apps Script",
-    url: macroURL + "?page=JSON&idJSON=" + idJSON,
-    timeout: 45000,
-  });
+  // Amb idfull, el doGet pot refer el JSON llegint el full en lloc de servir
+  // una copia desada: el pla B deixa de dependre de cap fitxer intermedi i
+  // no pot quedar desfasat. L'idJSON hi va per compatibilitat.
+  var urlGAS = macroURL + "?page=JSON&idJSON=" + idJSON;
+  if (typeof idfull !== "undefined" && idfull) {
+    urlGAS += "&idfull=" + idfull;
+  }
+  fonts.push({ nom: "Apps Script", url: urlGAS, timeout: 45000 });
   return fonts;
 }
 
