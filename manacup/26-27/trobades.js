@@ -464,7 +464,7 @@ function renderFormTrobada(trobada) {
       console.log(response.text())})
   .then(data => {
     console.log('Resposta del servidor:', data);
-    setTimeout(iniciJSON(false,"trobades"), 500)
+    refrescaDespresDEnviar("trobades")
   })
   .catch(error => console.error('Error:', error));
 
@@ -679,7 +679,7 @@ async function editaTrobada() {
     })
     .then(data => {
       console.log('Resposta del servidor:', data);
-      setTimeout(iniciJSON(false, "trobades"), 500)
+      refrescaDespresDEnviar("trobades")
     })
     .catch(error => console.error('Error:', error));
 

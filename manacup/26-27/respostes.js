@@ -242,10 +242,6 @@ new Autocomplete(locs)
         img.onload = function (event) {
           // Dynamically create a canvas element
           var canvas = document.createElement("canvas");
-          var ctx = canvas.getContext("2d");
-
-          ctx.drawImage(img, 0, 0);
-
           var MAX_WIDTH = 600;
           var MAX_HEIGHT = 600;
           var width = img.width;
@@ -288,10 +284,6 @@ new Autocomplete(locs)
         img.onload = function (event) {
           // Dynamically create a canvas element
           var canvas = document.createElement("canvas");
-          var ctx = canvas.getContext("2d");
-
-          ctx.drawImage(img, 0, 0);
-
           var MAX_WIDTH = 600;
           var MAX_HEIGHT = 600;
           var width = img.width;
@@ -364,7 +356,7 @@ async function handleFormSubmit(formObject) {
   .then(response => response.text())
   .then(data => {
     console.log('Resposta del servidor:', data);
-    setTimeout(iniciJSON(false,"classificacions"), 2000)
+    refrescaDespresDEnviar("classificacions")
   })
   .catch(error => console.error('Error:', error));
   /* google.script.run
@@ -449,7 +441,7 @@ const parseValues = async (e) =>
    .then(data => {
      console.log('Resposta del servidor: JSON actualitzat!', data);
      clearInterval(interval)
-     setTimeout(iniciJSON(false,"classificacions"), 2000)
+     refrescaDespresDEnviar("classificacions")
    })
    .catch(error => console.error('Error:', error));
  }

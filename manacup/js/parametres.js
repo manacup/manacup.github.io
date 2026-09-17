@@ -161,6 +161,52 @@ function normalitzaDades(data) {
   return data;
 }
 
+
+// Refresca quan el servidor hagi publicat dades noves, en lloc d'endevinar
+// amb un temporitzador fix. lastUpdate son una vintena de bytes, o sigui que
+// consultar-lo sovint no costa gairebe res, i aixi ni refrescam massa aviat
+// (dades velles) ni esperam de mes quan el servidor ha anat rapid.
+function urlLastUpdate() {
+  var url = urlFirebase();
+  return url ? url.replace(/dades\.json$/, "lastUpdate.json") : "";
+}
+
+function llegeixLastUpdate() {
+  var url = urlLastUpdate();
+  if (!url) return Promise.resolve(null);
+  return fetch(url)
+    .then(function (r) {
+      return r.ok ? r.json() : null;
+    })
+    .catch(function () {
+      return null;
+    });
+}
+
+function refrescaDespresDEnviar(vista) {
+  // Sense Firebase no hi ha res a vigilar: esperam un temps i prou.
+  if (!urlLastUpdate()) {
+    setTimeout(function () {
+      iniciJSON(false, vista);
+    }, 2000);
+    return;
+  }
+
+  llegeixLastUpdate().then(function (abans) {
+    var limit = Date.now() + 20000;
+
+    (function mira() {
+      llegeixLastUpdate().then(function (ara) {
+        if ((ara && ara !== abans) || Date.now() > limit) {
+          iniciJSON(false, vista);
+        } else {
+          setTimeout(mira, 700);
+        }
+      });
+    })();
+  });
+}
+
 function baixaJSON(url, timeout) {
   var controlador = new AbortController();
   var temporitzador = setTimeout(function () {
