@@ -99,26 +99,135 @@ function carregaUsuari() {
 }
 document.addEventListener("DOMContentLoaded", iniciJSON());
 
+// --- Carrega de dades amb fallback -----------------------------------------
+// Aquest bloc es identic a totes les apps: copiar la carpeta per a una
+// temporada nova ja funciona, no s'hi ha de tocar cap URL.
+
+const FIREBASE_DB =
+  "https://manacup-b195e-default-rtdb.europe-west1.firebasedatabase.app";
+
+// El node de Firebase surt del cami de l'app: /manacup/26-27/ dona
+// "manacup/26-27", que es exactament la columna ruta del full de campionats.
+// Per aixo no cal configurar res per app.
+function urlFirebase() {
+  if (typeof urlParams !== "undefined" && urlParams.firebase !== undefined) {
+    return urlParams.firebase; // ?firebase= buit deixa nomes l'Apps Script
+  }
+  var ruta = window.location.pathname
+    .replace(/[^/]*\.html$/, "")
+    .replace(/^\/+|\/+$/g, "");
+  return ruta ? FIREBASE_DB + "/campionats/" + ruta + "/dades.json" : "";
+}
+
+// Ordre de fonts: la primera que respongui amb dades valides guanya. Si falla
+// (xarxa, HTTP, o una resposta que no son les dades esperades) es prova la
+// seguent. Aixi la font rapida no es un punt unic de fallada.
+function fontsDeDades(fitxerLocal) {
+  if (fitxerLocal) {
+    return [{ nom: "fitxer local", url: fitxerLocal }];
+  }
+  var fonts = [];
+  var fb = urlFirebase();
+  if (fb) {
+    // Timeout curt: si la font rapida no ho es, millor caure a l'Apps Script
+    // que no fer esperar l'usuari.
+    fonts.push({ nom: "Firebase", url: fb, timeout: 6000 });
+  }
+  fonts.push({
+    nom: "Apps Script",
+    url: macroURL + "?page=JSON&idJSON=" + idJSON,
+    timeout: 45000,
+  });
+  return fonts;
+}
+
+// Comprova que la resposta son realment les dades del campionat.
+// Ens basem en camps que hi son sempre: un node de Firebase que no existeix
+// torna null, i una pagina d'error HTML ja peta abans al .json().
+//
+// No podem exigir que hi siguin les llistes: Firebase no desa els arrays
+// buits, els esborra. Un campionat que comenca amb aparellaments buit no
+// tornaria aquella clau i rebutjariem unes dades perfectament bones.
+function dadesValides(data) {
+  return (
+    data != null &&
+    typeof data === "object" &&
+    !Array.isArray(data) &&
+    typeof data.campionat === "string" &&
+    data.campionat !== ""
+  );
+}
+
+// Un array buit no torna de Firebase, i un amb forats torna com a objecte de
+// claus numeriques. La resta de l'app fa .filter() sobre aquestes llistes
+// sense comprovar res, o sigui que les reposem aqui.
+function aArray(valor) {
+  if (Array.isArray(valor)) return valor;
+  if (valor == null) return [];
+  if (typeof valor === "object") {
+    return Object.keys(valor)
+      .sort(function (a, b) {
+        return a - b;
+      })
+      .map(function (clau) {
+        return valor[clau];
+      });
+  }
+  return [];
+}
+
+function normalitzaDades(data) {
+  ["dades", "calendari", "aparellaments", "partides"].forEach(function (clau) {
+    data[clau] = aArray(data[clau]);
+  });
+  // Sense trobada, false: es el mateix que envia el generador quan no n'hi ha
+  // cap, i es el que la resta del codi ja sap tractar.
+  if (data.trobades == null) data.trobades = false;
+  return data;
+}
+
+function baixaJSON(url, timeout) {
+  var controlador = new AbortController();
+  var temporitzador = setTimeout(function () {
+    controlador.abort();
+  }, timeout || 45000);
+  return fetch(url, { signal: controlador.signal })
+    .then(function (resposta) {
+      if (!resposta.ok) {
+        throw new Error("HTTP " + resposta.status);
+      }
+      return resposta.json();
+    })
+    .finally(function () {
+      clearTimeout(temporitzador);
+    });
+}
+
+function carregaDades(fitxerLocal) {
+  return fontsDeDades(fitxerLocal).reduce(function (cadena, font) {
+    return cadena.catch(function (motiu) {
+      if (motiu) {
+        console.warn("Font descartada:", font.nom, "->", motiu.message || motiu);
+      }
+      var inici = Date.now();
+      return baixaJSON(font.url, font.timeout).then(function (data) {
+        if (!dadesValides(data)) {
+          throw new Error("resposta sense les dades esperades");
+        }
+        console.log("Dades de " + font.nom + " en " + (Date.now() - inici) + " ms");
+        return normalitzaDades(data);
+      });
+    });
+    // El motiu inicial es null: no es cap fallada, nomes arrenca la cadena.
+  }, Promise.reject(null));
+}
+
 function iniciJSON(vista) {
   carregant();
   carrega = 0;
   // Crida a l'API del Google Apps Script
-  var myHeaders = new Headers();
-  var myInit = {
-    method: "GET",
-    headers: myHeaders,
-    mode: "no-cors",
-    cache: "default",
-  };
-  Promise.all([
-    fetch(macroURL + "?page=JSON&idJSON=" + idJSON),
-    //fetch("xampions24.json"),
-    
-  ])
-    .then((responses) =>
-      Promise.all(responses.map((response) => response.json()))
-    )
-    .then(([data]) => {
+  carregaDades()
+    .then((data) => {
       // Process dataTrobades, dataJugadors, etc.
       // ...
       // Example: Accessing data from the 'trobades' response

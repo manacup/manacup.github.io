@@ -68,18 +68,38 @@ function carregaUsuari() {
 document.addEventListener("DOMContentLoaded", iniciJSON(false));
 
 // --- Carrega de dades amb fallback -----------------------------------------
+// Aquest bloc es identic a totes les apps: copiar la carpeta per a una
+// temporada nova ja funciona, no s'hi ha de tocar cap URL.
+
+const FIREBASE_DB =
+  "https://manacup-b195e-default-rtdb.europe-west1.firebasedatabase.app";
+
+// El node de Firebase surt del cami de l'app: /manacup/26-27/ dona
+// "manacup/26-27", que es exactament la columna ruta del full de campionats.
+// Per aixo no cal configurar res per app.
+function urlFirebase() {
+  if (typeof urlParams !== "undefined" && urlParams.firebase !== undefined) {
+    return urlParams.firebase; // ?firebase= buit deixa nomes l'Apps Script
+  }
+  var ruta = window.location.pathname
+    .replace(/[^/]*\.html$/, "")
+    .replace(/^\/+|\/+$/g, "");
+  return ruta ? FIREBASE_DB + "/campionats/" + ruta + "/dades.json" : "";
+}
+
 // Ordre de fonts: la primera que respongui amb dades valides guanya. Si falla
 // (xarxa, HTTP, o una resposta que no son les dades esperades) es prova la
 // seguent. Aixi la font rapida no es un punt unic de fallada.
-function fontsDeDades(turbo) {
-  if (turbo) {
-    return [{ nom: "fitxer local", url: JSONfixe }];
+function fontsDeDades(fitxerLocal) {
+  if (fitxerLocal) {
+    return [{ nom: "fitxer local", url: fitxerLocal }];
   }
   var fonts = [];
-  if (typeof firebaseURL !== "undefined" && firebaseURL) {
-    // Font rapida. Timeout curt: si no respon de seguida, millor caure a
-    // l'Apps Script que no fer esperar l'usuari.
-    fonts.push({ nom: "Firebase", url: firebaseURL, timeout: 6000 });
+  var fb = urlFirebase();
+  if (fb) {
+    // Timeout curt: si la font rapida no ho es, millor caure a l'Apps Script
+    // que no fer esperar l'usuari.
+    fonts.push({ nom: "Firebase", url: fb, timeout: 6000 });
   }
   fonts.push({
     nom: "Apps Script",
@@ -94,8 +114,8 @@ function fontsDeDades(turbo) {
 // torna null, i una pagina d'error HTML ja peta abans al .json().
 //
 // No podem exigir que hi siguin les llistes: Firebase no desa els arrays
-// buits, els esborra. La 26-27 comenca amb aparellaments buit, o sigui que
-// aquella clau no tornaria i rebutjariem unes dades perfectament bones.
+// buits, els esborra. Un campionat que comenca amb aparellaments buit no
+// tornaria aquella clau i rebutjariem unes dades perfectament bones.
 function dadesValides(data) {
   return (
     data != null &&
@@ -151,8 +171,8 @@ function baixaJSON(url, timeout) {
     });
 }
 
-function carregaDades(turbo) {
-  return fontsDeDades(turbo).reduce(function (cadena, font) {
+function carregaDades(fitxerLocal) {
+  return fontsDeDades(fitxerLocal).reduce(function (cadena, font) {
     return cadena.catch(function (motiu) {
       if (motiu) {
         console.warn("Font descartada:", font.nom, "->", motiu.message || motiu);
@@ -174,7 +194,7 @@ function iniciJSON(turbo,vista) {
   
   carregant();
   carrega = 0;
-  carregaDades(turbo)
+  carregaDades(turbo ? JSONfixe : null)
     .then((data) => {
       // Process dataTrobades, dataJugadors, etc.
       // ...

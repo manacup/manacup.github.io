@@ -577,14 +577,6 @@ console.log(urlParams)
     let idfull = urlParams.idfull || "1ZB1IS18lNye3Vqi8g-7a22gXh46jhu0IZGGxoao9_lU";
     let idJSON = urlParams.idJSON || "1cfEd2oWkfZ_jpzJ1nBAklRMmGrwjD21d";
     let JSONfixe = "ManaCup_26-27.json"
-    // Font rapida de dades (Firebase Realtime Database). Si falla o triga,
-    // parametres.js cau tot sol a l'Apps Script.
-    // Per apuntar a una altra sense tocar codi: ...?firebase=https://.../dades.json
-    // Buidar-la (?firebase=) deixa nomes l'Apps Script.
-    const firebaseURL =
-      urlParams.firebase !== undefined
-        ? urlParams.firebase
-        : "https://manacup-b195e-default-rtdb.europe-west1.firebasedatabase.app/campionats/manacup/26-27/dades.json";
     //let usaJSONfixe =  urlParams.turbo || localStorage.getItem("turbo") //true/false
     let mostrapestanyes = urlParams.mostrapestanyes || "no";
     if (mostrapestanyes === "si") {
