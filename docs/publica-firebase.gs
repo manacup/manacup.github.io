@@ -88,7 +88,14 @@
  *
  * 4. Apps Script > Configuracio del projecte > Propietats del script:
  *      nom:   SA_JSON
- *      valor: el contingut sencer del fitxer del pas 3
+ *      valor: el contingut sencer del fitxer .json del pas 3
+ *
+ *    Ha de comencar per {"type": "service_account", ... . Ull: a la mateixa
+ *    pagina de la consola hi ha un fragment de codi d'exemple que comenca per
+ *    var admin = require("firebase-admin") -- aquest NO serveix, es una
+ *    mostra de com fer-ho a Node. El que necessites es el fitxer que et baixa
+ *    el boto "Genera una clau privada nova".
+ *
  *    No enganxis mai la clau dins del codi: aquest fitxer es public.
  *
  * 5. Omple FIREBASE_DB aqui sota. El node de cada campionat surt del full,
@@ -225,7 +232,22 @@ function tokenFirebase_() {
   if (!brut) {
     throw new Error("Falta la propietat SA_JSON amb la clau del compte de servei.");
   }
-  const sa = JSON.parse(brut);
+  let sa;
+  try {
+    sa = JSON.parse(brut);
+  } catch (e) {
+    throw new Error(
+      "SA_JSON no es JSON valid. Hi ha d'anar el CONTINGUT del fitxer de clau " +
+        'que et baixa Firebase (comenca per {"type": "service_account", ...), ' +
+        "no el fragment de codi d'exemple que ensenya la consola."
+    );
+  }
+  if (!sa.client_email || !sa.private_key) {
+    throw new Error(
+      "A SA_JSON hi falta client_email o private_key: no sembla el fitxer de " +
+        "clau d'un compte de servei."
+    );
+  }
   const ara = Math.floor(Date.now() / 1000);
 
   // El JWT va en base64 websafe i SENSE els '=' de farciment.
