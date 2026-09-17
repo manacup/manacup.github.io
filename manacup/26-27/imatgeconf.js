@@ -12,35 +12,23 @@ function desaImatgeConf(e) {
     idJSON: idJSON,
   };
 
+  // No esperam resposta: amb mode no-cors es opaca, response.ok sempre es
+  // false i status sempre 0. Comprovar-ho llancava sempre, i el modal no
+  // s'arribava a tancar mai encara que la imatge hagues pujat be.
   fetch(macroURL, {
     method: "POST",
-    mode: "no-cors", // Canviat a "cors" per poder accedir a la resposta
+    mode: "no-cors",
     headers: {
       "Content-Type": "application/json",
     },
     body: JSON.stringify(payload),
-  })
-    .then((response) => {
-      if (!response.ok) {
-        throw new Error("Error a la resposta del servidor");
-      }
-      return response.text(); // O response.json() si el servidor retorna JSON
-    })
-    .then((data) => {
-      console.log("Resposta del servidor:", data);
-      e.disabled = false;
-      document.getElementById("spnbtn").classList.add("d-none");
+  }).catch((error) => console.error("Error enviant la imatge:", error));
 
-      // Amagar el modal
-      var modal = document.getElementById("desaimatge");
-      var myModal = new bootstrap.Modal(modal);
-      myModal.hide();
-    })
-    .catch((error) => {
-      console.error("Error:", error);
-      e.disabled = false;
-      document.getElementById("spnbtn").classList.add("d-none");
-    });
+  e.disabled = false;
+  document.getElementById("spnbtn").classList.add("d-none");
+
+  var modal = document.getElementById("desaimatge");
+  bootstrap.Modal.getOrCreateInstance(modal).hide();
 }
 /* function desaImatgeConf(e) {
   e.disabled = true;
