@@ -184,10 +184,15 @@ function llegeixLastUpdate() {
 }
 
 function refrescaDespresDEnviar(vista) {
+  // iniciJSON te dues formes segons l'app: (turbo, vista) o nomes (vista).
+  function refresca(vista) {
+    return iniciJSON.length >= 2 ? iniciJSON(false, vista) : iniciJSON(vista);
+  }
+
   // Sense Firebase no hi ha res a vigilar: esperam un temps i prou.
   if (!urlLastUpdate()) {
     setTimeout(function () {
-      iniciJSON(false, vista);
+      refresca(vista);
     }, 2000);
     return;
   }
@@ -198,7 +203,7 @@ function refrescaDespresDEnviar(vista) {
     (function mira() {
       llegeixLastUpdate().then(function (ara) {
         if ((ara && ara !== abans) || Date.now() > limit) {
-          iniciJSON(false, vista);
+          refresca(vista);
         } else {
           setTimeout(mira, 700);
         }

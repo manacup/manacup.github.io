@@ -225,10 +225,6 @@ function renderFormulari(partida) {
         img.onload = function (event) {
           // Dynamically create a canvas element
           var canvas = document.createElement("canvas");
-          var ctx = canvas.getContext("2d");
-
-          ctx.drawImage(img, 0, 0);
-
           var MAX_WIDTH = 600;
           var MAX_HEIGHT = 600;
           var width = img.width;
@@ -250,9 +246,9 @@ function renderFormulari(partida) {
           var ctx = canvas.getContext("2d");
           ctx.drawImage(img, 0, 0, width, height);
 
-          var dataurl = canvas.toDataURL("image/png");
+          var dataurl = canvas.toDataURL("image/jpeg", 0.75);
 
-          var finalUrl = dataurl.replace(/^data:image\/(png|jpg);base64,/, "");
+          var finalUrl = dataurl.replace(/^data:image\/(png|jpe?g);base64,/, "");
           document.getElementById("Fullamagat").value = finalUrl;
         };
         img.src = e.target.result;
@@ -271,10 +267,6 @@ function renderFormulari(partida) {
         img.onload = function (event) {
           // Dynamically create a canvas element
           var canvas = document.createElement("canvas");
-          var ctx = canvas.getContext("2d");
-
-          ctx.drawImage(img, 0, 0);
-
           var MAX_WIDTH = 600;
           var MAX_HEIGHT = 600;
           var width = img.width;
@@ -296,9 +288,9 @@ function renderFormulari(partida) {
           var ctx = canvas.getContext("2d");
           ctx.drawImage(img, 0, 0, width, height);
 
-          var dataurl = canvas.toDataURL("image/png");
+          var dataurl = canvas.toDataURL("image/jpeg", 0.75);
 
-          var finalUrl = dataurl.replace(/^data:image\/(png|jpg);base64,/, "");
+          var finalUrl = dataurl.replace(/^data:image\/(png|jpe?g);base64,/, "");
           document.getElementById("Tauleramagat").value = finalUrl;
         };
         img.src = e.target.result;
@@ -344,12 +336,12 @@ console.log(JSON.stringify({
       idJSON: idJSON,
     }),
   })
-  .then(response => response.text())
-  .then(data => {
-    console.log('Resposta del servidor:', data);
-    setTimeout(iniciJSON("classificacions"), 2000)
-  })
-  .catch(error => console.error('Error:', error));
+  // No esperam resposta: amb mode no-cors sempre arriba buida. La
+  // confirmacio de bo de bo es el lastUpdate que vigila
+  // refrescaDespresDEnviar.
+  .catch(error => console.error("Error enviant:", error));
+
+  refrescaDespresDEnviar("classificacions");
   /* google.script.run
     .withSuccessHandler(function () {
       setTimeout(funcioInici("classificacions"), 2000);
@@ -428,11 +420,11 @@ const parseValues = async (e) =>
         
       }),
     })
-    .then(response => response.text())
-    .then(data => {
-      console.log('Resposta del servidor:', data);
-      clearInterval(interval);
-      setTimeout(iniciJSON("rondes"), 2000)
-    })
-    .catch(error => console.error('Error:', error));
+  // No esperam resposta: amb mode no-cors sempre arriba buida. La
+  // confirmacio de bo de bo es el lastUpdate que vigila
+  // refrescaDespresDEnviar.
+  .catch(error => console.error("Error enviant:", error));
+
+  clearInterval(interval);
+  refrescaDespresDEnviar("rondes");
   }

@@ -19,19 +19,14 @@ function desaImatgeConf(e) {
       idJSON: idJSON,
     }),
   })
-    .then((response) => response.text())
-    .then((data) => {
-      console.log("Resposta del servidor:", data);
+    // No esperam resposta: amb mode no-cors sempre arriba buida.
+    .catch((error) => console.error("Error enviant la imatge:", error));
 
-      console.log(data);
-      e.disabled = false;
-      document.getElementById("spnbtn").classList.add("d-none");
-      var modal = document.getElementById("desaimatge");
-      var myModal = new bootstrap.Modal(modal);
-      myModal.hide();
-     
-    })
-    .catch((error) => console.error("Error:", error));
+  e.disabled = false;
+  document.getElementById("spnbtn").classList.add("d-none");
+
+  var modal = document.getElementById("desaimatge");
+  bootstrap.Modal.getOrCreateInstance(modal).hide();
 
 }
 var carregaImatgeConf = function (event) {
@@ -58,10 +53,6 @@ imgInputImatgeConf.addEventListener("change", function (e) {
         var canvas = document.createElement("canvas");
 
         // var canvas = document.getElementById("canvas");
-        var ctx = canvas.getContext("2d");
-
-        ctx.drawImage(img, 0, 0);
-
         var MAX_WIDTH = 600;
         var MAX_HEIGHT = 600;
         var width = img.width;
@@ -83,9 +74,9 @@ imgInputImatgeConf.addEventListener("change", function (e) {
         var ctx = canvas.getContext("2d");
         ctx.drawImage(img, 0, 0, width, height);
 
-        var dataurl = canvas.toDataURL("image/png");
+        var dataurl = canvas.toDataURL("image/jpeg", 0.75);
 
-        var finalUrl = dataurl.replace(/^data:image\/(png|jpg);base64,/, "");
+        var finalUrl = dataurl.replace(/^data:image\/(png|jpe?g);base64,/, "");
         document.getElementById("ImatgeamagatConf").value = finalUrl;
       };
       img.src = e.target.result;

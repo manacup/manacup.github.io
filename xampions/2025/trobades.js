@@ -563,12 +563,12 @@ async function main() {
       idJSON: idJSON,
     }),
   })
-  .then(response => response.text())
-  .then(data => {
-    console.log('Resposta del servidor:', data);
-    setTimeout(iniciJSON("trobades"), 2000)
-  })
-  .catch(error => console.error('Error:', error));
+  // No esperam resposta: amb mode no-cors sempre arriba buida. La
+  // confirmacio de bo de bo es el lastUpdate que vigila
+  // refrescaDespresDEnviar.
+  .catch(error => console.error("Error enviant:", error));
+
+  refrescaDespresDEnviar("trobades");
 
 }
 
@@ -776,14 +776,9 @@ async function editaTrobada() {
       row: values.ID_trobada,
     }),
   })
-    .then(response => {
-      response.text()
-      console.log(response.text())
-    })
-    .then(data => {
-      console.log('Resposta del servidor:', data);
-      setTimeout(iniciJSON(false, "trobades"), 500)
-    })
-    .catch(error => console.error('Error:', error));
+  // No esperam resposta: amb mode no-cors sempre arriba buida.
+  .catch(error => console.error("Error enviant:", error));
+
+  refrescaDespresDEnviar("trobades");
 
 }
