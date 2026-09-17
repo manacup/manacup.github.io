@@ -15,6 +15,10 @@
  *
  * --- Que se n'ha de fer del doGet ------------------------------------------
  *
+ * La copia de GitHub NO en depen: updateGithubFile() rep l'objecte muntat, no
+ * el fitxer de Drive. Segueix igual, i segueix sent l'arxiu de les temporades
+ * tancades (24-25, 25-26, 23-24 llegeixen el JSON del repositori).
+ *
  * doGet?page=JSON servia aquell fitxer de Drive. Si deixem d'actualitzar-lo
  * pero el seguim servint, el pla B respon dades velles, que es pitjor que no
  * respondre. Per aixo el doGet passa a refer el JSON llegint el full: mes
@@ -57,7 +61,49 @@ async function updateJSON(idfull, idJSON) {
   return response;
 }
 
-// --- 3) doGet: canvia NOMES la branca page === "JSON" ------------------------
+// --- 3) updateJSONGithub: substitueix la teva --------------------------------
+
+/**
+ * updateGithubFile() rep l'OBJECTE, no el fitxer de Drive, o sigui que llevar
+ * saveAsJSON no afecta gens la copia de GitHub.
+ *
+ * Aquesta funcio repetia sencer el cos d'updateJSON per muntar el mateix
+ * objecte; ara totes dues fan servir construeixJSON().
+ *
+ * Es manté el segon parametre perque el doPost no s'hagi de tocar.
+ */
+function updateJSONGithub(idfull, idJSON) {
+  const response = construeixJSON(idfull);
+
+  publicaFirebaseSiPot(response, idfull);
+  updateGithubFile(idfull, response);
+
+  return response;
+}
+
+// --- 4) El testimoni de GitHub fora del codi ---------------------------------
+
+/**
+ * updateGithubFile() i uploadGithubFile() duen el testimoni escrit dins del
+ * codi. Qualsevol que vegi el projecte pot escriure al repositori, i un
+ * testimoni escrit al codi s'acaba copiant a llocs on no toca.
+ *
+ * Desa'l a Propietats del script amb el nom GITHUB_TOKEN i, a les dues
+ * funcions, canvia
+ *
+ *     const token = 'ghp_...';
+ * per
+ *     const token = tokenGithub_();
+ */
+function tokenGithub_() {
+  const token = PropertiesService.getScriptProperties().getProperty("GITHUB_TOKEN");
+  if (!token) {
+    throw new Error("Falta la propietat GITHUB_TOKEN.");
+  }
+  return token;
+}
+
+// --- 5) doGet: canvia NOMES la branca page === "JSON" ------------------------
 /*
 
   if (page === "JSON") {
@@ -80,7 +126,7 @@ async function updateJSON(idfull, idJSON) {
 
 */
 
-// --- 4) Opcional: repassada de totes les temporades --------------------------
+// --- 6) Opcional: repassada de totes les temporades --------------------------
 
 /**
  * Publica a Firebase tots els campionats registrats al full. Va be per
