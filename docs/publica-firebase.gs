@@ -288,8 +288,40 @@ function tokenFirebase_() {
 }
 
 /**
+ * Esborra TOTA la base de dades. No te volta enrere.
+ *
+ * Normalment no cal: publicaFirebase() fa un PUT, que reemplaca el node
+ * sencer del campionat, o sigui que les dades velles d'aquell campionat
+ * desapareixen soles a la propera publicacio. Aixo nomes es per deixar-ho
+ * tot net de zero.
+ *
+ * Demana la confirmacio escrita expressament, perque no s'executi sense
+ * voler des del desplegable de funcions de l'editor.
+ *
+ *     buidaFirebase("SI, BUIDA-HO");
+ */
+function buidaFirebase(confirmacio) {
+  if (confirmacio !== "SI, BUIDA-HO") {
+    throw new Error('Per buidar-ho tot has de cridar buidaFirebase("SI, BUIDA-HO").');
+  }
+  const resposta = UrlFetchApp.fetch(FIREBASE_DB + "/.json", {
+    method: "delete",
+    headers: { Authorization: "Bearer " + tokenFirebase_() },
+    muteHttpExceptions: true,
+  });
+  if (resposta.getResponseCode() >= 300) {
+    throw new Error("Firebase " + resposta.getResponseCode() + ": " + resposta.getContentText());
+  }
+  console.log("Base de dades buidada.");
+}
+
+/**
  * Comprovacio manual. Passa-li un idfull del full: ha de deixar un node de
  * prova a Firebase i dir-te quina URL ha de posar l'app.
+ *
+ * Ull: Firebase no desa els arrays buits, els esborra. Per aixo d'aquesta
+ * prova nomes hi queda "prova: true" i no les quatre llistes. No es cap
+ * error: l'app ja ho reposa en carregar.
  */
 function provaFirebase(idfull) {
   const node = publicaFirebase(

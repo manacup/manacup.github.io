@@ -89,18 +89,49 @@ function fontsDeDades(turbo) {
   return fonts;
 }
 
-// Comprova que la resposta son realment les dades del campionat. Protegeix
-// del cas real que ens hem trobat: una pagina d'error HTML que peta al
-// .json(), i tambe d'un node de Firebase a mitges o buit.
+// Comprova que la resposta son realment les dades del campionat.
+// Ens basem en camps que hi son sempre: un node de Firebase que no existeix
+// torna null, i una pagina d'error HTML ja peta abans al .json().
+//
+// No podem exigir que hi siguin les llistes: Firebase no desa els arrays
+// buits, els esborra. La 26-27 comenca amb aparellaments buit, o sigui que
+// aquella clau no tornaria i rebutjariem unes dades perfectament bones.
 function dadesValides(data) {
   return (
     data != null &&
     typeof data === "object" &&
-    Array.isArray(data.dades) &&
-    Array.isArray(data.calendari) &&
-    Array.isArray(data.aparellaments) &&
-    Array.isArray(data.partides)
+    !Array.isArray(data) &&
+    typeof data.campionat === "string" &&
+    data.campionat !== ""
   );
+}
+
+// Un array buit no torna de Firebase, i un amb forats torna com a objecte de
+// claus numeriques. La resta de l'app fa .filter() sobre aquestes llistes
+// sense comprovar res, o sigui que les reposem aqui.
+function aArray(valor) {
+  if (Array.isArray(valor)) return valor;
+  if (valor == null) return [];
+  if (typeof valor === "object") {
+    return Object.keys(valor)
+      .sort(function (a, b) {
+        return a - b;
+      })
+      .map(function (clau) {
+        return valor[clau];
+      });
+  }
+  return [];
+}
+
+function normalitzaDades(data) {
+  ["dades", "calendari", "aparellaments", "partides"].forEach(function (clau) {
+    data[clau] = aArray(data[clau]);
+  });
+  // Sense trobada, false: es el mateix que envia el generador quan no n'hi ha
+  // cap, i es el que la resta del codi ja sap tractar.
+  if (data.trobades == null) data.trobades = false;
+  return data;
 }
 
 function baixaJSON(url, timeout) {
@@ -132,7 +163,7 @@ function carregaDades(turbo) {
           throw new Error("resposta sense les dades esperades");
         }
         console.log("Dades de " + font.nom + " en " + (Date.now() - inici) + " ms");
-        return data;
+        return normalitzaDades(data);
       });
     });
     // El motiu inicial es null: no es cap fallada, nomes arrenca la cadena.
