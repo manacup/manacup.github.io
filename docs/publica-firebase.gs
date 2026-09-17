@@ -1,45 +1,85 @@
 /**
- * Publica el JSON del campionat a Firebase Realtime Database.
+ * Publica el JSON dels campionats a Firebase Realtime Database.
  *
- * Es crida des del codi que ja genera el JSON, just despres de generar-lo:
+ * El generador del JSON es compartit per totes les apps (ManaCup de cada
+ * temporada, Xampions, i les que vinguin), o sigui que aquest fitxer ha de
+ * saber a quin node va cada campionat. Aixo ho resol el registre CAMPIONATS:
+ * la clau es l'idfull (el full de calcul, que es el que identifica de veritat
+ * un campionat) i el valor es el node dins de Firebase.
  *
- *     const dades = generaJSON();     // el que ja fas ara
- *     publicaFirebase(dades);         // afegeix nomes aquesta linia
+ * Estructura resultant:
  *
- * L'app llegeix <FIREBASE_DB>/<FIREBASE_NODE>/dades.json i, si falla, cau
- * automaticament a l'Apps Script. Es pot desplegar aixo abans de tocar l'app.
+ *   /campionats
+ *     /manacup
+ *       /26-27
+ *         /dades        <- el JSON sencer que ja generes
+ *         /lastUpdate   <- marca de temps en ms
+ *       /25-26
+ *         ...
+ *     /xampions
+ *       /2026
+ *         ...
+ *
+ * Cada app llegeix nomes el seu /dades.json, o sigui que afegir campionats
+ * no afecta els que ja hi ha.
+ *
+ * --- Com s'integra -----------------------------------------------------------
+ *
+ * Al punt on el teu script ja ha generat el JSON, afegeix una linia:
+ *
+ *     const dades = generaJSON(idfull);   // el que ja fas ara
+ *     publicaFirebaseSiPot(dades, idfull);
+ *
+ * Amb la variant SiPot, si Firebase falla el resultat es registra igualment i
+ * l'app continua servint-se per l'Apps Script, nomes que mes lenta.
  *
  * --- Configuracio previa (un sol cop) ---------------------------------------
  *
  * 1. Crea un projecte a console.firebase.google.com i activa-hi la Realtime
- *    Database. Tria una regio europea per baixar latencia.
+ *    Database, en una regio europea.
  *
- * 2. Regles de la base de dades (Firebase > Realtime Database > Rules).
- *    Lectura publica, escriptura tancada: el compte de servei te privilegis
- *    d'administrador i se les salta, o sigui que ningu mes hi pot escriure.
+ * 2. Regles (Realtime Database > Rules). Lectura publica, escriptura tancada:
+ *    el compte de servei te privilegis d'administrador i se les salta, o sigui
+ *    que ningu mes hi pot escriure.
  *
  *      {
  *        "rules": {
- *          "manacup": { ".read": true, ".write": false }
+ *          "campionats": { ".read": true, ".write": false }
  *        }
  *      }
  *
  * 3. Compte de servei: Configuracio del projecte > Comptes de servei >
  *    Genera una clau privada nova. Baixa el JSON.
  *
- * 4. A l'editor d'Apps Script: Configuracio del projecte > Propietats del
- *    script > Afegeix propietat.
+ * 4. Apps Script > Configuracio del projecte > Propietats del script:
  *      nom:   SA_JSON
- *      valor: el contingut sencer del fitxer JSON del pas 3
+ *      valor: el contingut sencer del fitxer del pas 3
  *    No enganxis mai la clau dins del codi: aquest fitxer es public.
  *
- * 5. Ajusta FIREBASE_DB i FIREBASE_NODE aqui sota.
+ * 5. Omple FIREBASE_DB i el registre CAMPIONATS aqui sota.
  */
 
 // --- Configuracio ------------------------------------------------------------
 
-const FIREBASE_DB = "https://EL-TEU-PROJECTE-default-rtdb.europe-west1.firebasedatabase.app";
-const FIREBASE_NODE = "manacup/26-27";
+const FIREBASE_DB =
+  "https://EL-TEU-PROJECTE-default-rtdb.europe-west1.firebasedatabase.app";
+
+/**
+ * Registre de campionats: idfull -> node dins de /campionats.
+ * Afegir una temporada nova es afegir una linia aqui i posar la URL
+ * corresponent a firebaseURL de la seva index.html. Fes servir urlsApps()
+ * per veure quines URL toquen.
+ */
+const CAMPIONATS = {
+  // ManaCup
+  "1ZB1IS18lNye3Vqi8g-7a22gXh46jhu0IZGGxoao9_lU": "manacup/26-27",
+  "1rew2PMTgHI8YUYoS_B-qenV8hs8E6nGiW2gd6F7jnOY": "manacup/25-26",
+  "1pj6G5pgDUAypPB7O9gkFduYAItopiQBYVR37eXalIvU": "manacup/24-25",
+  // Xampions d'estiu: posa-hi els idfull que facin falta
+  // "……": "xampions/2026",
+};
+
+const ARREL = "campionats";
 
 // --- API ---------------------------------------------------------------------
 
@@ -49,34 +89,66 @@ const FIREBASE_NODE = "manacup/26-27";
  * no hi son.
  *
  * @param {Object} dades El mateix objecte que ja retorna el web app.
- * @return {boolean} true si s'ha publicat.
+ * @param {string} idfull Identificador del full del campionat.
+ * @return {string} El node on s'ha publicat.
  */
-function publicaFirebase(dades) {
-  const base = FIREBASE_DB + "/" + FIREBASE_NODE;
+function publicaFirebase(dades, idfull) {
+  const node = nodeDe_(idfull);
+  const base = FIREBASE_DB + "/" + ARREL + "/" + node;
   const capcaleres = { Authorization: "Bearer " + tokenFirebase_() };
 
   escriuNode_(base + "/dades.json", dades, capcaleres);
   escriuNode_(base + "/lastUpdate.json", Date.now(), capcaleres);
 
-  console.log("Publicat a Firebase: " + base);
-  return true;
+  console.log("Publicat a Firebase: " + node);
+  return node;
 }
 
 /**
- * Versio que no atura el flux si Firebase falla. Fes-la servir si prefereixes
- * que un problema de publicacio no bloquegi el registre del resultat: l'app
- * seguira funcionant per l'Apps Script, nomes que mes lenta.
+ * Variant que no atura el flux si Firebase falla. Es la recomanada al punt
+ * d'enviament d'un resultat: val mes servir dades lentes que perdre el
+ * resultat.
  */
-function publicaFirebaseSiPot(dades) {
+function publicaFirebaseSiPot(dades, idfull) {
   try {
-    return publicaFirebase(dades);
+    return publicaFirebase(dades, idfull);
   } catch (e) {
     console.error("No s'ha pogut publicar a Firebase: " + e.message);
-    return false;
+    return null;
   }
 }
 
+/**
+ * Imprimeix la URL que ha de dur cada app a firebaseURL. Executa-la quan
+ * afegeixis un campionat al registre.
+ */
+function urlsApps() {
+  Object.keys(CAMPIONATS).forEach((idfull) => {
+    console.log(
+      CAMPIONATS[idfull] +
+        "  ->  " +
+        FIREBASE_DB + "/" + ARREL + "/" + CAMPIONATS[idfull] + "/dades.json"
+    );
+  });
+}
+
 // --- Intern ------------------------------------------------------------------
+
+/**
+ * Un campionat no registrat no es publica a un node inventat: l'app no el
+ * sabria trobar. Val mes un error clar que unes dades en un lloc que ningu
+ * llegeix.
+ */
+function nodeDe_(idfull) {
+  const node = CAMPIONATS[idfull];
+  if (!node) {
+    throw new Error(
+      "Campionat no registrat a CAMPIONATS: " + idfull +
+        ". Afegeix-hi una linia amb el node que li toca."
+    );
+  }
+  return node;
+}
 
 function escriuNode_(url, valor, capcaleres) {
   const resposta = UrlFetchApp.fetch(url, {
@@ -88,7 +160,9 @@ function escriuNode_(url, valor, capcaleres) {
   });
   const codi = resposta.getResponseCode();
   if (codi >= 300) {
-    throw new Error("Firebase " + codi + " a " + url + ": " + resposta.getContentText());
+    throw new Error(
+      "Firebase " + codi + " a " + url + ": " + resposta.getContentText()
+    );
   }
 }
 
@@ -146,10 +220,15 @@ function tokenFirebase_() {
 }
 
 /**
- * Comprovacio manual. Executa-la un cop configurat: ha de deixar un node de
- * prova a Firebase i imprimir l'URL que ha de posar l'app a firebaseURL.
+ * Comprovacio manual. Passa-li un idfull ja registrat: ha de deixar un node
+ * de prova a Firebase i dir-te quina URL ha de posar l'app.
  */
-function provaFirebase() {
-  publicaFirebase({ dades: [], calendari: [], aparellaments: [], partides: [], prova: true });
-  console.log("URL per a l'app: " + FIREBASE_DB + "/" + FIREBASE_NODE + "/dades.json");
+function provaFirebase(idfull) {
+  const node = publicaFirebase(
+    { dades: [], calendari: [], aparellaments: [], partides: [], prova: true },
+    idfull
+  );
+  console.log(
+    "URL per a l'app: " + FIREBASE_DB + "/" + ARREL + "/" + node + "/dades.json"
+  );
 }
