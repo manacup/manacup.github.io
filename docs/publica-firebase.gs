@@ -316,6 +316,41 @@ function buidaFirebase(confirmacio) {
 }
 
 /**
+ * Diagnostic d'accessos. Diu amb quin compte s'executa i quin dels dos
+ * identificadors del campionat falla, que els missatges de Google no ho
+ * distingeixen gaire:
+ *
+ *   "no s'ha trobat cap element"   -> l'ID no existeix (o esta a la paperera)
+ *   "no tens permis per accedir"   -> existeix, pero no per a aquest compte
+ *
+ * Si el compte que surt no es el que esperaves, el mes calent es a l'aigüera:
+ * a l'editor s'executa amb el compte amb que tens la sessio oberta al
+ * navegador, i amb diversos comptes de Google es facil que no sigui el que
+ * toca.
+ */
+function diagnosticAccessos(idfull, idJSON) {
+  console.log("S'executa com: " + Session.getEffectiveUser().getEmail());
+
+  try {
+    console.log("full  OK: " + SpreadsheetApp.openById(idfull).getName());
+  } catch (e) {
+    console.error("full  FALLA (" + idfull + "): " + e.message);
+  }
+
+  try {
+    console.log("json  OK: " + DriveApp.getFileById(idJSON).getName());
+  } catch (e) {
+    console.error("json  FALLA (" + idJSON + "): " + e.message);
+  }
+
+  try {
+    console.log("node  OK: " + nodeDe_(idfull));
+  } catch (e) {
+    console.error("node  FALLA: " + e.message);
+  }
+}
+
+/**
  * NOMES comprova que l'autenticacio i les regles funcionen. Publica un
  * objecte inventat, no les dades del campionat: si despres mires el node
  * hi trobaras "prova: true" i res mes, i aixo es el que ha de sortir.
