@@ -97,8 +97,9 @@
 
 // --- Configuracio ------------------------------------------------------------
 
+// Sense barra final: el codi ja l'afegeix.
 const FIREBASE_DB =
-  "https://EL-TEU-PROJECTE-default-rtdb.europe-west1.firebasedatabase.app";
+  "https://manacup-b195e-default-rtdb.europe-west1.firebasedatabase.app";
 
 /**
  * Excepcions: idfull -> node. Normalment ha d'estar buit.
