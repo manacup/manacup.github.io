@@ -316,12 +316,18 @@ function buidaFirebase(confirmacio) {
 }
 
 /**
- * Comprovacio manual. Passa-li un idfull del full: ha de deixar un node de
- * prova a Firebase i dir-te quina URL ha de posar l'app.
+ * NOMES comprova que l'autenticacio i les regles funcionen. Publica un
+ * objecte inventat, no les dades del campionat: si despres mires el node
+ * hi trobaras "prova: true" i res mes, i aixo es el que ha de sortir.
  *
- * Ull: Firebase no desa els arrays buits, els esborra. Per aixo d'aquesta
- * prova nomes hi queda "prova: true" i no les quatre llistes. No es cap
- * error: l'app ja ho reposa en carregar.
+ * (Els quatre arrays buits que envia no hi surten perque Firebase no desa
+ * les llistes buides. L'app ja les reposa en carregar.)
+ *
+ * PER PUJAR LES DADES DE DEBO no facis servir aixo: assegura't que
+ * updateJSON() te la crida a publicaFirebaseSiPot() i executa-la,
+ * des de l'editor o enviant un resultat des de l'app:
+ *
+ *     updateJSON("<idfull>", "<idJSON>");
  */
 function provaFirebase(idfull) {
   const node = publicaFirebase(
