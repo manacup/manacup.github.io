@@ -267,9 +267,9 @@ new Autocomplete(locs)
           var ctx = canvas.getContext("2d");
           ctx.drawImage(img, 0, 0, width, height);
 
-          var dataurl = canvas.toDataURL("image/png");
+          var dataurl = canvas.toDataURL("image/jpeg", 0.75);
 
-          var finalUrl = dataurl.replace(/^data:image\/(png|jpg);base64,/, "");
+          var finalUrl = dataurl.replace(/^data:image\/(png|jpe?g);base64,/, "");
           document.getElementById("Fullamagat").value = finalUrl;
         };
         img.src = e.target.result;
@@ -313,9 +313,9 @@ new Autocomplete(locs)
           var ctx = canvas.getContext("2d");
           ctx.drawImage(img, 0, 0, width, height);
 
-          var dataurl = canvas.toDataURL("image/png");
+          var dataurl = canvas.toDataURL("image/jpeg", 0.75);
 
-          var finalUrl = dataurl.replace(/^data:image\/(png|jpg);base64,/, "");
+          var finalUrl = dataurl.replace(/^data:image\/(png|jpe?g);base64,/, "");
           document.getElementById("Tauleramagat").value = finalUrl;
         };
         img.src = e.target.result;
