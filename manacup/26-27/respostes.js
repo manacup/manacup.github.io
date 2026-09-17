@@ -353,12 +353,12 @@ async function handleFormSubmit(formObject) {
       idJSON: idJSON,
     }),
   })
-  .then(response => response.text())
-  .then(data => {
-    console.log('Resposta del servidor:', data);
-    refrescaDespresDEnviar("classificacions")
-  })
-  .catch(error => console.error('Error:', error));
+  // No esperam resposta: amb mode no-cors sempre arriba buida, i esperar-la
+  // nomes vol dir quedar-se aturat mentre el servidor fa tota la feina.
+  // La confirmacio de bo de bo es el lastUpdate que vigila refrescaDespresDEnviar.
+  .catch(error => console.error("Error enviant la partida:", error));
+
+  refrescaDespresDEnviar("classificacions");
   /* google.script.run
     .withSuccessHandler(function () {
       setTimeout(funcioInici("classificacions"), 2000);
@@ -437,11 +437,8 @@ const parseValues = async (e) =>
        
      }),
    })
-   .then(response => response.text())
-   .then(data => {
-     console.log('Resposta del servidor: JSON actualitzat!', data);
-     clearInterval(interval)
-     refrescaDespresDEnviar("classificacions")
-   })
-   .catch(error => console.error('Error:', error));
+   .catch(error => console.error("Error actualitzant:", error));
+
+   clearInterval(interval);
+   refrescaDespresDEnviar("classificacions");
  }
