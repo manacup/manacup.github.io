@@ -54,15 +54,34 @@
  * 1. Crea un projecte a console.firebase.google.com i activa-hi la Realtime
  *    Database, en una regio europea.
  *
- * 2. Regles (Realtime Database > Rules). Lectura publica, escriptura tancada:
- *    el compte de servei te privilegis d'administrador i se les salta, o sigui
- *    que ningu mes hi pot escriure.
+ * 2. Regles (Realtime Database > Rules).
  *
  *      {
  *        "rules": {
- *          "campionats": { ".read": true, ".write": false }
+ *          "campionats": {
+ *            "$categoria": {
+ *              "$temporada": {
+ *                "dades": { ".read": true },
+ *                "lastUpdate": { ".read": true }
+ *              }
+ *            }
+ *          }
  *        }
  *      }
+ *
+ *    Les dades ja son publiques (surten a un web public), o sigui que la
+ *    lectura oberta no hi afegeix cap risc. El que si evita donar el permis
+ *    a les fulles i no a /campionats es que algu es pugui baixar TOTS els
+ *    campionats d'una sola peticio: cada app llegeix el seu node i prou, i
+ *    la quota de baixada es manté previsible.
+ *
+ *    L'escriptura no s'hi menciona perque per defecte esta denegada. El
+ *    compte de servei te privilegis d'administrador i se salta les regles,
+ *    o sigui que publica igualment i ningu mes hi pot escriure.
+ *
+ *    Ull: aixo dona per fet que les rutes tenen dos trams (manacup/26-27,
+ *    xampions/2026). Si algun dia n'hi poses una de mes curta o mes llarga,
+ *    la regla no hi encaixara i la lectura quedara denegada.
  *
  * 3. Compte de servei: Configuracio del projecte > Comptes de servei >
  *    Genera una clau privada nova. Baixa el JSON.
