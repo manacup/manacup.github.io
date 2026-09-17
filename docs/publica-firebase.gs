@@ -3,9 +3,8 @@
  *
  * El generador del JSON es compartit per totes les apps (ManaCup de cada
  * temporada, Xampions, i les que vinguin), o sigui que aquest fitxer ha de
- * saber a quin node va cada campionat. Aixo ho resol el registre CAMPIONATS:
- * la clau es l'idfull (el full de calcul, que es el que identifica de veritat
- * un campionat) i el valor es el node dins de Firebase.
+ * saber a quin node va cada campionat. Ho resol la columna "ruta" del full
+ * de campionats, la mateixa que ja fas servir per situar cada app.
  *
  * Estructura resultant:
  *
@@ -47,8 +46,8 @@
  *
  * Amb la variant SiPot, si Firebase falla el resultat es registra igualment i
  * l'app continua servint-se per l'Apps Script, nomes que mes lenta. Aixo vol
- * dir tambe que pots afegir la linia ABANS d'omplir CAMPIONATS: un campionat
- * encara no registrat deixa un avis al log i no trenca res.
+ * dir tambe que un campionat sense ruta al full deixa un avis al log i no
+ * trenca res.
  *
  * --- Configuracio previa (un sol cop) ---------------------------------------
  *
@@ -73,7 +72,8 @@
  *      valor: el contingut sencer del fitxer del pas 3
  *    No enganxis mai la clau dins del codi: aquest fitxer es public.
  *
- * 5. Omple FIREBASE_DB i el registre CAMPIONATS aqui sota.
+ * 5. Omple FIREBASE_DB aqui sota. El node de cada campionat surt del full,
+ *    o sigui que no hi ha res mes a mantenir.
  */
 
 // --- Configuracio ------------------------------------------------------------
@@ -82,18 +82,18 @@ const FIREBASE_DB =
   "https://EL-TEU-PROJECTE-default-rtdb.europe-west1.firebasedatabase.app";
 
 /**
- * Registre de campionats: idfull -> node dins de /campionats.
- * Afegir una temporada nova es afegir una linia aqui i posar la URL
- * corresponent a firebaseURL de la seva index.html. Fes servir urlsApps()
- * per veure quines URL toquen.
+ * Excepcions: idfull -> node. Normalment ha d'estar buit.
+ *
+ * El node surt de la columna "ruta" del full de campionats, que es on ja
+ * mantens aquesta informacio: "manacup/26-27/" -> node "manacup/26-27".
+ * Aixi afegir una temporada es afegir-hi una fila, i no hi ha dues llistes
+ * que es puguin desincronitzar.
+ *
+ * Nomes posa res aqui si algun campionat ha d'anar a un node diferent del
+ * que diu la seva ruta. El que hi hagi aqui mana per damunt del full.
  */
 const CAMPIONATS = {
-  // ManaCup
-  "1ZB1IS18lNye3Vqi8g-7a22gXh46jhu0IZGGxoao9_lU": "manacup/26-27",
-  "1rew2PMTgHI8YUYoS_B-qenV8hs8E6nGiW2gd6F7jnOY": "manacup/25-26",
-  "1pj6G5pgDUAypPB7O9gkFduYAItopiQBYVR37eXalIvU": "manacup/24-25",
-  // Xampions d'estiu: posa-hi els idfull que facin falta
-  // "……": "xampions/2026",
+  // "1ZB1IS18lNye3Vqi8g-7a22gXh46jhu0IZGGxoao9_lU": "manacup/26-27",
 };
 
 const ARREL = "campionats";
@@ -136,33 +136,42 @@ function publicaFirebaseSiPot(dades, idfull) {
 }
 
 /**
- * Imprimeix la URL que ha de dur cada app a firebaseURL. Executa-la quan
- * afegeixis un campionat al registre.
+ * Imprimeix la URL que ha de posar una app a firebaseURL.
+ * Passa-li l'idfull del campionat.
  */
-function urlsApps() {
-  Object.keys(CAMPIONATS).forEach((idfull) => {
-    console.log(
-      CAMPIONATS[idfull] +
-        "  ->  " +
-        FIREBASE_DB + "/" + ARREL + "/" + CAMPIONATS[idfull] + "/dades.json"
-    );
-  });
+function urlApp(idfull) {
+  const url = FIREBASE_DB + "/" + ARREL + "/" + nodeDe_(idfull) + "/dades.json";
+  console.log(url);
+  return url;
 }
 
 // --- Intern ------------------------------------------------------------------
 
 /**
- * Un campionat no registrat no es publica a un node inventat: l'app no el
- * sabria trobar. Val mes un error clar que unes dades en un lloc que ningu
- * llegeix.
+ * Node de Firebase d'un campionat, a partir de la seva ruta al full.
+ * Si no se'n pot deduir cap, val mes un error clar que publicar a un node
+ * inventat: unes dades en un lloc que cap app mira son molt mals de veure.
  */
 function nodeDe_(idfull) {
-  const node = CAMPIONATS[idfull];
+  let node = CAMPIONATS[idfull];
+
+  if (!node) {
+    const fila = dadesCampionat(idfull);
+    node = fila && fila.ruta;
+  }
   if (!node) {
     throw new Error(
-      "Campionat no registrat a CAMPIONATS: " + idfull +
-        ". Afegeix-hi una linia amb el node que li toca."
+      "Campionat sense ruta: " + idfull +
+        ". Omple la columna ruta al full de campionats."
     );
+  }
+
+  // "manacup/26-27/" -> "manacup/26-27"
+  node = String(node).replace(/^\/+|\/+$/g, "");
+
+  // Firebase no admet aquests caracters a les claus.
+  if (/[.$#\[\]]/.test(node)) {
+    throw new Error("Ruta no valida per a Firebase: " + node);
   }
   return node;
 }
@@ -237,15 +246,13 @@ function tokenFirebase_() {
 }
 
 /**
- * Comprovacio manual. Passa-li un idfull ja registrat: ha de deixar un node
- * de prova a Firebase i dir-te quina URL ha de posar l'app.
+ * Comprovacio manual. Passa-li un idfull del full: ha de deixar un node de
+ * prova a Firebase i dir-te quina URL ha de posar l'app.
  */
 function provaFirebase(idfull) {
   const node = publicaFirebase(
     { dades: [], calendari: [], aparellaments: [], partides: [], prova: true },
     idfull
   );
-  console.log(
-    "URL per a l'app: " + FIREBASE_DB + "/" + ARREL + "/" + node + "/dades.json"
-  );
+  console.log("URL per a l'app: " + FIREBASE_DB + "/" + ARREL + "/" + node + "/dades.json");
 }
