@@ -29,14 +29,17 @@
  * tots els casos del doPost (partida, trobada, novaTrobada, actualitza) i
  * totes les apps. El doPost no s'ha de tocar.
  *
- *     // Enviar resposta immediatament
- *     enviarResposta(response);
+ * Substitueix la crida a enviarResposta(), que era justament el forat previst
+ * per a aixo i avui no fa res:
  *
- *     // >>> AFEGEIX AQUESTA LINIA <<<
- *     // Va abans del desat a Drive a proposit: Firebase es la font que
- *     // llegeix l'app, i com mes aviat hi siguin les dades abans les veuen
- *     // els jugadors. saveAsJSON puja 1,2 MB i pot esperar.
- *     publicaFirebaseSiPot(response, idfull);
+ *   -   // Enviar resposta immediatament
+ *   -   enviarResposta(response);
+ *   +   // Publica a Firebase, la font rapida que llegeix l'app.
+ *   +   publicaFirebaseSiPot(response, idfull);
+ *
+ * Va abans del desat a Drive a proposit: com mes aviat hi siguin les dades,
+ * abans les veuen els jugadors. saveAsJSON puja 1,2 MB i pot esperar.
+ * Despres ja pots esborrar la funcio enviarResposta().
  *
  *     await Promise.all([
  *       saveAsJSON(response, idfull, idJSON),
