@@ -71,13 +71,17 @@ document.addEventListener("DOMContentLoaded", iniciJSON());
 // Aquest bloc es identic a totes les apps: copiar la carpeta per a una
 // temporada nova ja funciona, no s'hi ha de tocar cap URL.
 
-const FIREBASE_DB =
-  "https://manacup-b195e-default-rtdb.europe-west1.firebasedatabase.app";
-
 // El node de Firebase surt del cami de l'app: /manacup/26-27/ dona
 // "manacup/26-27", que es exactament la columna ruta del full de campionats.
 // Per aixo no cal configurar res per app.
+//
+// La base de dades va DINS de la funcio a proposit: parametres.js crida
+// iniciJSON() a dalt de tot, abans d'arribar aqui, i un const de primer
+// nivell encara no estaria inicialitzat en aquell moment.
 function urlFirebase() {
+  var FIREBASE_DB =
+    "https://manacup-b195e-default-rtdb.europe-west1.firebasedatabase.app";
+
   if (typeof urlParams !== "undefined" && urlParams.firebase !== undefined) {
     return urlParams.firebase; // ?firebase= buit deixa nomes l'Apps Script
   }
