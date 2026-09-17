@@ -25,13 +25,27 @@
  *
  * --- Com s'integra -----------------------------------------------------------
  *
- * Al punt on el teu script ja ha generat el JSON, afegeix una linia:
+ * Nomes cal tocar updateJSON(), que es on es munta l'objecte i per on passen
+ * tots els casos del doPost (partida, trobada, novaTrobada, actualitza) i
+ * totes les apps. El doPost no s'ha de tocar.
  *
- *     const dades = generaJSON(idfull);   // el que ja fas ara
- *     publicaFirebaseSiPot(dades, idfull);
+ *     // Enviar resposta immediatament
+ *     enviarResposta(response);
+ *
+ *     // >>> AFEGEIX AQUESTA LINIA <<<
+ *     // Va abans del desat a Drive a proposit: Firebase es la font que
+ *     // llegeix l'app, i com mes aviat hi siguin les dades abans les veuen
+ *     // els jugadors. saveAsJSON puja 1,2 MB i pot esperar.
+ *     publicaFirebaseSiPot(response, idfull);
+ *
+ *     await Promise.all([
+ *       saveAsJSON(response, idfull, idJSON),
+ *     ]);
  *
  * Amb la variant SiPot, si Firebase falla el resultat es registra igualment i
- * l'app continua servint-se per l'Apps Script, nomes que mes lenta.
+ * l'app continua servint-se per l'Apps Script, nomes que mes lenta. Aixo vol
+ * dir tambe que pots afegir la linia ABANS d'omplir CAMPIONATS: un campionat
+ * encara no registrat deixa un avis al log i no trenca res.
  *
  * --- Configuracio previa (un sol cop) ---------------------------------------
  *
