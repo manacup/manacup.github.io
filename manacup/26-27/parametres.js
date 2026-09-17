@@ -67,26 +67,84 @@ function carregaUsuari() {
 }
 document.addEventListener("DOMContentLoaded", iniciJSON(false));
 
+// --- Carrega de dades amb fallback -----------------------------------------
+// Ordre de fonts: la primera que respongui amb dades valides guanya. Si falla
+// (xarxa, HTTP, o una resposta que no son les dades esperades) es prova la
+// seguent. Aixi la font rapida no es un punt unic de fallada.
+function fontsDeDades(turbo) {
+  if (turbo) {
+    return [{ nom: "fitxer local", url: JSONfixe }];
+  }
+  var fonts = [];
+  if (typeof firebaseURL !== "undefined" && firebaseURL) {
+    // Font rapida. Timeout curt: si no respon de seguida, millor caure a
+    // l'Apps Script que no fer esperar l'usuari.
+    fonts.push({ nom: "Firebase", url: firebaseURL, timeout: 6000 });
+  }
+  fonts.push({
+    nom: "Apps Script",
+    url: macroURL + "?page=JSON&idJSON=" + idJSON,
+    timeout: 45000,
+  });
+  return fonts;
+}
+
+// Comprova que la resposta son realment les dades del campionat. Protegeix
+// del cas real que ens hem trobat: una pagina d'error HTML que peta al
+// .json(), i tambe d'un node de Firebase a mitges o buit.
+function dadesValides(data) {
+  return (
+    data != null &&
+    typeof data === "object" &&
+    Array.isArray(data.dades) &&
+    Array.isArray(data.calendari) &&
+    Array.isArray(data.aparellaments) &&
+    Array.isArray(data.partides)
+  );
+}
+
+function baixaJSON(url, timeout) {
+  var controlador = new AbortController();
+  var temporitzador = setTimeout(function () {
+    controlador.abort();
+  }, timeout || 45000);
+  return fetch(url, { signal: controlador.signal })
+    .then(function (resposta) {
+      if (!resposta.ok) {
+        throw new Error("HTTP " + resposta.status);
+      }
+      return resposta.json();
+    })
+    .finally(function () {
+      clearTimeout(temporitzador);
+    });
+}
+
+function carregaDades(turbo) {
+  return fontsDeDades(turbo).reduce(function (cadena, font) {
+    return cadena.catch(function (motiu) {
+      if (motiu) {
+        console.warn("Font descartada:", font.nom, "->", motiu.message || motiu);
+      }
+      var inici = Date.now();
+      return baixaJSON(font.url, font.timeout).then(function (data) {
+        if (!dadesValides(data)) {
+          throw new Error("resposta sense les dades esperades");
+        }
+        console.log("Dades de " + font.nom + " en " + (Date.now() - inici) + " ms");
+        return data;
+      });
+    });
+    // El motiu inicial es null: no es cap fallada, nomes arrenca la cadena.
+  }, Promise.reject(null));
+}
+
 function iniciJSON(turbo,vista) {
   
   carregant();
   carrega = 0;
-  // Crida a l'API del Google Apps Script
-  var myHeaders = new Headers();
-  var myInit = {
-    method: "GET",
-    headers: myHeaders,
-    mode: "no-cors",
-    cache: "default",
-  };
-  Promise.all([
-    fetch(turbo ? JSONfixe : macroURL + "?page=JSON&idJSON=" + idJSON), 
-    //fetch("manacup_25-26.json")
-  ])
-    .then((responses) =>
-      Promise.all(responses.map((response) => response.json()))
-    )
-    .then(([data]) => {
+  carregaDades(turbo)
+    .then((data) => {
       // Process dataTrobades, dataJugadors, etc.
       // ...
       // Example: Accessing data from the 'trobades' response
