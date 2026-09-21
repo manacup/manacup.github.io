@@ -198,11 +198,24 @@ function refrescaDespresDEnviar(vista) {
   }
 
   llegeixLastUpdate().then(function (abans) {
-    var limit = Date.now() + 20000;
+    var t0 = Date.now();
+    var limit = t0 + 20000;
+    var consultes = 0;
 
     (function mira() {
+      consultes++;
       llegeixLastUpdate().then(function (ara) {
-        if ((ara && ara !== abans) || Date.now() > limit) {
+        if (ara && ara !== abans) {
+          console.log(
+            "[temps] " + vista + ": el servidor ha publicat en " +
+              (Date.now() - t0) + " ms (" + consultes + " consultes)"
+          );
+          refresca(vista);
+        } else if (Date.now() > limit) {
+          console.warn(
+            "[temps] " + vista + ": el servidor no ha publicat en " +
+              (Date.now() - t0) + " ms; refrescam igualment"
+          );
           refresca(vista);
         } else {
           setTimeout(mira, 700);

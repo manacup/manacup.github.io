@@ -217,21 +217,39 @@ function llegeixLastUpdate() {
 }
 
 function refrescaDespresDEnviar(vista) {
+  // iniciJSON te dues formes segons l'app: (turbo, vista) o nomes (vista).
+  function refresca(vista) {
+    return iniciJSON.length >= 2 ? iniciJSON(false, vista) : iniciJSON(vista);
+  }
+
   // Sense Firebase no hi ha res a vigilar: esperam un temps i prou.
   if (!urlLastUpdate()) {
     setTimeout(function () {
-      iniciJSON(false, vista);
+      refresca(vista);
     }, 2000);
     return;
   }
 
   llegeixLastUpdate().then(function (abans) {
-    var limit = Date.now() + 20000;
+    var t0 = Date.now();
+    var limit = t0 + 20000;
+    var consultes = 0;
 
     (function mira() {
+      consultes++;
       llegeixLastUpdate().then(function (ara) {
-        if ((ara && ara !== abans) || Date.now() > limit) {
-          iniciJSON(false, vista);
+        if (ara && ara !== abans) {
+          console.log(
+            "[temps] " + vista + ": el servidor ha publicat en " +
+              (Date.now() - t0) + " ms (" + consultes + " consultes)"
+          );
+          refresca(vista);
+        } else if (Date.now() > limit) {
+          console.warn(
+            "[temps] " + vista + ": el servidor no ha publicat en " +
+              (Date.now() - t0) + " ms; refrescam igualment"
+          );
+          refresca(vista);
         } else {
           setTimeout(mira, 700);
         }

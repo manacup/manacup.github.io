@@ -55,28 +55,64 @@ const SECCIONS_PER_ACCIO = {
  * @return {number} La marca de temps publicada.
  */
 function publicaSeccions(idfull, noms) {
+  const t = cronometre_();
   const base = FIREBASE_DB + "/" + ARREL + "/" + nodeDe_(idfull);
   const capcaleres = { Authorization: "Bearer " + tokenFirebase_() };
-  const ara = Date.now();
+  t.marca("token");
 
+  const ara = Date.now();
   const canvis = {};
   const marques = {};
   noms.forEach(function (nom) {
     if (!SECCIONS[nom]) throw new Error("Seccio desconeguda: " + nom);
     canvis[nom] = SECCIONS[nom](idfull);
     marques[nom] = ara;
+    t.marca("llegir " + nom + " (" + midaKB_(canvis[nom]) + " KB)");
   });
 
   // PATCH toca nomes les claus que li passam i deixa les altres com estaven.
   // Una sola peticio per a totes les seccions, en lloc d'una per seccio.
   patchNode_(base + "/dades.json", canvis, capcaleres);
-  patchNode_(base + "/seccions.json", marques, capcaleres);
+  t.marca("PATCH dades (" + midaKB_(canvis) + " KB)");
 
+  patchNode_(base + "/seccions.json", marques, capcaleres);
   // lastUpdate al final: no ha d'anunciar mai unes dades que encara no hi son.
   escriuNode_(base + "/lastUpdate.json", ara, capcaleres);
+  t.marca("marques");
 
-  console.log("Publicat " + noms.join(", ") + " a " + nodeDe_(idfull));
+  t.total("publicaSeccions " + noms.join("+") + " a " + nodeDe_(idfull));
   return ara;
+}
+
+// --- Cronometre -------------------------------------------------------------
+//
+// Surt al registre d'execucions amb el prefix [temps]. Per veure-ho:
+// a l'editor d'Apps Script, Execucions, al menu de l'esquerra, i obre
+// l'execucio del doPost que vulguis mirar.
+//
+// Serveix per respondre la pregunta que importa: on se'n va el temps, a
+// llegir el full o a parlar amb Firebase.
+
+function cronometre_() {
+  var t0 = Date.now();
+  var anterior = t0;
+  var trams = [];
+  return {
+    marca: function (nom) {
+      var ara = Date.now();
+      trams.push(nom + " " + (ara - anterior) + " ms");
+      anterior = ara;
+    },
+    total: function (nom) {
+      console.log(
+        "[temps] " + nom + ": " + (Date.now() - t0) + " ms  |  " + trams.join("  |  ")
+      );
+    },
+  };
+}
+
+function midaKB_(valor) {
+  return (JSON.stringify(valor).length / 1024).toFixed(1);
 }
 
 /**
@@ -113,6 +149,20 @@ function publicaTotElCampionat(idfull) {
   }, capcaleres);
 
   return publicaSeccions(idfull, Object.keys(SECCIONS));
+}
+
+/**
+ * Compara el cost de cada accio, per veure si el repartiment val la pena.
+ * Executa-la i mira el registre: et dira quant triga cada conjunt de
+ * seccions sobre el teu full de debo.
+ */
+function mesuraAccions(idfull) {
+  Object.keys(SECCIONS_PER_ACCIO).forEach(function (accio) {
+    console.log("--- " + accio);
+    publicaSeccions(idfull, SECCIONS_PER_ACCIO[accio]);
+  });
+  console.log("--- tot el campionat");
+  publicaTotElCampionat(idfull);
 }
 
 // --- Intern -----------------------------------------------------------------
