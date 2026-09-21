@@ -121,7 +121,7 @@ function loadContent(vista) {
     case "rondes":
       navbarTitle.innerHTML = "Rondes";
       function ordreRondes(a, b) {
-        return b.Ronda - a.Ronda;
+        return a.Ronda - b.Ronda;
       }
       rondes.sort(ordreRondes);
 
