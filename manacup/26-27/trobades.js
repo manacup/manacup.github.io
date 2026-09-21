@@ -1,3 +1,24 @@
+// --- Apat de la trobada -----------------------------------------------------
+// El camp Sopar de la trobada val "Dinar", "Sopar" o buit (cap apat).
+// Les trobades d'abans duen "TRUE"/"FALSE": TRUE es tracta com a sopar, que
+// es el que volia dir, i aixi les que ja hi ha segueixen sortint be.
+function apatDeLaTrobada(trobada) {
+  var v = trobada && trobada.Sopar ? String(trobada.Sopar).trim() : "";
+  if (v.toUpperCase() === "TRUE") return "Sopar";
+  if (v.toUpperCase() === "FALSE") return "";
+  return v === "Dinar" || v === "Sopar" ? v : "";
+}
+
+// El que es desa a Respostes: "Quedaré a dinar" o "Quedaré a sopar".
+function respostaApat(apat) {
+  return "Quedaré a " + apat.toLowerCase();
+}
+
+// Accepta les dues respostes i tambe les antigues, que sempre deien sopar.
+function esQuedaAApat(assistent) {
+  return /^Quedaré a /.test(String((assistent && assistent.Sopar) || ""));
+}
+
 var  timezone, startTime, endTime, title, description, venueName, address, city, state
 Date.prototype.addHours = function(h) {
   this.setTime(this.getTime() + (h*60*60*1000));
@@ -15,12 +36,15 @@ function renderTrobada(trobada) {
   if (trobada === false) {
     //document.getElementById("tabTrobades").classList.add("disabled")
   } else {
-    let sopar = "";
     let assistents = trobada.assistents;
-    if (trobada.Sopar == "TRUE") {
+    const apat = apatDeLaTrobada(trobada);
+    let sopar = "";
+    if (apat) {
       sopar =
-        "Quedaran a sopar " +
-        assistents.filter((as) => as.Sopar == "Quedaré a sopar").length +
+        "Quedaran a " +
+        apat.toLowerCase() +
+        " " +
+        assistents.filter(esQuedaAApat).length +
         " persones.";
     }
 
@@ -138,7 +162,7 @@ function renderTrobada(trobada) {
                 assistent.Joc != "Joc" ? "d-none" : ""
               }">${assistent.Joc}</span>
               <span class="badge text-bg-secondary ${
-                assistent.Sopar != "Quedaré a sopar" ? "d-none" : ""
+                esQuedaAApat(assistent) ? "" : "d-none"
               }">${assistent.Sopar}</span>
           </li>
     `;
@@ -163,6 +187,7 @@ function renderTrobada(trobada) {
 
 
 function renderFormTrobada(trobada) {
+  const apatForm = apatDeLaTrobada(trobada);
   const ronda1 = trobada.max_ronda - trobada.Rondes_a_jugar + 1;
   const ronda2 = trobada.max_ronda - trobada.Rondes_a_jugar + 2;
   //console.log(ronda1,ronda2,trobada)
@@ -331,13 +356,13 @@ function renderFormTrobada(trobada) {
              
             </div>
   
-            <!-- 'sopar' Section -->
-            <div id="sopar" class="${trobada.Sopar != "TRUE" ? "d-none" : ""}">
+            <!-- 'sopar' Section: nomes si la trobada te dinar o sopar -->
+            <div id="sopar" class="${apatForm ? "" : "d-none"}">
               <div class="row">
-                <div class="col-10 mb-3">Quedaré a sopar</div>
+                <div class="col-10 mb-3">${apatForm ? respostaApat(apatForm) : ""}</div>
                 <div class="col-2 text-end">
                   <div class="form-check form-switch">
-                    <input class="form-check-input" type="checkbox" id="sopare" value="Quedaré a sopar" name="Sopar">
+                    <input class="form-check-input" type="checkbox" id="sopare" value="${apatForm ? respostaApat(apatForm) : ""}" name="Sopar">
                    
                   </div>
                 </div>
@@ -575,6 +600,7 @@ function ExcelDateToJSDateNormal(serial) {
 
 function editaTrobadaForm(trobada) {
   console.log(trobada)
+  const apatEdit = apatDeLaTrobada(trobada);
   const formTemplate = `
   <form id="formulari_Calendari_trobades" class="container-fluid needs-validation">
     <div class="mb-2"><label class="col-form-label">Ronda (si es juguen més d'una ronda posar la més alta):</label>
@@ -598,12 +624,12 @@ function editaTrobadaForm(trobada) {
     <div class="mb-2"><label class="col-form-label">URL Maps:</label>
     <input type="url" class="form-control" name="maps"  value="${trobada.maps||''}"
             placeholder="maps"></div> -->
-    <div class="mb-2"><label>Sopar?</label>
-        <div class="form-check form-switch">
-        <input type="checkbox"  id="SoparTRUE"  value="${trobada.Sopar}" ${trobada.Sopar==="TRUE"?"checked":""}
-                class="form-check-input" >
-                <input type="hidden" id="Sopar" name="Sopar" value="${trobada.Sopar}"> 
-                </div>
+    <div class="mb-2"><label class="col-form-label">Hi ha dinar o sopar?</label>
+    <select class="form-select" name="Sopar" id="Sopar">
+        <option value="" ${apatEdit === "" ? "selected" : ""}>Cap dels dos</option>
+        <option value="Dinar" ${apatEdit === "Dinar" ? "selected" : ""}>Dinar</option>
+        <option value="Sopar" ${apatEdit === "Sopar" ? "selected" : ""}>Sopar</option>
+    </select>
     </div>
     <div class="mb-2"><label>Confirmat? es mostrarà a l'aplicació:</label>
     <div class="form-check form-switch">
@@ -628,10 +654,6 @@ function editaTrobadaForm(trobada) {
 </form>
 `
 document.getElementById("content").innerHTML += formTemplate
-document.getElementById("SoparTRUE").addEventListener("change",function(){
-  let sopar =document.getElementById("Sopar")
-  sopar.value = this.checked? "TRUE" : "FALSE"
-})
 document.getElementById("ConfirmatTRUE").addEventListener("change",function(){
   let sopar =document.getElementById("Confirmat")
   sopar.value = this.checked? "TRUE" : "FALSE"
