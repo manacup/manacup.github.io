@@ -36,11 +36,18 @@ const SECCIONS = {
   trobades: function (idfull) { return getTrobades(idfull); },
 };
 
-// Quines seccions toca cada accio del doPost. Confirmat amb l'autor del full:
-// un resultat no toca trobades, i una assistencia no toca aparellaments,
-// perque els emparellaments es fan a part.
+// Quines seccions toca cada accio del doPost.
+//
+// Un resultat toca calendari: hi viuen les estadistiques per ronda que
+// calcula el full -- Jugades, Programades, Millor_Jugada, Millor_Partida,
+// Major_num_Scrabbles, Scrabbles, Mots, Suma_punts, Centenaries,
+// Mil·lenaries i Estat. Son nomes 8,7 KB i una lectura mes, pero sense
+// elles la vista de rondes es queda amb els comptadors congelats.
+//
+// El que un resultat NO toca es trobades, i una assistencia no toca
+// aparellaments, perque els emparellaments es fan a part.
 const SECCIONS_PER_ACCIO = {
-  partida: ["dades", "aparellaments", "partides"],
+  partida: ["dades", "calendari", "aparellaments", "partides"],
   trobada: ["trobades"],
   novaTrobada: ["trobades"],
 };
